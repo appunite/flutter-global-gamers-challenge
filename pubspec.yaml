@@ -37,6 +37,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/challenges/trees_challenge/
     - assets/images/dash/
     - assets/images/enemies/
     - assets/images/scenery/

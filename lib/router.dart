@@ -1,3 +1,5 @@
+import 'package:endless_runner/flame_game/challenges/trees_challenge/trees_challenge_screen.dart';
+
 import 'flame_game/game_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
@@ -10,8 +12,6 @@ import 'settings/settings_screen.dart';
 import 'style/page_transition.dart';
 import 'style/palette.dart';
 
-/// The router describes the game's navigational hierarchy, from the main
-/// screen through settings screens all the way to each individual level.
 final router = GoRouter(
   routes: [
     GoRoute(
@@ -46,6 +46,12 @@ final router = GoRouter(
           path: 'settings',
           builder: (context, state) => const SettingsScreen(
             key: Key('settings'),
+          ),
+        ),
+        GoRoute(
+          path: 'trees-challenge',
+          builder: (context, state) => const TreesChallengeScreen(
+            key: Key('trees-challenge'),
           ),
         ),
       ],
