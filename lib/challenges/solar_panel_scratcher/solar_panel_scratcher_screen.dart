@@ -73,6 +73,16 @@ class _SolarPanelScratcherScreenState extends State<SolarPanelScratcherScreen> {
                 ),
               ),
             ),
+            Align(
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 16,right: 36),
+                child: Text(
+                  _formattedTime(timeInSecond: _timeInSeconds),
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.white),
+                ),
+              ),
+            ),
             Positioned(
               left: 16,
               top: 16,
@@ -127,6 +137,14 @@ class _SolarPanelScratcherScreenState extends State<SolarPanelScratcherScreen> {
         );
       },
     );
+  }
+
+  String _formattedTime({required int timeInSecond}) {
+    int sec = timeInSecond % 60;
+    int min = (timeInSecond / 60).floor();
+    String minute = min.toString().length <= 1 ? "0$min" : "$min";
+    String second = sec.toString().length <= 1 ? "0$sec" : "$sec";
+    return "$minute:$second";
   }
 
   @override
