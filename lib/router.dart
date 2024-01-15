@@ -1,3 +1,5 @@
+import 'package:endless_runner/recycling_challenge/recycling_challenge_screen.dart';
+
 import 'flame_game/game_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
@@ -46,6 +48,12 @@ final router = GoRouter(
           path: 'settings',
           builder: (context, state) => const SettingsScreen(
             key: Key('settings'),
+          ),
+        ),
+        GoRoute(
+          path: 'recycling',
+          builder: (context, state) => const RecyclingChallengeScreen(
+            key: Key('recycling'),
           ),
         ),
       ],
