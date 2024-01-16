@@ -46,11 +46,14 @@ class GarbageItemContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Transform.rotate(
       angle: garbageType.rotationAngle,
-      child: Image.asset(
-        garbageType.assetPath,
-        height: garbageType.size,
-        width: garbageType.size,
-        fit: BoxFit.contain,
+      child: Semantics(
+        label: garbageType.semanticLabel,
+        child: Image.asset(
+          garbageType.assetPath,
+          height: garbageType.size,
+          width: garbageType.size,
+          fit: BoxFit.contain,
+        ),
       ),
     );
   }
