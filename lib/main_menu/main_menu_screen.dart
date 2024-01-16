@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+import '../audio/audio_controller.dart';
+import '../audio/sounds.dart';
 import '../settings/settings.dart';
 import '../style/wobbly_button.dart';
 import '../style/palette.dart';
@@ -15,6 +17,7 @@ class MainMenuScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     final settingsController = context.watch<SettingsController>();
+    final audioController = context.watch<AudioController>();
 
     return Scaffold(
       backgroundColor: palette.backgroundMain.color,
@@ -28,20 +31,12 @@ class MainMenuScreen extends StatelessWidget {
                 filterQuality: FilterQuality.none,
               ),
               gap10,
-              Transform.rotate(
-                angle: -0.1,
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 500),
-                  child: const Text(
-                    'A Flutter game template.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'Press Start 2P',
-                      fontSize: 32,
-                      height: 1,
-                    ),
-                  ),
-                ),
+              WobblyButton(
+                onPressed: () {
+                  audioController.playSfx(SfxType.buttonTap);
+                  GoRouter.of(context).go('/play');
+                },
+                child: const Text('Play'),
               ),
             ],
           ),
@@ -49,14 +44,6 @@ class MainMenuScreen extends StatelessWidget {
         rectangularMenuArea: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // WobblyButton(
-            //   onPressed: () {
-            //     audioController.playSfx(SfxType.buttonTap);
-            //     GoRouter.of(context).go('/play');
-            //   },
-            //   child: const Text('Play'),
-            // ),
-            // gap10,
             WobblyButton(
               onPressed: () => GoRouter.of(context).push('/settings'),
               child: const Text('Settings'),
