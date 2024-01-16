@@ -69,7 +69,7 @@ class _TreesChallengeScreenState extends State<TreesChallengeScreen> {
                 alignment: Alignment.topCenter,
                 child: Text(
                   formatTime(_secondsLeft),
-                  style: const TextStyle(fontSize: 24),
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
               ),
               Align(
