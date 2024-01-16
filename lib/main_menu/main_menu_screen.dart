@@ -64,6 +64,11 @@ class MainMenuScreen extends StatelessWidget {
               child: const Text('Settings'),
             ),
             _gap,
+            WobblyButton(
+              onPressed: () => GoRouter.of(context).push('/solar-panel-scratcher'),
+              child: const Text('Solar panel scratcher'),
+            ),
+            _gap,
             Padding(
               padding: const EdgeInsets.only(top: 32),
               child: ValueListenableBuilder<bool>(
