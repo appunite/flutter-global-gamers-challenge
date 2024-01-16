@@ -121,16 +121,14 @@ class _TreesChallengeScreenState extends State<TreesChallengeScreen> {
     _timer = Timer.periodic(
       const Duration(seconds: 1),
       (timer) {
-        setState(
-          () {
-            if (_secondsLeft > 0) {
-              _secondsLeft--;
-            } else {
-              timer.cancel();
-              _showFinishDialog();
-            }
-          },
-        );
+        if (_secondsLeft > 0) {
+          setState(
+            () => _secondsLeft--,
+          );
+        } else {
+          timer.cancel();
+          _showFinishDialog();
+        }
       },
     );
   }
