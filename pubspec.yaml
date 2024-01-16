@@ -23,6 +23,7 @@ dependencies:
   nes_ui: ^0.10.0
   google_fonts: ^6.1.0
   logging: ^1.2.0
+  lottie: ^3.0.0
 
 dev_dependencies:
   flame_test: ^1.14.0
@@ -36,6 +37,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/animations/
     - assets/images/
     - assets/images/dash/
     - assets/images/enemies/

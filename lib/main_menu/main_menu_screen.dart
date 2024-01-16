@@ -1,3 +1,4 @@
+import 'package:endless_runner/style/gaps.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +30,7 @@ class MainMenuScreen extends StatelessWidget {
                 'assets/images/banner.png',
                 filterQuality: FilterQuality.none,
               ),
-              _gap,
+              gap10,
               Transform.rotate(
                 angle: -0.1,
                 child: ConstrainedBox(
@@ -58,17 +59,17 @@ class MainMenuScreen extends StatelessWidget {
               },
               child: const Text('Play'),
             ),
-            _gap,
+            gap10,
             WobblyButton(
               onPressed: () => GoRouter.of(context).push('/settings'),
               child: const Text('Settings'),
             ),
-            _gap,
+            gap10,
             WobblyButton(
               onPressed: () => GoRouter.of(context).push('/recycling'),
               child: const Text('Recycling'),
             ),
-            _gap,
+            gap10,
             Padding(
               padding: const EdgeInsets.only(top: 32),
               child: ValueListenableBuilder<bool>(
@@ -81,13 +82,11 @@ class MainMenuScreen extends StatelessWidget {
                 },
               ),
             ),
-            _gap,
+            gap10,
             const Text('Built with Flame'),
           ],
         ),
       ),
     );
   }
-
-  static const _gap = SizedBox(height: 10);
 }

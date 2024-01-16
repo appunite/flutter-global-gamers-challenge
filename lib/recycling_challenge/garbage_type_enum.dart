@@ -1,62 +1,79 @@
+import 'package:endless_runner/recycling_challenge/dumpster_widget.dart';
+import 'dart:math' as math;
+
+const _recyclingImagePath = 'assets/images/recycling/';
+
 enum GarbageType {
   banana(
-    assetPath: 'assets/images/recycling/banana.png',
+    assetPath: '${_recyclingImagePath}banana.png',
     semanticLabel: 'banana',
-    recyclable: false,
+    dumpsterType: DumpsterType.other,
   ),
   apple(
-    assetPath: 'assets/images/recycling/apple.png',
+    assetPath: '${_recyclingImagePath}apple.png',
     semanticLabel: 'apple',
-    recyclable: false,
+    dumpsterType: DumpsterType.other,
+    rotationAngle: math.pi / 10,
   ),
   diaper(
-    assetPath: 'assets/images/recycling/diaper.png',
+    assetPath: '${_recyclingImagePath}diaper.png',
     semanticLabel: 'diaper',
-    recyclable: false,
+    dumpsterType: DumpsterType.other,
   ),
   glassBottle(
-    assetPath: 'assets/images/recycling/glass_bottle.png',
-    semanticLabel: 'glassBottle',
-    recyclable: true,
+    assetPath: '${_recyclingImagePath}glass_bottle.png',
+    semanticLabel: 'glass bottle',
+    dumpsterType: DumpsterType.recyclable,
+    size: 80,
   ),
   plasticBottle(
-    assetPath: 'assets/images/recycling/plastic_bottle.png',
-    semanticLabel: 'plasticBottle',
-    recyclable: true,
+    assetPath: '${_recyclingImagePath}plastic_bottle.png',
+    semanticLabel: 'plastic bottle',
+    dumpsterType: DumpsterType.recyclable,
+    rotationAngle: -math.pi / 6,
+    size: 80,
   ),
   cardboard(
-    assetPath: 'assets/images/recycling/cardboard.png',
-    semanticLabel: 'cardboard',
-    recyclable: true,
-  ),
+      assetPath: '${_recyclingImagePath}cardboard.png',
+      semanticLabel: 'cardboard',
+      dumpsterType: DumpsterType.recyclable),
   can(
-    assetPath: 'assets/images/recycling/can.png',
+    assetPath: '${_recyclingImagePath}can.png',
     semanticLabel: 'can',
-    recyclable: true,
+    dumpsterType: DumpsterType.recyclable,
+    rotationAngle: math.pi / 4,
   ),
   documents(
-    assetPath: 'assets/images/recycling/documents.png',
+    assetPath: '${_recyclingImagePath}documents.png',
     semanticLabel: 'documents',
-    recyclable: true,
+    dumpsterType: DumpsterType.recyclable,
+    rotationAngle: -math.pi / 10,
+    size: 70,
   ),
   lightbulb(
-    assetPath: 'assets/images/recycling/lightbulb.png',
+    assetPath: '${_recyclingImagePath}lightbulb.png',
     semanticLabel: 'lightbulb',
-    recyclable: false,
+    dumpsterType: DumpsterType.other,
+    rotationAngle: math.pi / 6,
   ),
   fishbones(
-    assetPath: 'assets/images/recycling/fishbones.png',
+    assetPath: '${_recyclingImagePath}fishbones.png',
     semanticLabel: 'fishbones',
-    recyclable: false,
+    dumpsterType: DumpsterType.other,
+    rotationAngle: -math.pi / 6,
   );
 
   const GarbageType({
     required this.assetPath,
     required this.semanticLabel,
-    required this.recyclable,
+    required this.dumpsterType,
+    this.rotationAngle = 0,
+    this.size = 60,
   });
 
   final String assetPath;
   final String semanticLabel;
-  final bool recyclable;
+  final DumpsterType dumpsterType;
+  final double rotationAngle;
+  final double size;
 }

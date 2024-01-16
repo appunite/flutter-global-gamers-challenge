@@ -1,172 +1,126 @@
+import 'package:endless_runner/recycling_challenge/dumpster_widget.dart';
+import 'package:endless_runner/recycling_challenge/garbage_controller.dart';
 import 'package:endless_runner/recycling_challenge/garbage_widget.dart';
+import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:nes_ui/nes_ui.dart';
+import 'package:provider/provider.dart';
 
-class RecyclingChallengeScreen extends StatefulWidget {
+class RecyclingChallengeScreen extends StatelessWidget {
   const RecyclingChallengeScreen({super.key});
 
   @override
-  State<RecyclingChallengeScreen> createState() => _RecyclingChallengeScreenState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => GarbageController(),
+      child: const _RecyclingChallengeScreenBody(),
+    );
+  }
 }
 
-class _RecyclingChallengeScreenState extends State<RecyclingChallengeScreen> {
-  bool _blueVisible = true;
-  bool _pinkVisible = true;
-  bool _orangeVisible = true;
-  bool _greenVisible = true;
+class _RecyclingChallengeScreenBody extends StatefulWidget {
+  const _RecyclingChallengeScreenBody();
+
+  @override
+  State<_RecyclingChallengeScreenBody> createState() => _RecyclingChallengeScreenBodyState();
+}
+
+class _RecyclingChallengeScreenBodyState extends State<_RecyclingChallengeScreenBody> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final garbageController = Provider.of<GarbageController>(context, listen: false);
+      garbageController.addListener(() {
+        if (garbageController.challengeCompleted) {
+          _showCompletionDialog();
+        }
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFEDEDED),
-      body: SafeArea(
-        bottom: false,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24) + const EdgeInsets.only(top: 20),
-          child: const Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(child: GarbageWidget()),
-            ],
+    final width = MediaQuery.sizeOf(context).width;
+
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        backgroundColor: const Color(0xFFEDEDED),
+        body: SafeArea(
+          bottom: false,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 16),
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                const GarbageWidget(),
+                Positioned(
+                  bottom: -70,
+                  left: width / 6,
+                  child: const DumpsterWidget(
+                    dumpsterType: DumpsterType.recyclable,
+                  ),
+                ),
+                Positioned(
+                  bottom: -70,
+                  left: width / 2,
+                  child: const DumpsterWidget(
+                    dumpsterType: DumpsterType.other,
+                  ),
+                ),
+                Align(
+                  alignment: AlignmentDirectional.topStart,
+                  child: BackButton(onPressed: context.pop),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Row _buildGarbage() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Visibility(
-          visible: _blueVisible,
-          child: Draggable<Color>(
-            data: Colors.blue,
-            childWhenDragging: const SizedBox.shrink(),
-            feedback: Container(
-              color: Colors.blue,
-              height: 24,
-              width: 24,
-            ),
-            child: Container(
-              color: Colors.blue,
-              height: 24,
-              width: 24,
-            ),
-          ),
-        ),
-        Visibility(
-          visible: _pinkVisible,
-          child: Draggable<Color>(
-            data: Colors.pink,
-            childWhenDragging: const SizedBox.shrink(),
-            feedback: Container(
-              color: Colors.pink,
-              height: 24,
-              width: 24,
-            ),
-            child: Container(
-              color: Colors.pink,
-              height: 24,
-              width: 24,
-            ),
-          ),
-        ),
-        Visibility(
-          visible: _orangeVisible,
-          child: Draggable<Color>(
-            data: Colors.orange,
-            childWhenDragging: const SizedBox.shrink(),
-            feedback: Container(
-              color: Colors.orange,
-              height: 24,
-              width: 24,
-            ),
-            child: Container(
-              color: Colors.orange,
-              height: 24,
-              width: 24,
-            ),
-          ),
-        ),
-        Visibility(
-          visible: _greenVisible,
-          child: Draggable<Color>(
-            data: Colors.green,
-            childWhenDragging: const SizedBox.shrink(),
-            feedback: Container(
-              color: Colors.green,
-              height: 24,
-              width: 24,
-            ),
-            child: Container(
-              color: Colors.green,
-              height: 24,
-              width: 24,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
+  void _showCompletionDialog() {
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) {
+        final palette = context.read<Palette>();
 
-  Row _buildBins() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        DragTarget<Color>(
-          onWillAccept: (data) => data == Colors.blue,
-          onAccept: (data) {
-            print(data);
-            setState(() {
-              _blueVisible = false;
-            });
-          },
-          builder: (context, candidateData, rejectedData) {
-            return Container(
-              height: 50,
-              width: 50,
-              color: Colors.blue,
-            );
-          },
-        ),
-        DragTarget<Color>(
-          onWillAccept: (data) => data == Colors.pink,
-          onAccept: (data) {
-            print(data);
-            setState(() {
-              _pinkVisible = false;
-            });
-          },
-          builder: (context, candidateData, rejectedData) {
-            return Container(
-              height: 50,
-              width: 50,
-              color: Colors.pink,
-            );
-          },
-        ),
-        DragTarget<Color>(
-          onWillAccept: (data) => data == Colors.orange || data == Colors.green,
-          onAccept: (data) {
-            print(data);
-            setState(() {
-              if (data == Colors.orange) {
-                _orangeVisible = false;
-              } else if (data == Colors.green) {
-                _greenVisible = false;
-              }
-            });
-          },
-          builder: (context, candidateData, rejectedData) {
-            return Container(
-              height: 50,
-              width: 50,
-              color: Colors.orange,
-            );
-          },
-        ),
-      ],
+        return Center(
+          child: NesContainer(
+            backgroundColor: palette.backgroundPlaySession.color,
+            width: 420,
+            height: 280,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Well done!',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  'You completed Recycling challenge!',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 16),
+                NesButton(
+                  onPressed: () {
+                    context.go('/');
+                  },
+                  type: NesButtonType.normal,
+                  child: const Text('Check your City!'),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
