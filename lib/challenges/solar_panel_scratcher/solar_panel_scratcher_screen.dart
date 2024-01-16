@@ -33,8 +33,8 @@ class _SolarPanelScratcherScreenState extends State<SolarPanelScratcherScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.sizeOf(context).width;
+    final double height = MediaQuery.sizeOf(context).height;
 
     return PopScope(
       canPop: false,
@@ -76,7 +76,10 @@ class _SolarPanelScratcherScreenState extends State<SolarPanelScratcherScreen> {
             Align(
               alignment: Alignment.topRight,
               child: Padding(
-                padding: const EdgeInsets.only(top: 16,right: 36),
+                padding: const EdgeInsets.only(
+                  top: 16,
+                  right: 36,
+                ),
                 child: Text(
                   _formattedTime(timeInSecond: _timeInSeconds),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.white),
@@ -101,6 +104,7 @@ class _SolarPanelScratcherScreenState extends State<SolarPanelScratcherScreen> {
 
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (context) {
         final palette = context.read<Palette>();
 
