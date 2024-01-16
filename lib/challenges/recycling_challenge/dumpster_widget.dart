@@ -1,11 +1,11 @@
-import 'package:endless_runner/recycling_challenge/garbage_controller.dart';
-import 'package:endless_runner/recycling_challenge/garbage_type_enum.dart';
+import 'package:endless_runner/challenges/recycling_challenge/garbage_controller.dart';
+import 'package:endless_runner/challenges/recycling_challenge/garbage_type_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 enum DumpsterType {
-  recyclable(assetPath: 'assets/images/recycling/dumpster_recycling.png'),
-  other(assetPath: 'assets/images/recycling/dumpster.png');
+  recyclable(assetPath: 'assets/images/challenges/dumpster_recycling.png'),
+  other(assetPath: 'assets/images/challenges/dumpster.png');
 
   const DumpsterType({required this.assetPath});
 

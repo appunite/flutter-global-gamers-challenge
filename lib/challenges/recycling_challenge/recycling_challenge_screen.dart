@@ -1,6 +1,6 @@
-import 'package:endless_runner/recycling_challenge/dumpster_widget.dart';
-import 'package:endless_runner/recycling_challenge/garbage_controller.dart';
-import 'package:endless_runner/recycling_challenge/garbage_widget.dart';
+import 'package:endless_runner/challenges/recycling_challenge/dumpster_widget.dart';
+import 'package:endless_runner/challenges/recycling_challenge/garbage_controller.dart';
+import 'package:endless_runner/challenges/recycling_challenge/garbage_widget.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

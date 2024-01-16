@@ -40,10 +40,9 @@ flutter:
   assets:
     - assets/animations/
     - assets/images/
-    - assets/images/challenges/trees_challenge/
+    - assets/images/challenges/
     - assets/images/dash/
     - assets/images/enemies/
-    - assets/images/recycling/
     - assets/images/scenery/
     - assets/music/
     - assets/sfx/

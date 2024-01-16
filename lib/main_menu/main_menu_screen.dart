@@ -34,17 +34,17 @@ class MainMenuScreen extends StatelessWidget {
                 child: const Text('Play'),
               ),
               Padding(
-              padding: const EdgeInsets.only(top: 32),
-              child: ValueListenableBuilder<bool>(
-                valueListenable: settingsController.audioOn,
-                builder: (context, audioOn, child) {
-                  return IconButton(
-                    onPressed: () => settingsController.toggleAudioOn(),
-                    icon: Icon(audioOn ? Icons.volume_up : Icons.volume_off),
-                  );
-                },
+                padding: const EdgeInsets.only(top: 32),
+                child: ValueListenableBuilder<bool>(
+                  valueListenable: settingsController.audioOn,
+                  builder: (context, audioOn, child) {
+                    return IconButton(
+                      onPressed: () => settingsController.toggleAudioOn(),
+                      icon: Icon(audioOn ? Icons.volume_up : Icons.volume_off),
+                    );
+                  },
+                ),
               ),
-            ),
             ],
           ),
         ),
@@ -62,7 +62,7 @@ class MainMenuScreen extends StatelessWidget {
             ),
             gap10,
             WobblyButton(
-              onPressed: () => GoRouter.of(context).push('/recycling'),
+              onPressed: () => GoRouter.of(context).push('/recycling-challenge'),
               child: const Text('Recycling'),
             ),
             gap10,

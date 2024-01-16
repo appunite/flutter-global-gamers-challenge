@@ -1,4 +1,4 @@
-import 'package:endless_runner/recycling_challenge/garbage_type_enum.dart';
+import 'package:endless_runner/challenges/recycling_challenge/garbage_type_enum.dart';
 import 'package:flutter/material.dart';
 
 class GarbageController extends ChangeNotifier {

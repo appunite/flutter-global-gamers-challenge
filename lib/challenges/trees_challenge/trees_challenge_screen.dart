@@ -59,7 +59,7 @@ class _TreesChallengeScreenState extends State<TreesChallengeScreen> {
                 ),
                 itemCount: _treesCount,
                 itemBuilder: (_, __) => Image.asset(
-                  'assets/images/challenges/trees_challenge/tree.png',
+                  'assets/images/challenges/tree.png',
                   fit: BoxFit.contain,
                   width: 24,
                   height: 24,
