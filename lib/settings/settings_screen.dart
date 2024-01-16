@@ -1,3 +1,5 @@
+import 'package:endless_runner/style/gaps.dart';
+
 import '../player_progress/player_progress.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -10,8 +12,6 @@ import 'settings.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
-
-  static const _gap = SizedBox(height: 60);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 child: ListView(
                   children: [
-                    _gap,
+                    gap60,
                     const Text(
                       'Settings',
                       textAlign: TextAlign.center,
@@ -40,7 +40,7 @@ class SettingsScreen extends StatelessWidget {
                         height: 1,
                       ),
                     ),
-                    _gap,
+                    gap60,
                     const _NameChangeLine(
                       'Name',
                     ),
@@ -68,8 +68,7 @@ class SettingsScreen extends StatelessWidget {
 
                         final messenger = ScaffoldMessenger.of(context);
                         messenger.showSnackBar(
-                          const SnackBar(
-                              content: Text('Player progress has been reset.')),
+                          const SnackBar(content: Text('Player progress has been reset.')),
                         );
                       },
                     ),
@@ -77,14 +76,14 @@ class SettingsScreen extends StatelessWidget {
                 ),
               ),
             ),
-            _gap,
+            gap60,
             WobblyButton(
               onPressed: () {
                 GoRouter.of(context).pop();
               },
               child: const Text('Back'),
             ),
-            _gap,
+            gap60,
           ],
         ),
       ),

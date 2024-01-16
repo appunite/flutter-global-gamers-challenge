@@ -1,3 +1,4 @@
+import 'package:endless_runner/style/gaps.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -29,21 +30,13 @@ class MainMenuScreen extends StatelessWidget {
                 'assets/images/banner.png',
                 filterQuality: FilterQuality.none,
               ),
-              _gap,
-              Transform.rotate(
-                angle: -0.1,
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 500),
-                  child: const Text(
-                    'A Flutter game template.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'Press Start 2P',
-                      fontSize: 32,
-                      height: 1,
-                    ),
-                  ),
-                ),
+              gap10,
+              WobblyButton(
+                onPressed: () {
+                  audioController.playSfx(SfxType.buttonTap);
+                  GoRouter.of(context).go('/play');
+                },
+                child: const Text('Play'),
               ),
             ],
           ),
@@ -52,23 +45,20 @@ class MainMenuScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             WobblyButton(
-              onPressed: () {
-                audioController.playSfx(SfxType.buttonTap);
-                GoRouter.of(context).go('/play');
-              },
-              child: const Text('Play'),
-            ),
-            _gap,
-            WobblyButton(
               onPressed: () => GoRouter.of(context).push('/settings'),
               child: const Text('Settings'),
             ),
-            _gap,
+            gap10,
             WobblyButton(
               onPressed: () => GoRouter.of(context).push('/solar-panel-scratcher'),
               child: const Text('Solar panel scratcher'),
             ),
-            _gap,
+            gap10,
+            WobblyButton(
+              onPressed: () => GoRouter.of(context).push('/recycling'),
+              child: const Text('Recycling'),
+            ),
+            gap10,
             Padding(
               padding: const EdgeInsets.only(top: 32),
               child: ValueListenableBuilder<bool>(
@@ -81,13 +71,11 @@ class MainMenuScreen extends StatelessWidget {
                 },
               ),
             ),
-            _gap,
+            gap10,
             const Text('Built with Flame'),
           ],
         ),
       ),
     );
   }
-
-  static const _gap = SizedBox(height: 10);
 }
