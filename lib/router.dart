@@ -1,10 +1,10 @@
 import 'package:endless_runner/flame_game/challenges/trees_challenge/trees_challenge_screen.dart';
-
+import 'package:endless_runner/recycling_challenge/recycling_challenge_screen.dart';
 import 'flame_game/game_screen.dart';
+import 'package:endless_runner/challenges/solar_panel_scratcher/solar_panel_scratcher_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-
 import 'level_selection/level_selection_screen.dart';
 import 'level_selection/levels.dart';
 import 'main_menu/main_menu_screen.dart';
@@ -46,6 +46,18 @@ final router = GoRouter(
           path: 'settings',
           builder: (context, state) => const SettingsScreen(
             key: Key('settings'),
+          ),
+        ),
+        GoRoute(
+          path: 'solar-panel-scratcher',
+          builder: (context, state) => const SolarPanelScratcherScreen(
+            key: Key('solar-panel-scratcher'),
+          ),
+        ),
+        GoRoute(
+          path: 'recycling',
+          builder: (context, state) => const RecyclingChallengeScreen(
+            key: Key('recycling'),
           ),
         ),
         GoRoute(
