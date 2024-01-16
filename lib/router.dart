@@ -1,5 +1,5 @@
+import 'package:endless_runner/flame_game/challenges/trees_challenge/trees_challenge_screen.dart';
 import 'package:endless_runner/recycling_challenge/recycling_challenge_screen.dart';
-
 import 'flame_game/game_screen.dart';
 import 'package:endless_runner/challenges/solar_panel_scratcher/solar_panel_scratcher_screen.dart';
 import 'package:flutter/foundation.dart';
@@ -12,8 +12,6 @@ import 'settings/settings_screen.dart';
 import 'style/page_transition.dart';
 import 'style/palette.dart';
 
-/// The router describes the game's navigational hierarchy, from the main
-/// screen through settings screens all the way to each individual level.
 final router = GoRouter(
   routes: [
     GoRoute(
@@ -60,6 +58,12 @@ final router = GoRouter(
           path: 'recycling',
           builder: (context, state) => const RecyclingChallengeScreen(
             key: Key('recycling'),
+          ),
+        ),
+        GoRoute(
+          path: 'trees-challenge',
+          builder: (context, state) => const TreesChallengeScreen(
+            key: Key('trees-challenge'),
           ),
         ),
       ],

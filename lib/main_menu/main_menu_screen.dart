@@ -26,11 +26,6 @@ class MainMenuScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                'assets/images/banner.png',
-                filterQuality: FilterQuality.none,
-              ),
-              gap10,
               WobblyButton(
                 onPressed: () {
                   audioController.playSfx(SfxType.buttonTap);
@@ -38,6 +33,18 @@ class MainMenuScreen extends StatelessWidget {
                 },
                 child: const Text('Play'),
               ),
+              Padding(
+              padding: const EdgeInsets.only(top: 32),
+              child: ValueListenableBuilder<bool>(
+                valueListenable: settingsController.audioOn,
+                builder: (context, audioOn, child) {
+                  return IconButton(
+                    onPressed: () => settingsController.toggleAudioOn(),
+                    icon: Icon(audioOn ? Icons.volume_up : Icons.volume_off),
+                  );
+                },
+              ),
+            ),
             ],
           ),
         ),
@@ -59,20 +66,10 @@ class MainMenuScreen extends StatelessWidget {
               child: const Text('Recycling'),
             ),
             gap10,
-            Padding(
-              padding: const EdgeInsets.only(top: 32),
-              child: ValueListenableBuilder<bool>(
-                valueListenable: settingsController.audioOn,
-                builder: (context, audioOn, child) {
-                  return IconButton(
-                    onPressed: () => settingsController.toggleAudioOn(),
-                    icon: Icon(audioOn ? Icons.volume_up : Icons.volume_off),
-                  );
-                },
-              ),
+            WobblyButton(
+              onPressed: () => GoRouter.of(context).push('/trees-challenge'),
+              child: const Text('Plant trees'),
             ),
-            gap10,
-            const Text('Built with Flame'),
           ],
         ),
       ),
