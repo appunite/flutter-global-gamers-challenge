@@ -24,6 +24,7 @@ dependencies:
   google_fonts: ^6.1.0
   logging: ^1.2.0
   lottie: ^3.0.0
+  scratcher: ^2.5.0
 
 dev_dependencies:
   flame_test: ^1.14.0

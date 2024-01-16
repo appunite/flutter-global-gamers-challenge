@@ -52,17 +52,22 @@ class MainMenuScreen extends StatelessWidget {
         rectangularMenuArea: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            WobblyButton(
-              onPressed: () {
-                audioController.playSfx(SfxType.buttonTap);
-                GoRouter.of(context).go('/play');
-              },
-              child: const Text('Play'),
-            ),
-            gap10,
+            // WobblyButton(
+            //   onPressed: () {
+            //     audioController.playSfx(SfxType.buttonTap);
+            //     GoRouter.of(context).go('/play');
+            //   },
+            //   child: const Text('Play'),
+            // ),
+            // gap10,
             WobblyButton(
               onPressed: () => GoRouter.of(context).push('/settings'),
               child: const Text('Settings'),
+            ),
+            gap10,
+            WobblyButton(
+              onPressed: () => GoRouter.of(context).push('/solar-panel-scratcher'),
+              child: const Text('Solar panel scratcher'),
             ),
             gap10,
             WobblyButton(
