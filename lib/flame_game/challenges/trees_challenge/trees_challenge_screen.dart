@@ -45,39 +45,46 @@ class _TreesChallengeScreenState extends State<TreesChallengeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.green,
-      body: SafeArea(
-        child: Stack(
-          children: [
-            GridView.builder(
-              controller: _scrollController,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 12,
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        backgroundColor: Colors.green,
+        body: SafeArea(
+          child: Stack(
+            children: [
+              GridView.builder(
+                controller: _scrollController,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 12,
+                ),
+                itemCount: _treesCount,
+                itemBuilder: (_, __) => Image.asset(
+                  'assets/images/challenges/trees_challenge/tree.png',
+                  fit: BoxFit.contain,
+                  width: 24,
+                  height: 24,
+                ),
               ),
-              itemCount: _treesCount,
-              itemBuilder: (_, __) => Image.asset(
-                'assets/images/challenges/trees_challenge/tree.png',
-                fit: BoxFit.contain,
-                width: 24,
-                height: 24,
+              Align(
+                alignment: Alignment.topCenter,
+                child: Text(
+                  formatTime(_secondsLeft),
+                  style: const TextStyle(fontSize: 24),
+                ),
               ),
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Text(
-                formatTime(_secondsLeft),
-                style: const TextStyle(fontSize: 24),
+              Align(
+                alignment: AlignmentDirectional.topStart,
+                child: BackButton(onPressed: context.pop),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
+        floatingActionButton: ElevatedButton(
+          onPressed: _plantTree,
+          child: const Text('Plant tree'),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
-      floatingActionButton: ElevatedButton(
-        onPressed: _plantTree,
-        child: const Text('Plant tree'),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
