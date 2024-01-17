@@ -33,6 +33,11 @@ class MainMenuScreen extends StatelessWidget {
                 },
                 child: const Text('Play'),
               ),
+              gap10,
+              WobblyButton(
+                onPressed: () => GoRouter.of(context).push('/pipes-challenge'),
+                child: const Text('Fix pipes'),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 32),
                 child: ValueListenableBuilder<bool>(

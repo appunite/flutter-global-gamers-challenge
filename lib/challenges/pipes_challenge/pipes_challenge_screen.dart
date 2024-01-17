@@ -1,3 +1,4 @@
+import 'package:endless_runner/challenges/pipes_challenge/pipes_grid.dart';
 import 'package:flutter/material.dart';
 
 class PipesChallengeScreen extends StatelessWidget {
@@ -5,6 +6,19 @@ class PipesChallengeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Scaffold(
+      body: SafeArea(
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            PipesGrid(),
+            Align(
+              alignment: Alignment.topLeft,
+              child: BackButton(),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
