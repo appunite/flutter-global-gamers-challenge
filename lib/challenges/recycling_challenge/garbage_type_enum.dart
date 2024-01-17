@@ -1,7 +1,7 @@
-import 'package:endless_runner/recycling_challenge/dumpster_widget.dart';
+import 'package:endless_runner/challenges/recycling_challenge/dumpster_widget.dart';
 import 'dart:math' as math;
 
-const _recyclingImagePath = 'assets/images/recycling/';
+const _recyclingImagePath = 'assets/images/challenges/';
 
 enum GarbageType {
   banana(

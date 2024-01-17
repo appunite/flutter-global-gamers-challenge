@@ -1,5 +1,5 @@
-import 'package:endless_runner/recycling_challenge/garbage_item_widget.dart';
-import 'package:endless_runner/recycling_challenge/garbage_type_enum.dart';
+import 'package:endless_runner/challenges/recycling_challenge/garbage_item_widget.dart';
+import 'package:endless_runner/challenges/recycling_challenge/garbage_type_enum.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:flutter/material.dart';
 
