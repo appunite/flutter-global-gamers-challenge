@@ -1,5 +1,6 @@
 import 'package:endless_runner/challenges/pipes_challenge/pipe_item.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipes_controller.dart';
+import 'package:endless_runner/challenges/pipes_challenge/pipes_helper.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -100,27 +101,11 @@ class _PipesGridBodyState extends State<_PipesGridBody> {
         itemCount: 15,
         itemBuilder: (context, index) {
           return PipeItem(
-            row: _getRowNumber(index),
-            column: _getColumnNumber(index),
+            row: PipesHelper.getRowNumber(index, _itemsInRow),
+            column: PipesHelper.getColumnNumber(index, _itemsInRow),
           );
         },
       ),
     );
-  }
-
-  int _getColumnNumber(int index) {
-    return index < 5
-        ? index
-        : index < 10
-            ? index - 5
-            : index - 10;
-  }
-
-  int _getRowNumber(int index) {
-    return index > 9
-        ? 2
-        : index > 4
-            ? 1
-            : 0;
   }
 }
