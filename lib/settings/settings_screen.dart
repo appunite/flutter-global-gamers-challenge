@@ -13,6 +13,8 @@ import 'settings.dart';
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
+  static const String routePath = '/settings';
+
   @override
   Widget build(BuildContext context) {
     final settings = context.watch<SettingsController>();

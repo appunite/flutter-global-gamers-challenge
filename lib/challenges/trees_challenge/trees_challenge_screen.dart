@@ -1,10 +1,13 @@
 import 'dart:async';
 
+import 'package:endless_runner/common/asset_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class TreesChallengeScreen extends StatefulWidget {
   const TreesChallengeScreen({super.key});
+
+  static const String routePath = '/trees-challenge';
 
   @override
   State<TreesChallengeScreen> createState() => _TreesChallengeScreenState();
@@ -59,7 +62,7 @@ class _TreesChallengeScreenState extends State<TreesChallengeScreen> {
                 ),
                 itemCount: _treesCount,
                 itemBuilder: (_, __) => Image.asset(
-                  'assets/images/challenges/tree.png',
+                  AssetPaths.tree,
                   fit: BoxFit.contain,
                   width: 24,
                   height: 24,

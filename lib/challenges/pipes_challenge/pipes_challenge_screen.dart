@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 class PipesChallengeScreen extends StatelessWidget {
   const PipesChallengeScreen({super.key});
 
+  static const String routePath = '/pipes-challenge';
+
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
