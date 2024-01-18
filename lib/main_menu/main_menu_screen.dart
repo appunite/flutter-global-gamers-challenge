@@ -38,6 +38,11 @@ class MainMenuScreen extends StatelessWidget {
                 onPressed: () => GoRouter.of(context).push('/pipes-challenge'),
                 child: const Text('Fix pipes'),
               ),
+              gap10,
+              WobblyButton(
+                onPressed: () => GoRouter.of(context).push('/ocean-shooter-challenge'),
+                child: const Text('Ocean shooter'),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 32),
                 child: ValueListenableBuilder<bool>(
