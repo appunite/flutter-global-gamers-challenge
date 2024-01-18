@@ -79,7 +79,7 @@ final router = GoRouter(
       ),
     ),
     GoRoute(
-      path: 'ocean-shooter-challenge',
+      path: OceanShooterChallengeScreen.routePath,
       pageBuilder: (context, state) {
         return buildPageTransition<void>(
           color: context.watch<Palette>().backgroundPlaySession.color,

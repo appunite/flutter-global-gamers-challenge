@@ -7,10 +7,7 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
 class OceanShooterChallengeScreen extends FlameGame with PanDetector, HasCollisionDetection {
-  static const String description = '''
-    A simple space shooter game used for testing performance of the collision
-    detection system in Flame.
-  ''';
+  static const String routePath = '/ocean-shooter-challenge';
 
   late final PlayerComponent player;
   late final TextComponent componentCounter;
