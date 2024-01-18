@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "350421946478",
+    "project_id": "flutter-game-challenge",
+    "storage_bucket": "flutter-game-challenge.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350421946478:android:3c70c9645bf8d8d9d4567f",
+        "android_client_info": {
+          "package_name": "com.example.endless_runner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZKp07yUqxFJZMEAZI2OYfd0GzG6tgvb8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
