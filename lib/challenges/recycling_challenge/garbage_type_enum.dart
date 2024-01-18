@@ -1,63 +1,63 @@
+import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/challenges/recycling_challenge/dumpster_widget.dart';
 import 'dart:math' as math;
 
-const _recyclingImagePath = 'assets/images/challenges/';
-
 enum GarbageType {
   banana(
-    assetPath: '${_recyclingImagePath}banana.png',
-    semanticLabel: 'banana',
+    assetPath: AssetPaths.bananaPeel,
+    semanticLabel: 'banana peel',
     dumpsterType: DumpsterType.other,
   ),
   apple(
-    assetPath: '${_recyclingImagePath}apple.png',
-    semanticLabel: 'apple',
+    assetPath: AssetPaths.appleCore,
+    semanticLabel: 'apple core',
     dumpsterType: DumpsterType.other,
     rotationAngle: math.pi / 10,
   ),
   diaper(
-    assetPath: '${_recyclingImagePath}diaper.png',
+    assetPath: AssetPaths.diaper,
     semanticLabel: 'diaper',
     dumpsterType: DumpsterType.other,
   ),
   glassBottle(
-    assetPath: '${_recyclingImagePath}glass_bottle.png',
+    assetPath: AssetPaths.glassBottle,
     semanticLabel: 'glass bottle',
     dumpsterType: DumpsterType.recyclable,
     size: 80,
   ),
   plasticBottle(
-    assetPath: '${_recyclingImagePath}plastic_bottle.png',
+    assetPath: AssetPaths.plasticBottle,
     semanticLabel: 'plastic bottle',
     dumpsterType: DumpsterType.recyclable,
     rotationAngle: -math.pi / 6,
     size: 80,
   ),
   cardboard(
-      assetPath: '${_recyclingImagePath}cardboard.png',
-      semanticLabel: 'cardboard',
-      dumpsterType: DumpsterType.recyclable),
+    assetPath: AssetPaths.cardboard,
+    semanticLabel: 'cardboard',
+    dumpsterType: DumpsterType.recyclable,
+  ),
   can(
-    assetPath: '${_recyclingImagePath}can.png',
+    assetPath: AssetPaths.can,
     semanticLabel: 'can',
     dumpsterType: DumpsterType.recyclable,
     rotationAngle: math.pi / 4,
   ),
   documents(
-    assetPath: '${_recyclingImagePath}documents.png',
+    assetPath: AssetPaths.documents,
     semanticLabel: 'documents',
     dumpsterType: DumpsterType.recyclable,
     rotationAngle: -math.pi / 10,
     size: 70,
   ),
   lightbulb(
-    assetPath: '${_recyclingImagePath}lightbulb.png',
+    assetPath: AssetPaths.lightbulb,
     semanticLabel: 'lightbulb',
     dumpsterType: DumpsterType.other,
     rotationAngle: math.pi / 6,
   ),
   fishbones(
-    assetPath: '${_recyclingImagePath}fishbones.png',
+    assetPath: AssetPaths.fishbones,
     semanticLabel: 'fishbones',
     dumpsterType: DumpsterType.other,
     rotationAngle: -math.pi / 6,

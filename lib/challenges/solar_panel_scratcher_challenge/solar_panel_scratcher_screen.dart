@@ -10,6 +10,8 @@ import 'package:scratcher/scratcher.dart';
 class SolarPanelScratcherChallengeScreen extends StatefulWidget {
   const SolarPanelScratcherChallengeScreen({super.key});
 
+  static const String routePath = '/solar-panel-scratcher';
+
   @override
   State<SolarPanelScratcherChallengeScreen> createState() => _SolarPanelScratcherChallengeScreenState();
 }

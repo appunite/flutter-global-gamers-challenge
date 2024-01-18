@@ -1,3 +1,8 @@
+import 'package:endless_runner/challenges/pipes_challenge/pipes_challenge_screen.dart';
+import 'package:endless_runner/challenges/recycling_challenge/recycling_challenge_screen.dart';
+import 'package:endless_runner/challenges/solar_panel_scratcher/solar_panel_scratcher_screen.dart';
+import 'package:endless_runner/challenges/trees_challenge/trees_challenge_screen.dart';
+import 'package:endless_runner/settings/settings_screen.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -29,13 +34,13 @@ class MainMenuScreen extends StatelessWidget {
               WobblyButton(
                 onPressed: () {
                   audioController.playSfx(SfxType.buttonTap);
-                  GoRouter.of(context).go('/play');
+                  context.go('/play');
                 },
                 child: const Text('Play'),
               ),
               gap10,
               WobblyButton(
-                onPressed: () => GoRouter.of(context).push('/pipes-challenge'),
+                onPressed: () => context.push(PipesChallengeScreen.routePath),
                 child: const Text('Fix pipes'),
               ),
               gap10,
@@ -62,22 +67,22 @@ class MainMenuScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             WobblyButton(
-              onPressed: () => GoRouter.of(context).push('/settings'),
+              onPressed: () => context.push(SettingsScreen.routePath),
               child: const Text('Settings'),
             ),
             gap10,
             WobblyButton(
-              onPressed: () => GoRouter.of(context).push('/solar-panel-scratcher'),
+              onPressed: () => context.push(SolarPanelScratcherScreen.routePath),
               child: const Text('Solar panel scratcher'),
             ),
             gap10,
             WobblyButton(
-              onPressed: () => GoRouter.of(context).push('/recycling-challenge'),
+              onPressed: () => context.push(RecyclingChallengeScreen.routePath),
               child: const Text('Recycling'),
             ),
             gap10,
             WobblyButton(
-              onPressed: () => GoRouter.of(context).push('/trees-challenge'),
+              onPressed: () => context.push(TreesChallengeScreen.routePath),
               child: const Text('Plant trees'),
             ),
           ],

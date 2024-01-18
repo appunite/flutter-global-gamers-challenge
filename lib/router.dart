@@ -46,46 +46,46 @@ final router = GoRouter(
             ),
           ],
         ),
-        GoRoute(
-          path: 'settings',
-          builder: (context, state) => const SettingsScreen(
-            key: Key('settings'),
-          ),
-        ),
-        GoRoute(
-          path: 'solar-panel-scratcher',
-          builder: (context, state) => const SolarPanelScratcherChallengeScreen(
-            key: Key('solar-panel-scratcher'),
-          ),
-        ),
-        GoRoute(
-          path: 'recycling-challenge',
-          builder: (context, state) => const RecyclingChallengeScreen(
-            key: Key('recycling-challenge'),
-          ),
-        ),
-        GoRoute(
-          path: 'trees-challenge',
-          builder: (context, state) => const TreesChallengeScreen(
-            key: Key('trees-challenge'),
-          ),
-        ),
-        GoRoute(
-          path: 'pipes-challenge',
-          builder: (context, state) => const PipesChallengeScreen(
-            key: Key('pipes-challenge'),
-          ),
-        ),
-        GoRoute(
-          path: 'ocean-shooter-challenge',
-          pageBuilder: (context, state) {
-            return buildPageTransition<void>(
-              color: context.watch<Palette>().backgroundPlaySession.color,
-              child: GameWidget(game: OceanShooterChallengeScreen()),
-            );
-          },
-        ),
       ],
+    ),
+    GoRoute(
+      path: SettingsScreen.routePath,
+      builder: (context, state) => const SettingsScreen(
+        key: Key('settings'),
+      ),
+    ),
+    GoRoute(
+      path: SolarPanelScratcherChallengeScreen.routePath,
+      builder: (context, state) => const SolarPanelScratcherChallengeScreen(
+        key: Key('solar-panel-scratcher'),
+      ),
+    ),
+    GoRoute(
+      path: RecyclingChallengeScreen.routePath,
+      builder: (context, state) => const RecyclingChallengeScreen(
+        key: Key('recycling-challenge'),
+      ),
+    ),
+    GoRoute(
+      path: TreesChallengeScreen.routePath,
+      builder: (context, state) => const TreesChallengeScreen(
+        key: Key('trees-challenge'),
+      ),
+    ),
+    GoRoute(
+      path: PipesChallengeScreen.routePath,
+      builder: (context, state) => const PipesChallengeScreen(
+        key: Key('pipes-challenge'),
+      ),
+    ),
+    GoRoute(
+      path: 'ocean-shooter-challenge',
+      pageBuilder: (context, state) {
+        return buildPageTransition<void>(
+          color: context.watch<Palette>().backgroundPlaySession.color,
+          child: GameWidget(game: OceanShooterChallengeScreen()),
+        );
+      },
     ),
   ],
 );

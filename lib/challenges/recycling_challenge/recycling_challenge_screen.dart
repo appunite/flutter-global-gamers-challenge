@@ -9,6 +9,8 @@ import 'package:provider/provider.dart';
 class RecyclingChallengeScreen extends StatelessWidget {
   const RecyclingChallengeScreen({super.key});
 
+  static const String routePath = '/recycling-challenge';
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
