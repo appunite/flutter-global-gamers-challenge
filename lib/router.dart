@@ -44,31 +44,31 @@ final router = GoRouter(
           ],
         ),
         GoRoute(
-          path: 'settings',
+          path: SettingsScreen.routePath,
           builder: (context, state) => const SettingsScreen(
             key: Key('settings'),
           ),
         ),
         GoRoute(
-          path: 'solar-panel-scratcher',
+          path: SolarPanelScratcherScreen.routePath,
           builder: (context, state) => const SolarPanelScratcherScreen(
             key: Key('solar-panel-scratcher'),
           ),
         ),
         GoRoute(
-          path: 'recycling-challenge',
+          path: RecyclingChallengeScreen.routePath,
           builder: (context, state) => const RecyclingChallengeScreen(
             key: Key('recycling-challenge'),
           ),
         ),
         GoRoute(
-          path: 'trees-challenge',
+          path: TreesChallengeScreen.routePath,
           builder: (context, state) => const TreesChallengeScreen(
             key: Key('trees-challenge'),
           ),
         ),
         GoRoute(
-          path: 'pipes-challenge',
+          path: PipesChallengeScreen.routePath,
           builder: (context, state) => const PipesChallengeScreen(
             key: Key('pipes-challenge'),
           ),
