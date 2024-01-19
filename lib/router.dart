@@ -1,11 +1,14 @@
+import 'package:endless_runner/challenges/ocean_shooter/ocean_challenge_screen.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipes_challenge_screen.dart';
-import 'package:endless_runner/challenges/trees_challenge/trees_challenge_screen.dart';
 import 'package:endless_runner/challenges/recycling_challenge/recycling_challenge_screen.dart';
-import 'flame_game/game_screen.dart';
-import 'package:endless_runner/challenges/solar_panel_scratcher/solar_panel_scratcher_screen.dart';
+import 'package:endless_runner/challenges/solar_panel_scratcher_challenge/solar_panel_scratcher_screen.dart';
+import 'package:endless_runner/challenges/trees_challenge/trees_challenge_screen.dart';
+import 'package:flame/game.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+
+import 'flame_game/game_screen.dart';
 import 'level_selection/level_selection_screen.dart';
 import 'level_selection/levels.dart';
 import 'main_menu/main_menu_screen.dart';
@@ -52,8 +55,8 @@ final router = GoRouter(
       ),
     ),
     GoRoute(
-      path: SolarPanelScratcherScreen.routePath,
-      builder: (context, state) => const SolarPanelScratcherScreen(
+      path: SolarPanelChallengeScreen.routePath,
+      builder: (context, state) => const SolarPanelChallengeScreen(
         key: Key('solar-panel-scratcher'),
       ),
     ),
@@ -74,6 +77,15 @@ final router = GoRouter(
       builder: (context, state) => const PipesChallengeScreen(
         key: Key('pipes-challenge'),
       ),
+    ),
+    GoRoute(
+      path: OceanChallengeScreen.routePath,
+      pageBuilder: (context, state) {
+        return buildPageTransition<void>(
+          color: context.watch<Palette>().backgroundPlaySession.color,
+          child: GameWidget(game: OceanChallengeScreen()),
+        );
+      },
     ),
   ],
 );

@@ -1,6 +1,7 @@
+import 'package:endless_runner/challenges/ocean_shooter/ocean_challenge_screen.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipes_challenge_screen.dart';
 import 'package:endless_runner/challenges/recycling_challenge/recycling_challenge_screen.dart';
-import 'package:endless_runner/challenges/solar_panel_scratcher/solar_panel_scratcher_screen.dart';
+import 'package:endless_runner/challenges/solar_panel_scratcher_challenge/solar_panel_scratcher_screen.dart';
 import 'package:endless_runner/challenges/trees_challenge/trees_challenge_screen.dart';
 import 'package:endless_runner/settings/settings_screen.dart';
 import 'package:endless_runner/style/gaps.dart';
@@ -11,9 +12,9 @@ import 'package:provider/provider.dart';
 import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
 import '../settings/settings.dart';
-import '../style/wobbly_button.dart';
 import '../style/palette.dart';
 import '../style/responsive_screen.dart';
+import '../style/wobbly_button.dart';
 
 class MainMenuScreen extends StatelessWidget {
   const MainMenuScreen({super.key});
@@ -43,6 +44,11 @@ class MainMenuScreen extends StatelessWidget {
                 onPressed: () => context.push(PipesChallengeScreen.routePath),
                 child: const Text('Fix pipes'),
               ),
+              gap10,
+              WobblyButton(
+                onPressed: () => context.push(OceanChallengeScreen.routePath),
+                child: const Text('Ocean shooter'),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 32),
                 child: ValueListenableBuilder<bool>(
@@ -67,7 +73,7 @@ class MainMenuScreen extends StatelessWidget {
             ),
             gap10,
             WobblyButton(
-              onPressed: () => context.push(SolarPanelScratcherScreen.routePath),
+              onPressed: () => context.push(SolarPanelChallengeScreen.routePath),
               child: const Text('Solar panel scratcher'),
             ),
             gap10,
