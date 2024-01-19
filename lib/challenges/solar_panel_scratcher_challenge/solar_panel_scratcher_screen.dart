@@ -7,16 +7,16 @@ import 'package:nes_ui/nes_ui.dart';
 import 'package:provider/provider.dart';
 import 'package:scratcher/scratcher.dart';
 
-class SolarPanelScratcherChallengeScreen extends StatefulWidget {
-  const SolarPanelScratcherChallengeScreen({super.key});
+class SolarPanelChallengeScreen extends StatefulWidget {
+  const SolarPanelChallengeScreen({super.key});
 
   static const String routePath = '/solar-panel-scratcher';
 
   @override
-  State<SolarPanelScratcherChallengeScreen> createState() => _SolarPanelScratcherChallengeScreenState();
+  State<SolarPanelChallengeScreen> createState() => _SolarPanelChallengeScreenState();
 }
 
-class _SolarPanelScratcherChallengeScreenState extends State<SolarPanelScratcherChallengeScreen> {
+class _SolarPanelChallengeScreenState extends State<SolarPanelChallengeScreen> {
   late double _scratchedValue = 0;
   late int _timeInSeconds = 0;
   late Timer _timer;

@@ -6,14 +6,13 @@ import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
-class OceanShooterChallengeScreen extends FlameGame with PanDetector, HasCollisionDetection {
+class OceanChallengeScreen extends FlameGame with PanDetector, HasCollisionDetection {
   static const String routePath = '/ocean-shooter-challenge';
 
   late final PlayerComponent player;
   late final TextComponent componentCounter;
   late final TextComponent scoreText;
-
-  int score = 0;
+  late int _score = 0;
 
   @override
   Future<void> onLoad() async {
@@ -43,7 +42,7 @@ class OceanShooterChallengeScreen extends FlameGame with PanDetector, HasCollisi
   @override
   void update(double dt) {
     super.update(dt);
-    scoreText.text = 'Score: $score';
+    scoreText.text = 'Score: $_score';
     componentCounter.text = 'Components: ${children.length}';
   }
 
@@ -53,7 +52,7 @@ class OceanShooterChallengeScreen extends FlameGame with PanDetector, HasCollisi
   }
 
   void increaseScore() {
-    score++;
+    _score++;
   }
 }
 
@@ -63,7 +62,7 @@ class RogueShooterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GameWidget(
-      game: OceanShooterChallengeScreen(),
+      game: OceanChallengeScreen(),
       loadingBuilder: (_) => const Center(
         child: Text('Loading'),
       ),

@@ -1,3 +1,4 @@
+import 'package:endless_runner/challenges/ocean_shooter/ocean_challenge_screen.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipes_challenge_screen.dart';
 import 'package:endless_runner/challenges/recycling_challenge/recycling_challenge_screen.dart';
 import 'package:endless_runner/challenges/solar_panel_scratcher_challenge/solar_panel_scratcher_screen.dart';
@@ -45,7 +46,7 @@ class MainMenuScreen extends StatelessWidget {
               ),
               gap10,
               WobblyButton(
-                onPressed: () => GoRouter.of(context).push('/ocean-shooter-challenge'),
+                onPressed: () => context.push(OceanChallengeScreen.routePath),
                 child: const Text('Ocean shooter'),
               ),
               Padding(
@@ -72,7 +73,7 @@ class MainMenuScreen extends StatelessWidget {
             ),
             gap10,
             WobblyButton(
-              onPressed: () => context.push(SolarPanelScratcherChallengeScreen.routePath),
+              onPressed: () => context.push(SolarPanelChallengeScreen.routePath),
               child: const Text('Solar panel scratcher'),
             ),
             gap10,

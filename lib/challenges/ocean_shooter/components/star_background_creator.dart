@@ -11,8 +11,6 @@ class StarBackGroundCreator extends Component with HasGameRef {
   late final SpriteSheet spriteSheet;
   Random random = Random();
 
-  StarBackGroundCreator();
-
   @override
   Future<void> onLoad() async {
     spriteSheet = SpriteSheet.fromColumnsAndRows(

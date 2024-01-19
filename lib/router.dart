@@ -1,4 +1,4 @@
-import 'package:endless_runner/challenges/ocean_shooter/ocean_shooter_challenge_screen.dart';
+import 'package:endless_runner/challenges/ocean_shooter/ocean_challenge_screen.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipes_challenge_screen.dart';
 import 'package:endless_runner/challenges/recycling_challenge/recycling_challenge_screen.dart';
 import 'package:endless_runner/challenges/solar_panel_scratcher_challenge/solar_panel_scratcher_screen.dart';
@@ -55,8 +55,8 @@ final router = GoRouter(
       ),
     ),
     GoRoute(
-      path: SolarPanelScratcherChallengeScreen.routePath,
-      builder: (context, state) => const SolarPanelScratcherChallengeScreen(
+      path: SolarPanelChallengeScreen.routePath,
+      builder: (context, state) => const SolarPanelChallengeScreen(
         key: Key('solar-panel-scratcher'),
       ),
     ),
@@ -79,11 +79,11 @@ final router = GoRouter(
       ),
     ),
     GoRoute(
-      path: OceanShooterChallengeScreen.routePath,
+      path: OceanChallengeScreen.routePath,
       pageBuilder: (context, state) {
         return buildPageTransition<void>(
           color: context.watch<Palette>().backgroundPlaySession.color,
-          child: GameWidget(game: OceanShooterChallengeScreen()),
+          child: GameWidget(game: OceanChallengeScreen()),
         );
       },
     ),

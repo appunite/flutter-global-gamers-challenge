@@ -38,7 +38,7 @@ class PlayerComponent extends SpriteAnimationComponent with HasGameRef, Collisio
     );
 
     position = Vector2(64, game.size.y / 2);
-    angle = 90 * (pi / 180);
+    angle = pi / 2;
   }
 
   final _bulletAngles = [0.5, 0.3, 0.0, -0.3, -0.5];

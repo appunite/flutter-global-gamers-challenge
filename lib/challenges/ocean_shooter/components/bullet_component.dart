@@ -29,7 +29,7 @@ class BulletComponent extends SpriteAnimationComponent with HasGameRef, Collisio
     velocity = Vector2(1, 0)
       ..rotate(angle)
       ..scale(speed);
-    angle = 90 * (pi / 180);
+    angle = pi / 2;
   }
 
   @override

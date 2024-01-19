@@ -1,13 +1,12 @@
 import 'dart:math';
 
 import 'package:endless_runner/challenges/ocean_shooter/components/explosion_component.dart';
-import 'package:endless_runner/challenges/ocean_shooter/ocean_shooter_challenge_screen.dart';
+import 'package:endless_runner/challenges/ocean_shooter/ocean_challenge_screen.dart';
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
-class EnemyComponent extends SpriteAnimationComponent
-    with HasGameReference<OceanShooterChallengeScreen>, CollisionCallbacks {
+class EnemyComponent extends SpriteAnimationComponent with HasGameReference<OceanChallengeScreen>, CollisionCallbacks {
   static const speed = 150;
   static final Vector2 initialSize = Vector2.all(25);
 
@@ -24,7 +23,7 @@ class EnemyComponent extends SpriteAnimationComponent
       ),
     );
     add(CircleHitbox(collisionType: CollisionType.passive));
-    angle = 90 * (pi / 180);
+    angle = pi / 2;
   }
 
   @override
