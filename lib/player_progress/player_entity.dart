@@ -15,7 +15,7 @@ class PlayerEntity with _$PlayerEntity {
 
   factory PlayerEntity.empty() => PlayerEntity(
         challengesScores: ChallengesEntity.empty(),
-        nick: '',
+        nick: '', //TODO generate one
       );
 
   factory PlayerEntity.fromJson(Map<String, dynamic> json) => _$PlayerEntityFromJson(json);

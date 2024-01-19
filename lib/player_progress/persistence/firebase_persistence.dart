@@ -8,11 +8,11 @@ import 'package:endless_runner/player_progress/player_entity.dart';
 import 'package:flutter/widgets.dart';
 
 class FirebasePersistence extends DatabasePersistence {
-  FirebasePersistence() {
-    _playersRef = db.collection(usersCollection);
+  FirebasePersistence({FirebaseFirestore? firestore}) : _firestore = firestore ?? FirebaseFirestore.instance {
+    _playersRef = _firestore.collection(usersCollection);
   }
 
-  late final FirebaseFirestore db = FirebaseFirestore.instance;
+  late final FirebaseFirestore _firestore;
   late final CollectionReference _playersRef;
 
   @visibleForTesting
@@ -29,7 +29,7 @@ class FirebasePersistence extends DatabasePersistence {
       }
     } catch (e, stack) {
       debugPrintStack(label: e.toString(), stackTrace: stack);
-      throw Exception('TODO'); //TODO
+      rethrow;
     }
   }
 
@@ -57,12 +57,21 @@ class FirebasePersistence extends DatabasePersistence {
           );
     } catch (e, stack) {
       debugPrintStack(label: e.toString(), stackTrace: stack);
-      throw Exception('TODO'); //TODO
+      rethrow;
     }
   }
 
   @override
-  Future<void> reset({required String playerId}) => _playersRef.doc(playerId).delete();
+  Future<void> reset({required String playerId}) async {
+    try {
+      final playerEntity = await getPlayerEntity(playerId: playerId);
+      final updatedPlayer = playerEntity.copyWith(challengesScores: ChallengesEntity.empty());
+      await _playersRef.doc(playerId).set(updatedPlayer.toJson());
+    } catch (e, stack) {
+      debugPrintStack(label: e.toString(), stackTrace: stack);
+      rethrow;
+    }
+  }
 
   Future<PlayerEntity> _createNewPlayer(String playerId) async {
     final newPlayer = PlayerEntity.empty();

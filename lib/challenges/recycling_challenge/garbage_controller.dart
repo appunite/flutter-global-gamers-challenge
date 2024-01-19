@@ -42,9 +42,8 @@ class GarbageController extends ChangeNotifier {
     if (allItemsSorted) {
       _store.updateChallengePoints(
         challengeType: ChallengeType.recycling,
-        points: 1,
-        //TODO
-        playerId: 'fM0gJICRwZMu9a9sTzUX',
+        points: 10, //TODO
+        playerId: 'fM0gJICRwZMu9a9sTzUX', //TODO
       );
       _challengeCompleted = true;
     }
