@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import '../level_selection/levels.dart';
-import '../player_progress/player_progress.dart';
+import '../player_progress/player_progress_controller.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/experimental.dart';
@@ -37,7 +37,7 @@ class EndlessWorld extends World with TapCallbacks, HasGameReference {
 
   /// Used to see what the current progress of the player is and to update the
   /// progress if a level is finished.
-  final PlayerProgress playerProgress;
+  final PlayerProgressController playerProgress;
 
   /// The speed is used for determining how fast the background should pass by
   /// and how fast the enemies and obstacles should move.
@@ -111,13 +111,10 @@ class EndlessWorld extends World with TapCallbacks, HasGameReference {
     // the player passed the level.
     scoreNotifier.addListener(() {
       if (scoreNotifier.value >= level.winScore) {
-        final levelTime = (DateTime.now().millisecondsSinceEpoch -
-                timeStarted.millisecondsSinceEpoch) /
-            1000;
+        final levelTime = (DateTime.now().millisecondsSinceEpoch - timeStarted.millisecondsSinceEpoch) / 1000;
 
         levelCompletedIn = levelTime.round();
 
-        playerProgress.setLevelFinished(level.number, levelCompletedIn);
         game.pauseEngine();
         game.overlays.add(GameScreen.winDialogKey);
       }

@@ -1,22 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:endless_runner/challenges/challenge_type_enum.dart';
-import 'package:endless_runner/player_progress/challenges_entity.dart';
+import 'package:endless_runner/player_progress/entities/challenges_entity.dart';
+import 'package:endless_runner/player_progress/entities/player_entity.dart';
 import 'package:endless_runner/player_progress/persistence/firebase_persistence.dart';
-import 'package:endless_runner/player_progress/player_entity.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'mocks.dart';
 import 'test_helper.dart';
 
 void main() async {
   late FirebaseFirestore fakeFirestore;
   late FirebasePersistence firebasePersistence;
-  const mockedPlayerId = 's2f11Jk33242addfsdSDF';
-  final mockedEmptyPlayerEntity = PlayerEntity.empty();
-  final mockedPlayerEntity = PlayerEntity(
-    challengesScores: ChallengesEntity.empty(),
-    nick: 'Flutter fan',
-  );
 
   setUp(() {
     fakeFirestore = FakeFirebaseFirestore();

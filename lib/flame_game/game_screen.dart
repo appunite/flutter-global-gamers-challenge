@@ -1,7 +1,7 @@
 import '../audio/audio_controller.dart';
 import 'endless_runner.dart';
 import '../level_selection/levels.dart';
-import '../player_progress/player_progress.dart';
+import '../player_progress/player_progress_controller.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -31,7 +31,7 @@ class GameScreen extends StatelessWidget {
         key: const Key('play session'),
         game: EndlessRunner(
           level: level,
-          playerProgress: context.read<PlayerProgress>(),
+          playerProgress: context.read<PlayerProgressController>(),
           audioController: audioController,
         ),
         overlayBuilderMap: {

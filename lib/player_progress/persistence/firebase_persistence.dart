@@ -1,10 +1,11 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:endless_runner/challenges/challenge_type_enum.dart';
-import 'package:endless_runner/player_progress/challenges_entity.dart';
+import 'package:endless_runner/player_progress/entities/challenges_entity.dart';
+import 'package:endless_runner/player_progress/entities/player_entity.dart';
 import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
-import 'package:endless_runner/player_progress/player_entity.dart';
 import 'package:flutter/widgets.dart';
 
 class FirebasePersistence extends DatabasePersistence {
@@ -73,8 +74,13 @@ class FirebasePersistence extends DatabasePersistence {
     }
   }
 
+  //TODO: do we need to handle not repeating nicks?...
   Future<PlayerEntity> _createNewPlayer(String playerId) async {
-    final newPlayer = PlayerEntity.empty();
+    Random random = Random();
+    final number = 1000 + random.nextInt(9000);
+    final playerNick = 'Eco$number';
+
+    final newPlayer = PlayerEntity.empty(nick: playerNick);
     await _playersRef.doc(playerId).set(newPlayer.toJson());
     return newPlayer;
   }
