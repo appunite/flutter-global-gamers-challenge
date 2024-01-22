@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import '../style/wobbly_button.dart';
+import '../style/main_button.dart';
 import '../style/palette.dart';
 import 'custom_name_dialog.dart';
 import 'settings.dart';
@@ -79,7 +79,7 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
             gap60,
-            WobblyButton(
+            MainButton(
               onPressed: () {
                 GoRouter.of(context).pop();
               },
