@@ -20,13 +20,13 @@ class FirebasePersistence extends DatabasePersistence {
   static const String usersCollection = 'users';
 
   @override
-  Future<PlayerEntity> getPlayerEntity({required String playerId}) async {
+  Future<PlayerEntity> getPlayerEntity({required String playerId, String? playerNick}) async {
     try {
       final playerDoc = await _playersRef.doc(playerId).get();
       if (playerDoc.exists) {
         return PlayerEntity.fromJson(playerDoc.data() as Map<String, dynamic>);
       } else {
-        return _createNewPlayer(playerId);
+        return _createNewPlayer(playerId: playerId, playerNick: playerNick);
       }
     } catch (e, stack) {
       debugPrintStack(label: e.toString(), stackTrace: stack);
@@ -75,12 +75,18 @@ class FirebasePersistence extends DatabasePersistence {
   }
 
   //TODO: do we need to handle not repeating nicks?...
-  Future<PlayerEntity> _createNewPlayer(String playerId) async {
-    Random random = Random();
-    final number = 1000 + random.nextInt(9000);
-    final playerNick = 'Eco$number';
+  Future<PlayerEntity> _createNewPlayer({required String playerId, String? playerNick}) async {
+    late String nick;
 
-    final newPlayer = PlayerEntity.empty(nick: playerNick);
+    if (playerNick != null) {
+      nick = playerNick;
+    } else {
+      Random random = Random();
+      final number = 1000 + random.nextInt(9000);
+      nick = 'Eco$number';
+    }
+
+    final newPlayer = PlayerEntity.empty(nick: nick);
     await _playersRef.doc(playerId).set(newPlayer.toJson());
     return newPlayer;
   }

@@ -35,7 +35,10 @@ void main() async {
     });
 
     test('get player entity when user does not exist in Firebase', () async {
-      final result = await firebasePersistence.getPlayerEntity(playerId: mockedPlayerId);
+      final result = await firebasePersistence.getPlayerEntity(
+        playerId: mockedPlayerId,
+        playerNick: 'Flutter fan',
+      );
 
       expect(result, mockedEmptyPlayerEntity);
     });
