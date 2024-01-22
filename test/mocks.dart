@@ -17,3 +17,15 @@ final mockedPlayerEntity = PlayerEntity(
   challengesScores: ChallengesEntity.empty(),
   nick: 'Flutter fan',
 );
+
+const mockedPlayerWithChallengesEntity = PlayerEntity(
+  challengesScores: ChallengesEntity(
+    city: 12,
+    ocean: 22,
+    pipes: 98,
+    solarPanel: 23,
+    recycling: 22,
+    trees: 14,
+  ),
+  nick: 'Flutter fan',
+);
