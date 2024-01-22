@@ -1,7 +1,6 @@
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nes_ui/nes_ui.dart';
 import 'package:provider/provider.dart';
 
 import 'router.dart';
@@ -46,26 +45,25 @@ class MyGame extends StatelessWidget {
             dispose: (context, audio) => audio.dispose(),
           ),
         ],
-        child: Builder(builder: (context) {
-          final palette = context.watch<Palette>();
-
-          return MaterialApp.router(
-            title: 'Endless Runner',
-            theme: flutterNesTheme().copyWith(
-              colorScheme: ColorScheme.fromSeed(
-                seedColor: palette.seed.color,
-                background: palette.backgroundMain.color,
+        child: Builder(
+          builder: (context) {
+            return MaterialApp.router(
+              title: 'Endless Runner',
+              theme: ThemeData(
+                textTheme: GoogleFonts.rubikTextTheme().copyWith(
+                  titleLarge: const TextStyle(
+                    color: Palette.buttonTextColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
+                  ),
+                ),
               ),
-              textTheme: GoogleFonts.pressStart2pTextTheme().apply(
-                bodyColor: palette.text.color,
-                displayColor: palette.text.color,
-              ),
-            ),
-            routeInformationProvider: router.routeInformationProvider,
-            routeInformationParser: router.routeInformationParser,
-            routerDelegate: router.routerDelegate,
-          );
-        }),
+              routeInformationProvider: router.routeInformationProvider,
+              routeInformationParser: router.routeInformationParser,
+              routerDelegate: router.routerDelegate,
+            );
+          },
+        ),
       ),
     );
   }

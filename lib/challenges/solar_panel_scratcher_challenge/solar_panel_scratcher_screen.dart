@@ -1,10 +1,8 @@
 import 'dart:async';
 
-import 'package:endless_runner/style/palette.dart';
+import 'package:endless_runner/common/success_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nes_ui/nes_ui.dart';
-import 'package:provider/provider.dart';
 import 'package:scratcher/scratcher.dart';
 
 class SolarPanelChallengeScreen extends StatefulWidget {
@@ -108,38 +106,8 @@ class _SolarPanelChallengeScreenState extends State<SolarPanelChallengeScreen> {
       context: context,
       barrierDismissible: false,
       builder: (context) {
-        final palette = context.read<Palette>();
-
-        return Center(
-          child: NesContainer(
-            backgroundColor: palette.backgroundPlaySession.color,
-            width: 420,
-            height: 280,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Well done!',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  'You completed solar panel scratcher in $_timeInSeconds seconds.',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 16),
-                NesButton(
-                  onPressed: () {
-                    context.go('/');
-                  },
-                  type: NesButtonType.normal,
-                  child: const Text('Check your City!'),
-                ),
-              ],
-            ),
-          ),
+        return const SuccessDialog(
+          challengeName: 'solar panel scratcher',
         );
       },
     );

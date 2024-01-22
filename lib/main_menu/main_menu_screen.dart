@@ -14,40 +14,39 @@ import '../audio/sounds.dart';
 import '../settings/settings.dart';
 import '../style/palette.dart';
 import '../style/responsive_screen.dart';
-import '../style/wobbly_button.dart';
+import '../style/main_button.dart';
 
 class MainMenuScreen extends StatelessWidget {
   const MainMenuScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final palette = context.watch<Palette>();
     final settingsController = context.watch<SettingsController>();
     final audioController = context.watch<AudioController>();
 
     return Scaffold(
-      backgroundColor: palette.backgroundMain.color,
+      backgroundColor: Palette.neutralWhite,
       body: ResponsiveScreen(
         squarishMainArea: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              WobblyButton(
+              MainButton(
                 onPressed: () {
                   audioController.playSfx(SfxType.buttonTap);
                   context.go('/play');
                 },
-                child: const Text('Play'),
+                text: 'Play',
               ),
               gap10,
-              WobblyButton(
+              MainButton(
                 onPressed: () => context.push(PipesChallengeScreen.routePath),
-                child: const Text('Fix pipes'),
+                text: 'Fix pipes',
               ),
               gap10,
-              WobblyButton(
+              MainButton(
                 onPressed: () => context.push(OceanChallengeScreen.routePath),
-                child: const Text('Ocean shooter'),
+                text: 'Ocean shooter',
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 32),
@@ -67,24 +66,24 @@ class MainMenuScreen extends StatelessWidget {
         rectangularMenuArea: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            WobblyButton(
+            MainButton.secondary(
               onPressed: () => context.push(SettingsScreen.routePath),
-              child: const Text('Settings'),
+              text: 'Settings',
             ),
             gap10,
-            WobblyButton(
+            MainButton.secondary(
               onPressed: () => context.push(SolarPanelChallengeScreen.routePath),
-              child: const Text('Solar panel scratcher'),
+              text: 'Solar panel scratcher',
             ),
             gap10,
-            WobblyButton(
+            MainButton.secondary(
               onPressed: () => context.push(RecyclingChallengeScreen.routePath),
-              child: const Text('Recycling'),
+              text: 'Recycling',
             ),
             gap10,
-            WobblyButton(
+            MainButton.secondary(
               onPressed: () => context.push(TreesChallengeScreen.routePath),
-              child: const Text('Plant trees'),
+              text: 'Plant trees',
             ),
           ],
         ),

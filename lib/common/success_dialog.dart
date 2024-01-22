@@ -1,7 +1,7 @@
+import 'package:endless_runner/style/main_button.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nes_ui/nes_ui.dart';
 import 'package:provider/provider.dart';
 
 class SuccessDialog extends StatelessWidget {
@@ -17,8 +17,8 @@ class SuccessDialog extends StatelessWidget {
     final palette = context.read<Palette>();
 
     return Center(
-      child: NesContainer(
-        backgroundColor: palette.backgroundPlaySession.color,
+      child: Container(
+        color: palette.backgroundPlaySession.color,
         width: 420,
         height: 280,
         child: Column(
@@ -36,12 +36,11 @@ class SuccessDialog extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
-            NesButton(
+            MainButton(
               onPressed: () {
                 context.go('/');
               },
-              type: NesButtonType.normal,
-              child: const Text('Check your City!'),
+              text: 'Check your City!',
             ),
           ],
         ),
