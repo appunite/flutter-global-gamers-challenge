@@ -10,11 +10,16 @@ import 'audio/audio_controller.dart';
 import 'player_progress/player_progress.dart';
 import 'settings/settings.dart';
 import 'style/palette.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Flame.device.setLandscape();
   await Flame.device.fullScreen();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyGame());
 }
 
