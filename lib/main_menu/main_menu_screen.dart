@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:endless_runner/challenges/ocean_shooter/ocean_challenge_screen.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipes_challenge_screen.dart';
 import 'package:endless_runner/challenges/recycling_challenge/recycling_challenge_screen.dart';
 import 'package:endless_runner/challenges/solar_panel_scratcher_challenge/solar_panel_scratcher_screen.dart';
 import 'package:endless_runner/challenges/trees_challenge/trees_challenge_screen.dart';
+import 'package:endless_runner/common/google_wallet_demo.dart';
 import 'package:endless_runner/settings/settings_screen.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +52,12 @@ class MainMenuScreen extends StatelessWidget {
                 onPressed: () => context.push(OceanChallengeScreen.routePath),
                 child: const Text('Ocean shooter'),
               ),
+              gap10,
+              if (Platform.isAndroid)
+                WobblyButton(
+                  onPressed: () => context.push(GoogleWalletDemoScreen.routePath),
+                  child: const Text('Google wallet'),
+                ),
               Padding(
                 padding: const EdgeInsets.only(top: 32),
                 child: ValueListenableBuilder<bool>(
