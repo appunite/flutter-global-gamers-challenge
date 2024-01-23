@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:endless_runner/challenges/challenge_type_enum.dart';
 import 'package:endless_runner/common/asset_paths.dart';
+import 'package:endless_runner/challenges/challenge_introduction_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -95,27 +97,12 @@ class _TreesChallengeScreenState extends State<TreesChallengeScreen> {
     showDialog(
       barrierDismissible: false,
       context: context,
-      builder: (context) => AlertDialog(
-        alignment: Alignment.center,
-        contentPadding: const EdgeInsets.all(24),
-        content: const Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'TODO',
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-        actions: [
-          ElevatedButton(
-            onPressed: () {
-              context.pop();
-              startTimer();
-            },
-            child: const Text('Start!'),
-          ),
-        ],
+      builder: (context) => ChallengeIntroductionDialog(
+        challenge: ChallengeType.trees,
+        onButtonPressed: () {
+          context.pop();
+          startTimer();
+        },
       ),
     );
   }

@@ -56,6 +56,16 @@ class MyGame extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 22,
                   ),
+                  titleMedium: const TextStyle(
+                    color: Palette.buttonTextColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                  bodyLarge: const TextStyle(
+                    color: Palette.neutralBlack,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                  ),
                 ),
               ),
               routeInformationProvider: router.routeInformationProvider,
