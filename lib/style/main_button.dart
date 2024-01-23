@@ -3,19 +3,18 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:nes_ui/nes_ui.dart';
 
-class WobblyButton extends StatefulWidget {
+class MainButton extends StatefulWidget {
   final Widget child;
 
   final VoidCallback? onPressed;
 
-  const WobblyButton({super.key, required this.child, this.onPressed});
+  const MainButton({super.key, required this.child, this.onPressed});
 
   @override
-  State<WobblyButton> createState() => _WobblyButtonState();
+  State<MainButton> createState() => _MainButtonState();
 }
 
-class _WobblyButtonState extends State<WobblyButton>
-    with SingleTickerProviderStateMixin {
+class _MainButtonState extends State<MainButton> with SingleTickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     duration: const Duration(milliseconds: 300),
     vsync: this,
