@@ -17,47 +17,57 @@ class CommonDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        Container(
-          constraints: BoxConstraints(
-            maxWidth: 500,
-            maxHeight: MediaQuery.sizeOf(context).height * 0.8,
-          ),
-          padding: const EdgeInsets.all(24),
-          decoration: BoxDecoration(
-            color: Palette.neutralWhite,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.symmetric(
-              horizontal: BorderSide(
-                color: themeColor,
-                width: 5,
-              ),
-              vertical: BorderSide(
-                color: themeColor,
-                width: 3,
-              ),
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      insetPadding: const EdgeInsets.symmetric(vertical: 12),
+      child: Stack(
+        alignment: Alignment.center,
+        fit: StackFit.loose,
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            constraints: BoxConstraints(
+              maxWidth: 500,
+              maxHeight: MediaQuery.sizeOf(context).height * 0.9,
+              minHeight: 200,
             ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Flexible(
-                child: SingleChildScrollView(
-                  child: content,
+            padding: const EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              color: Palette.neutralWhite,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.symmetric(
+                horizontal: BorderSide(
+                  color: themeColor,
+                  width: 5,
+                ),
+                vertical: BorderSide(
+                  color: themeColor,
+                  width: 3,
                 ),
               ),
-              bottom,
-            ],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Flexible(
+                  child: SingleChildScrollView(
+                    child: content,
+                  ),
+                ),
+                bottom,
+              ],
+            ),
           ),
-        ),
-        Positioned(
-          top: -10,
-          child: ribbon,
-        ),
-      ],
+          Positioned(
+            top: -20,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: ribbon,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

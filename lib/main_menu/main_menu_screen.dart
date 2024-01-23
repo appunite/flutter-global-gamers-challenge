@@ -3,7 +3,8 @@ import 'package:endless_runner/challenges/pipes_challenge/pipes_challenge_screen
 import 'package:endless_runner/challenges/recycling_challenge/recycling_challenge_screen.dart';
 import 'package:endless_runner/challenges/solar_panel_scratcher_challenge/solar_panel_scratcher_screen.dart';
 import 'package:endless_runner/challenges/trees_challenge/trees_challenge_screen.dart';
-import 'package:endless_runner/settings/settings_screen.dart';
+import 'package:endless_runner/common/dialog_helper.dart';
+import 'package:endless_runner/settings/settings_dialog.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -67,7 +68,7 @@ class MainMenuScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             MainButton.secondary(
-              onPressed: () => context.push(SettingsScreen.routePath),
+              onPressed: () => DialogHelper.show(context, const SettingsDialog()),
               text: 'Settings',
             ),
             gap10,

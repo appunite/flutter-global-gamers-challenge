@@ -2,10 +2,11 @@ import 'package:endless_runner/style/palette.dart';
 import 'package:endless_runner/style/pushable_button.dart';
 import 'package:flutter/material.dart';
 
-class MainButton extends StatefulWidget {
+class MainButton extends StatelessWidget {
   const MainButton({
     super.key,
     required this.text,
+    this.width,
     this.onPressed,
     this.backgroundColor = Palette.primary,
     this.activeColor = Palette.primaryDark,
@@ -24,6 +25,7 @@ class MainButton extends StatefulWidget {
   }
 
   final String text;
+  final double? width;
   final VoidCallback? onPressed;
   final Color backgroundColor;
 
@@ -31,19 +33,15 @@ class MainButton extends StatefulWidget {
   final Color activeColor;
 
   @override
-  State<MainButton> createState() => _MainButtonState();
-}
-
-class _MainButtonState extends State<MainButton> with SingleTickerProviderStateMixin {
-  @override
   Widget build(BuildContext context) {
     return PushableButton(
-      activeColor: widget.activeColor,
-      hslColor: HSLColor.fromColor(widget.backgroundColor),
+      width: width,
+      activeColor: activeColor,
+      hslColor: HSLColor.fromColor(backgroundColor),
       height: 48,
-      onPressed: widget.onPressed,
+      onPressed: onPressed,
       child: Text(
-        widget.text,
+        text,
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.titleLarge,
       ),

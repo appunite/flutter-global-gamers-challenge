@@ -27,6 +27,7 @@ class Palette {
   static const neutralDarkGray = Color(0xFFD0D3E0);
   static const neutralLightGray = Color(0xFFEBECF2);
   static const neutralBeige = Color(0xFFFFF6E8);
+  static const error = Color(0xFFBB3A29);
 
   static const buttonTextColor = neutralWhite;
 }

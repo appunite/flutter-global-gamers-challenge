@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:endless_runner/challenges/challenge_type_enum.dart';
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/challenges/challenge_introduction_dialog.dart';
+import 'package:endless_runner/common/dialog_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -24,10 +25,20 @@ class _TreesChallengeScreenState extends State<TreesChallengeScreen> {
   @override
   void initState() {
     super.initState();
+    _showIntroDialog();
+  }
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _showIntroductionDialog();
-    });
+  void _showIntroDialog() {
+    DialogHelper.showWithWidgetBinding(
+      context,
+      ChallengeIntroductionDialog(
+        challenge: ChallengeType.trees,
+        onButtonPressed: () {
+          context.pop();
+          startTimer();
+        },
+      ),
+    );
   }
 
   void _plantTree() {
@@ -89,20 +100,6 @@ class _TreesChallengeScreenState extends State<TreesChallengeScreen> {
           child: const Text('Plant tree'),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      ),
-    );
-  }
-
-  void _showIntroductionDialog() {
-    showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (context) => ChallengeIntroductionDialog(
-        challenge: ChallengeType.trees,
-        onButtonPressed: () {
-          context.pop();
-          startTimer();
-        },
       ),
     );
   }

@@ -7,6 +7,7 @@ class PushableButton extends StatefulWidget {
     required this.hslColor,
     required this.activeColor,
     required this.height,
+    this.width,
     this.elevation = 6.0,
     this.shadow,
     this.onPressed,
@@ -16,6 +17,7 @@ class PushableButton extends StatefulWidget {
   final HSLColor hslColor;
   final Color activeColor;
   final double height;
+  final double? width;
   final double elevation;
   final BoxShadow? shadow;
   final VoidCallback? onPressed;
@@ -69,6 +71,7 @@ class _PushableButtonState extends State<PushableButton> with SingleTickerProvid
     final totalHeight = widget.height + widget.elevation;
     return SizedBox(
       height: totalHeight,
+      width: widget.width,
       child: LayoutBuilder(
         builder: (context, constraints) {
           return GestureDetector(
@@ -82,6 +85,7 @@ class _PushableButtonState extends State<PushableButton> with SingleTickerProvid
                 final hslColor = widget.hslColor;
                 final bottomHslColor = hslColor.withLightness(hslColor.lightness - 0.08);
                 return Stack(
+                  fit: StackFit.passthrough,
                   children: [
                     // Draw bottom layer first
                     Positioned(
