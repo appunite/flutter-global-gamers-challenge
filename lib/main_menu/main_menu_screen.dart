@@ -15,9 +15,9 @@ import 'package:provider/provider.dart';
 import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
 import '../settings/settings.dart';
+import '../style/main_button.dart';
 import '../style/palette.dart';
 import '../style/responsive_screen.dart';
-import '../style/main_button.dart';
 
 class MainMenuScreen extends StatelessWidget {
   const MainMenuScreen({super.key});
@@ -54,7 +54,7 @@ class MainMenuScreen extends StatelessWidget {
               ),
               gap10,
               if (Platform.isAndroid)
-                WobblyButton(
+                MainButton(
                   onPressed: () => context.push(GoogleWalletDemoScreen.routePath),
                   child: const Text('Google wallet'),
                 ),
