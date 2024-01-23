@@ -27,6 +27,7 @@ class PushableButton extends StatefulWidget {
 class _PushableButtonState extends State<PushableButton> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Color _topLayerColor = widget.hslColor.toColor();
+  static const double _borderRadius = 16;
 
   @override
   void initState() {
@@ -79,7 +80,7 @@ class _PushableButtonState extends State<PushableButton> with SingleTickerProvid
               builder: (context, child) {
                 final top = _animationController.value * widget.elevation;
                 final hslColor = widget.hslColor;
-                final bottomHslColor = hslColor.withLightness(hslColor.lightness - 0.1);
+                final bottomHslColor = hslColor.withLightness(hslColor.lightness - 0.08);
                 return Stack(
                   children: [
                     // Draw bottom layer first
@@ -92,7 +93,7 @@ class _PushableButtonState extends State<PushableButton> with SingleTickerProvid
                         decoration: BoxDecoration(
                           color: bottomHslColor.toColor(),
                           boxShadow: widget.shadow != null ? [widget.shadow!] : [],
-                          borderRadius: BorderRadius.circular(14),
+                          borderRadius: BorderRadius.circular(_borderRadius),
                         ),
                       ),
                     ),
@@ -105,7 +106,7 @@ class _PushableButtonState extends State<PushableButton> with SingleTickerProvid
                         height: widget.height,
                         decoration: ShapeDecoration(
                           color: _topLayerColor,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(_borderRadius)),
                         ),
                         child: Center(child: widget.child),
                       ),
