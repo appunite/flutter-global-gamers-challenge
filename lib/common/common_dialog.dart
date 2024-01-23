@@ -6,14 +6,14 @@ class CommonDialog extends StatelessWidget {
     super.key,
     required this.content,
     required this.bottom,
-    required this.themeColor,
     required this.ribbon,
+    required this.themeColor,
   });
 
   final Widget content;
   final Widget bottom;
-  final Color themeColor;
   final Widget ribbon;
+  final Color themeColor;
 
   @override
   Widget build(BuildContext context) {

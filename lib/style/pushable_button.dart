@@ -85,7 +85,6 @@ class _PushableButtonState extends State<PushableButton> with SingleTickerProvid
                 final hslColor = widget.hslColor;
                 final bottomHslColor = hslColor.withLightness(hslColor.lightness - 0.08);
                 return Stack(
-                  fit: StackFit.passthrough,
                   children: [
                     // Draw bottom layer first
                     Positioned(
