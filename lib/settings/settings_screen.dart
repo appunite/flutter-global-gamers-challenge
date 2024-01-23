@@ -1,11 +1,11 @@
 import 'package:endless_runner/style/gaps.dart';
 
-import '../player_progress/player_progress.dart';
+import '../player_progress/player_progress_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import '../style/wobbly_button.dart';
+import '../style/main_button.dart';
 import '../style/palette.dart';
 import 'custom_name_dialog.dart';
 import 'settings.dart';
@@ -66,7 +66,7 @@ class SettingsScreen extends StatelessWidget {
                       'Reset progress',
                       const Icon(Icons.delete),
                       onSelected: () {
-                        context.read<PlayerProgress>().reset();
+                        context.read<PlayerProgressController>().reset();
 
                         final messenger = ScaffoldMessenger.of(context);
                         messenger.showSnackBar(
@@ -79,7 +79,7 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
             gap60,
-            WobblyButton(
+            MainButton(
               onPressed: () {
                 GoRouter.of(context).pop();
               },
@@ -100,7 +100,7 @@ class _NameChangeLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settings = context.watch<SettingsController>();
+    final playerProgress = context.watch<PlayerProgressController>();
 
     return InkResponse(
       highlightShape: BoxShape.rectangle,
@@ -116,16 +116,7 @@ class _NameChangeLine extends StatelessWidget {
                   fontSize: 20,
                 )),
             const Spacer(),
-            ValueListenableBuilder(
-              valueListenable: settings.playerName,
-              builder: (context, name, child) => Text(
-                '‘$name’',
-                style: const TextStyle(
-                  fontFamily: 'Press Start 2P',
-                  fontSize: 20,
-                ),
-              ),
-            ),
+            Text(playerProgress.playerNick),
           ],
         ),
       ),

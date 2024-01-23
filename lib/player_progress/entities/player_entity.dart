@@ -1,4 +1,4 @@
-import 'package:endless_runner/player_progress/challenges_entity.dart';
+import 'package:endless_runner/player_progress/entities/challenges_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'player_entity.freezed.dart';
@@ -13,9 +13,9 @@ class PlayerEntity with _$PlayerEntity {
     required final String nick,
   }) = _PlayerEntity;
 
-  factory PlayerEntity.empty() => PlayerEntity(
+  factory PlayerEntity.empty({required String nick}) => PlayerEntity(
         challengesScores: ChallengesEntity.empty(),
-        nick: '', //TODO generate one
+        nick: nick,
       );
 
   factory PlayerEntity.fromJson(Map<String, dynamic> json) => _$PlayerEntityFromJson(json);

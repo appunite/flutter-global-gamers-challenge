@@ -1,10 +1,11 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:endless_runner/challenges/challenge_type_enum.dart';
-import 'package:endless_runner/player_progress/challenges_entity.dart';
+import 'package:endless_runner/player_progress/entities/challenges_entity.dart';
+import 'package:endless_runner/player_progress/entities/player_entity.dart';
 import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
-import 'package:endless_runner/player_progress/player_entity.dart';
 import 'package:flutter/widgets.dart';
 
 class FirebasePersistence extends DatabasePersistence {
@@ -19,13 +20,13 @@ class FirebasePersistence extends DatabasePersistence {
   static const String usersCollection = 'users';
 
   @override
-  Future<PlayerEntity> getPlayerEntity({required String playerId}) async {
+  Future<PlayerEntity> getPlayerEntity({required String playerId, String? playerNick}) async {
     try {
       final playerDoc = await _playersRef.doc(playerId).get();
       if (playerDoc.exists) {
         return PlayerEntity.fromJson(playerDoc.data() as Map<String, dynamic>);
       } else {
-        return _createNewPlayer(playerId);
+        return _createNewPlayer(playerId: playerId, playerNick: playerNick);
       }
     } catch (e, stack) {
       debugPrintStack(label: e.toString(), stackTrace: stack);
@@ -73,8 +74,19 @@ class FirebasePersistence extends DatabasePersistence {
     }
   }
 
-  Future<PlayerEntity> _createNewPlayer(String playerId) async {
-    final newPlayer = PlayerEntity.empty();
+  //TODO: do we need to handle not repeating nicks?...
+  Future<PlayerEntity> _createNewPlayer({required String playerId, String? playerNick}) async {
+    late String nick;
+
+    if (playerNick != null) {
+      nick = playerNick;
+    } else {
+      Random random = Random();
+      final number = 1000 + random.nextInt(9000);
+      nick = 'Eco$number';
+    }
+
+    final newPlayer = PlayerEntity.empty(nick: nick);
     await _playersRef.doc(playerId).set(newPlayer.toJson());
     return newPlayer;
   }

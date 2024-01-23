@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../audio/audio_controller.dart';
 import '../level_selection/levels.dart';
-import '../player_progress/player_progress.dart';
+import '../player_progress/player_progress_controller.dart';
 import 'components/background.dart';
 import 'endless_world.dart';
 
@@ -24,7 +24,7 @@ import 'endless_world.dart';
 class EndlessRunner extends FlameGame<EndlessWorld> with HasCollisionDetection {
   EndlessRunner({
     required this.level,
-    required PlayerProgress playerProgress,
+    required PlayerProgressController playerProgress,
     required this.audioController,
   }) : super(
           world: EndlessWorld(level: level, playerProgress: playerProgress),
@@ -74,8 +74,7 @@ class EndlessRunner extends FlameGame<EndlessWorld> with HasCollisionDetection {
     // gets a new point, in the callback we update the text of the
     // `scoreComponent`.
     world.scoreNotifier.addListener(() {
-      scoreComponent.text =
-          scoreText.replaceFirst('0', '${world.scoreNotifier.value}');
+      scoreComponent.text = scoreText.replaceFirst('0', '${world.scoreNotifier.value}');
     });
   }
 }
