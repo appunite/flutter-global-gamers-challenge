@@ -3,7 +3,8 @@ import 'package:endless_runner/challenges/pipes_challenge/pipes_challenge_screen
 import 'package:endless_runner/challenges/recycling_challenge/recycling_challenge_screen.dart';
 import 'package:endless_runner/challenges/solar_panel_scratcher_challenge/solar_panel_scratcher_screen.dart';
 import 'package:endless_runner/challenges/trees_challenge/trees_challenge_screen.dart';
-import 'package:endless_runner/settings/settings_screen.dart';
+import 'package:endless_runner/common/dialog_helper.dart';
+import 'package:endless_runner/settings/settings_dialog.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -21,12 +22,11 @@ class MainMenuScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final palette = context.watch<Palette>();
     final settingsController = context.watch<SettingsController>();
     final audioController = context.watch<AudioController>();
 
     return Scaffold(
-      backgroundColor: palette.backgroundMain.color,
+      backgroundColor: Palette.neutralWhite,
       body: ResponsiveScreen(
         squarishMainArea: Center(
           child: Column(
@@ -37,17 +37,17 @@ class MainMenuScreen extends StatelessWidget {
                   audioController.playSfx(SfxType.buttonTap);
                   context.go('/play');
                 },
-                child: const Text('Play'),
+                text: 'Play',
               ),
               gap10,
               MainButton(
                 onPressed: () => context.push(PipesChallengeScreen.routePath),
-                child: const Text('Fix pipes'),
+                text: 'Fix pipes',
               ),
               gap10,
               MainButton(
                 onPressed: () => context.push(OceanChallengeScreen.routePath),
-                child: const Text('Ocean shooter'),
+                text: 'Ocean shooter',
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 32),
@@ -67,24 +67,24 @@ class MainMenuScreen extends StatelessWidget {
         rectangularMenuArea: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            MainButton(
-              onPressed: () => context.push(SettingsScreen.routePath),
-              child: const Text('Settings'),
+            MainButton.secondary(
+              onPressed: () => DialogHelper.show(context, const SettingsDialog()),
+              text: 'Settings',
             ),
             gap10,
-            MainButton(
+            MainButton.secondary(
               onPressed: () => context.push(SolarPanelChallengeScreen.routePath),
-              child: const Text('Solar panel scratcher'),
+              text: 'Solar panel scratcher',
             ),
             gap10,
-            MainButton(
+            MainButton.secondary(
               onPressed: () => context.push(RecyclingChallengeScreen.routePath),
-              child: const Text('Recycling'),
+              text: 'Recycling',
             ),
             gap10,
-            MainButton(
+            MainButton.secondary(
               onPressed: () => context.push(TreesChallengeScreen.routePath),
-              child: const Text('Plant trees'),
+              text: 'Plant trees',
             ),
           ],
         ),
