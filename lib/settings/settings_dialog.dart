@@ -59,7 +59,7 @@ class SettingsDialog extends StatelessWidget {
           ),
         ],
       ),
-      themeColor: const Color.fromARGB(255, 27, 28, 31),
+      themeColor: Palette.secondaryDark,
       ribbon: RibbonHeader(
         text: 'Settings',
         withCloseIcon: true,

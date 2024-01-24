@@ -20,7 +20,7 @@ class CommonDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       backgroundColor: Colors.transparent,
-      insetPadding: const EdgeInsets.only(top: 20, bottom: 5),
+      insetPadding: const EdgeInsets.only(top: 20),
       child: Stack(
         alignment: Alignment.center,
         fit: StackFit.loose,
@@ -29,7 +29,7 @@ class CommonDialog extends StatelessWidget {
           Container(
             constraints: BoxConstraints(
               maxWidth: 500,
-              maxHeight: MediaQuery.sizeOf(context).height * 0.8,
+              maxHeight: MediaQuery.sizeOf(context).height * 0.85,
               minHeight: 200,
             ),
             padding: const EdgeInsets.all(24),
