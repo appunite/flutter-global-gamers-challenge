@@ -1,3 +1,4 @@
+import 'package:endless_runner/style/gaps.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class CommonDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       backgroundColor: Colors.transparent,
-      insetPadding: const EdgeInsets.symmetric(vertical: 12),
+      insetPadding: const EdgeInsets.only(top: 20, bottom: 5),
       child: Stack(
         alignment: Alignment.center,
         fit: StackFit.loose,
@@ -28,7 +29,7 @@ class CommonDialog extends StatelessWidget {
           Container(
             constraints: BoxConstraints(
               maxWidth: 500,
-              maxHeight: MediaQuery.sizeOf(context).height * 0.9,
+              maxHeight: MediaQuery.sizeOf(context).height * 0.8,
               minHeight: 200,
             ),
             padding: const EdgeInsets.all(24),
@@ -52,15 +53,19 @@ class CommonDialog extends StatelessWidget {
               children: [
                 Flexible(
                   child: SingleChildScrollView(
-                    child: content,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 24),
+                      child: content,
+                    ),
                   ),
                 ),
+                gap8,
                 bottom,
               ],
             ),
           ),
           Positioned(
-            top: -20,
+            top: -30,
             child: Padding(
               padding: const EdgeInsets.only(top: 10),
               child: ribbon,

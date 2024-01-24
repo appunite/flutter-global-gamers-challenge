@@ -1,4 +1,5 @@
 import 'package:endless_runner/challenges/challenge_type_enum.dart';
+import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/common/common_dialog.dart';
 import 'package:endless_runner/common/ribbon_header.dart';
 import 'package:endless_runner/style/const_values.dart';
@@ -48,17 +49,9 @@ class ChallengeIntroductionDialog extends StatelessWidget {
       ),
       themeColor: Palette.secondaryDark,
       ribbon: RibbonHeader(
-        customChild: Row(
-          children: [
-            Text(
-              challenge.title,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: Palette.secondaryDark,
-                  ),
-            ),
-            const Icon(Icons.close),
-          ],
-        ),
+        withCloseIcon: true,
+        text: challenge.title,
+        ribbonImage: AssetPaths.ribbonBlueClose,
       ),
     );
   }

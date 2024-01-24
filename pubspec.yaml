@@ -30,6 +30,7 @@ dependencies:
   provider: ^6.0.5
   shared_preferences: ^2.2.2
   scratcher: ^2.5.0
+  flutter_svg: ^2.0.9
 
 dev_dependencies:
   flame_test: ^1.14.0
@@ -48,16 +49,12 @@ flutter:
     - assets/images/
     - assets/images/challenges/
     - assets/images/challenges/ocean_shooter/
+    - assets/images/common/
     - assets/images/dash/
     - assets/images/enemies/
     - assets/images/scenery/
     - assets/music/
     - assets/sfx/
-
-  fonts:
-    - family: Press Start 2P
-      fonts:
-        - asset: assets/fonts/Press_Start_2P/PressStart2P-Regular.ttf
 
 flutter_launcher_icons:
   android: true

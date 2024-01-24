@@ -15,12 +15,14 @@ class MainButton extends StatelessWidget {
   factory MainButton.secondary({
     required String text,
     required VoidCallback onPressed,
+    double? width,
   }) {
     return MainButton(
       text: text,
       onPressed: onPressed,
       backgroundColor: Palette.secondary,
       activeColor: Palette.secondaryDark,
+      width: width,
     );
   }
 

@@ -59,25 +59,12 @@ class SettingsDialog extends StatelessWidget {
           ),
         ],
       ),
-      themeColor: Palette.secondaryDark,
+      themeColor: const Color.fromARGB(255, 27, 28, 31),
       ribbon: RibbonHeader(
-        customChild: Row(
-          children: [
-            Text(
-              'Settings',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: Palette.secondaryDark,
-                  ),
-            ),
-            GestureDetector(
-              onTap: context.pop,
-              child: const Icon(
-                Icons.close,
-                color: Palette.neutralWhite,
-              ),
-            ),
-          ],
-        ),
+        text: 'Settings',
+        withCloseIcon: true,
+        onCloseTap: context.pop,
+        ribbonImage: AssetPaths.ribbonBlueClose,
       ),
     );
   }

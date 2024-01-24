@@ -55,6 +55,7 @@ class MyGame extends StatelessWidget {
                     color: Palette.buttonTextColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 22,
+                    letterSpacing: 0.5,
                   ),
                   titleMedium: const TextStyle(
                     color: Palette.buttonTextColor,

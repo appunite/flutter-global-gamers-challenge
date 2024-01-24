@@ -30,36 +30,24 @@ class ChallengeExitDialog extends StatelessWidget {
       bottom: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Expanded(
-            child: MainButton.secondary(
-              onPressed: () => context
-                ..pop()
-                ..pop(),
-              text: 'Exit',
-            ),
+          MainButton.secondary(
+            width: 120,
+            onPressed: () => context
+              ..pop()
+              ..pop(),
+            text: 'Exit',
           ),
-          gap10,
-          Expanded(
-            child: MainButton(
-              onPressed: onButtonPressed,
-              text: 'Continue Game',
-            ),
+          gap12,
+          MainButton(
+            width: 215,
+            onPressed: onButtonPressed,
+            text: 'Continue Game',
           ),
         ],
       ),
       themeColor: Palette.secondaryDark,
-      ribbon: RibbonHeader(
-        customChild: Row(
-          children: [
-            Text(
-              'Exit Challenge',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: Palette.secondaryDark,
-                  ),
-            ),
-            const Icon(Icons.close),
-          ],
-        ),
+      ribbon: const RibbonHeader(
+        text: 'Exit Challenge',
       ),
     );
   }

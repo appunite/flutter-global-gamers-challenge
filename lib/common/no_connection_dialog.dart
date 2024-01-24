@@ -1,3 +1,4 @@
+import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/common/common_dialog.dart';
 import 'package:endless_runner/common/ribbon_header.dart';
 import 'package:endless_runner/style/gaps.dart';
@@ -31,34 +32,23 @@ class NoConnectionDialog extends StatelessWidget {
       bottom: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Expanded(
-            child: MainButton.secondary(
-              onPressed: onTryAgain,
-              text: 'Try Again',
-            ),
+          MainButton.secondary(
+            width: 150,
+            onPressed: onTryAgain,
+            text: 'Try Again',
           ),
-          gap10,
-          Expanded(
-            child: MainButton(
-              onPressed: onTryAgain,
-              text: 'Play Offline',
-            ),
+          gap12,
+          MainButton(
+            width: 170,
+            onPressed: onTryAgain,
+            text: 'Play Offline',
           ),
         ],
       ),
       themeColor: Palette.error,
-      ribbon: RibbonHeader(
-        customChild: Row(
-          children: [
-            Text(
-              'No Internet Connection',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: Palette.secondaryDark,
-                  ),
-            ),
-            const Icon(Icons.close),
-          ],
-        ),
+      ribbon: const RibbonHeader(
+        ribbonImage: AssetPaths.ribbonRed,
+        text: 'No Internet Connection',
       ),
     );
   }

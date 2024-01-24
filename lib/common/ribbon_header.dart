@@ -1,6 +1,8 @@
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class RibbonHeader extends StatelessWidget {
   const RibbonHeader({
@@ -10,38 +12,58 @@ class RibbonHeader extends StatelessWidget {
     this.width,
     this.ribbonImage,
     this.customChild,
+    this.withCloseIcon = false,
+    this.onCloseTap,
   }) : assert(text != null || customChild != null, 'Either text or customChild cannot be null');
 
   final String? text;
   final double? height;
   final double? width;
   final String? ribbonImage;
+  final bool withCloseIcon;
   final Widget? customChild;
+  final VoidCallback? onCloseTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(ribbonImage ?? AssetPaths.documents), //TODO
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        SvgPicture.asset(
+          ribbonImage ?? AssetPaths.ribbonBlue,
           fit: BoxFit.contain,
+          width: 560,
         ),
-      ),
-      child: Center(
-        child: customChild ??
-            Text(
-              text!,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Palette.neutralWhite,
-                    fontWeight: FontWeight.w800,
-                    fontSize: 12,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-              maxLines: 1,
-              textAlign: TextAlign.center,
+        Padding(
+          padding: const EdgeInsets.only(bottom: 30),
+          child: customChild ??
+              Text(
+                text!,
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      color: Palette.neutralWhite,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                maxLines: 1,
+                textAlign: TextAlign.center,
+              ),
+        ),
+        if (withCloseIcon)
+          Positioned(
+            right: 50,
+            top: 8,
+            child: GestureDetector(
+              behavior: HitTestBehavior.translucent,
+              onTap: onCloseTap ??
+                  () => context
+                    ..pop()
+                    ..pop(),
+              child: const SizedBox(
+                height: 50,
+                width: 50,
+              ),
             ),
-      ),
+          ),
+      ],
     );
   }
 }
