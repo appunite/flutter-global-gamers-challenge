@@ -23,7 +23,7 @@ class TextBubbleWidget extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                 color: const Color(0xFF212121).withOpacity(.2),
-                offset: const Offset(2, 5),
+                offset: const Offset(2, 6),
               ),
             ],
           ),

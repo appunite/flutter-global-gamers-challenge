@@ -33,6 +33,7 @@ dependencies:
   nes_ui: ^0.10.0
   overlay_tutorial: ^3.0.0
   provider: ^6.0.5
+  rive: ^0.12.4
   shared_preferences: ^2.2.2
   scratcher: ^2.5.0
   uuid: ^4.3.3
@@ -51,6 +52,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/animations/
     - assets/images/
     - assets/images/challenges/
     - assets/images/challenges/ocean_shooter/

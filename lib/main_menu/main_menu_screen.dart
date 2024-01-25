@@ -30,7 +30,7 @@ class MainMenuScreen extends StatelessWidget {
     final playerProgressController = context.watch<PlayerProgressController>();
 
     return Scaffold(
-      backgroundColor: Palette.neutralWhite,
+      backgroundColor: Palette.secondary,
       body: playerProgressController.hasSeenOnboarding
           ? _buildBody(audioController, context, settingsController)
           : OnboardingFlow(

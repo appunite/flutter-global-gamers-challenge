@@ -4,6 +4,7 @@ import 'package:endless_runner/main_menu/tutorial/tutorial_step_enum.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:endless_runner/style/main_button.dart';
 import 'package:flutter/material.dart';
+import 'package:rive/rive.dart';
 
 class GeneralTutorialWidget extends StatelessWidget {
   const GeneralTutorialWidget({
@@ -23,7 +24,16 @@ class GeneralTutorialWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image.asset(AssetPaths.appleCore),
+        const SizedBox(
+          height: 100,
+          width: 100,
+          child: RiveAnimation.asset(
+            AssetPaths.eco,
+            animations: ['Blinking'],
+            artboard: 'Eco',
+            stateMachines: ['StateMachine'],
+          ),
+        ),
         gap4,
         Column(
           mainAxisSize: MainAxisSize.min,
