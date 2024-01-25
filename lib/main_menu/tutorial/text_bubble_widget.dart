@@ -41,12 +41,12 @@ class TextBubbleWidget extends StatelessWidget {
         height: 25,
         width: 15,
         child: CustomPaint(
-          painter: TrianglePainter(),
+          painter: _TrianglePainter(),
         ),
       );
 }
 
-class TrianglePainter extends CustomPainter {
+class _TrianglePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final double width = size.width;
