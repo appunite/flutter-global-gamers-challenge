@@ -1,4 +1,4 @@
-import 'package:endless_runner/challenges/common_widgets/challenge_no_score_screen.dart';
+import 'package:endless_runner/challenges/common_widgets/challenge_completed_screen.dart';
 import 'package:endless_runner/challenges/ocean_shooter/ocean_challenge_screen.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipes_challenge_screen.dart';
 import 'package:endless_runner/challenges/recycling_challenge/recycling_challenge_screen.dart';
@@ -47,7 +47,7 @@ class MainMenuScreen extends StatelessWidget {
               ),
               gap10,
               MainButton(
-                onPressed: () => context.push(ChallengeNoScoreScreen.routePath),
+                onPressed: () => context.push(ChallengeCompletedScreen.routePath),
                 text: 'Completed challenge',
               ),
               gap10,

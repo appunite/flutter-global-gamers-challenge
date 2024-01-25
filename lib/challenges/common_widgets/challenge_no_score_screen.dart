@@ -31,31 +31,32 @@ class _ChallengeNoScoreScreenState extends State<ChallengeNoScoreScreen> {
     return Scaffold(
       backgroundColor: Palette.accentBackground,
       body: SingleChildScrollView(
-        child: Flexible(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              gap24,
-              const RibbonHeader(
-                text: 'TIME\'S UP!',
-                width: 450,
-                ribbonImage: AssetPaths.ribbonRed,
-              ),
-              Text(
-                'Even small actions can have a big impact on the environment.\nLet\'s try again and make a difference!',
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            gap24,
+            const RibbonHeader(
+              text: 'TIME\'S UP!',
+              width: 450,
+              ribbonImage: AssetPaths.ribbonRed,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 100),
+              child: Text(
+                'Even small actions can have a big impact on the environment. Let\'s try again and make a difference!',
                 style: Theme.of(context).textTheme.titleMedium,
                 textAlign: TextAlign.center,
               ),
-              gap16,
-              //TODO
-              const ScoreContainer(
-                score: 0,
-                bestScore: 19,
-                time: '00:15',
-              ),
-              gap60,
-            ],
-          ),
+            ),
+            gap16,
+            //TODO
+            const ScoreContainer(
+              score: 0,
+              bestScore: 19,
+              time: '00:15',
+            ),
+            gap60,
+          ],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

@@ -35,7 +35,7 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
 
   // TODO: handle values from the player controller
   final _hasBadge = true;
-  final _hasScore = false;
+  final _hasScore = true;
 
   @override
   void initState() {
