@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:endless_runner/challenges/common_widgets/challenge_completed_screen.dart';
 import 'package:endless_runner/challenges/ocean_shooter/ocean_challenge_screen.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipes_challenge_screen.dart';
@@ -7,6 +9,7 @@ import 'package:endless_runner/challenges/trees_challenge/trees_challenge_screen
 import 'package:endless_runner/common/dialog_helper.dart';
 import 'package:endless_runner/main_menu/tutorial/onboarding_flow.dart';
 import 'package:endless_runner/player_progress/player_progress_controller.dart';
+import 'package:endless_runner/common/google_wallet_demo.dart';
 import 'package:endless_runner/settings/settings_dialog.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +19,9 @@ import 'package:provider/provider.dart';
 import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
 import '../settings/settings.dart';
+import '../style/main_button.dart';
 import '../style/palette.dart';
 import '../style/responsive_screen.dart';
-import '../style/main_button.dart';
 
 class MainMenuScreen extends StatelessWidget {
   const MainMenuScreen({super.key});
@@ -68,6 +71,12 @@ class MainMenuScreen extends StatelessWidget {
               onPressed: () => context.push(OceanChallengeScreen.routePath),
               text: 'Ocean shooter',
             ),
+            gap10,
+            if (Platform.isAndroid)
+              MainButton(
+                onPressed: () => context.push(GoogleWalletDemoScreen.routePath),
+                text: 'Google wallet',
+              ),
             Padding(
               padding: const EdgeInsets.only(top: 32),
               child: ValueListenableBuilder<bool>(
