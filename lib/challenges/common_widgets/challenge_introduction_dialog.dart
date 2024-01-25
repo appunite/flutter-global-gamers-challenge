@@ -24,7 +24,7 @@ class ChallengeIntroductionDialog extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          gap20,
+          gap24,
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 2),
             child: Text(

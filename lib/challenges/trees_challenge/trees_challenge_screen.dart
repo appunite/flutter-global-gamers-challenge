@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:endless_runner/challenges/challenge_type_enum.dart';
+import 'package:endless_runner/challenges/common_widgets/challenge_introduction_dialog.dart';
 import 'package:endless_runner/common/asset_paths.dart';
-import 'package:endless_runner/challenges/challenge_introduction_dialog.dart';
 import 'package:endless_runner/common/dialog_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

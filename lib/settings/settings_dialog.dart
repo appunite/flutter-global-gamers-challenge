@@ -6,6 +6,7 @@ import 'package:endless_runner/style/const_values.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -20,12 +21,12 @@ class SettingsDialog extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          gap20,
+          gap24,
           ValueListenableBuilder<bool>(
             valueListenable: settings.musicOn,
-            builder: (context, musicOn, child) => SettingsTile(
+            builder: (context, musicOn, child) => _SettingsTile(
               text: 'Music',
-              iconName: AssetPaths.appleCore,
+              iconName: AssetPaths.iconMusic,
               value: musicOn,
               onSwitchTap: () => settings.toggleMusicOn(),
             ),
@@ -33,9 +34,9 @@ class SettingsDialog extends StatelessWidget {
           gap12,
           ValueListenableBuilder<bool>(
             valueListenable: settings.soundsOn,
-            builder: (context, soundsOn, child) => SettingsTile(
+            builder: (context, soundsOn, child) => _SettingsTile(
               text: 'Sounds',
-              iconName: AssetPaths.bananaPeel,
+              iconName: AssetPaths.iconSound,
               value: soundsOn,
               onSwitchTap: () => settings.toggleSoundsOn(),
             ),
@@ -64,15 +65,14 @@ class SettingsDialog extends StatelessWidget {
         text: 'Settings',
         withCloseIcon: true,
         onCloseTap: context.pop,
-        ribbonImage: AssetPaths.ribbonBlueClose,
+        ribbonImage: AssetPaths.ribbonYellowClose,
       ),
     );
   }
 }
 
-class SettingsTile extends StatelessWidget {
-  const SettingsTile({
-    super.key,
+class _SettingsTile extends StatelessWidget {
+  const _SettingsTile({
     required this.text,
     required this.iconName,
     required this.value,
@@ -94,7 +94,7 @@ class SettingsTile extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Image.asset(
+          SvgPicture.asset(
             iconName,
             height: 24,
             width: 24,
@@ -102,7 +102,7 @@ class SettingsTile extends StatelessWidget {
           gap8,
           Text(
             text,
-            style: Theme.of(context).textTheme.bodyLarge,
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Palette.neutralBlack),
           ),
           const Spacer(),
           Switch(
