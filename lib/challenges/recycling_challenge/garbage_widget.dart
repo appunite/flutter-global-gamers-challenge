@@ -27,7 +27,7 @@ class GarbageWidget extends StatelessWidget {
               ),
             ],
           ),
-          gap20,
+          gap24,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,7 +46,7 @@ class GarbageWidget extends StatelessWidget {
               ),
             ],
           ),
-          gap20,
+          gap24,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +62,7 @@ class GarbageWidget extends StatelessWidget {
               ),
             ],
           ),
-          gap20,
+          gap24,
         ],
       ),
     );

@@ -1,3 +1,6 @@
+import 'package:endless_runner/challenges/challenge_type_enum.dart';
+import 'package:endless_runner/challenges/common_widgets/challenge_completed_screen.dart';
+import 'package:endless_runner/challenges/common_widgets/challenge_no_score_screen.dart';
 import 'package:endless_runner/challenges/ocean_shooter/ocean_challenge_screen.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipes_challenge_screen.dart';
 import 'package:endless_runner/challenges/recycling_challenge/recycling_challenge_screen.dart';
@@ -66,6 +69,30 @@ final router = GoRouter(
       path: GoogleWalletDemoScreen.routePath,
       builder: (context, state) => const GoogleWalletDemoScreen(
         key: Key('pipes-challenge'),
+      ),
+    ),
+    GoRoute(
+      path: ChallengeCompletedScreen.routePath,
+      builder: (context, state) => ChallengeCompletedScreen(
+        key: const Key('challenge-completed'),
+        //TODO: get it from state
+        challengeType: ChallengeType.ocean,
+        onPrimaryButtonPressed: () {
+          context.pop();
+        },
+        onSecondaryButtonPressed: () {},
+      ),
+    ),
+    GoRoute(
+      path: ChallengeNoScoreScreen.routePath,
+      builder: (context, state) => ChallengeNoScoreScreen(
+        key: const Key('challenge-no-score'),
+        //TODO: get it from state
+        challengeType: ChallengeType.ocean,
+        onPrimaryButtonPressed: () {
+          context.pop();
+        },
+        onSecondaryButtonPressed: () {},
       ),
     ),
     GoRoute(

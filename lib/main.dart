@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:endless_runner/player_progress/persistence/firebase_persistence.dart';
 import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
+import 'package:endless_runner/style/theme.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -62,26 +62,7 @@ class MyGame extends StatelessWidget {
           builder: (context) {
             return MaterialApp.router(
               title: 'Endless Runner',
-              theme: ThemeData(
-                textTheme: GoogleFonts.rubikTextTheme().copyWith(
-                  titleLarge: const TextStyle(
-                    color: Palette.buttonTextColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22,
-                    letterSpacing: 0.5,
-                  ),
-                  titleMedium: const TextStyle(
-                    color: Palette.buttonTextColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                  bodyLarge: const TextStyle(
-                    color: Palette.neutralBlack,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
+              theme: theme,
               routeInformationProvider: router.routeInformationProvider,
               routeInformationParser: router.routeInformationParser,
               routerDelegate: router.routerDelegate,

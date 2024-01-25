@@ -27,15 +27,16 @@ class RibbonHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      alignment: Alignment.center,
+      alignment: Alignment.topCenter,
       children: [
         SvgPicture.asset(
           ribbonImage ?? AssetPaths.ribbonBlue,
           fit: BoxFit.contain,
-          width: 560,
+          width: width ?? 560,
+          height: height,
         ),
         Padding(
-          padding: const EdgeInsets.only(bottom: 30),
+          padding: const EdgeInsets.only(top: 10),
           child: customChild ??
               Text(
                 text!,
@@ -44,6 +45,7 @@ class RibbonHeader extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                 maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
               ),
         ),

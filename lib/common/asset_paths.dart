@@ -27,4 +27,9 @@ class AssetPaths {
   static const String ribbonYellow = 'assets/images/common/ribbon_yellow.svg';
   static const String ribbonYellowClose = 'assets/images/common/ribbon_yellow_close.svg';
   static const String ribbonRed = 'assets/images/common/ribbon_red.svg';
+  static const String iconMusic = 'assets/images/common/icons_music_on.svg';
+  static const String iconPoints = 'assets/images/common/icons_points.svg';
+  static const String iconTimer = 'assets/images/common/icons_timer.svg';
+  static const String iconSound = 'assets/images/common/icons_sound_on.svg';
+  static const String iconsProfile = 'assets/images/common/icons_profile.svg';
 }
