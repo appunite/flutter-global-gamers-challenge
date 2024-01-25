@@ -1,3 +1,4 @@
+import 'package:endless_runner/challenges/common_widgets/challenge_completed_screen.dart';
 import 'package:endless_runner/challenges/ocean_shooter/ocean_challenge_screen.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipes_challenge_screen.dart';
 import 'package:endless_runner/challenges/recycling_challenge/recycling_challenge_screen.dart';
@@ -43,6 +44,11 @@ class MainMenuScreen extends StatelessWidget {
               MainButton(
                 onPressed: () => context.push(PipesChallengeScreen.routePath),
                 text: 'Fix pipes',
+              ),
+              gap10,
+              MainButton(
+                onPressed: () => context.push(ChallengeCompletedScreen.routePath),
+                text: 'Completed challenge',
               ),
               gap10,
               MainButton(
