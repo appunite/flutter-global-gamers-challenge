@@ -31,6 +31,7 @@ dependencies:
   lottie: ^3.0.0
   mocktail: ^1.0.3
   nes_ui: ^0.10.0
+  overlay_tutorial: ^3.0.0
   provider: ^6.0.5
   shared_preferences: ^2.2.2
   scratcher: ^2.5.0
