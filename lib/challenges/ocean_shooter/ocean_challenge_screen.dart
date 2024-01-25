@@ -4,7 +4,6 @@ import 'package:endless_runner/challenges/ocean_shooter/components/star_backgrou
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
-import 'package:flutter/material.dart';
 
 class OceanChallengeScreen extends FlameGame with PanDetector, HasCollisionDetection {
   static const String routePath = '/ocean-shooter-challenge';
@@ -53,19 +52,5 @@ class OceanChallengeScreen extends FlameGame with PanDetector, HasCollisionDetec
 
   void increaseScore() {
     _score++;
-  }
-}
-
-class RogueShooterWidget extends StatelessWidget {
-  const RogueShooterWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return GameWidget(
-      game: OceanChallengeScreen(),
-      loadingBuilder: (_) => const Center(
-        child: Text('Loading'),
-      ),
-    );
   }
 }
