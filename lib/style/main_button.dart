@@ -7,7 +7,7 @@ class MainButton extends StatelessWidget {
     super.key,
     required this.text,
     this.width,
-    this.onPressed,
+    required this.onPressed,
     this.backgroundColor = Palette.primary,
     this.activeColor = Palette.primaryDark,
   });

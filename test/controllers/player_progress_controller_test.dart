@@ -22,6 +22,7 @@ void main() {
       when(() => localStorage.getPlayerIdKey()).thenAnswer((_) async => mockedPlayerId);
       when(() => databaseStorage.getPlayerEntity(playerId: mockedPlayerId))
           .thenAnswer((_) async => mockedEmptyPlayerEntity);
+      when(() => localStorage.getHasSeenOnboarding()).thenAnswer((_) async => false);
 
       playerProgressController = PlayerProgressController(
         localStorage: localStorage,
@@ -32,12 +33,14 @@ void main() {
 
       expect(playerProgressController.challenges, ChallengesEntity.empty());
       expect(playerProgressController.playerNick, mockedEmptyPlayerEntity.nick);
+      expect(playerProgressController.hasSeenOnboarding, false);
     });
 
     test('Initialization sets challenges and nick for active player', () async {
       when(() => localStorage.getPlayerIdKey()).thenAnswer((_) async => mockedPlayerId);
       when(() => databaseStorage.getPlayerEntity(playerId: mockedPlayerId))
           .thenAnswer((_) async => mockedPlayerWithChallengesEntity);
+      when(() => localStorage.getHasSeenOnboarding()).thenAnswer((_) async => true);
 
       playerProgressController = PlayerProgressController(
         localStorage: localStorage,
@@ -48,6 +51,7 @@ void main() {
 
       expect(playerProgressController.challenges, mockedPlayerWithChallengesEntity.challengesScores);
       expect(playerProgressController.playerNick, mockedEmptyPlayerEntity.nick);
+      expect(playerProgressController.hasSeenOnboarding, true);
     });
 
     test('Reset invokes databaseStorage.reset and notifies listeners', () async {
@@ -55,16 +59,44 @@ void main() {
       when(() => databaseStorage.getPlayerEntity(playerId: mockedPlayerId))
           .thenAnswer((_) async => mockedPlayerWithChallengesEntity);
       when(() => databaseStorage.reset(playerId: mockedPlayerId)).thenAnswer((_) async => Future.value());
+      when(() => localStorage.getHasSeenOnboarding()).thenAnswer((_) async => true);
 
       playerProgressController = PlayerProgressController(
         localStorage: localStorage,
         databaseStorage: databaseStorage,
       );
 
+      await pumpEventQueue();
       await playerProgressController.reset();
       await pumpEventQueue();
 
       expect(playerProgressController.challenges, ChallengesEntity.empty());
+      expect(playerProgressController.playerNick, mockedPlayerWithChallengesEntity.nick);
+      expect(playerProgressController.hasSeenOnboarding, true);
+
+      verify(() => databaseStorage.reset(playerId: mockedPlayerId));
+    });
+
+    test('setHasSeenOnboarding invokes localStorage.setHasSeenOnboarding and notifies listeners', () async {
+      when(() => localStorage.getPlayerIdKey()).thenAnswer((_) async => mockedPlayerId);
+      when(() => databaseStorage.getPlayerEntity(playerId: mockedPlayerId))
+          .thenAnswer((_) async => mockedPlayerWithChallengesEntity);
+      when(() => databaseStorage.reset(playerId: mockedPlayerId)).thenAnswer((_) async => Future.value());
+      when(() => localStorage.getHasSeenOnboarding()).thenAnswer((_) async => false);
+      when(() => localStorage.setHasSeenOnboarding()).thenAnswer((_) async => Future.value());
+
+      playerProgressController = PlayerProgressController(
+        localStorage: localStorage,
+        databaseStorage: databaseStorage,
+      );
+
+      await pumpEventQueue();
+      await playerProgressController.setHasSeenOnboarding();
+      await pumpEventQueue();
+
+      expect(playerProgressController.hasSeenOnboarding, true);
+
+      verify(() => localStorage.setHasSeenOnboarding());
     });
   });
 }

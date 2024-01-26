@@ -68,7 +68,7 @@ final router = GoRouter(
     GoRoute(
       path: GoogleWalletDemoScreen.routePath,
       builder: (context, state) => const GoogleWalletDemoScreen(
-        key: Key('pipes-challenge'),
+        key: Key('google-wallet-demo'),
       ),
     ),
     GoRoute(

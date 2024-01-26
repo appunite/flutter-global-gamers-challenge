@@ -29,6 +29,7 @@ class Palette {
   static const neutralLightGray = Color(0xFFEBECF2);
   static const neutralBeige = Color(0xFFFFF6E8);
   static const error = Color(0xFFBB3A29);
+  static Color overlay = const Color(0xFF14315C).withOpacity(.6);
 
   static const buttonTextColor = neutralWhite;
 }
