@@ -7,6 +7,8 @@ part 'player_entity.g.dart';
 
 @freezed
 class PlayerEntity with _$PlayerEntity {
+  const PlayerEntity._();
+
   @JsonSerializable(explicitToJson: true)
   const factory PlayerEntity({
     required final ChallengesEntity challengesScores,
@@ -19,4 +21,13 @@ class PlayerEntity with _$PlayerEntity {
       );
 
   factory PlayerEntity.fromJson(Map<String, dynamic> json) => _$PlayerEntityFromJson(json);
+
+  int getAllChallengesScores() {
+    return (challengesScores.city ?? 0) +
+        (challengesScores.ocean ?? 0) +
+        (challengesScores.pipes ?? 0) +
+        (challengesScores.recycling ?? 0) +
+        (challengesScores.solarPanel ?? 0) +
+        (challengesScores.trees ?? 0);
+  }
 }

@@ -58,21 +58,43 @@ class ChallengeIntroductionDialog extends StatelessWidget {
 }
 
 class InstructionContainer extends StatelessWidget {
-  const InstructionContainer({super.key, required this.text});
+  const InstructionContainer({
+    super.key,
+    required this.text,
+    this.color = Palette.secondaryLight,
+  });
 
   final String text;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8),
+      width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: borderRadius16,
-        color: Palette.secondaryLight,
+        color: color,
       ),
-      child: Text(
-        text,
-        style: Theme.of(context).textTheme.bodyLarge,
+      child: Row(
+        children: [
+          Container(
+            height: 64,
+            width: 64,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: Palette.neutralDarkGray,
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Text(
+                text,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

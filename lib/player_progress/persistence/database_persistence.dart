@@ -11,4 +11,8 @@ abstract class DatabasePersistence {
   });
 
   Future<void> reset({required String playerId});
+
+  Future<List<PlayerEntity>> getLeaderboard();
+
+  Future<void> updateUsername({required String playerId, required String username});
 }

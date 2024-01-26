@@ -31,10 +31,12 @@ class AssetPaths {
   static const String iconSound = 'assets/images/common/icons_sound_on.svg';
   static const String iconsProfile = 'assets/images/common/icons_profile.svg';
   static const String iconsMap = 'assets/images/common/icons_map.svg';
+  static const String ecoAvatar = 'assets/images/common/eco_avatar.svg';
   static const String ecoBag = 'assets/images/common/eco_bag.svg';
   static const String ecoClose = 'assets/images/common/eco_close.svg';
   static const String ecoConnection = 'assets/images/common/eco_connection.svg';
   static const String ecoSettings = 'assets/images/common/eco_settings.svg';
+  static const String ecoLeaderboard = 'assets/images/common/eco_leaderboard.svg';
 
   // Animations
   static const String ecoAnimation = 'assets/animations/eco.riv';

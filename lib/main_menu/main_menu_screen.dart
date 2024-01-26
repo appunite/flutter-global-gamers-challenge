@@ -9,6 +9,7 @@ import 'package:endless_runner/challenges/trees_challenge/trees_challenge_screen
 import 'package:endless_runner/common/dialog_helper.dart';
 import 'package:endless_runner/common/game_progress_indicator.dart';
 import 'package:endless_runner/common/points_counter.dart';
+import 'package:endless_runner/leaderboard/leaderboard.dart';
 import 'package:endless_runner/main_menu/tutorial/onboarding_flow.dart';
 import 'package:endless_runner/player_progress/player_progress_controller.dart';
 import 'package:endless_runner/common/google_wallet_demo.dart';
@@ -132,6 +133,11 @@ class MainMenuScreen extends StatelessWidget {
           MainButton.secondary(
             onPressed: () => context.push(TreesChallengeScreen.routePath),
             text: 'Plant trees',
+          ),
+          gap10,
+          MainButton.secondary(
+            onPressed: () => context.push(LeaderboardScreen.routePath),
+            text: 'Leaderboard',
           ),
         ],
       ),

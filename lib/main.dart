@@ -1,20 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:endless_runner/change_player_name/change_player_name_controller.dart';
+import 'package:endless_runner/leaderboard/leaderboard_controller.dart';
 import 'package:endless_runner/player_progress/persistence/firebase_persistence.dart';
 import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
 import 'package:endless_runner/style/theme.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'router.dart';
 import 'app_lifecycle/app_lifecycle.dart';
 import 'audio/audio_controller.dart';
+import 'firebase_options.dart';
 import 'player_progress/player_progress_controller.dart';
+import 'router.dart';
 import 'settings/settings.dart';
 import 'style/palette.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,12 +39,20 @@ class MyGame extends StatelessWidget {
           Provider(create: (context) => Palette()),
           ChangeNotifierProvider(
             create: (context) => PlayerProgressController(
-              databaseStorage: FirebasePersistence(
-                firestore: FirebaseFirestore.instance,
-              ),
-              localStorage: LocalPlayerPersistence(
-                sharedPrefs: SharedPreferences.getInstance(),
-              ),
+              databaseStorage: FirebasePersistence(firestore: FirebaseFirestore.instance),
+              localStorage: LocalPlayerPersistence(sharedPrefs: SharedPreferences.getInstance()),
+            ),
+          ),
+          Provider(
+            create: (context) => ChangePlayerNameController(
+              databaseStorage: FirebasePersistence(firestore: FirebaseFirestore.instance),
+              localStorage: LocalPlayerPersistence(sharedPrefs: SharedPreferences.getInstance()),
+            ),
+          ),
+          Provider(
+            create: (context) => LeaderboardController(
+              databaseStorage: FirebasePersistence(firestore: FirebaseFirestore.instance),
+              localStorage: LocalPlayerPersistence(sharedPrefs: SharedPreferences.getInstance()),
             ),
           ),
           Provider(create: (context) => SettingsController()),
