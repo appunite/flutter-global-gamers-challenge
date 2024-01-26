@@ -54,26 +54,23 @@ class _CountDownWidgetState extends State<CountDownWidget> with SingleTickerProv
     return challengeStartController.countDownVisible
         ? Material(
             color: Colors.transparent,
-            child: OverlayWidget(
-              child: Center(
-                child: AnimatedBuilder(
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                widget.child,
+                const OverlayWidget(),
+                AnimatedBuilder(
                   animation: _controller,
-                  child: widget.child,
                   builder: (_, __) {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          _scaleAnimation.value.ceil() <= 0 ? 'START' : _scaleAnimation.value.ceil().toString(),
-                          style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                                color: Palette.neutralWhite,
-                              ),
-                        ),
-                      ],
+                    return Text(
+                      _scaleAnimation.value.ceil() <= 0 ? 'START' : _scaleAnimation.value.ceil().toString(),
+                      style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                            color: Palette.neutralWhite,
+                          ),
                     );
                   },
                 ),
-              ),
+              ],
             ),
           )
         : widget.child;
