@@ -35,7 +35,7 @@ class _TreesChallengeBodyScreenState extends State<TreesChallengeBodyScreen> {
   late int _treesCount = 0;
   final ScrollController _scrollController = ScrollController();
   late int _secondsLeft = 10;
-  late Timer _timer;
+  late Timer _timer = Timer(Duration.zero, () {});
 
   @override
   void initState() {
@@ -47,7 +47,7 @@ class _TreesChallengeBodyScreenState extends State<TreesChallengeBodyScreen> {
       final challengeStartController = Provider.of<ChallengeStartController>(context, listen: false);
       challengeStartController.addListener(() {
         if (challengeStartController.startChallengeTimer) {
-          startTimer();
+          _startTimer();
         }
       });
     });
@@ -131,7 +131,7 @@ class _TreesChallengeBodyScreenState extends State<TreesChallengeBodyScreen> {
     );
   }
 
-  void startTimer() {
+  void _startTimer() {
     _timer = Timer.periodic(
       const Duration(seconds: 1),
       (timer) {

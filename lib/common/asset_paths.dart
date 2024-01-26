@@ -23,16 +23,19 @@ class AssetPaths {
 
   // SVG
   static const String ribbonBlue = 'assets/images/common/ribbon_blue.svg';
-  static const String ribbonBlueClose = 'assets/images/common/ribbon_blue_close.svg';
   static const String ribbonYellow = 'assets/images/common/ribbon_yellow.svg';
-  static const String ribbonYellowClose = 'assets/images/common/ribbon_yellow_close.svg';
   static const String ribbonRed = 'assets/images/common/ribbon_red.svg';
   static const String iconMusic = 'assets/images/common/icons_music_on.svg';
   static const String iconPoints = 'assets/images/common/icons_points.svg';
   static const String iconTimer = 'assets/images/common/icons_timer.svg';
   static const String iconSound = 'assets/images/common/icons_sound_on.svg';
   static const String iconsProfile = 'assets/images/common/icons_profile.svg';
+  static const String iconsMap = 'assets/images/common/icons_map.svg';
+  static const String ecoBag = 'assets/images/common/eco_bag.svg';
+  static const String ecoClose = 'assets/images/common/eco_close.svg';
+  static const String ecoConnection = 'assets/images/common/eco_connection.svg';
+  static const String ecoSettings = 'assets/images/common/eco_settings.svg';
 
   // Animations
-  static const String eco = 'assets/animations/eco.riv';
+  static const String ecoAnimation = 'assets/animations/eco.riv';
 }

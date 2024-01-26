@@ -2,11 +2,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'settings_persistence.dart';
 
-/// An implementation of [SettingsPersistence] that uses
-/// `package:shared_preferences`.
 class LocalStorageSettingsPersistence extends SettingsPersistence {
-  final Future<SharedPreferences> instanceFuture =
-      SharedPreferences.getInstance();
+  final Future<SharedPreferences> instanceFuture = SharedPreferences.getInstance();
 
   @override
   Future<bool> getAudioOn({required bool defaultValue}) async {
@@ -18,12 +15,6 @@ class LocalStorageSettingsPersistence extends SettingsPersistence {
   Future<bool> getMusicOn({required bool defaultValue}) async {
     final prefs = await instanceFuture;
     return prefs.getBool('musicOn') ?? defaultValue;
-  }
-
-  @override
-  Future<String> getPlayerName() async {
-    final prefs = await instanceFuture;
-    return prefs.getString('playerName') ?? 'Player';
   }
 
   @override
@@ -42,12 +33,6 @@ class LocalStorageSettingsPersistence extends SettingsPersistence {
   Future<void> saveMusicOn(bool value) async {
     final prefs = await instanceFuture;
     await prefs.setBool('musicOn', value);
-  }
-
-  @override
-  Future<void> savePlayerName(String value) async {
-    final prefs = await instanceFuture;
-    await prefs.setString('playerName', value);
   }
 
   @override
