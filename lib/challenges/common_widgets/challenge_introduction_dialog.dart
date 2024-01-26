@@ -51,8 +51,8 @@ class ChallengeIntroductionDialog extends StatelessWidget {
       ribbon: RibbonHeader(
         withCloseIcon: true,
         text: challenge.title,
-        ribbonImage: AssetPaths.ribbonBlueClose,
       ),
+      ecoImage: AssetPaths.ecoBag,
     );
   }
 }

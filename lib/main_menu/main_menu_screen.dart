@@ -49,7 +49,7 @@ class MainMenuScreen extends StatelessWidget {
           ],
         ),
       ),
-      backgroundColor: Palette.secondary,
+      backgroundColor: Palette.secondaryLight,
       body: playerProgressController.hasSeenOnboarding
           ? _buildBody(audioController, context, settingsController)
           : OnboardingFlow(

@@ -1,6 +1,7 @@
 import 'package:endless_runner/style/gaps.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CommonDialog extends StatelessWidget {
   const CommonDialog({
@@ -9,12 +10,14 @@ class CommonDialog extends StatelessWidget {
     required this.bottom,
     required this.ribbon,
     required this.themeColor,
+    this.ecoImage,
   });
 
   final Widget content;
   final Widget bottom;
   final Widget ribbon;
   final Color themeColor;
+  final String? ecoImage;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,7 @@ class CommonDialog extends StatelessWidget {
         children: [
           Container(
             constraints: BoxConstraints(
-              maxWidth: 500,
+              maxWidth: 460,
               maxHeight: MediaQuery.sizeOf(context).height * 0.85,
               minHeight: 200,
             ),
@@ -71,6 +74,12 @@ class CommonDialog extends StatelessWidget {
               child: ribbon,
             ),
           ),
+          if (ecoImage != null)
+            Positioned(
+              left: -105,
+              bottom: -4,
+              child: SvgPicture.asset(ecoImage!),
+            ),
         ],
       ),
     );

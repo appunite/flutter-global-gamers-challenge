@@ -1,3 +1,4 @@
+import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/common/common_dialog.dart';
 import 'package:endless_runner/common/ribbon_header.dart';
 import 'package:endless_runner/style/gaps.dart';
@@ -49,6 +50,7 @@ class ChallengeExitDialog extends StatelessWidget {
       ribbon: const RibbonHeader(
         text: 'Exit Challenge',
       ),
+      ecoImage: AssetPaths.ecoClose,
     );
   }
 }
