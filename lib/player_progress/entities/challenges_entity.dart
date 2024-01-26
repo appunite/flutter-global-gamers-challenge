@@ -19,3 +19,28 @@ class ChallengesEntity with _$ChallengesEntity {
 
   factory ChallengesEntity.fromJson(Map<String, dynamic> json) => _$ChallengesEntityFromJson(json);
 }
+
+extension ChallengesEntityExtension on ChallengesEntity {
+  int getPlayedChallengesCount() {
+    int count = 0;
+    if (city != null) {
+      count++;
+    }
+    if (ocean != null) {
+      count++;
+    }
+    if (pipes != null) {
+      count++;
+    }
+    if (recycling != null) {
+      count++;
+    }
+    if (solarPanel != null) {
+      count++;
+    }
+    if (trees != null) {
+      count++;
+    }
+    return count;
+  }
+}

@@ -32,6 +32,7 @@ class AssetPaths {
   static const String iconTimer = 'assets/images/common/icons_timer.svg';
   static const String iconSound = 'assets/images/common/icons_sound_on.svg';
   static const String iconsProfile = 'assets/images/common/icons_profile.svg';
+  static const String iconsMap = 'assets/images/common/icons_map.svg';
 
   // Animations
   static const String eco = 'assets/animations/eco.riv';

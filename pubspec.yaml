@@ -27,6 +27,7 @@ dependencies:
   go_router: ^12.1.0
   google_fonts: ^6.1.0
   json_annotation: ^4.8.1
+  liquid_progress_indicator_v2: ^0.5.0
   logging: ^1.2.0
   lottie: ^3.0.0
   mocktail: ^1.0.3
