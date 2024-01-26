@@ -20,7 +20,7 @@ class _TreesChallengeScreenState extends State<TreesChallengeScreen> {
   late int _treesCount = 0;
   final ScrollController _scrollController = ScrollController();
   late int _secondsLeft = 10;
-  late Timer _timer;
+  late Timer _timer = Timer(Duration.zero, () {});
 
   @override
   void initState() {
@@ -35,7 +35,7 @@ class _TreesChallengeScreenState extends State<TreesChallengeScreen> {
         challenge: ChallengeType.trees,
         onButtonPressed: () {
           context.pop();
-          startTimer();
+          _startTimer();
         },
       ),
     );
@@ -104,7 +104,7 @@ class _TreesChallengeScreenState extends State<TreesChallengeScreen> {
     );
   }
 
-  void startTimer() {
+  void _startTimer() {
     _timer = Timer.periodic(
       const Duration(seconds: 1),
       (timer) {

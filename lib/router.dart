@@ -15,7 +15,6 @@ import 'package:provider/provider.dart';
 import 'flame_game/game_screen.dart';
 import 'level_selection/levels.dart';
 import 'main_menu/main_menu_screen.dart';
-import 'settings/settings_screen.dart';
 import 'style/page_transition.dart';
 import 'style/palette.dart';
 
@@ -34,12 +33,6 @@ final router = GoRouter(
           ),
         ),
       ],
-    ),
-    GoRoute(
-      path: SettingsScreen.routePath,
-      builder: (context, state) => const SettingsScreen(
-        key: Key('settings'),
-      ),
     ),
     GoRoute(
       path: SolarPanelChallengeScreen.routePath,

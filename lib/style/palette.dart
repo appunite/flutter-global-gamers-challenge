@@ -12,6 +12,7 @@ class Palette {
   static const primary = Color(0xFF15BB28);
   static const primaryDark = Color(0xFF16973D);
   static const primaryLight = Color(0xFFE7F6ED);
+  static const primaryProgress = Color(0xFFB6EABC);
 
   static const secondary = Color(0xFF28AEFB);
   static const secondaryDark = Color(0xFF2D67D7);

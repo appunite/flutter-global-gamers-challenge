@@ -7,6 +7,8 @@ import 'package:endless_runner/challenges/recycling_challenge/recycling_challeng
 import 'package:endless_runner/challenges/solar_panel_scratcher_challenge/solar_panel_scratcher_screen.dart';
 import 'package:endless_runner/challenges/trees_challenge/trees_challenge_screen.dart';
 import 'package:endless_runner/common/dialog_helper.dart';
+import 'package:endless_runner/common/game_progress_indicator.dart';
+import 'package:endless_runner/common/points_counter.dart';
 import 'package:endless_runner/main_menu/tutorial/onboarding_flow.dart';
 import 'package:endless_runner/player_progress/player_progress_controller.dart';
 import 'package:endless_runner/common/google_wallet_demo.dart';
@@ -33,7 +35,21 @@ class MainMenuScreen extends StatelessWidget {
     final playerProgressController = context.watch<PlayerProgressController>();
 
     return Scaffold(
-      backgroundColor: Palette.secondary,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        title: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            GameProgressIndicator(),
+            gap40,
+            PointsCounter(pointsCount: 19),
+          ],
+        ),
+      ),
+      backgroundColor: Palette.secondaryLight,
       body: playerProgressController.hasSeenOnboarding
           ? _buildBody(audioController, context, settingsController)
           : OnboardingFlow(
@@ -43,7 +59,10 @@ class MainMenuScreen extends StatelessWidget {
   }
 
   ResponsiveScreen _buildBody(
-      AudioController audioController, BuildContext context, SettingsController settingsController) {
+    AudioController audioController,
+    BuildContext context,
+    SettingsController settingsController,
+  ) {
     return ResponsiveScreen(
       squarishMainArea: Center(
         child: Column(
@@ -78,7 +97,7 @@ class MainMenuScreen extends StatelessWidget {
                 text: 'Google wallet',
               ),
             Padding(
-              padding: const EdgeInsets.only(top: 32),
+              padding: const EdgeInsets.only(top: 8),
               child: ValueListenableBuilder<bool>(
                 valueListenable: settingsController.audioOn,
                 builder: (context, audioOn, child) {

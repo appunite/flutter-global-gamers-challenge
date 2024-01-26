@@ -31,12 +31,10 @@ class RibbonHeader extends StatelessWidget {
       children: [
         SvgPicture.asset(
           ribbonImage ?? AssetPaths.ribbonBlue,
-          fit: BoxFit.contain,
-          width: width ?? 560,
-          height: height,
+          width: width ?? 490,
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 10),
+          padding: const EdgeInsets.only(top: 14),
           child: customChild ??
               Text(
                 text!,
@@ -52,7 +50,7 @@ class RibbonHeader extends StatelessWidget {
         if (withCloseIcon)
           Positioned(
             right: 50,
-            top: 8,
+            top: 4,
             child: GestureDetector(
               behavior: HitTestBehavior.translucent,
               onTap: onCloseTap ??
@@ -62,6 +60,11 @@ class RibbonHeader extends StatelessWidget {
               child: const SizedBox(
                 height: 50,
                 width: 50,
+                //TODO change to asset
+                child: Icon(
+                  Icons.close,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),

@@ -50,6 +50,7 @@ class NoConnectionDialog extends StatelessWidget {
         ribbonImage: AssetPaths.ribbonRed,
         text: 'No Internet Connection',
       ),
+      ecoImage: AssetPaths.ecoConnection,
     );
   }
 }

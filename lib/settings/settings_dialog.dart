@@ -8,10 +8,21 @@ import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 
-class SettingsDialog extends StatelessWidget {
+class SettingsDialog extends StatefulWidget {
   const SettingsDialog({super.key});
+
+  @override
+  State<SettingsDialog> createState() => _SettingsDialogState();
+}
+
+class _SettingsDialogState extends State<SettingsDialog> {
+  Future<String> _loadPackageInfo() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    return packageInfo.version;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +63,19 @@ class SettingsDialog extends StatelessWidget {
                   color: Palette.neutralBlack,
                 ),
           ),
-          Text(
-            'Version: 0.1.0', // TODO
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: Palette.neutralBlack,
-                ),
+          FutureBuilder(
+            future: _loadPackageInfo(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Text(
+                  'Version: ${snapshot.data}',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: Palette.neutralBlack,
+                      ),
+                );
+              }
+              return gap16;
+            },
           ),
         ],
       ),
@@ -65,8 +84,8 @@ class SettingsDialog extends StatelessWidget {
         text: 'Settings',
         withCloseIcon: true,
         onCloseTap: context.pop,
-        ribbonImage: AssetPaths.ribbonYellowClose,
       ),
+      ecoImage: AssetPaths.ecoSettings,
     );
   }
 }

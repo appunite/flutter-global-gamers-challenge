@@ -28,7 +28,7 @@ class GeneralTutorialWidget extends StatelessWidget {
           height: 100,
           width: 100,
           child: RiveAnimation.asset(
-            AssetPaths.eco,
+            AssetPaths.ecoAnimation,
             animations: ['Blinking'],
             artboard: 'Eco',
             stateMachines: ['StateMachine'],
