@@ -1,8 +1,8 @@
 class AssetPaths {
+  //TODO remove later
   static const String pipe = 'assets/images/challenges/pipe.png';
   static const String dumpsterRecycling = 'assets/images/challenges/dumpster_recycling.png';
   static const String dumpster = 'assets/images/challenges/dumpster.png';
-  static const String tree = 'assets/images/challenges/tree.png';
   static const String appleCore = 'assets/images/challenges/apple.png';
   static const String bananaPeel = 'assets/images/challenges/banana.png';
   static const String diaper = 'assets/images/challenges/diaper.png';
@@ -35,6 +35,8 @@ class AssetPaths {
   static const String ecoClose = 'assets/images/common/eco_close.svg';
   static const String ecoConnection = 'assets/images/common/eco_connection.svg';
   static const String ecoSettings = 'assets/images/common/eco_settings.svg';
+  static const String tree = 'assets/images/challenges/icons_tree.svg';
+  static const String treeBackground = 'assets/images/challenges/plant_forest_background.svg';
 
   // Animations
   static const String ecoAnimation = 'assets/animations/eco.riv';

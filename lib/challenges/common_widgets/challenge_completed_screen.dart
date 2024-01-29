@@ -1,8 +1,8 @@
 import 'package:confetti/confetti.dart';
-import 'package:endless_runner/challenges/challenge_type_enum.dart';
 import 'package:endless_runner/challenges/common_widgets/badge_container.dart';
 import 'package:endless_runner/challenges/common_widgets/finished_challenge_buttons.dart';
 import 'package:endless_runner/challenges/common_widgets/score_container.dart';
+import 'package:endless_runner/challenges/trees_challenge/challenge_summary_entity.dart';
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/common/ribbon_header.dart';
 import 'package:endless_runner/style/confetti_animation.dart';
@@ -13,16 +13,12 @@ import 'package:flutter/material.dart';
 class ChallengeCompletedScreen extends StatefulWidget {
   const ChallengeCompletedScreen({
     super.key,
-    required this.challengeType,
-    required this.onSecondaryButtonPressed,
-    required this.onPrimaryButtonPressed,
+    required this.challengeRouteArgs,
   });
 
   static const String routePath = '/challenge-completed';
 
-  final ChallengeType challengeType;
-  final VoidCallback onSecondaryButtonPressed;
-  final VoidCallback onPrimaryButtonPressed;
+  final ChallengeSummaryEntity challengeRouteArgs;
 
   @override
   State<ChallengeCompletedScreen> createState() => _ChallengeCompletedScreenState();
@@ -65,7 +61,7 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
                     width: 450,
                   ),
                   Text(
-                    widget.challengeType.completedText,
+                    widget.challengeRouteArgs.challengeType.completedText,
                     style: Theme.of(context).textTheme.titleMedium,
                     textAlign: TextAlign.center,
                   ),
@@ -95,8 +91,7 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           floatingActionButton: FinishedChallengeButtons(
-            onSecondaryButtonPressed: widget.onSecondaryButtonPressed,
-            onPrimaryButtonPressed: widget.onPrimaryButtonPressed,
+            challengeType: widget.challengeRouteArgs.challengeType,
           ),
         ),
         Align(

@@ -1,41 +1,50 @@
 import 'dart:async';
 
-import 'package:endless_runner/challenges/challenge_start_controller.dart';
 import 'package:endless_runner/challenges/challenge_type_enum.dart';
+import 'package:endless_runner/challenges/common_widgets/challenge_completed_screen.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_introduction_dialog.dart';
+import 'package:endless_runner/challenges/common_widgets/challenge_no_score_screen.dart';
 import 'package:endless_runner/challenges/count_down_widget.dart';
+import 'package:endless_runner/challenges/trees_challenge/trees_challenge_controller.dart';
 import 'package:endless_runner/common/asset_paths.dart';
+import 'package:endless_runner/common/background_widget.dart';
 import 'package:endless_runner/common/dialog_helper.dart';
+import 'package:endless_runner/common/points_counter.dart';
+import 'package:endless_runner/common/timer_widget.dart';
+import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
+import 'package:endless_runner/style/gaps.dart';
+import 'package:endless_runner/style/main_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class TreesChallengeScreen extends StatelessWidget {
-  const TreesChallengeScreen({super.key});
+  const TreesChallengeScreen({super.key, this.onTapOffset});
 
   static const String routePath = '/trees-challenge';
+
+  final Offset? onTapOffset;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => ChallengeStartController(),
-      child: const TreesChallengeBodyScreen(),
+      create: (_) => TreesChallengeController(databasePersistence: DatabasePersistence(), startingTimeInSeconds: 15),
+      child: const _TreesChallengeBodyScreen(),
     );
   }
 }
 
-class TreesChallengeBodyScreen extends StatefulWidget {
-  const TreesChallengeBodyScreen({super.key});
+class _TreesChallengeBodyScreen extends StatefulWidget {
+  const _TreesChallengeBodyScreen();
 
   @override
-  State<TreesChallengeBodyScreen> createState() => _TreesChallengeBodyScreenState();
+  State<_TreesChallengeBodyScreen> createState() => _TreesChallengeBodyScreenState();
 }
 
-class _TreesChallengeBodyScreenState extends State<TreesChallengeBodyScreen> {
-  late int _treesCount = 0;
+class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
   final ScrollController _scrollController = ScrollController();
-  late int _secondsLeft = 10;
-  late Timer _timer = Timer(Duration.zero, () {});
+  Timer? _timer;
 
   @override
   void initState() {
@@ -44,10 +53,23 @@ class _TreesChallengeBodyScreenState extends State<TreesChallengeBodyScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _showIntroDialog();
 
-      final challengeStartController = Provider.of<ChallengeStartController>(context, listen: false);
-      challengeStartController.addListener(() {
-        if (challengeStartController.startChallengeTimer) {
-          _startTimer();
+      final challengeController = Provider.of<TreesChallengeController>(context, listen: false);
+      challengeController.addListener(() {
+        if (challengeController.startChallengeTimer) {
+          _startTimer(challengeController);
+        }
+        if (challengeController.challengeSummary != null) {
+          if (challengeController.challengeSummary!.score > 0) {
+            context.go(
+              ChallengeCompletedScreen.routePath,
+              extra: challengeController.challengeSummary,
+            );
+          } else {
+            context.go(
+              ChallengeNoScoreScreen.routePath,
+              extra: challengeController.challengeSummary,
+            );
+          }
         }
       });
     });
@@ -60,124 +82,102 @@ class _TreesChallengeBodyScreenState extends State<TreesChallengeBodyScreen> {
         challenge: ChallengeType.trees,
         onButtonPressed: () {
           context.pop();
-          context.read<ChallengeStartController>().setCountDown(visible: true);
+          context.read<TreesChallengeController>().setCountDown(visible: true);
         },
       ),
     );
   }
 
-  void _plantTree() {
-    setState(() {
-      _treesCount++;
-      _scrollController.animateTo(
-        _scrollController.position.maxScrollExtent,
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.easeInOut,
-      );
-    });
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    _timer.cancel();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
-      child: CountDownWidget(
-        child: Scaffold(
-          backgroundColor: Colors.green,
-          body: SafeArea(
-            child: Stack(
-              children: [
-                GridView.builder(
-                  controller: _scrollController,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 12,
-                  ),
-                  itemCount: _treesCount,
-                  itemBuilder: (_, __) => Image.asset(
-                    AssetPaths.tree,
-                    fit: BoxFit.contain,
-                    width: 24,
-                    height: 24,
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: Text(
-                    formatTime(_secondsLeft),
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                ),
-                Align(
-                  alignment: AlignmentDirectional.topStart,
-                  child: BackButton(onPressed: context.pop),
-                ),
-              ],
-            ),
-          ),
-          floatingActionButton: ElevatedButton(
-            onPressed: _plantTree,
-            child: const Text('Plant tree'),
-          ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        ),
-      ),
+  void _plantTree(TreesChallengeController challengeController) {
+    challengeController.addPoints();
+    // setState(() {
+    _scrollController.animateTo(
+      _scrollController.position.maxScrollExtent,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
     );
+    // });
   }
 
-  void _startTimer() {
+  void _startTimer(TreesChallengeController controller) {
     _timer = Timer.periodic(
       const Duration(seconds: 1),
       (timer) {
-        if (_secondsLeft > 0) {
-          setState(
-            () => _secondsLeft--,
-          );
-        } else {
+        if (controller.challengeTime < 0) {
           timer.cancel();
-          _showFinishDialog();
+          _onChallengeFinished(controller);
+        } else {
+          controller.updateTime(countDown: true);
         }
       },
     );
   }
 
-  void _showFinishDialog() {
-    showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (context) => AlertDialog(
-        alignment: Alignment.center,
-        contentPadding: const EdgeInsets.all(24),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Time is over!\n Awesome! You planted $_treesCount trees!',
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-        actions: [
-          ElevatedButton(
-            onPressed: () => context
-              ..pop()
-              ..pop(),
-            child: const Text('Next'),
-          ),
-        ],
-      ),
-    );
+  void _onChallengeFinished(TreesChallengeController controller) {
+    //TODO wywołać metodę z kontrollera (nie potrzeba osobnej metody)
   }
 
-  String formatTime(int seconds) {
-    int minutes = seconds ~/ 60;
-    int remainingSeconds = seconds % 60;
-    return '$minutes:${remainingSeconds.toString().padLeft(2, '0')}';
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final challengeController = context.watch<TreesChallengeController>();
+
+    return PopScope(
+      canPop: false,
+      child: CountDownWidget(
+        child: Scaffold(
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            centerTitle: true,
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            title: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                PointsCounter(pointsCount: challengeController.score),
+                gap16,
+                TimerWidget(
+                  timeInSeconds: challengeController.challengeTime,
+                  countDown: true,
+                ),
+              ],
+            ),
+          ),
+          body: Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              const BackgroundWidget(
+                assetPath: AssetPaths.treeBackground,
+              ),
+              GridView.builder(
+                controller: _scrollController,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 12,
+                ),
+                itemCount: challengeController.score,
+                itemBuilder: (_, __) => SvgPicture.asset(
+                  AssetPaths.tree,
+                  fit: BoxFit.contain,
+                  width: 24,
+                  height: 24,
+                ),
+              ),
+            ],
+          ),
+          floatingActionButton: MainButton(
+            onPressed: (_) => _plantTree(challengeController),
+            text: 'Plant a Tree',
+            width: 220,
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        ),
+      ),
+    );
   }
 }

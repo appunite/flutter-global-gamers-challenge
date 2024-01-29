@@ -69,7 +69,7 @@ class MainMenuScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             MainButton(
-              onPressed: () {
+              onPressed: (_) {
                 audioController.playSfx(SfxType.buttonTap);
                 context.go('/play');
               },
@@ -77,23 +77,23 @@ class MainMenuScreen extends StatelessWidget {
             ),
             gap10,
             MainButton(
-              onPressed: () => context.push(PipesChallengeScreen.routePath),
+              onPressed: (_) => context.push(PipesChallengeScreen.routePath),
               text: 'Fix pipes',
             ),
             gap10,
             MainButton(
-              onPressed: () => context.push(ChallengeCompletedScreen.routePath),
+              onPressed: (_) => context.push(ChallengeCompletedScreen.routePath),
               text: 'Completed challenge',
             ),
             gap10,
             MainButton(
-              onPressed: () => context.push(OceanChallengeScreen.routePath),
+              onPressed: (_) => context.push(OceanChallengeScreen.routePath),
               text: 'Ocean shooter',
             ),
             gap10,
             if (Platform.isAndroid)
               MainButton(
-                onPressed: () => context.push(GoogleWalletDemoScreen.routePath),
+                onPressed: (_) => context.push(GoogleWalletDemoScreen.routePath),
                 text: 'Google wallet',
               ),
             Padding(
@@ -115,22 +115,22 @@ class MainMenuScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           MainButton.secondary(
-            onPressed: () => DialogHelper.show(context, const SettingsDialog()),
+            onPressed: (_) => DialogHelper.show(context, const SettingsDialog()),
             text: 'Settings',
           ),
           gap10,
           MainButton.secondary(
-            onPressed: () => context.push(SolarPanelChallengeScreen.routePath),
+            onPressed: (_) => context.push(SolarPanelChallengeScreen.routePath),
             text: 'Solar panel scratcher',
           ),
           gap10,
           MainButton.secondary(
-            onPressed: () => context.push(RecyclingChallengeScreen.routePath),
+            onPressed: (_) => context.push(RecyclingChallengeScreen.routePath),
             text: 'Recycling',
           ),
           gap10,
           MainButton.secondary(
-            onPressed: () => context.push(TreesChallengeScreen.routePath),
+            onPressed: (Offset? offset) => context.push(TreesChallengeScreen.routePath, extra: offset),
             text: 'Plant trees',
           ),
         ],

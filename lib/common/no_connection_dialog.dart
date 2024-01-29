@@ -34,13 +34,13 @@ class NoConnectionDialog extends StatelessWidget {
         children: [
           MainButton.secondary(
             width: 150,
-            onPressed: onTryAgain,
+            onPressed: (_) => onTryAgain(),
             text: 'Try Again',
           ),
           gap12,
           MainButton(
             width: 170,
-            onPressed: onTryAgain,
+            onPressed: (_) => onPlayOffline(),
             text: 'Play Offline',
           ),
         ],

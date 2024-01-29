@@ -1,8 +1,9 @@
-import 'package:endless_runner/challenges/challenge_type_enum.dart';
 import 'package:endless_runner/challenges/common_widgets/finished_challenge_buttons.dart';
 import 'package:endless_runner/challenges/common_widgets/score_container.dart';
+import 'package:endless_runner/challenges/trees_challenge/challenge_summary_entity.dart';
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/common/ribbon_header.dart';
+import 'package:endless_runner/common/time_helper.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
@@ -10,16 +11,12 @@ import 'package:flutter/material.dart';
 class ChallengeNoScoreScreen extends StatefulWidget {
   const ChallengeNoScoreScreen({
     super.key,
-    required this.challengeType,
-    required this.onSecondaryButtonPressed,
-    required this.onPrimaryButtonPressed,
+    required this.challengeSummary,
   });
 
   static const String routePath = '/challenge-no-score';
 
-  final ChallengeType challengeType;
-  final VoidCallback onSecondaryButtonPressed;
-  final VoidCallback onPrimaryButtonPressed;
+  final ChallengeSummaryEntity challengeSummary;
 
   @override
   State<ChallengeNoScoreScreen> createState() => _ChallengeNoScoreScreenState();
@@ -49,11 +46,10 @@ class _ChallengeNoScoreScreenState extends State<ChallengeNoScoreScreen> {
               ),
             ),
             gap16,
-            //TODO
-            const ScoreContainer(
-              score: 0,
-              bestScore: 19,
-              time: '00:15',
+            ScoreContainer(
+              score: widget.challengeSummary.score,
+              bestScore: widget.challengeSummary.bestScore,
+              time: widget.challengeSummary.time.formatTime(),
             ),
             gap60,
           ],
@@ -61,8 +57,7 @@ class _ChallengeNoScoreScreenState extends State<ChallengeNoScoreScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FinishedChallengeButtons(
-        onSecondaryButtonPressed: widget.onSecondaryButtonPressed,
-        onPrimaryButtonPressed: widget.onPrimaryButtonPressed,
+        challengeType: widget.challengeSummary.challengeType,
       ),
     );
   }

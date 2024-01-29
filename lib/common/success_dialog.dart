@@ -37,7 +37,7 @@ class SuccessDialog extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             MainButton(
-              onPressed: () {
+              onPressed: (_) {
                 context.go('/');
               },
               text: 'Check your City!',
