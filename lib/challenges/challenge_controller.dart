@@ -5,14 +5,12 @@ import 'package:endless_runner/player_progress/persistence/database_persistence.
 import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
 import 'package:flutter/material.dart';
 
-class TreesChallengeController extends ChangeNotifier {
-  TreesChallengeController({
+class ChallengeController extends ChangeNotifier {
+  ChallengeController({
     required DatabasePersistence databasePersistence,
     required LocalPlayerPersistence localPlayerPersistence,
-    required int startingTimeInSeconds,
   })  : _databasePersistence = databasePersistence,
-        _localPlayerPersistence = localPlayerPersistence,
-        _challengeTime = startingTimeInSeconds;
+        _localPlayerPersistence = localPlayerPersistence;
 
   final DatabasePersistence _databasePersistence;
   final LocalPlayerPersistence _localPlayerPersistence;
@@ -29,10 +27,6 @@ class TreesChallengeController extends ChangeNotifier {
   int get score => _score;
   int _score = 0;
 
-  /// current time on the timer (in seconds)
-  int get challengeTime => _challengeTime;
-  int _challengeTime;
-
   /// challenge summary data
   ChallengeSummaryEntity? get challengeSummary => _challengeSummary;
   ChallengeSummaryEntity? _challengeSummary;
@@ -47,22 +41,14 @@ class TreesChallengeController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateTime({bool countDown = false}) {
-    if (countDown) {
-      _challengeTime--;
-    } else {
-      _challengeTime++;
-    }
-    notifyListeners();
-  }
-
   void addPoints({int points = 1}) {
     _score += points;
     notifyListeners();
   }
 
-  Future<void> onFinish({
+  Future<void> onChallengeFinished({
     required ChallengeType challengeType,
+    required int timeInSec,
   }) async {
     final String playerId = await _localPlayerPersistence.getPlayerIdKey();
     final PlayerEntity playerEntity = await _databasePersistence.getPlayerEntity(playerId: playerId);
@@ -80,7 +66,7 @@ class TreesChallengeController extends ChangeNotifier {
       challengeType: challengeType,
       score: _score,
       bestScore: bestScore,
-      time: _challengeTime,
+      time: timeInSec,
       displayBadge: shouldDisplayBadge,
     );
 
@@ -90,11 +76,10 @@ class TreesChallengeController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> _updateDatabase(ChallengeType challengeType, String playerId) async {
-    await _databasePersistence.updateChallengePoints(
-      challengeType: challengeType,
-      points: _score,
-      playerId: playerId,
-    );
-  }
+  Future<void> _updateDatabase(ChallengeType challengeType, String playerId) =>
+      _databasePersistence.updateChallengePoints(
+        challengeType: challengeType,
+        points: _score,
+        playerId: playerId,
+      );
 }

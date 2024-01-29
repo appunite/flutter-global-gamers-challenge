@@ -1,4 +1,4 @@
-import 'package:endless_runner/challenges/challenge_start_controller.dart';
+import 'package:endless_runner/challenges/challenge_controller.dart';
 import 'package:endless_runner/style/overlay_widget.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
@@ -28,11 +28,11 @@ class _CountDownWidgetState extends State<CountDownWidget> with SingleTickerProv
       duration: const Duration(seconds: 3),
     );
 
-    final challengeStartController = Provider.of<ChallengeStartController>(context, listen: false);
+    final challengeController = Provider.of<ChallengeController>(context, listen: false);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      challengeStartController.addListener(() {
-        if (challengeStartController.countDownVisible) {
+      challengeController.addListener(() {
+        if (challengeController.countDownVisible) {
           _controller.forward();
         }
       });
@@ -40,8 +40,8 @@ class _CountDownWidgetState extends State<CountDownWidget> with SingleTickerProv
       _scaleAnimation = Tween<double>(begin: 3, end: -1).animate(_controller)
         ..addStatusListener((status) {
           if (status == AnimationStatus.completed) {
-            challengeStartController.setCountDown(visible: false);
-            challengeStartController.setTimer(shouldStart: true);
+            challengeController.setCountDown(visible: false);
+            challengeController.setTimer(shouldStart: true);
           }
         });
     });
@@ -49,9 +49,9 @@ class _CountDownWidgetState extends State<CountDownWidget> with SingleTickerProv
 
   @override
   Widget build(BuildContext context) {
-    final challengeStartController = context.watch<ChallengeStartController>();
+    final challengeController = context.watch<ChallengeController>();
 
-    return challengeStartController.countDownVisible
+    return challengeController.countDownVisible
         ? Stack(
             alignment: Alignment.center,
             children: [

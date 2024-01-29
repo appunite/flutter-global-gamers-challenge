@@ -5,13 +5,14 @@ import 'package:endless_runner/challenges/common_widgets/challenge_completed_scr
 import 'package:endless_runner/challenges/common_widgets/challenge_introduction_dialog.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_no_score_screen.dart';
 import 'package:endless_runner/challenges/count_down_widget.dart';
-import 'package:endless_runner/challenges/trees_challenge/trees_challenge_controller.dart';
+import 'package:endless_runner/challenges/challenge_controller.dart';
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/common/background_widget.dart';
 import 'package:endless_runner/common/dialog_helper.dart';
 import 'package:endless_runner/common/points_counter.dart';
 import 'package:endless_runner/common/timer_widget.dart';
 import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
+import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:endless_runner/style/main_button.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,10 @@ class TreesChallengeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => TreesChallengeController(databasePersistence: DatabasePersistence(), startingTimeInSeconds: 15),
+      create: (_) => ChallengeController(
+        databasePersistence: context.read<DatabasePersistence>(),
+        localPlayerPersistence: context.read<LocalPlayerPersistence>(),
+      ),
       child: const _TreesChallengeBodyScreen(),
     );
   }
@@ -44,7 +48,9 @@ class _TreesChallengeBodyScreen extends StatefulWidget {
 
 class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
   final ScrollController _scrollController = ScrollController();
+  late ChallengeController _challengeController;
   Timer? _timer;
+  int _timeInSeconds = 10;
 
   @override
   void initState() {
@@ -53,26 +59,25 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _showIntroDialog();
 
-      final challengeController = Provider.of<TreesChallengeController>(context, listen: false);
-      challengeController.addListener(() {
-        if (challengeController.startChallengeTimer) {
-          _startTimer(challengeController);
+      _challengeController = context.read<ChallengeController>();
+      _challengeController.addListener(() {
+        if (_challengeController.startChallengeTimer) {
+          _startTimer(_challengeController);
         }
-        if (challengeController.challengeSummary != null) {
-          if (challengeController.challengeSummary!.score > 0) {
-            context.go(
-              ChallengeCompletedScreen.routePath,
-              extra: challengeController.challengeSummary,
-            );
-          } else {
-            context.go(
-              ChallengeNoScoreScreen.routePath,
-              extra: challengeController.challengeSummary,
-            );
-          }
+        if (_challengeController.challengeSummary != null) {
+          _goToSummaryScreen(_challengeController);
         }
       });
     });
+  }
+
+  void _goToSummaryScreen(ChallengeController challengeController) {
+    context.go(
+      challengeController.challengeSummary!.score > 0
+          ? ChallengeCompletedScreen.routePath
+          : ChallengeNoScoreScreen.routePath,
+      extra: challengeController.challengeSummary,
+    );
   }
 
   void _showIntroDialog() {
@@ -82,51 +87,51 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
         challenge: ChallengeType.trees,
         onButtonPressed: () {
           context.pop();
-          context.read<TreesChallengeController>().setCountDown(visible: true);
+          context.read<ChallengeController>().setCountDown(visible: true);
         },
       ),
     );
   }
 
-  void _plantTree(TreesChallengeController challengeController) {
+  void _plantTree(ChallengeController challengeController) {
     challengeController.addPoints();
-    // setState(() {
     _scrollController.animateTo(
       _scrollController.position.maxScrollExtent,
       duration: const Duration(milliseconds: 500),
       curve: Curves.easeInOut,
     );
-    // });
   }
 
-  void _startTimer(TreesChallengeController controller) {
-    _timer = Timer.periodic(
+  void _startTimer(ChallengeController controller) {
+    _timer ??= Timer.periodic(
       const Duration(seconds: 1),
       (timer) {
-        if (controller.challengeTime < 0) {
+        if (_timeInSeconds <= 0) {
           timer.cancel();
-          _onChallengeFinished(controller);
+          controller.onChallengeFinished(
+            challengeType: ChallengeType.trees,
+            timeInSec: _timeInSeconds,
+          );
         } else {
-          controller.updateTime(countDown: true);
+          setState(() {
+            _timeInSeconds--;
+          });
         }
       },
     );
   }
 
-  void _onChallengeFinished(TreesChallengeController controller) {
-    //TODO wywołać metodę z kontrollera (nie potrzeba osobnej metody)
-  }
-
   @override
   void dispose() {
     _scrollController.dispose();
+    _challengeController.dispose();
     _timer?.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final challengeController = context.watch<TreesChallengeController>();
+    final challengeController = context.watch<ChallengeController>();
 
     return PopScope(
       canPop: false,
@@ -143,7 +148,7 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
                 PointsCounter(pointsCount: challengeController.score),
                 gap16,
                 TimerWidget(
-                  timeInSeconds: challengeController.challengeTime,
+                  timeInSeconds: _timeInSeconds,
                   countDown: true,
                 ),
               ],

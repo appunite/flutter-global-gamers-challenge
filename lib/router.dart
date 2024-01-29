@@ -50,6 +50,7 @@ final router = GoRouter(
       path: TreesChallengeScreen.routePath,
       pageBuilder: (context, state) => buildPageTransition<void>(
         color: Colors.transparent,
+        offset: state.extra! as Offset?,
         child: const TreesChallengeScreen(
           key: Key('trees-challenge'),
         ),
@@ -71,7 +72,7 @@ final router = GoRouter(
       path: ChallengeCompletedScreen.routePath,
       builder: (context, state) => ChallengeCompletedScreen(
         key: const Key('challenge-completed'),
-        challengeRouteArgs: state.extra! as ChallengeSummaryEntity,
+        challengeSummary: state.extra! as ChallengeSummaryEntity,
       ),
     ),
     GoRoute(

@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'dart:math' show sqrt, max;
 import 'dart:ui' show lerpDouble;
+
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 CustomTransitionPage<T> buildPageTransition<T>({
   required Widget child,
@@ -16,70 +17,33 @@ CustomTransitionPage<T> buildPageTransition<T>({
     child: child,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       return CircularRevealTransition.buildTransitions(
-          context, Curves.easeInOut, Alignment.center, animation, secondaryAnimation, child, offset);
-      // _PageReveal(
-      //   animation: animation,
-      //   color: color,
-      //   child: child,
-      // );
+        context,
+        Curves.easeInOut,
+        Alignment.center,
+        animation,
+        secondaryAnimation,
+        child,
+        offset,
+      );
     },
     key: key,
     name: name,
     arguments: arguments,
     restorationId: restorationId,
-    transitionDuration: const Duration(milliseconds: 700),
+    transitionDuration: const Duration(milliseconds: 500),
   );
 }
 
-class _PageReveal extends StatelessWidget {
-  final Widget child;
-
-  final Animation<double> animation;
-
-  final Color color;
-
-  final _slideTween = Tween(begin: const Offset(0, -1), end: Offset.zero);
-
-  final _fadeTween = TweenSequence([
-    TweenSequenceItem(tween: ConstantTween(0.0), weight: 1),
-    TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.0), weight: 1),
-  ]);
-
-  _PageReveal({
-    required this.child,
-    required this.animation,
-    required this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        SlideTransition(
-          position: _slideTween.animate(
-            CurvedAnimation(
-              parent: animation,
-              curve: Curves.easeOutCubic,
-              reverseCurve: Curves.easeOutCubic,
-            ),
-          ),
-          child: Container(
-            color: color,
-          ),
-        ),
-        FadeTransition(
-          opacity: _fadeTween.animate(animation),
-          child: child,
-        ),
-      ],
-    );
-  }
-}
-
 class CircularRevealTransition {
-  static Widget buildTransitions(BuildContext context, Curve? curve, Alignment? alignment, Animation<double> animation,
-      Animation<double> secondaryAnimation, Widget child, Offset? offset) {
+  static Widget buildTransitions(
+    BuildContext context,
+    Curve? curve,
+    Alignment? alignment,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+    Offset? offset,
+  ) {
     return ClipPath(
       clipper: CircularRevealClipper(
         fraction: animation.value,
@@ -110,9 +74,9 @@ class CircularRevealClipper extends CustomClipper<Path> {
 
   @override
   Path getClip(Size size) {
-    final center = centerAlignment?.alongSize(size) ?? centerOffset ?? Offset(size.width / 2, size.height / 2);
+    final center = centerOffset ?? Offset(size.width / 2, size.height / 2);
     final minRadius = this.minRadius ?? 0;
-    final maxRadius = this.maxRadius ?? calcMaxRadius(size, center);
+    final maxRadius = calcMaxRadius(size, center);
 
     return Path()
       ..addOval(
