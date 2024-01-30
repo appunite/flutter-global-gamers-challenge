@@ -44,7 +44,7 @@ class LeaderboardIntroductionDialog extends StatelessWidget {
         ],
       ),
       bottom: MainButton(
-        onPressed: () {
+        onPressed: (_) {
           context.pop();
           _showSetPlayerNameDialog(context);
         },

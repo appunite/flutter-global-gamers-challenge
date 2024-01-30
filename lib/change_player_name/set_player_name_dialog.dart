@@ -73,7 +73,7 @@ class _SetPlayerNameDialogState extends State<SetPlayerNameDialog> {
         ),
       ),
       bottom: MainButton(
-        onPressed: () => _validateUsername(),
+        onPressed: (_) => _validateUsername(),
         text: 'Continue',
         width: 180,
       ),

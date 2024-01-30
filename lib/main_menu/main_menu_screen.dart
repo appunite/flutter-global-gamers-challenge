@@ -137,7 +137,7 @@ class MainMenuScreen extends StatelessWidget {
           ),
           gap10,
           MainButton.secondary(
-            onPressed: () => context.push(LeaderboardScreen.routePath),
+            onPressed: (_) => context.push(LeaderboardScreen.routePath),
             text: 'Leaderboard',
           ),
         ],
