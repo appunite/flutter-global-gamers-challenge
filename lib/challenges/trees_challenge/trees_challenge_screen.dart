@@ -186,7 +186,6 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
   void dispose() {
     _timer?.cancel();
     _scrollController.dispose();
-    _challengeController.removeListener(_listener);
     _challengeController.dispose();
     super.dispose();
   }

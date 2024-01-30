@@ -78,7 +78,6 @@ class _CountDownWidgetState extends State<CountDownWidget> with SingleTickerProv
 
   @override
   void dispose() {
-    _challengeController.removeListener(_listener);
     _challengeController.dispose();
     _animationController.dispose();
     super.dispose();
