@@ -1,20 +1,25 @@
 import 'package:endless_runner/common/asset_paths.dart';
-import 'package:endless_runner/common/dialog_helper.dart';
 import 'package:endless_runner/common/icon_button.dart';
 import 'package:endless_runner/common/ribbon_header.dart';
-import 'package:endless_runner/leaderboard/introduction/leaderboard_introduction_dialog.dart';
+import 'package:endless_runner/common/success_snack_bar.dart';
 import 'package:endless_runner/leaderboard/leaderboard_controller.dart';
 import 'package:endless_runner/leaderboard/widgets/leaderboard_list_tile.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class LeaderboardScreen extends StatefulWidget {
-  const LeaderboardScreen({super.key});
+  const LeaderboardScreen({
+    super.key,
+    required this.shouldDisplayChangedUsernameSnackBard,
+  });
 
   static const String routePath = '/leaderboard';
+
+  final bool shouldDisplayChangedUsernameSnackBard;
 
   @override
   State<LeaderboardScreen> createState() => _LeaderboardScreenState();
@@ -24,14 +29,22 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
   @override
   void initState() {
     super.initState();
-    _showIntroDialog();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _showSnackBar(context));
   }
 
-  Future<void> _showIntroDialog() async {
-    DialogHelper.showWithWidgetBinding(
-      context,
-      const LeaderboardIntroductionDialog(),
-    );
+  void _showSnackBar(BuildContext context) {
+    if (widget.shouldDisplayChangedUsernameSnackBard) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        CustomSnackBarBuilder(
+          icon: SvgPicture.asset(
+            AssetPaths.iconsCheckmark,
+            height: 32,
+            width: 32,
+          ),
+          title: 'Your username is saved!',
+        ),
+      );
+    }
   }
 
   @override
@@ -106,7 +119,8 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                       bottom: 32,
                       left: 24,
                       child: GameIconButton(
-                        onTap: () => context.pop(),
+                        //TODO(kostrzewsky): Move player to the map
+                        onTap: () => context.go('/'),
                         iconName: AssetPaths.iconsMap,
                         width: 56,
                         height: 56,

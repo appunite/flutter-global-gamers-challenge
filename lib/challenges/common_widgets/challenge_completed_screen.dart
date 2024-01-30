@@ -2,11 +2,16 @@ import 'package:confetti/confetti.dart';
 import 'package:endless_runner/challenges/common_widgets/finished_challenge_buttons.dart';
 import 'package:endless_runner/challenges/common_widgets/score_container.dart';
 import 'package:endless_runner/challenges/trees_challenge/challenge_summary_entity.dart';
+import 'package:endless_runner/common/dialog_helper.dart';
 import 'package:endless_runner/common/ribbon_header.dart';
+import 'package:endless_runner/leaderboard/introduction/leaderboard_introduction_dialog.dart';
+import 'package:endless_runner/player_progress/entities/challenges_entity.dart';
+import 'package:endless_runner/player_progress/player_progress_controller.dart';
 import 'package:endless_runner/style/confetti_animation.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ChallengeCompletedScreen extends StatefulWidget {
   const ChallengeCompletedScreen({
@@ -31,12 +36,26 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
   void initState() {
     super.initState();
     _confettiController.play();
+    _showIntroDialog();
   }
 
   @override
   void dispose() {
     _confettiController.dispose();
     super.dispose();
+  }
+
+  Future<void> _showIntroDialog() async {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final playerProgress = Provider.of<PlayerProgressController>(context, listen: false);
+
+      if (playerProgress.challenges.getPlayedChallengesCount() == 0) {
+        DialogHelper.showWithWidgetBinding(
+          context,
+          const LeaderboardIntroductionDialog(),
+        );
+      }
+    });
   }
 
   @override
