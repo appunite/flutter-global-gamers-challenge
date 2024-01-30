@@ -11,3 +11,4 @@ const gap32 = SizedBox.square(dimension: 32);
 const gap40 = SizedBox.square(dimension: 40);
 const gap50 = SizedBox.square(dimension: 50);
 const gap60 = SizedBox.square(dimension: 60);
+const gapWidthMax = SizedBox(width: double.infinity);

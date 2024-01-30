@@ -14,7 +14,7 @@ class MainButton extends StatelessWidget {
 
   factory MainButton.secondary({
     required String text,
-    required VoidCallback onPressed,
+    required Function(Offset? offset) onPressed,
     double? width,
   }) {
     return MainButton(
@@ -28,7 +28,7 @@ class MainButton extends StatelessWidget {
 
   final String text;
   final double? width;
-  final VoidCallback? onPressed;
+  final Function(Offset? offset) onPressed;
   final Color backgroundColor;
 
   /// Color when button is pressed

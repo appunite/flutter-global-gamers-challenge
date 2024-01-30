@@ -33,7 +33,7 @@ class ChallengeExitDialog extends StatelessWidget {
         children: [
           MainButton.secondary(
             width: 120,
-            onPressed: () => context
+            onPressed: (_) => context
               ..pop()
               ..pop(),
             text: 'Exit',
@@ -41,7 +41,7 @@ class ChallengeExitDialog extends StatelessWidget {
           gap12,
           MainButton(
             width: 215,
-            onPressed: onButtonPressed,
+            onPressed: (_) => onButtonPressed(),
             text: 'Continue Game',
           ),
         ],

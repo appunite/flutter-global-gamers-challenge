@@ -20,7 +20,7 @@ class PushableButton extends StatefulWidget {
   final double? width;
   final double elevation;
   final BoxShadow? shadow;
-  final VoidCallback? onPressed;
+  final Function(Offset? offset)? onPressed;
 
   @override
   State<PushableButton> createState() => _PushableButtonState();
@@ -48,7 +48,7 @@ class _PushableButtonState extends State<PushableButton> with SingleTickerProvid
   void _handleTapUp(TapUpDetails details) {
     _animationController.reverse();
     _topLayerColor = widget.hslColor.toColor();
-    widget.onPressed?.call();
+    widget.onPressed?.call(details.globalPosition);
   }
 
   void _handleTapCancel() {

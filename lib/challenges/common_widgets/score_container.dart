@@ -1,4 +1,5 @@
 import 'package:endless_runner/common/asset_paths.dart';
+import 'package:endless_runner/common/time_helper.dart';
 import 'package:endless_runner/style/const_values.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:endless_runner/style/palette.dart';
@@ -9,12 +10,12 @@ class ScoreContainer extends StatelessWidget {
   const ScoreContainer({
     super.key,
     required this.score,
-    required this.time,
+    required this.timeInSeconds,
     required this.bestScore,
   });
 
   final int score;
-  final String time;
+  final int timeInSeconds;
   final int bestScore;
 
   @override
@@ -32,7 +33,7 @@ class ScoreContainer extends StatelessWidget {
         children: [
           _CurrentScoreRow(score: score),
           gap12,
-          _TimeRow(time: time),
+          _TimeRow(timeInSeconds: timeInSeconds),
           gap16,
           _BestScoreRow(bestScore: bestScore, context: context),
         ],
@@ -79,10 +80,10 @@ class _CurrentScoreRow extends StatelessWidget {
 
 class _TimeRow extends StatelessWidget {
   const _TimeRow({
-    required this.time,
+    required this.timeInSeconds,
   });
 
-  final String time;
+  final int timeInSeconds;
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +103,7 @@ class _TimeRow extends StatelessWidget {
           ),
           const Spacer(),
           Text(
-            time, //TODO: format time
+            timeInSeconds.formatTime(),
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   color: Palette.neutralBlack,
                 ),
