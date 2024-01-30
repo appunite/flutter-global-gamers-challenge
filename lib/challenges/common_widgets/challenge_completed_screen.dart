@@ -3,7 +3,6 @@ import 'package:endless_runner/challenges/common_widgets/finished_challenge_butt
 import 'package:endless_runner/challenges/common_widgets/score_container.dart';
 import 'package:endless_runner/challenges/trees_challenge/challenge_summary_entity.dart';
 import 'package:endless_runner/common/ribbon_header.dart';
-import 'package:endless_runner/common/time_helper.dart';
 import 'package:endless_runner/style/confetti_animation.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:endless_runner/style/palette.dart';
@@ -66,7 +65,7 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
                   ScoreContainer(
                     score: widget.challengeSummary.score,
                     bestScore: widget.challengeSummary.bestScore,
-                    time: widget.challengeSummary.time.formatTime(),
+                    timeInSeconds: widget.challengeSummary.time,
                   ),
                   gap60,
                   gapWidthMax,

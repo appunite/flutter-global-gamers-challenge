@@ -3,7 +3,6 @@ import 'package:endless_runner/challenges/common_widgets/score_container.dart';
 import 'package:endless_runner/challenges/trees_challenge/challenge_summary_entity.dart';
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/common/ribbon_header.dart';
-import 'package:endless_runner/common/time_helper.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +48,7 @@ class _ChallengeNoScoreScreenState extends State<ChallengeNoScoreScreen> {
             ScoreContainer(
               score: widget.challengeSummary.score,
               bestScore: widget.challengeSummary.bestScore,
-              time: widget.challengeSummary.time.formatTime(),
+              timeInSeconds: widget.challengeSummary.time,
             ),
             gap60,
           ],

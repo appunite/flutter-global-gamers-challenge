@@ -78,11 +78,14 @@ class CircularRevealClipper extends CustomClipper<Path> {
     final minRadius = this.minRadius ?? 0;
     final maxRadius = calcMaxRadius(size, center);
 
+    final radius = lerpDouble(minRadius, maxRadius, fraction)!;
+
     return Path()
       ..addOval(
-        Rect.fromCircle(
+        Rect.fromCenter(
           center: center,
-          radius: lerpDouble(minRadius, maxRadius, fraction)!,
+          width: 2 * radius,
+          height: 2 * radius,
         ),
       );
   }

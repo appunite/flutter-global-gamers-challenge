@@ -69,11 +69,11 @@ class ChallengeController extends ChangeNotifier {
       time: timeInSec,
       displayBadge: shouldDisplayBadge,
     );
+    notifyListeners();
 
     if (_score > 0) {
       await _updateDatabase(challengeType, playerId);
     }
-    notifyListeners();
   }
 
   Future<void> _updateDatabase(ChallengeType challengeType, String playerId) =>

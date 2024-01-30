@@ -17,34 +17,37 @@ class CountDownWidget extends StatefulWidget {
 }
 
 class _CountDownWidgetState extends State<CountDownWidget> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+  late AnimationController _animationController;
   late Animation<double> _scaleAnimation;
+  late ChallengeController _challengeController;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
+    _animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 3),
     );
 
-    final challengeController = Provider.of<ChallengeController>(context, listen: false);
+    _challengeController = Provider.of<ChallengeController>(context, listen: false);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      challengeController.addListener(() {
-        if (challengeController.countDownVisible) {
-          _controller.forward();
-        }
-      });
+      _challengeController.addListener(_listener);
 
-      _scaleAnimation = Tween<double>(begin: 3, end: -1).animate(_controller)
+      _scaleAnimation = Tween<double>(begin: 3, end: -1).animate(_animationController)
         ..addStatusListener((status) {
           if (status == AnimationStatus.completed) {
-            challengeController.setCountDown(visible: false);
-            challengeController.setTimer(shouldStart: true);
+            _challengeController.setCountDown(visible: false);
+            _challengeController.setTimer(shouldStart: true);
           }
         });
     });
+  }
+
+  void _listener() {
+    if (_challengeController.countDownVisible) {
+      _animationController.forward();
+    }
   }
 
   @override
@@ -58,7 +61,7 @@ class _CountDownWidgetState extends State<CountDownWidget> with SingleTickerProv
               widget.child,
               const OverlayWidget(),
               AnimatedBuilder(
-                animation: _controller,
+                animation: _animationController,
                 builder: (_, __) {
                   return Text(
                     _scaleAnimation.value.ceil() <= 0 ? 'START' : _scaleAnimation.value.ceil().toString(),
@@ -75,7 +78,9 @@ class _CountDownWidgetState extends State<CountDownWidget> with SingleTickerProv
 
   @override
   void dispose() {
-    _controller.dispose();
+    _challengeController.removeListener(_listener);
+    _challengeController.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 }

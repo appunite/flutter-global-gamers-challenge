@@ -60,15 +60,19 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
       _showIntroDialog();
 
       _challengeController = context.read<ChallengeController>();
-      _challengeController.addListener(() {
-        if (_challengeController.startChallengeTimer) {
-          _startTimer(_challengeController);
-        }
-        if (_challengeController.challengeSummary != null) {
-          _goToSummaryScreen(_challengeController);
-        }
-      });
+      _challengeController.addListener(_listener);
     });
+  }
+
+  void _listener() {
+    if (mounted) {
+      if (_challengeController.startChallengeTimer) {
+        _startTimer();
+      }
+      if (_challengeController.challengeSummary != null) {
+        _goToSummaryScreen(_challengeController);
+      }
+    }
   }
 
   void _goToSummaryScreen(ChallengeController challengeController) {
@@ -93,8 +97,8 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
     );
   }
 
-  void _plantTree(ChallengeController challengeController) {
-    challengeController.addPoints();
+  void _plantTree() {
+    _challengeController.addPoints();
     _scrollController.animateTo(
       _scrollController.position.maxScrollExtent,
       duration: const Duration(milliseconds: 500),
@@ -102,13 +106,13 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
     );
   }
 
-  void _startTimer(ChallengeController controller) {
+  void _startTimer() {
     _timer ??= Timer.periodic(
       const Duration(seconds: 1),
       (timer) {
         if (_timeInSeconds <= 0) {
-          timer.cancel();
-          controller.onChallengeFinished(
+          _timer?.cancel();
+          _challengeController.onChallengeFinished(
             challengeType: ChallengeType.trees,
             timeInSec: _timeInSeconds,
           );
@@ -119,14 +123,6 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
         }
       },
     );
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    _challengeController.dispose();
-    _timer?.cancel();
-    super.dispose();
   }
 
   @override
@@ -176,7 +172,7 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
             ],
           ),
           floatingActionButton: MainButton(
-            onPressed: (_) => _plantTree(challengeController),
+            onPressed: (_) => _plantTree(),
             text: 'Plant a Tree',
             width: 220,
           ),
@@ -184,5 +180,14 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    _scrollController.dispose();
+    _challengeController.removeListener(_listener);
+    _challengeController.dispose();
+    super.dispose();
   }
 }
