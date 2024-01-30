@@ -8,16 +8,15 @@ class PipesChallengeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(),
+      body: const SafeArea(
+        left: false,
         child: Stack(
           alignment: Alignment.center,
           children: [
             PipesGrid(),
-            Align(
-              alignment: Alignment.topLeft,
-              child: BackButton(),
-            ),
           ],
         ),
       ),
