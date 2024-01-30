@@ -59,6 +59,7 @@ final router = GoRouter(
     GoRoute(
       path: PipesChallengeScreen.routePath,
       pageBuilder: (context, state) => buildPageTransition(
+        offset: state.extra as Offset?,
         child: const PipesChallengeScreen(
           key: Key('pipes-challenge'),
         ),

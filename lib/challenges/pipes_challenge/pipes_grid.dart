@@ -1,34 +1,18 @@
 import 'package:endless_runner/challenges/pipes_challenge/pipe_item.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipe_item_widgets.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipe_type_enum.dart';
-import 'package:endless_runner/challenges/pipes_challenge/pipes_controller.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipes_helper.dart';
-import 'package:endless_runner/common/success_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-class PipesGrid extends StatelessWidget {
+class PipesGrid extends StatefulWidget {
   const PipesGrid({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => PipesController(),
-      child: const _PipesGridBody(),
-    );
-  }
+  State<PipesGrid> createState() => _PipesGridState();
 }
 
-class _PipesGridBody extends StatefulWidget {
-  const _PipesGridBody();
-
-  @override
-  State<_PipesGridBody> createState() => _PipesGridBodyState();
-}
-
-class _PipesGridBodyState extends State<_PipesGridBody> {
+class _PipesGridState extends State<PipesGrid> {
   static const _itemsInRow = 8;
-
   late final List<PipeType> _itemsList = [
     /// I row
     PipeType.straight,
@@ -70,70 +54,6 @@ class _PipesGridBodyState extends State<_PipesGridBody> {
     PipeType.empty,
     PipeType.empty,
   ];
-
-  final List firstRow = [
-    PipeType.straight,
-    PipeType.corner,
-    PipeType.corner,
-    PipeType.straight,
-    PipeType.straight,
-    PipeType.straight,
-    PipeType.straight,
-    PipeType.corner,
-  ];
-  final List secondRow = [
-    PipeType.empty,
-    PipeType.straight,
-    PipeType.corner,
-    PipeType.straight,
-    PipeType.corner,
-    PipeType.empty,
-    PipeType.empty,
-    PipeType.straight,
-  ];
-  final List thirdRow = [
-    PipeType.empty,
-    PipeType.straight,
-    PipeType.empty,
-    PipeType.empty,
-    PipeType.straight,
-    PipeType.corner,
-    PipeType.straight,
-    PipeType.corner,
-  ];
-  final List fourthRow = [
-    PipeType.empty,
-    PipeType.corner,
-    PipeType.straight,
-    PipeType.straight,
-    PipeType.corner,
-    PipeType.empty,
-    PipeType.empty,
-    PipeType.empty,
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final pipesController = Provider.of<PipesController>(context, listen: false);
-      pipesController.addListener(() {
-        if (pipesController.challengeCompleted) {
-          _showCompletionDialog();
-        }
-      });
-    });
-  }
-
-  void _showCompletionDialog() {
-    showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (_) => const SuccessDialog(
-        challengeName: 'pipes',
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
