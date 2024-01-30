@@ -45,6 +45,7 @@ class MainMenuScreen extends StatelessWidget {
           children: [
             GameProgressIndicator(),
             gap40,
+            //TODO
             PointsCounter(pointsCount: 19),
           ],
         ),
