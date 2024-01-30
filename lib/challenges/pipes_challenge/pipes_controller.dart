@@ -4,25 +4,25 @@ import 'dart:math' as math;
 
 class PipesController extends ChangeNotifier {
   static const double _pi = math.pi;
-  static const double _digree90 = _pi / 2;
-  static const double _digree270 = 3 / 2 * _pi;
+  static const double _degree90 = _pi / 2;
+  static const double _degree270 = 3 / 2 * _pi;
 
   /// The list of all pipes rotation angles in the grid
   /// The values are multiples of 90 degrees (pi/2)
   List<List<double>> get pipesCurrentAngles => _currentAngles;
 
   final List<List<double>> _currentAngles = [
-    [_digree90, _pi, _digree270, _digree90, _digree90, _digree90, _digree90, _digree270],
-    [0.0, 0.0, _pi, _digree90, _digree270, 0.0, 0.0, 0.0],
-    [0.0, 0.0, 0.0, 0.0, 0.0, _digree270, _digree90, 0.0],
-    [0.0, _digree270, _digree90, _digree90, _pi, 0.0, 0.0, 0.0],
+    [_degree90, _pi, _degree270, _degree90, _degree90, _degree90, _degree90, _degree270],
+    [0.0, 0.0, _pi, _degree90, _degree270, 0.0, 0.0, 0.0],
+    [0.0, 0.0, 0.0, 0.0, 0.0, _degree270, _degree90, 0.0],
+    [0.0, _degree270, _degree90, _degree90, _pi, 0.0, 0.0, 0.0],
   ];
 
   final List<List<double>> _correctAngles = [
-    [0.0, 0.0, _digree270, 0.0, 0.0, 0.0, 0.0, 0.0],
-    [0.0, _digree90, _pi, 0.0, 0.0, 0.0, 0.0, _digree90],
-    [0.0, _digree90, 0.0, 0.0, _digree90, _digree270, 0.0, _digree90],
-    [0.0, _pi, 0.0, 0.0, _digree90, 0.0, 0.0, 0.0],
+    [0.0, 0.0, _degree270, 0.0, 0.0, 0.0, 0.0, 0.0],
+    [0.0, _degree90, _pi, 0.0, 0.0, 0.0, 0.0, _degree90],
+    [0.0, _degree90, 0.0, 0.0, _degree90, _degree270, 0.0, _degree90],
+    [0.0, _pi, 0.0, 0.0, _degree90, 0.0, 0.0, 0.0],
   ];
 
   bool get challengeCompleted => _challengeCompleted;
@@ -35,11 +35,11 @@ class PipesController extends ChangeNotifier {
     required PipeType pipeType,
   }) {
     switch (pipeType) {
-      case PipeType.straight when _currentAngles[row][column] == _pi / 2:
+      case PipeType.straight when _currentAngles[row][column] == _degree90:
         _currentAngles[row][column] = 0.0;
       case PipeType.straight:
       case PipeType.corner:
-        _currentAngles[row][column] += _pi / 2;
+        _currentAngles[row][column] += _degree90;
       case PipeType.empty:
         _currentAngles[row][column] = 0.0;
     }

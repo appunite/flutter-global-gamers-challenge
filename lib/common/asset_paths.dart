@@ -43,6 +43,8 @@ class AssetPaths {
   static const String pipesBackground = 'assets/images/challenges/pipes_bg.svg';
   static const String tree = 'assets/images/challenges/icons_tree.svg';
   static const String treeBackground = 'assets/images/challenges/plant_forest_background.svg';
+  static const String infoTree1 = 'assets/images/challenges/info_forest_01.svg';
+  static const String infoTree2 = 'assets/images/challenges/info_forest_02.svg';
 
   // Animations
   static const String ecoAnimation = 'assets/animations/eco.riv';

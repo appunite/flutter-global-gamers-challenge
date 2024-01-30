@@ -39,6 +39,8 @@ enum ChallengeType {
     description: 'Trees combat climate change and increase biodiversity.',
     instruction1: 'Tap the button to plant a tree and help restore nature\'s balance.',
     instruction2: 'Get 1 point for each planted tree and combat deforestation.',
+    instructionAsset1: AssetPaths.infoTree1,
+    instructionAsset2: AssetPaths.infoTree2,
     completedText: 'Thanks to your tree planting,\nBetter World breathes easier with increased green cover.',
     routePath: TreesChallengeScreen.routePath,
   ),
