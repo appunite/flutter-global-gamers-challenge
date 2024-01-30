@@ -48,54 +48,19 @@ class FirebasePersistence extends DatabasePersistence {
       final PlayerEntity playerEntity = await getPlayerEntity(playerId: playerId);
 
       final ChallengesEntity currentChallenges = playerEntity.challengesScores;
-      ChallengesEntity? updatedChallenges;
 
-      switch (challengeType) {
-        case ChallengeType.city:
-          if (points > (currentChallenges.city ?? 0)) {
-            updatedChallenges = currentChallenges.copyWith(city: points);
-          }
-          break;
+      final updatedChallenges = switch (challengeType) {
+        ChallengeType.city => currentChallenges.copyWith(city: points),
+        ChallengeType.ocean => currentChallenges.copyWith(ocean: points),
+        ChallengeType.pipelines => currentChallenges.copyWith(pipes: points),
+        ChallengeType.recycling => currentChallenges.copyWith(recycling: points),
+        ChallengeType.solarPanel => currentChallenges.copyWith(solarPanel: points),
+        ChallengeType.trees => currentChallenges.copyWith(trees: points),
+      };
 
-        case ChallengeType.ocean:
-          if (points > (currentChallenges.ocean ?? 0)) {
-            updatedChallenges = currentChallenges.copyWith(ocean: points);
-          }
-          break;
-
-        case ChallengeType.pipelines:
-          if (points > (currentChallenges.pipes ?? 0)) {
-            updatedChallenges = currentChallenges.copyWith(pipes: points);
-          }
-          break;
-
-        case ChallengeType.recycling:
-          if (points > (currentChallenges.recycling ?? 0)) {
-            updatedChallenges = currentChallenges.copyWith(recycling: points);
-          }
-          break;
-
-        case ChallengeType.solarPanel:
-          if (points > (currentChallenges.solarPanel ?? 0)) {
-            updatedChallenges = currentChallenges.copyWith(solarPanel: points);
-          }
-          break;
-
-        case ChallengeType.trees:
-          if (points > (currentChallenges.trees ?? 0)) {
-            updatedChallenges = currentChallenges.copyWith(trees: points);
-          }
-          break;
-
-        default:
-          return;
-      }
-
-      if (updatedChallenges != null) {
-        await _playersRef.doc(playerId).set(
-              playerEntity.copyWith(challengesScores: updatedChallenges).toJson(),
-            );
-      }
+      await _playersRef.doc(playerId).set(
+            playerEntity.copyWith(challengesScores: updatedChallenges).toJson(),
+          );
     } catch (e, stack) {
       debugPrintStack(label: e.toString(), stackTrace: stack);
       rethrow;

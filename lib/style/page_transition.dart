@@ -6,7 +6,6 @@ import 'package:go_router/go_router.dart';
 
 CustomTransitionPage<T> buildPageTransition<T>({
   required Widget child,
-  required Color color,
   String? name,
   Object? arguments,
   String? restorationId,
