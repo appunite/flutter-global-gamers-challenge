@@ -2,10 +2,12 @@ import 'package:endless_runner/change_player_name/change_player_name_controller.
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/common/common_dialog.dart';
 import 'package:endless_runner/common/ribbon_header.dart';
+import 'package:endless_runner/common/success_snack_bar.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:endless_runner/style/main_button.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -95,10 +97,15 @@ class _SetPlayerNameDialogState extends State<SetPlayerNameDialog> {
     await context.read<ChangePlayerNameController>().updateUserName(username: username);
     if (!context.mounted) return;
     context.pop();
+
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        backgroundColor: Colors.green,
-        content: Text('Username updated'),
+      CustomSnackBarBuilder(
+        icon: SvgPicture.asset(
+          AssetPaths.iconsCheckmark,
+          height: 32,
+          width: 32,
+        ),
+        title: 'Your username is saved!',
       ),
     );
   }

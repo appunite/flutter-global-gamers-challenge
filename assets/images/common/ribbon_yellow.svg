@@ -13,25 +13,4 @@
         fill-rule="evenodd" />
     <rect fill="#212121" fill-opacity="0.1" height="50" rx="4" width="394" x="21" y="4" />
     <rect fill="#D7A72D" height="52" rx="4" width="390" x="23" />
-    <g filter="url(#filter0_d_2186_83651)">
-        <path
-            d="M377.681 15.7913C376.986 15.1554 375.92 15.1872 375.254 15.853L373.854 17.2537C373.188 17.9196 373.156 18.9857 373.792 19.6803C375.001 21.0014 377.115 23.2752 379.78 26.0001C377.115 28.725 375.001 30.9987 373.792 32.3198C373.156 33.0144 373.188 34.0805 373.854 34.7464L375.255 36.147C375.92 36.8129 376.987 36.8447 377.681 36.2088C379.002 34.9995 381.276 32.8861 384.001 30.2209C386.726 32.8861 388.999 34.9995 390.32 36.2088C391.015 36.8447 392.081 36.8129 392.747 36.147L394.148 34.7464C394.814 34.0805 394.845 33.0144 394.209 32.3198C393 30.9987 390.887 28.725 388.221 26.0001C390.887 23.2752 393 21.0014 394.21 19.6803C394.845 18.9857 394.814 17.9196 394.148 17.2537L392.747 15.853C392.081 15.1872 391.015 15.1554 390.321 15.7913C389 17.0006 386.726 19.1141 384.001 21.7794C381.276 19.1141 379.002 17.0006 377.681 15.7913Z"
-            fill="#FFFCFE" />
-    </g>
-    <defs>
-        <filter color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" height="22.3334" id="filter0_d_2186_83651" width="21.334"
-            x="373.334" y="15.3334">
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
-            <feColorMatrix in="SourceAlpha" result="hardAlpha"
-                type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-            <feOffset dy="1" />
-            <feComposite in2="hardAlpha" operator="out" />
-            <feColorMatrix type="matrix"
-                values="0 0 0 0 0.827451 0 0 0 0 0.827451 0 0 0 0 0.827451 0 0 0 1 0" />
-            <feBlend in2="BackgroundImageFix" mode="normal"
-                result="effect1_dropShadow_2186_83651" />
-            <feBlend in="SourceGraphic" in2="effect1_dropShadow_2186_83651" mode="normal"
-                result="shape" />
-        </filter>
-    </defs>
 </svg>

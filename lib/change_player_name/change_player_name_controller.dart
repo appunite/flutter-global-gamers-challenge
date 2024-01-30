@@ -1,6 +1,5 @@
 import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
 import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
-import 'package:flutter/material.dart';
 
 class ChangePlayerNameController {
   ChangePlayerNameController({
@@ -14,6 +13,6 @@ class ChangePlayerNameController {
 
   Future<void> updateUserName({required String username}) async {
     final String playerId = await _localStorage.getPlayerIdKey();
-    _databaseStorage.updateUsername(playerId: playerId, username: username);
+    await _databaseStorage.updateUsername(playerId: playerId, username: username);
   }
 }

@@ -25,11 +25,27 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyGame());
+
+  final firebasePersistence = FirebasePersistence(firestore: FirebaseFirestore.instance);
+  final localPlayerPersistence = LocalPlayerPersistence(sharedPrefs: SharedPreferences.getInstance());
+
+  runApp(
+    MyGame(
+      firebasePersistence: firebasePersistence,
+      localPlayerPersistence: localPlayerPersistence,
+    ),
+  );
 }
 
 class MyGame extends StatelessWidget {
-  const MyGame({super.key});
+  const MyGame({
+    super.key,
+    required this.firebasePersistence,
+    required this.localPlayerPersistence,
+  });
+
+  final FirebasePersistence firebasePersistence;
+  final LocalPlayerPersistence localPlayerPersistence;
 
   @override
   Widget build(BuildContext context) {
@@ -39,20 +55,20 @@ class MyGame extends StatelessWidget {
           Provider(create: (context) => Palette()),
           ChangeNotifierProvider(
             create: (context) => PlayerProgressController(
-              databaseStorage: FirebasePersistence(firestore: FirebaseFirestore.instance),
-              localStorage: LocalPlayerPersistence(sharedPrefs: SharedPreferences.getInstance()),
+              databaseStorage: firebasePersistence,
+              localStorage: localPlayerPersistence,
             ),
           ),
           Provider(
             create: (context) => ChangePlayerNameController(
-              databaseStorage: FirebasePersistence(firestore: FirebaseFirestore.instance),
-              localStorage: LocalPlayerPersistence(sharedPrefs: SharedPreferences.getInstance()),
+              databaseStorage: firebasePersistence,
+              localStorage: localPlayerPersistence,
             ),
           ),
           Provider(
             create: (context) => LeaderboardController(
-              databaseStorage: FirebasePersistence(firestore: FirebaseFirestore.instance),
-              localStorage: LocalPlayerPersistence(sharedPrefs: SharedPreferences.getInstance()),
+              databaseStorage: firebasePersistence,
+              localStorage: localPlayerPersistence,
             ),
           ),
           Provider(create: (context) => SettingsController()),
