@@ -142,55 +142,11 @@ class _PipesGridBodyState extends State<_PipesGridBody> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const PipeWheel(),
-        Expanded(
-          child:
-              // Column(
-              //   children: [
-              //     Row(
-              //       children: [
-              //         for (final item in firstRow)
-              //           PipeItem(
-              //             row: 0,
-              //             column: PipesHelper.getColumnNumber(_itemsList.indexOf(item), _itemsInRow),
-              //             pipeType: _itemsList[_itemsList.indexOf(item)],
-              //           )
-              //       ],
-              //     ),
-              //     Row(
-              //       children: [
-              //         for (final item in secondRow)
-              //           PipeItem(
-              //             row: 1,
-              //             column: PipesHelper.getColumnNumber(_itemsList.indexOf(item), _itemsInRow),
-              //             pipeType: _itemsList[_itemsList.indexOf(item)],
-              //           )
-              //       ],
-              //     ),
-              //     Row(
-              //       children: [
-              //         for (final item in thirdRow)
-              //           PipeItem(
-              //             row: 2,
-              //             column: PipesHelper.getColumnNumber(_itemsList.indexOf(item), _itemsInRow),
-              //             pipeType: _itemsList[_itemsList.indexOf(item)],
-              //           )
-              //       ],
-              //     ),
-              //     Row(
-              //       children: [
-              //         for (final item in fourthRow)
-              //           PipeItem(
-              //             row: 3,
-              //             column: PipesHelper.getColumnNumber(_itemsList.indexOf(item), _itemsInRow),
-              //             pipeType: _itemsList[_itemsList.indexOf(item)],
-              //           )
-              //       ],
-              //     ),
-              //   ],
-              // ),
-              GridView.builder(
+        SizedBox(
+          width: 550,
+          height: 450,
+          child: GridView.builder(
             padding: EdgeInsets.zero,
-            shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: _itemsInRow,

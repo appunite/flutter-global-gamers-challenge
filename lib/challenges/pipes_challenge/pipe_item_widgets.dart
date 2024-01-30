@@ -2,7 +2,6 @@ import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'dart:math' as math;
 
 class PipeStraight extends StatelessWidget {
   const PipeStraight({
@@ -15,11 +14,10 @@ class PipeStraight extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 60,
-      height: 60,
+      width: 30,
+      height: 30,
       child: SvgPicture.asset(
         AssetPaths.pipeStraight,
-        fit: BoxFit.contain,
       ),
     );
   }
@@ -36,16 +34,10 @@ class PipeCorner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 60,
-      height: 60,
+      width: 30,
+      height: 30,
       child: SvgPicture.asset(
         AssetPaths.pipeCorner,
-        fit: BoxFit.scaleDown,
-        alignment: angle == 0.0
-            ? Alignment.bottomLeft
-            : angle == math.pi / 2
-                ? Alignment.bottomLeft
-                : Alignment.bottomLeft,
       ),
     );
   }
@@ -56,7 +48,7 @@ class PipeEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return gap60;
+    return gap30;
   }
 }
 
@@ -66,11 +58,10 @@ class PipeWheel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 60,
-      height: 60,
+      width: 69,
+      height: 69,
       child: SvgPicture.asset(
         AssetPaths.pipeWheel,
-        fit: BoxFit.contain,
       ),
     );
   }

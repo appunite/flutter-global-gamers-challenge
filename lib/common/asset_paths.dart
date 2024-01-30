@@ -40,6 +40,7 @@ class AssetPaths {
   static const String pipeCorner = 'assets/images/challenges/pipe_corner.svg';
   static const String pipeStraight = 'assets/images/challenges/pipe_straight.svg';
   static const String pipeWheel = 'assets/images/challenges/pipe_wheel.svg';
+  static const String pipesBackground = 'assets/images/challenges/pipes_bg.svg';
 
   // Animations
   static const String ecoAnimation = 'assets/animations/eco.riv';
