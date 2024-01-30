@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:endless_runner/change_player_name/change_player_name_controller.dart';
 import 'package:endless_runner/leaderboard/leaderboard_controller.dart';
+import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
 import 'package:endless_runner/player_progress/persistence/firebase_persistence.dart';
 import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
 import 'package:endless_runner/style/theme.dart';
@@ -52,7 +53,9 @@ class MyGame extends StatelessWidget {
     return AppLifecycleObserver(
       child: MultiProvider(
         providers: [
-          Provider(create: (context) => Palette()),
+          Provider(create: (_) => Palette()),
+          Provider<DatabasePersistence>(create: (_) => firebasePersistence),
+          Provider(create: (_) => localPlayerPersistence),
           ChangeNotifierProvider(
             create: (context) => PlayerProgressController(
               databaseStorage: firebasePersistence,

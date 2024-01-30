@@ -43,7 +43,7 @@ class ChallengeIntroductionDialog extends StatelessWidget {
         ],
       ),
       bottom: MainButton(
-        onPressed: onButtonPressed,
+        onPressed: (_) => onButtonPressed(),
         text: 'I\'m ready!',
         width: 180,
       ),

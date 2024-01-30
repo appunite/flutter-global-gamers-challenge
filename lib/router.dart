@@ -1,23 +1,21 @@
-import 'package:endless_runner/challenges/challenge_type_enum.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_completed_screen.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_no_score_screen.dart';
 import 'package:endless_runner/challenges/ocean_shooter/ocean_challenge_screen.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipes_challenge_screen.dart';
 import 'package:endless_runner/challenges/recycling_challenge/recycling_challenge_screen.dart';
 import 'package:endless_runner/challenges/solar_panel_scratcher_challenge/solar_panel_scratcher_screen.dart';
+import 'package:endless_runner/challenges/trees_challenge/challenge_summary_entity.dart';
 import 'package:endless_runner/challenges/trees_challenge/trees_challenge_screen.dart';
 import 'package:endless_runner/common/google_wallet_demo.dart';
 import 'package:endless_runner/leaderboard/leaderboard_screen.dart';
 import 'package:flame/game.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 
 import 'flame_game/game_screen.dart';
 import 'level_selection/levels.dart';
 import 'main_menu/main_menu_screen.dart';
 import 'style/page_transition.dart';
-import 'style/palette.dart';
 
 final router = GoRouter(
   routes: [
@@ -29,7 +27,6 @@ final router = GoRouter(
           path: 'play',
           pageBuilder: (context, state) => buildPageTransition<void>(
             key: const ValueKey('level'),
-            color: context.watch<Palette>().backgroundPlaySession.color,
             child: GameScreen(level: gameLevels[0]),
           ),
         ),
@@ -37,32 +34,43 @@ final router = GoRouter(
     ),
     GoRoute(
       path: SolarPanelChallengeScreen.routePath,
-      builder: (context, state) => const SolarPanelChallengeScreen(
-        key: Key('solar-panel-scratcher'),
+      pageBuilder: (context, state) => buildPageTransition<void>(
+        child: const SolarPanelChallengeScreen(
+          key: Key('solar-panel-scratcher'),
+        ),
       ),
     ),
     GoRoute(
       path: RecyclingChallengeScreen.routePath,
-      builder: (context, state) => const RecyclingChallengeScreen(
-        key: Key('recycling-challenge'),
+      pageBuilder: (context, state) => buildPageTransition(
+        child: const RecyclingChallengeScreen(
+          key: Key('recycling-challenge'),
+        ),
       ),
     ),
     GoRoute(
       path: TreesChallengeScreen.routePath,
-      builder: (context, state) => const TreesChallengeScreen(
-        key: Key('trees-challenge'),
+      pageBuilder: (context, state) => buildPageTransition<void>(
+        offset: state.extra as Offset?,
+        child: const TreesChallengeScreen(
+          key: Key('trees-challenge'),
+        ),
       ),
     ),
     GoRoute(
       path: PipesChallengeScreen.routePath,
-      builder: (context, state) => const PipesChallengeScreen(
-        key: Key('pipes-challenge'),
+      pageBuilder: (context, state) => buildPageTransition(
+        child: const PipesChallengeScreen(
+          key: Key('pipes-challenge'),
+        ),
       ),
     ),
     GoRoute(
       path: GoogleWalletDemoScreen.routePath,
-      builder: (context, state) => const GoogleWalletDemoScreen(
-        key: Key('google-wallet-demo'),
+      pageBuilder: (context, state) => buildPageTransition(
+        child: const GoogleWalletDemoScreen(
+          key: Key('google-wallet-demo'),
+        ),
       ),
     ),
     GoRoute(
@@ -73,33 +81,26 @@ final router = GoRouter(
     ),
     GoRoute(
       path: ChallengeCompletedScreen.routePath,
-      builder: (context, state) => ChallengeCompletedScreen(
-        key: const Key('challenge-completed'),
-        //TODO: get it from state
-        challengeType: ChallengeType.ocean,
-        onPrimaryButtonPressed: () {
-          context.pop();
-        },
-        onSecondaryButtonPressed: () {},
+      pageBuilder: (context, state) => buildPageTransition(
+        child: ChallengeCompletedScreen(
+          key: const Key('challenge-completed'),
+          challengeSummary: state.extra! as ChallengeSummaryEntity,
+        ),
       ),
     ),
     GoRoute(
       path: ChallengeNoScoreScreen.routePath,
-      builder: (context, state) => ChallengeNoScoreScreen(
-        key: const Key('challenge-no-score'),
-        //TODO: get it from state
-        challengeType: ChallengeType.ocean,
-        onPrimaryButtonPressed: () {
-          context.pop();
-        },
-        onSecondaryButtonPressed: () {},
+      pageBuilder: (context, state) => buildPageTransition(
+        child: ChallengeNoScoreScreen(
+          key: const Key('challenge-no-score'),
+          challengeSummary: state.extra! as ChallengeSummaryEntity,
+        ),
       ),
     ),
     GoRoute(
       path: OceanChallengeScreen.routePath,
       pageBuilder: (context, state) {
         return buildPageTransition<void>(
-          color: context.watch<Palette>().backgroundPlaySession.color,
           child: GameWidget(game: OceanChallengeScreen()),
         );
       },
