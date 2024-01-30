@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
 import 'package:endless_runner/player_progress/persistence/firebase_persistence.dart';
 import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
 import 'package:endless_runner/style/theme.dart';
@@ -26,23 +27,33 @@ void main() async {
   runApp(const MyGame());
 }
 
-class MyGame extends StatelessWidget {
+class MyGame extends StatefulWidget {
   const MyGame({super.key});
+
+  @override
+  State<MyGame> createState() => _MyGameState();
+}
+
+class _MyGameState extends State<MyGame> {
+  final _firebasePersistence = FirebasePersistence(
+    firestore: FirebaseFirestore.instance,
+  );
+  final _localPlayerPersistence = LocalPlayerPersistence(
+    sharedPrefs: SharedPreferences.getInstance(),
+  );
 
   @override
   Widget build(BuildContext context) {
     return AppLifecycleObserver(
       child: MultiProvider(
         providers: [
-          Provider(create: (context) => Palette()),
+          Provider(create: (_) => Palette()),
+          Provider<DatabasePersistence>(create: (_) => _firebasePersistence),
+          Provider(create: (_) => _localPlayerPersistence),
           ChangeNotifierProvider(
             create: (context) => PlayerProgressController(
-              databaseStorage: FirebasePersistence(
-                firestore: FirebaseFirestore.instance,
-              ),
-              localStorage: LocalPlayerPersistence(
-                sharedPrefs: SharedPreferences.getInstance(),
-              ),
+              databaseStorage: _firebasePersistence,
+              localStorage: _localPlayerPersistence,
             ),
           ),
           Provider(create: (context) => SettingsController()),

@@ -46,7 +46,7 @@ class GeneralTutorialWidget extends StatelessWidget {
               MainButton(
                 text: 'Continue',
                 width: 220,
-                onPressed: onButtonPressed,
+                onPressed: (_) => onButtonPressed?.call(),
               ),
           ],
         ),

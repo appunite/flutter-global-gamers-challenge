@@ -41,16 +41,21 @@ class FirebasePersistence extends DatabasePersistence {
     required String playerId,
   }) async {
     try {
+      if (points <= 0) {
+        return;
+      }
+
       final PlayerEntity playerEntity = await getPlayerEntity(playerId: playerId);
 
       final ChallengesEntity currentChallenges = playerEntity.challengesScores;
+
       final updatedChallenges = switch (challengeType) {
         ChallengeType.city => currentChallenges.copyWith(city: points),
         ChallengeType.ocean => currentChallenges.copyWith(ocean: points),
         ChallengeType.pipelines => currentChallenges.copyWith(pipes: points),
         ChallengeType.recycling => currentChallenges.copyWith(recycling: points),
         ChallengeType.solarPanel => currentChallenges.copyWith(solarPanel: points),
-        ChallengeType.trees => currentChallenges.copyWith(trees: points)
+        ChallengeType.trees => currentChallenges.copyWith(trees: points),
       };
 
       await _playersRef.doc(playerId).set(
@@ -74,7 +79,6 @@ class FirebasePersistence extends DatabasePersistence {
     }
   }
 
-  //TODO: do we need to handle not repeating nicks?...
   Future<PlayerEntity> _createNewPlayer({required String playerId, String? playerNick}) async {
     late String nick;
 

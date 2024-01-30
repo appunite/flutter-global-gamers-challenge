@@ -42,7 +42,7 @@ class TimerWidget extends StatelessWidget {
               timeInSeconds.formatTime(),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: countDown
-                        ? timeInSeconds < 11
+                        ? timeInSeconds < 6
                             ? Palette.error
                             : Palette.neutralBlack
                         : Palette.neutralBlack,

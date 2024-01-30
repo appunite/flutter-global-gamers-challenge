@@ -1,4 +1,4 @@
-import 'package:endless_runner/challenges/challenge_start_controller.dart';
+import 'package:endless_runner/challenges/challenge_controller.dart';
 import 'package:endless_runner/style/overlay_widget.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
@@ -17,48 +17,51 @@ class CountDownWidget extends StatefulWidget {
 }
 
 class _CountDownWidgetState extends State<CountDownWidget> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+  late AnimationController _animationController;
   late Animation<double> _scaleAnimation;
+  late ChallengeController _challengeController;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
+    _animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 3),
     );
 
-    final challengeStartController = Provider.of<ChallengeStartController>(context, listen: false);
+    _challengeController = Provider.of<ChallengeController>(context, listen: false);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      challengeStartController.addListener(() {
-        if (challengeStartController.countDownVisible) {
-          _controller.forward();
-        }
-      });
+      _challengeController.addListener(_listener);
 
-      _scaleAnimation = Tween<double>(begin: 3, end: -1).animate(_controller)
+      _scaleAnimation = Tween<double>(begin: 3, end: -1).animate(_animationController)
         ..addStatusListener((status) {
           if (status == AnimationStatus.completed) {
-            challengeStartController.setCountDown(visible: false);
-            challengeStartController.setTimer(shouldStart: true);
+            _challengeController.setCountDown(visible: false);
+            _challengeController.setTimer(shouldStart: true);
           }
         });
     });
   }
 
+  void _listener() {
+    if (_challengeController.countDownVisible) {
+      _animationController.forward();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final challengeStartController = context.watch<ChallengeStartController>();
+    final challengeController = context.watch<ChallengeController>();
 
-    return challengeStartController.countDownVisible
+    return challengeController.countDownVisible
         ? Stack(
             alignment: Alignment.center,
             children: [
               widget.child,
               const OverlayWidget(),
               AnimatedBuilder(
-                animation: _controller,
+                animation: _animationController,
                 builder: (_, __) {
                   return Text(
                     _scaleAnimation.value.ceil() <= 0 ? 'START' : _scaleAnimation.value.ceil().toString(),
@@ -75,7 +78,8 @@ class _CountDownWidgetState extends State<CountDownWidget> with SingleTickerProv
 
   @override
   void dispose() {
-    _controller.dispose();
+    _challengeController.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 }

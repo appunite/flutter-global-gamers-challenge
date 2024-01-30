@@ -31,9 +31,14 @@ class PointsCounter extends StatelessWidget {
             width: 24,
           ),
           gap12,
-          Text(
-            pointsCount.toString(),
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Palette.neutralBlack),
+          Container(
+            constraints: const BoxConstraints(minWidth: 35),
+            child: Text(
+              pointsCount.toString(),
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    color: Palette.neutralBlack,
+                  ),
+            ),
           )
         ],
       ),

@@ -48,7 +48,7 @@ class GameWinDialog extends StatelessWidget {
             const SizedBox(height: 16),
             if (level.number < gameLevels.length) ...[
               MainButton.secondary(
-                onPressed: () {
+                onPressed: (_) {
                   context.go('/play/session/${level.number + 1}');
                 },
                 text: 'Next level',
@@ -56,7 +56,7 @@ class GameWinDialog extends StatelessWidget {
               const SizedBox(height: 16),
             ],
             MainButton(
-              onPressed: () {
+              onPressed: (_) {
                 context.go('/play');
               },
               text: 'Level selection',
