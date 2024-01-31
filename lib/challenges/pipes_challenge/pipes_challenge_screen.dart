@@ -5,7 +5,6 @@ import 'package:endless_runner/challenges/challenge_type_enum.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_app_bar.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_completed_screen.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_introduction_dialog.dart';
-import 'package:endless_runner/challenges/common_widgets/challenge_no_score_screen.dart';
 import 'package:endless_runner/challenges/count_down_widget.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipes_controller.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipes_grid.dart';
@@ -72,20 +71,37 @@ class _PipesChallengeBodyScreenState extends State<_PipesChallengeBodyScreen> {
 
       final pipesController = Provider.of<PipesController>(context, listen: false);
       pipesController.addListener(() {
-        if (pipesController.challengeCompleted) {
-          int score = _maxPoints - _timeInSeconds;
-          if (score <= 0) {
-            score = 1;
-          }
-          _challengeController.addPoints(points: score);
-          //TODO animation - delay
-          _challengeController.onChallengeFinished(
-            challengeType: ChallengeType.pipelines,
-            timeInSec: _timeInSeconds,
-          );
-        }
+        _pipesListener(pipesController);
       });
     });
+  }
+
+  void _showIntroDialog() {
+    DialogHelper.show(
+      context,
+      ChallengeIntroductionDialog(
+        challenge: ChallengeType.pipelines,
+        onButtonPressed: () {
+          context.pop();
+          context.read<ChallengeController>().setCountDown(visible: true);
+        },
+      ),
+    );
+  }
+
+  void _pipesListener(PipesController pipesController) {
+    if (pipesController.challengeCompleted) {
+      int score = _maxPoints - _timeInSeconds;
+      if (score <= 0) {
+        score = 1;
+      }
+      _challengeController.addPoints(points: score);
+      //TODO animation - delay
+      _challengeController.onChallengeFinished(
+        challengeType: ChallengeType.pipelines,
+        timeInSec: _timeInSeconds,
+      );
+    }
   }
 
   void _challengeListener() {
@@ -102,23 +118,8 @@ class _PipesChallengeBodyScreenState extends State<_PipesChallengeBodyScreen> {
 
   void _goToSummaryScreen(ChallengeController challengeController) {
     context.go(
-      challengeController.challengeSummary!.score > 0
-          ? ChallengeCompletedScreen.routePath
-          : ChallengeNoScoreScreen.routePath,
+      ChallengeCompletedScreen.routePath,
       extra: challengeController.challengeSummary,
-    );
-  }
-
-  void _showIntroDialog() {
-    DialogHelper.show(
-      context,
-      ChallengeIntroductionDialog(
-        challenge: ChallengeType.pipelines,
-        onButtonPressed: () {
-          context.pop();
-          context.read<ChallengeController>().setCountDown(visible: true);
-        },
-      ),
     );
   }
 

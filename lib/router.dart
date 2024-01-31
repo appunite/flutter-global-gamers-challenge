@@ -43,6 +43,7 @@ final router = GoRouter(
     GoRoute(
       path: RecyclingChallengeScreen.routePath,
       pageBuilder: (context, state) => buildPageTransition(
+        offset: state.extra as Offset?,
         child: const RecyclingChallengeScreen(
           key: Key('recycling-challenge'),
         ),

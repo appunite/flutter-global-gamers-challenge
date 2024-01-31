@@ -43,4 +43,8 @@ extension ChallengesEntityExtension on ChallengesEntity {
     }
     return count;
   }
+
+  int getAllChallengesScores() {
+    return (city ?? 0) + (ocean ?? 0) + (pipes ?? 0) + (recycling ?? 0) + (solarPanel ?? 0) + (trees ?? 0);
+  }
 }

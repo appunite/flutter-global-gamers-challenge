@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:endless_runner/challenges/common_widgets/challenge_completed_screen.dart';
 import 'package:endless_runner/challenges/ocean_shooter/ocean_challenge_screen.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipes_challenge_screen.dart';
 import 'package:endless_runner/challenges/recycling_challenge/recycling_challenge_screen.dart';
@@ -12,6 +11,7 @@ import 'package:endless_runner/common/google_wallet_demo.dart';
 import 'package:endless_runner/common/points_counter.dart';
 import 'package:endless_runner/leaderboard/leaderboard_screen.dart';
 import 'package:endless_runner/main_menu/tutorial/onboarding_flow.dart';
+import 'package:endless_runner/player_progress/entities/challenges_entity.dart';
 import 'package:endless_runner/player_progress/player_progress_controller.dart';
 import 'package:endless_runner/settings/settings_dialog.dart';
 import 'package:endless_runner/style/gaps.dart';
@@ -41,13 +41,12 @@ class MainMenuScreen extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.transparent,
-        title: const Row(
+        title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            GameProgressIndicator(),
+            const GameProgressIndicator(),
             gap40,
-            //TODO
-            PointsCounter(pointsCount: 19),
+            PointsCounter(pointsCount: playerProgressController.challenges.getAllChallengesScores()),
           ],
         ),
       ),
@@ -87,8 +86,8 @@ class MainMenuScreen extends StatelessWidget {
             ),
             gap10,
             MainButton(
-              onPressed: (_) => context.push(ChallengeCompletedScreen.routePath),
-              text: 'Completed challenge',
+              onPressed: (Offset? offset) => context.push(RecyclingChallengeScreen.routePath, extra: offset),
+              text: 'Recycling',
             ),
             gap10,
             MainButton(
@@ -127,11 +126,6 @@ class MainMenuScreen extends StatelessWidget {
           MainButton.secondary(
             onPressed: (_) => context.push(SolarPanelChallengeScreen.routePath),
             text: 'Solar panel scratcher',
-          ),
-          gap10,
-          MainButton.secondary(
-            onPressed: (_) => context.push(RecyclingChallengeScreen.routePath),
-            text: 'Recycling',
           ),
           gap10,
           MainButton.secondary(
