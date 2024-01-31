@@ -7,6 +7,7 @@ const gap12 = SizedBox.square(dimension: 12);
 const gap16 = SizedBox.square(dimension: 16);
 const gap18 = SizedBox.square(dimension: 18);
 const gap24 = SizedBox.square(dimension: 24);
+const gap30 = SizedBox.square(dimension: 30);
 const gap32 = SizedBox.square(dimension: 32);
 const gap40 = SizedBox.square(dimension: 40);
 const gap44 = SizedBox.square(dimension: 44);

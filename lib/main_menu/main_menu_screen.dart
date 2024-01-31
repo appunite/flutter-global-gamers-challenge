@@ -79,7 +79,10 @@ class MainMenuScreen extends StatelessWidget {
             ),
             gap10,
             MainButton(
-              onPressed: (_) => context.push(PipesChallengeScreen.routePath),
+              onPressed: (Offset? offset) => context.push(
+                PipesChallengeScreen.routePath,
+                extra: offset,
+              ),
               text: 'Fix pipes',
             ),
             gap10,
@@ -132,7 +135,10 @@ class MainMenuScreen extends StatelessWidget {
           ),
           gap10,
           MainButton.secondary(
-            onPressed: (Offset? offset) => context.push(TreesChallengeScreen.routePath, extra: offset),
+            onPressed: (Offset? offset) => context.push(
+              TreesChallengeScreen.routePath,
+              extra: offset,
+            ),
             text: 'Plant trees',
           ),
           gap10,

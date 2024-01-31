@@ -1,4 +1,4 @@
-import 'package:endless_runner/challenges/common_widgets/challenge_introduction_dialog.dart';
+import 'package:endless_runner/challenges/common_widgets/introduction_container.dart';
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/common/common_dialog.dart';
 import 'package:endless_runner/common/dialog_helper.dart';
