@@ -13,11 +13,17 @@ class PlayerEntity with _$PlayerEntity {
   const factory PlayerEntity({
     required final ChallengesEntity challengesScores,
     required final String nick,
+    required final String id,
   }) = _PlayerEntity;
 
-  factory PlayerEntity.empty({required String nick}) => PlayerEntity(
+  factory PlayerEntity.empty({
+    required String nick,
+    required String id,
+  }) =>
+      PlayerEntity(
         challengesScores: ChallengesEntity.empty(),
         nick: nick,
+        id: id,
       );
 
   factory PlayerEntity.fromJson(Map<String, dynamic> json) => _$PlayerEntityFromJson(json);

@@ -84,7 +84,10 @@ class FirebasePersistence extends DatabasePersistence {
     }
   }
 
-  Future<PlayerEntity> _createNewPlayer({required String playerId, String? playerNick}) async {
+  Future<PlayerEntity> _createNewPlayer({
+    required String playerId,
+    String? playerNick,
+  }) async {
     late String nick;
 
     if (playerNick != null) {
@@ -95,7 +98,7 @@ class FirebasePersistence extends DatabasePersistence {
       nick = 'Eco$number';
     }
 
-    final newPlayer = PlayerEntity.empty(nick: nick);
+    final newPlayer = PlayerEntity.empty(nick: nick, id: playerId);
     await _playersRef.doc(playerId).set(newPlayer.toJson());
     return newPlayer;
   }

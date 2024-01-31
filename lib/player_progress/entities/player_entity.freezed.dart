@@ -22,6 +22,7 @@ PlayerEntity _$PlayerEntityFromJson(Map<String, dynamic> json) {
 mixin _$PlayerEntity {
   ChallengesEntity get challengesScores => throw _privateConstructorUsedError;
   String get nick => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $PlayerEntityCopyWith<$Res> {
           PlayerEntity value, $Res Function(PlayerEntity) then) =
       _$PlayerEntityCopyWithImpl<$Res, PlayerEntity>;
   @useResult
-  $Res call({ChallengesEntity challengesScores, String nick});
+  $Res call({ChallengesEntity challengesScores, String nick, String id});
 
   $ChallengesEntityCopyWith<$Res> get challengesScores;
 }
@@ -55,6 +56,7 @@ class _$PlayerEntityCopyWithImpl<$Res, $Val extends PlayerEntity>
   $Res call({
     Object? challengesScores = null,
     Object? nick = null,
+    Object? id = null,
   }) {
     return _then(_value.copyWith(
       challengesScores: null == challengesScores
@@ -64,6 +66,10 @@ class _$PlayerEntityCopyWithImpl<$Res, $Val extends PlayerEntity>
       nick: null == nick
           ? _value.nick
           : nick // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -85,7 +91,7 @@ abstract class _$$PlayerEntityImplCopyWith<$Res>
       __$$PlayerEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ChallengesEntity challengesScores, String nick});
+  $Res call({ChallengesEntity challengesScores, String nick, String id});
 
   @override
   $ChallengesEntityCopyWith<$Res> get challengesScores;
@@ -104,6 +110,7 @@ class __$$PlayerEntityImplCopyWithImpl<$Res>
   $Res call({
     Object? challengesScores = null,
     Object? nick = null,
+    Object? id = null,
   }) {
     return _then(_$PlayerEntityImpl(
       challengesScores: null == challengesScores
@@ -114,6 +121,10 @@ class __$$PlayerEntityImplCopyWithImpl<$Res>
           ? _value.nick
           : nick // ignore: cast_nullable_to_non_nullable
               as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -122,7 +133,8 @@ class __$$PlayerEntityImplCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$PlayerEntityImpl extends _PlayerEntity {
-  const _$PlayerEntityImpl({required this.challengesScores, required this.nick})
+  const _$PlayerEntityImpl(
+      {required this.challengesScores, required this.nick, required this.id})
       : super._();
 
   factory _$PlayerEntityImpl.fromJson(Map<String, dynamic> json) =>
@@ -132,10 +144,12 @@ class _$PlayerEntityImpl extends _PlayerEntity {
   final ChallengesEntity challengesScores;
   @override
   final String nick;
+  @override
+  final String id;
 
   @override
   String toString() {
-    return 'PlayerEntity(challengesScores: $challengesScores, nick: $nick)';
+    return 'PlayerEntity(challengesScores: $challengesScores, nick: $nick, id: $id)';
   }
 
   @override
@@ -145,12 +159,13 @@ class _$PlayerEntityImpl extends _PlayerEntity {
             other is _$PlayerEntityImpl &&
             (identical(other.challengesScores, challengesScores) ||
                 other.challengesScores == challengesScores) &&
-            (identical(other.nick, nick) || other.nick == nick));
+            (identical(other.nick, nick) || other.nick == nick) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, challengesScores, nick);
+  int get hashCode => Object.hash(runtimeType, challengesScores, nick, id);
 
   @JsonKey(ignore: true)
   @override
@@ -169,7 +184,8 @@ class _$PlayerEntityImpl extends _PlayerEntity {
 abstract class _PlayerEntity extends PlayerEntity {
   const factory _PlayerEntity(
       {required final ChallengesEntity challengesScores,
-      required final String nick}) = _$PlayerEntityImpl;
+      required final String nick,
+      required final String id}) = _$PlayerEntityImpl;
   const _PlayerEntity._() : super._();
 
   factory _PlayerEntity.fromJson(Map<String, dynamic> json) =
@@ -179,6 +195,8 @@ abstract class _PlayerEntity extends PlayerEntity {
   ChallengesEntity get challengesScores;
   @override
   String get nick;
+  @override
+  String get id;
   @override
   @JsonKey(ignore: true)
   _$$PlayerEntityImplCopyWith<_$PlayerEntityImpl> get copyWith =>

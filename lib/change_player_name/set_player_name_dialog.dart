@@ -1,8 +1,8 @@
-import 'package:endless_runner/change_player_name/change_player_name_controller.dart';
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/common/common_dialog.dart';
 import 'package:endless_runner/common/ribbon_header.dart';
 import 'package:endless_runner/leaderboard/leaderboard_screen.dart';
+import 'package:endless_runner/player_progress/player_progress_controller.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:endless_runner/style/main_button.dart';
 import 'package:endless_runner/style/palette.dart';
@@ -95,7 +95,7 @@ class _SetPlayerNameDialogState extends State<SetPlayerNameDialog> {
 
   Future<void> _updateUserName() async {
     final username = _textController.text.trim();
-    await context.read<ChangePlayerNameController>().updateUserName(username: username);
+    await context.read<PlayerProgressController>().updateUserName(username: username);
 
     if (!context.mounted) return;
     context.go(LeaderboardScreen.routePath, extra: true);
