@@ -8,10 +8,11 @@ import 'package:endless_runner/challenges/solar_panel_scratcher_challenge/solar_
 import 'package:endless_runner/challenges/trees_challenge/trees_challenge_screen.dart';
 import 'package:endless_runner/common/dialog_helper.dart';
 import 'package:endless_runner/common/game_progress_indicator.dart';
+import 'package:endless_runner/common/google_wallet_demo.dart';
 import 'package:endless_runner/common/points_counter.dart';
+import 'package:endless_runner/leaderboard/leaderboard_screen.dart';
 import 'package:endless_runner/main_menu/tutorial/onboarding_flow.dart';
 import 'package:endless_runner/player_progress/player_progress_controller.dart';
-import 'package:endless_runner/common/google_wallet_demo.dart';
 import 'package:endless_runner/settings/settings_dialog.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:flutter/material.dart';
@@ -139,6 +140,11 @@ class MainMenuScreen extends StatelessWidget {
               extra: offset,
             ),
             text: 'Plant trees',
+          ),
+          gap10,
+          MainButton.secondary(
+            onPressed: (_) => context.push(LeaderboardScreen.routePath),
+            text: 'Leaderboard',
           ),
         ],
       ),

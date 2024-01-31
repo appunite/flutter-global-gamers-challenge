@@ -9,7 +9,9 @@ import 'package:endless_runner/player_progress/persistence/database_persistence.
 import 'package:flutter/widgets.dart';
 
 class FirebasePersistence extends DatabasePersistence {
-  FirebasePersistence({FirebaseFirestore? firestore}) : _firestore = firestore ?? FirebaseFirestore.instance {
+  FirebasePersistence({
+    FirebaseFirestore? firestore,
+  }) : _firestore = firestore ?? FirebaseFirestore.instance {
     _playersRef = _firestore.collection(usersCollection);
   }
 
@@ -20,7 +22,10 @@ class FirebasePersistence extends DatabasePersistence {
   static const String usersCollection = 'users';
 
   @override
-  Future<PlayerEntity> getPlayerEntity({required String playerId, String? playerNick}) async {
+  Future<PlayerEntity> getPlayerEntity({
+    required String playerId,
+    String? playerNick,
+  }) async {
     try {
       final playerDoc = await _playersRef.doc(playerId).get();
       if (playerDoc.exists) {
@@ -93,5 +98,40 @@ class FirebasePersistence extends DatabasePersistence {
     final newPlayer = PlayerEntity.empty(nick: nick);
     await _playersRef.doc(playerId).set(newPlayer.toJson());
     return newPlayer;
+  }
+
+  @override
+  Future<List<PlayerEntity>> getLeaderboard() async {
+    try {
+      final QuerySnapshot querySnapshot = await _playersRef.get();
+      final List<PlayerEntity> players = querySnapshot.docs.map((doc) {
+        return PlayerEntity.fromJson(doc.data() as Map<String, dynamic>);
+      }).toList();
+
+      players.sort((a, b) => b.getAllChallengesScores().compareTo(a.getAllChallengesScores()));
+
+      return players;
+    } catch (e, stack) {
+      debugPrintStack(label: e.toString(), stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> updateUsername({
+    required String playerId,
+    required String username,
+  }) async {
+    try {
+      final playerDoc = await _playersRef.doc(playerId).get();
+      if (playerDoc.exists) {
+        await _playersRef.doc(playerId).update({
+          'nick': username,
+        });
+      }
+    } catch (e, stack) {
+      debugPrintStack(label: e.toString(), stackTrace: stack);
+      rethrow;
+    }
   }
 }

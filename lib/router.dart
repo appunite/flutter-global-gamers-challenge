@@ -7,6 +7,7 @@ import 'package:endless_runner/challenges/solar_panel_scratcher_challenge/solar_
 import 'package:endless_runner/challenges/trees_challenge/challenge_summary_entity.dart';
 import 'package:endless_runner/challenges/trees_challenge/trees_challenge_screen.dart';
 import 'package:endless_runner/common/google_wallet_demo.dart';
+import 'package:endless_runner/leaderboard/leaderboard_screen.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -71,6 +72,12 @@ final router = GoRouter(
         child: const GoogleWalletDemoScreen(
           key: Key('google-wallet-demo'),
         ),
+      ),
+    ),
+    GoRoute(
+      path: LeaderboardScreen.routePath,
+      builder: (context, state) => const LeaderboardScreen(
+        key: Key('leaderboard'),
       ),
     ),
     GoRoute(

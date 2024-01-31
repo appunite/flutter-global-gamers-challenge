@@ -29,19 +29,28 @@ mixin _$ChallengesEntity {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ChallengesEntityCopyWith<ChallengesEntity> get copyWith => throw _privateConstructorUsedError;
+  $ChallengesEntityCopyWith<ChallengesEntity> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ChallengesEntityCopyWith<$Res> {
-  factory $ChallengesEntityCopyWith(ChallengesEntity value, $Res Function(ChallengesEntity) then) =
+  factory $ChallengesEntityCopyWith(
+          ChallengesEntity value, $Res Function(ChallengesEntity) then) =
       _$ChallengesEntityCopyWithImpl<$Res, ChallengesEntity>;
   @useResult
-  $Res call({int? city, int? ocean, int? pipes, int? recycling, int? solarPanel, int? trees});
+  $Res call(
+      {int? city,
+      int? ocean,
+      int? pipes,
+      int? recycling,
+      int? solarPanel,
+      int? trees});
 }
 
 /// @nodoc
-class _$ChallengesEntityCopyWithImpl<$Res, $Val extends ChallengesEntity> implements $ChallengesEntityCopyWith<$Res> {
+class _$ChallengesEntityCopyWithImpl<$Res, $Val extends ChallengesEntity>
+    implements $ChallengesEntityCopyWith<$Res> {
   _$ChallengesEntityCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -89,18 +98,28 @@ class _$ChallengesEntityCopyWithImpl<$Res, $Val extends ChallengesEntity> implem
 }
 
 /// @nodoc
-abstract class _$$ChallengesEntityImplCopyWith<$Res> implements $ChallengesEntityCopyWith<$Res> {
-  factory _$$ChallengesEntityImplCopyWith(_$ChallengesEntityImpl value, $Res Function(_$ChallengesEntityImpl) then) =
+abstract class _$$ChallengesEntityImplCopyWith<$Res>
+    implements $ChallengesEntityCopyWith<$Res> {
+  factory _$$ChallengesEntityImplCopyWith(_$ChallengesEntityImpl value,
+          $Res Function(_$ChallengesEntityImpl) then) =
       __$$ChallengesEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? city, int? ocean, int? pipes, int? recycling, int? solarPanel, int? trees});
+  $Res call(
+      {int? city,
+      int? ocean,
+      int? pipes,
+      int? recycling,
+      int? solarPanel,
+      int? trees});
 }
 
 /// @nodoc
-class __$$ChallengesEntityImplCopyWithImpl<$Res> extends _$ChallengesEntityCopyWithImpl<$Res, _$ChallengesEntityImpl>
+class __$$ChallengesEntityImplCopyWithImpl<$Res>
+    extends _$ChallengesEntityCopyWithImpl<$Res, _$ChallengesEntityImpl>
     implements _$$ChallengesEntityImplCopyWith<$Res> {
-  __$$ChallengesEntityImplCopyWithImpl(_$ChallengesEntityImpl _value, $Res Function(_$ChallengesEntityImpl) _then)
+  __$$ChallengesEntityImplCopyWithImpl(_$ChallengesEntityImpl _value,
+      $Res Function(_$ChallengesEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -145,9 +164,16 @@ class __$$ChallengesEntityImplCopyWithImpl<$Res> extends _$ChallengesEntityCopyW
 /// @nodoc
 @JsonSerializable()
 class _$ChallengesEntityImpl implements _ChallengesEntity {
-  const _$ChallengesEntityImpl({this.city, this.ocean, this.pipes, this.recycling, this.solarPanel, this.trees});
+  const _$ChallengesEntityImpl(
+      {this.city,
+      this.ocean,
+      this.pipes,
+      this.recycling,
+      this.solarPanel,
+      this.trees});
 
-  factory _$ChallengesEntityImpl.fromJson(Map<String, dynamic> json) => _$$ChallengesEntityImplFromJson(json);
+  factory _$ChallengesEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChallengesEntityImplFromJson(json);
 
   @override
   final int? city;
@@ -175,20 +201,24 @@ class _$ChallengesEntityImpl implements _ChallengesEntity {
             (identical(other.city, city) || other.city == city) &&
             (identical(other.ocean, ocean) || other.ocean == ocean) &&
             (identical(other.pipes, pipes) || other.pipes == pipes) &&
-            (identical(other.recycling, recycling) || other.recycling == recycling) &&
-            (identical(other.solarPanel, solarPanel) || other.solarPanel == solarPanel) &&
+            (identical(other.recycling, recycling) ||
+                other.recycling == recycling) &&
+            (identical(other.solarPanel, solarPanel) ||
+                other.solarPanel == solarPanel) &&
             (identical(other.trees, trees) || other.trees == trees));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, city, ocean, pipes, recycling, solarPanel, trees);
+  int get hashCode => Object.hash(
+      runtimeType, city, ocean, pipes, recycling, solarPanel, trees);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ChallengesEntityImplCopyWith<_$ChallengesEntityImpl> get copyWith =>
-      __$$ChallengesEntityImplCopyWithImpl<_$ChallengesEntityImpl>(this, _$identity);
+      __$$ChallengesEntityImplCopyWithImpl<_$ChallengesEntityImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -207,7 +237,8 @@ abstract class _ChallengesEntity implements ChallengesEntity {
       final int? solarPanel,
       final int? trees}) = _$ChallengesEntityImpl;
 
-  factory _ChallengesEntity.fromJson(Map<String, dynamic> json) = _$ChallengesEntityImpl.fromJson;
+  factory _ChallengesEntity.fromJson(Map<String, dynamic> json) =
+      _$ChallengesEntityImpl.fromJson;
 
   @override
   int? get city;
@@ -223,5 +254,6 @@ abstract class _ChallengesEntity implements ChallengesEntity {
   int? get trees;
   @override
   @JsonKey(ignore: true)
-  _$$ChallengesEntityImplCopyWith<_$ChallengesEntityImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$ChallengesEntityImplCopyWith<_$ChallengesEntityImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

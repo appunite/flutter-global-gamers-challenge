@@ -1,13 +1,12 @@
 import 'package:endless_runner/challenges/challenge_type_enum.dart';
+import 'package:endless_runner/challenges/common_widgets/introduction_container.dart';
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/common/common_dialog.dart';
 import 'package:endless_runner/common/ribbon_header.dart';
-import 'package:endless_runner/style/const_values.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:endless_runner/style/main_button.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class ChallengeIntroductionDialog extends StatelessWidget {
   const ChallengeIntroductionDialog({
@@ -64,46 +63,3 @@ class ChallengeIntroductionDialog extends StatelessWidget {
   }
 }
 
-class InstructionContainer extends StatelessWidget {
-  const InstructionContainer({
-    super.key,
-    required this.text,
-    //TODO required later
-    this.assetPath,
-  });
-
-  final String text;
-  final String? assetPath;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: borderRadius12,
-        color: Palette.secondaryLight,
-      ),
-      child: Row(
-        children: [
-          if (assetPath != null)
-            ClipRRect(
-              borderRadius: borderRadius12,
-              child: SvgPicture.asset(
-                assetPath!,
-                width: 65,
-                height: 70,
-              ),
-            ),
-          Flexible(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-              child: Text(
-                text,
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}

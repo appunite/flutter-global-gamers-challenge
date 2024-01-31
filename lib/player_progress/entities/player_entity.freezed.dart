@@ -25,12 +25,14 @@ mixin _$PlayerEntity {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PlayerEntityCopyWith<PlayerEntity> get copyWith => throw _privateConstructorUsedError;
+  $PlayerEntityCopyWith<PlayerEntity> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $PlayerEntityCopyWith<$Res> {
-  factory $PlayerEntityCopyWith(PlayerEntity value, $Res Function(PlayerEntity) then) =
+  factory $PlayerEntityCopyWith(
+          PlayerEntity value, $Res Function(PlayerEntity) then) =
       _$PlayerEntityCopyWithImpl<$Res, PlayerEntity>;
   @useResult
   $Res call({ChallengesEntity challengesScores, String nick});
@@ -39,7 +41,8 @@ abstract class $PlayerEntityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PlayerEntityCopyWithImpl<$Res, $Val extends PlayerEntity> implements $PlayerEntityCopyWith<$Res> {
+class _$PlayerEntityCopyWithImpl<$Res, $Val extends PlayerEntity>
+    implements $PlayerEntityCopyWith<$Res> {
   _$PlayerEntityCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -75,8 +78,10 @@ class _$PlayerEntityCopyWithImpl<$Res, $Val extends PlayerEntity> implements $Pl
 }
 
 /// @nodoc
-abstract class _$$PlayerEntityImplCopyWith<$Res> implements $PlayerEntityCopyWith<$Res> {
-  factory _$$PlayerEntityImplCopyWith(_$PlayerEntityImpl value, $Res Function(_$PlayerEntityImpl) then) =
+abstract class _$$PlayerEntityImplCopyWith<$Res>
+    implements $PlayerEntityCopyWith<$Res> {
+  factory _$$PlayerEntityImplCopyWith(
+          _$PlayerEntityImpl value, $Res Function(_$PlayerEntityImpl) then) =
       __$$PlayerEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -87,9 +92,11 @@ abstract class _$$PlayerEntityImplCopyWith<$Res> implements $PlayerEntityCopyWit
 }
 
 /// @nodoc
-class __$$PlayerEntityImplCopyWithImpl<$Res> extends _$PlayerEntityCopyWithImpl<$Res, _$PlayerEntityImpl>
+class __$$PlayerEntityImplCopyWithImpl<$Res>
+    extends _$PlayerEntityCopyWithImpl<$Res, _$PlayerEntityImpl>
     implements _$$PlayerEntityImplCopyWith<$Res> {
-  __$$PlayerEntityImplCopyWithImpl(_$PlayerEntityImpl _value, $Res Function(_$PlayerEntityImpl) _then)
+  __$$PlayerEntityImplCopyWithImpl(
+      _$PlayerEntityImpl _value, $Res Function(_$PlayerEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -114,10 +121,12 @@ class __$$PlayerEntityImplCopyWithImpl<$Res> extends _$PlayerEntityCopyWithImpl<
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$PlayerEntityImpl implements _PlayerEntity {
-  const _$PlayerEntityImpl({required this.challengesScores, required this.nick});
+class _$PlayerEntityImpl extends _PlayerEntity {
+  const _$PlayerEntityImpl({required this.challengesScores, required this.nick})
+      : super._();
 
-  factory _$PlayerEntityImpl.fromJson(Map<String, dynamic> json) => _$$PlayerEntityImplFromJson(json);
+  factory _$PlayerEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PlayerEntityImplFromJson(json);
 
   @override
   final ChallengesEntity challengesScores;
@@ -134,7 +143,8 @@ class _$PlayerEntityImpl implements _PlayerEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlayerEntityImpl &&
-            (identical(other.challengesScores, challengesScores) || other.challengesScores == challengesScores) &&
+            (identical(other.challengesScores, challengesScores) ||
+                other.challengesScores == challengesScores) &&
             (identical(other.nick, nick) || other.nick == nick));
   }
 
@@ -156,11 +166,14 @@ class _$PlayerEntityImpl implements _PlayerEntity {
   }
 }
 
-abstract class _PlayerEntity implements PlayerEntity {
-  const factory _PlayerEntity({required final ChallengesEntity challengesScores, required final String nick}) =
-      _$PlayerEntityImpl;
+abstract class _PlayerEntity extends PlayerEntity {
+  const factory _PlayerEntity(
+      {required final ChallengesEntity challengesScores,
+      required final String nick}) = _$PlayerEntityImpl;
+  const _PlayerEntity._() : super._();
 
-  factory _PlayerEntity.fromJson(Map<String, dynamic> json) = _$PlayerEntityImpl.fromJson;
+  factory _PlayerEntity.fromJson(Map<String, dynamic> json) =
+      _$PlayerEntityImpl.fromJson;
 
   @override
   ChallengesEntity get challengesScores;
@@ -168,5 +181,6 @@ abstract class _PlayerEntity implements PlayerEntity {
   String get nick;
   @override
   @JsonKey(ignore: true)
-  _$$PlayerEntityImplCopyWith<_$PlayerEntityImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$PlayerEntityImplCopyWith<_$PlayerEntityImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
