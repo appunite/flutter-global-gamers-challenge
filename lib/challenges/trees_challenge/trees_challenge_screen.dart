@@ -59,7 +59,7 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _showIntroDialog();
+      _showIntroDialog(shouldSetCountDown: true);
 
       _challengeController = context.read<ChallengeController>();
       _challengeController.addListener(_listener);
@@ -86,26 +86,14 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
     );
   }
 
-  void _showIntroDialog() {
+  void _showIntroDialog({required bool shouldSetCountDown}) {
     DialogHelper.show(
       context,
       ChallengeIntroductionDialog(
         challenge: ChallengeType.trees,
         onButtonPressed: () {
           context.pop();
-          context.read<ChallengeController>().setCountDown(visible: true);
-        },
-      ),
-    );
-  }
-
-  void _showIntroDialogWithoutCountDown() {
-    DialogHelper.show(
-      context,
-      ChallengeIntroductionDialog(
-        challenge: ChallengeType.trees,
-        onButtonPressed: () {
-          context.pop();
+          if (shouldSetCountDown) context.read<ChallengeController>().setCountDown(visible: true);
         },
       ),
     );
@@ -173,7 +161,7 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
                   width: 40,
                   height: 40,
                   padding: const EdgeInsets.all(8),
-                  onTap: () => _showIntroDialogWithoutCountDown(),
+                  onTap: () => _showIntroDialog(shouldSetCountDown: false),
                 )
               ],
             ),

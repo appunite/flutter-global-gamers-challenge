@@ -97,9 +97,8 @@ class _SolarPanelChallengeScreenState extends State<SolarPanelChallengeScreen> {
                 ),
               ),
             ),
-            Positioned(
-              bottom: 32,
-              left: 24,
+            Align(
+              alignment: Alignment.bottomLeft,
               child: GameIconButton(
                 onTap: () => _showExitDialog(),
                 iconName: AssetPaths.iconsMap,

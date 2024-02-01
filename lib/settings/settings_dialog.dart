@@ -37,7 +37,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
         mainAxisSize: MainAxisSize.min,
         children: [
           gap24,
-          const UserNameSettingsRow(),
+          const _UserNameSettingsRow(),
           gap12,
           ValueListenableBuilder<bool>(
             valueListenable: settings.musicOn,
@@ -145,8 +145,8 @@ class _SettingsTile extends StatelessWidget {
   }
 }
 
-class UserNameSettingsRow extends StatelessWidget {
-  const UserNameSettingsRow({super.key});
+class _UserNameSettingsRow extends StatelessWidget {
+  const _UserNameSettingsRow();
 
   @override
   Widget build(BuildContext context) {
@@ -185,7 +185,7 @@ class UserNameSettingsRow extends StatelessWidget {
             width: 80,
             onPressed: (_) {
               context.pop();
-              DialogHelper.showWithWidgetBinding(
+              DialogHelper.show(
                 context,
                 const SetPlayerNameDialog(),
               );

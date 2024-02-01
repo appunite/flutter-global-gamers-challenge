@@ -77,7 +77,7 @@ final router = GoRouter(
       path: LeaderboardScreen.routePath,
       builder: (context, state) => LeaderboardScreen(
         key: const Key('leaderboard'),
-        shouldDisplayChangedUsernameSnackBard: state.extra! as bool,
+        shouldDisplayChangedUsernameSnackBar: state.extra! as bool,
       ),
     ),
     GoRoute(

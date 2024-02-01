@@ -88,9 +88,8 @@ class _RecyclingChallengeScreenBodyState extends State<_RecyclingChallengeScreen
                     onTap: () => _showIntroDialog(),
                   ),
                 ),
-                Positioned(
-                  bottom: 32,
-                  left: 24,
+                Align(
+                  alignment: Alignment.bottomLeft,
                   child: GameIconButton(
                     onTap: () => _showExitDialog(),
                     iconName: AssetPaths.iconsMap,
@@ -117,7 +116,7 @@ class _RecyclingChallengeScreenBodyState extends State<_RecyclingChallengeScreen
   }
 
   void _showExitDialog() {
-    DialogHelper.showWithWidgetBinding(
+    DialogHelper.show(
       context,
       const ExitChallengeDialog(),
     );

@@ -16,12 +16,12 @@ import 'package:provider/provider.dart';
 class LeaderboardScreen extends StatefulWidget {
   const LeaderboardScreen({
     super.key,
-    required this.shouldDisplayChangedUsernameSnackBard,
+    this.shouldDisplayChangedUsernameSnackBar = false,
   });
 
   static const String routePath = '/leaderboard';
 
-  final bool shouldDisplayChangedUsernameSnackBard;
+  final bool shouldDisplayChangedUsernameSnackBar;
 
   @override
   State<LeaderboardScreen> createState() => _LeaderboardScreenState();
@@ -36,7 +36,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
   }
 
   void _showSnackBar(BuildContext context) {
-    if (widget.shouldDisplayChangedUsernameSnackBard) {
+    if (widget.shouldDisplayChangedUsernameSnackBar) {
       ScaffoldMessenger.of(context).showSnackBar(
         CustomSnackBarBuilder(
           icon: SvgPicture.asset(
