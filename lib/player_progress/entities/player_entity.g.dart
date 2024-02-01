@@ -6,15 +6,14 @@ part of 'player_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PlayerEntityImpl _$$PlayerEntityImplFromJson(Map<String, dynamic> json) =>
-    _$PlayerEntityImpl(
-      challengesScores: ChallengesEntity.fromJson(
-          json['challengesScores'] as Map<String, dynamic>),
+_$PlayerEntityImpl _$$PlayerEntityImplFromJson(Map<String, dynamic> json) => _$PlayerEntityImpl(
+      challengesScores: ChallengesEntity.fromJson(json['challengesScores'] as Map<String, dynamic>),
       nick: json['nick'] as String,
+      id: json['id'] as String,
     );
 
-Map<String, dynamic> _$$PlayerEntityImplToJson(_$PlayerEntityImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$PlayerEntityImplToJson(_$PlayerEntityImpl instance) => <String, dynamic>{
       'challengesScores': instance.challengesScores.toJson(),
       'nick': instance.nick,
+      'id': instance.id,
     };

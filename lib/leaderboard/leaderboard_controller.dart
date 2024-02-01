@@ -19,12 +19,11 @@ class LeaderboardController {
 
   Future<void> loadLeaderboardData() async {
     final playerId = await _localStorage.getPlayerIdKey();
-    final player = await _databaseStorage.getPlayerEntity(playerId: playerId);
     final players = await _databaseStorage.getLeaderboard();
 
     leaderboard.value = LeaderboardEntity(
       players: players,
-      player: player,
+      player: players.firstWhere((player) => player.id == playerId),
     );
   }
 }

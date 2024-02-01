@@ -11,6 +11,8 @@ import 'package:endless_runner/challenges/pipes_challenge/pipes_grid.dart';
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/common/background_widget.dart';
 import 'package:endless_runner/common/dialog_helper.dart';
+import 'package:endless_runner/common/exit_challenge_dialog.dart';
+import 'package:endless_runner/common/icon_button.dart';
 import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
 import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
 import 'package:flutter/material.dart';
@@ -145,14 +147,26 @@ class _PipesChallengeBodyScreenState extends State<_PipesChallengeBodyScreen> {
             timeInSeconds: _timeInSeconds,
             countDown: false,
           ),
-          body: const Stack(
+          body: Stack(
             fit: StackFit.expand,
             alignment: Alignment.topCenter,
             children: [
-              BackgroundWidget(assetPath: AssetPaths.pipesBackground),
-              Padding(
+              const BackgroundWidget(assetPath: AssetPaths.pipesBackground),
+              const Padding(
                 padding: EdgeInsets.only(top: kToolbarHeight + 8),
                 child: PipesGrid(),
+              ),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 36, bottom: 24),
+                  child: GameIconButton(
+                    onTap: () => _showExitDialog(),
+                    iconName: AssetPaths.iconsMap,
+                    width: 56,
+                    height: 56,
+                  ),
+                ),
               ),
             ],
           ),
@@ -166,5 +180,12 @@ class _PipesChallengeBodyScreenState extends State<_PipesChallengeBodyScreen> {
     _timer?.cancel();
     _challengeController.dispose();
     super.dispose();
+  }
+
+  void _showExitDialog() {
+    DialogHelper.showWithWidgetBinding(
+      context,
+      const ExitChallengeDialog(),
+    );
   }
 }
