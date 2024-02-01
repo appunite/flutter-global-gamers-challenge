@@ -161,14 +161,16 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
                   height: 24,
                 ),
               ),
-              Positioned(
-                bottom: 32,
-                left: 24,
-                child: GameIconButton(
-                  onTap: () => _showExitDialog(),
-                  iconName: AssetPaths.iconsMap,
-                  width: 56,
-                  height: 56,
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 36, bottom: 24),
+                  child: GameIconButton(
+                    onTap: () => _showExitDialog(),
+                    iconName: AssetPaths.iconsMap,
+                    width: 56,
+                    height: 56,
+                  ),
                 ),
               ),
             ],

@@ -99,11 +99,14 @@ class _SolarPanelChallengeScreenState extends State<SolarPanelChallengeScreen> {
             ),
             Align(
               alignment: Alignment.bottomLeft,
-              child: GameIconButton(
-                onTap: () => _showExitDialog(),
-                iconName: AssetPaths.iconsMap,
-                width: 56,
-                height: 56,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 36, bottom: 24),
+                child: GameIconButton(
+                  onTap: () => _showExitDialog(),
+                  iconName: AssetPaths.iconsMap,
+                  width: 56,
+                  height: 56,
+                ),
               ),
             ),
           ],
