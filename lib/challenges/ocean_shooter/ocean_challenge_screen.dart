@@ -1,5 +1,6 @@
 import 'package:endless_runner/audio/audio_controller.dart';
 import 'package:endless_runner/challenges/ocean_shooter/components/enemy_creator.dart';
+import 'package:endless_runner/challenges/ocean_shooter/components/fire_boost_creator.dart';
 import 'package:endless_runner/challenges/ocean_shooter/components/ocean_shooter_background.dart';
 import 'package:endless_runner/challenges/ocean_shooter/components/player_component.dart';
 import 'package:flame/components.dart';
@@ -58,5 +59,8 @@ class OceanChallengeScreen extends FlameGame with PanDetector, HasCollisionDetec
 
   void increaseScore() {
     _score++;
+    if (_score == 30) {
+      add(FireBoostCreator(audioController: audioController));
+    }
   }
 }
