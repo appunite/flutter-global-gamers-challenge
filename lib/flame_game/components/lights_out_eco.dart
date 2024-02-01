@@ -1,37 +1,30 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flutter/animation.dart';
+import 'package:flutter/material.dart';
 
 import '../../audio/sounds.dart';
 import '../endless_runner.dart';
 import '../endless_world.dart';
-import '../effects/hurt_effect.dart';
 import '../effects/jump_effect.dart';
-import 'obstacle.dart';
-import 'point.dart';
+import 'lamp_point.dart';
 
-/// The [Player] is the component that the physical player of the game is
+/// The [LightsOutEco] is the component that the physical player of the game is
 /// controlling.
-class Player extends SpriteAnimationGroupComponent<PlayerState>
-    with
-        CollisionCallbacks,
-        HasWorldReference<EndlessWorld>,
-        HasGameReference<EndlessRunner> {
-  Player({
+class LightsOutEco extends SpriteAnimationGroupComponent<PlayerState>
+    with CollisionCallbacks, HasWorldReference<EndlessWorld>, HasGameReference<EndlessRunner> {
+  LightsOutEco({
     required this.addScore,
-    required this.resetScore,
     super.position,
   }) : super(size: Vector2.all(150), anchor: Anchor.center, priority: 1);
 
   final void Function({int amount}) addScore;
-  final VoidCallback resetScore;
 
   // The current velocity that the player has that comes from being affected by
   // the gravity. Defined in virtual pixels/s².
   double _gravityVelocity = 0;
 
   // The maximum length that the player can jump. Defined in virtual pixels.
-  final double _jumpLength = 600;
+  final double _jumpLength = 400;
 
   // Whether the player is currently in the air, this can be used to restrict
   // movement for example.
@@ -108,32 +101,28 @@ class Player extends SpriteAnimationGroupComponent<PlayerState>
     PositionComponent other,
   ) {
     super.onCollisionStart(intersectionPoints, other);
-    // When the player collides with an obstacle it should lose all its points.
-    if (other is Obstacle) {
-      game.audioController.playSfx(SfxType.damage);
-      resetScore();
-      add(HurtEffect());
-    } else if (other is Point) {
-      // When the player collides with a point it should gain a point and remove
-      // the `Point` from the game.
+
+    if (other is Lamp) {
       game.audioController.playSfx(SfxType.score);
-      other.removeFromParent();
+      //TODO change asset?
+      other.setColor(Colors.white);
       addScore();
     }
   }
 
-  /// [towards] should be a normalized vector that points in the direction that
-  /// the player should jump.
-  void jump(Vector2 towards) {
+  void jump() {
     current = PlayerState.jumping;
-    // Since `towards` is normalized we need to scale (multiply) that vector by
-    // the length that we want the jump to have.
-    final jumpEffect = JumpEffect(towards..scaleTo(_jumpLength));
 
-    // We only allow jumps when the player isn't already in the air.
+    late JumpEffect jumpEffect;
+    if (inAir) {
+      jumpEffect = JumpEffect(Vector2(0, -_jumpLength)..scaleTo(_jumpLength));
+    } else {
+      jumpEffect = JumpEffect(Vector2(0, -_jumpLength / 2 - 100));
+    }
+    add(jumpEffect);
+
     if (!inAir) {
       game.audioController.playSfx(SfxType.jump);
-      add(jumpEffect);
     }
   }
 }

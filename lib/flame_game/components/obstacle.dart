@@ -14,7 +14,7 @@ class Obstacle extends SpriteComponent with HasWorldReference<EndlessWorld> {
         _srcPosition = Vector2.all(32),
         super(
           size: Vector2.all(150),
-          anchor: Anchor.bottomLeft,
+          anchor: Anchor.center,
         );
 
   Obstacle.tall({super.position})
@@ -22,7 +22,7 @@ class Obstacle extends SpriteComponent with HasWorldReference<EndlessWorld> {
         _srcPosition = Vector2.zero(),
         super(
           size: Vector2(200, 250),
-          anchor: Anchor.bottomLeft,
+          anchor: Anchor.center,
         );
 
   Obstacle.wide({super.position})
@@ -30,7 +30,7 @@ class Obstacle extends SpriteComponent with HasWorldReference<EndlessWorld> {
         _srcPosition = Vector2(48, 32),
         super(
           size: Vector2(200, 100),
-          anchor: Anchor.bottomLeft,
+          anchor: Anchor.center,
         );
 
   /// Generates a random obstacle of type [ObstacleType].
@@ -45,11 +45,11 @@ class Obstacle extends SpriteComponent with HasWorldReference<EndlessWorld> {
     final obstacleType = values.random(random);
     switch (obstacleType) {
       case ObstacleType.small:
-        return Obstacle.small(position: position);
+      // return Obstacle.small(position: position);
       case ObstacleType.tall:
-        return Obstacle.tall(position: position);
       case ObstacleType.wide:
-        return Obstacle.wide(position: position);
+        // return Obstacle.wide(position: position);
+        return Obstacle.tall(position: position);
     }
   }
 
@@ -65,6 +65,7 @@ class Obstacle extends SpriteComponent with HasWorldReference<EndlessWorld> {
       srcSize: _srcSize,
       srcPosition: _srcPosition,
     );
+
     // When adding a RectangleHitbox without any arguments it automatically
     // fills up the size of the component.
     add(RectangleHitbox());

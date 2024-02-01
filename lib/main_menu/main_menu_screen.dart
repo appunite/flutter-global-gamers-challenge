@@ -9,6 +9,7 @@ import 'package:endless_runner/common/dialog_helper.dart';
 import 'package:endless_runner/common/game_progress_indicator.dart';
 import 'package:endless_runner/common/google_wallet_demo.dart';
 import 'package:endless_runner/common/points_counter.dart';
+import 'package:endless_runner/flame_game/lights_out_challenge_screen.dart';
 import 'package:endless_runner/leaderboard/leaderboard_screen.dart';
 import 'package:endless_runner/main_menu/tutorial/onboarding_flow.dart';
 import 'package:endless_runner/player_progress/entities/challenges_entity.dart';
@@ -72,9 +73,10 @@ class MainMenuScreen extends StatelessWidget {
             MainButton(
               onPressed: (_) {
                 audioController.playSfx(SfxType.buttonTap);
-                context.go('/play');
+                context.go(LightsOutChallengeScreen.routePath);
               },
               text: 'Play',
+              width: 300,
             ),
             gap10,
             MainButton(

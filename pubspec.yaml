@@ -59,6 +59,7 @@ flutter:
     - assets/animations/
     - assets/images/
     - assets/images/challenges/
+    - assets/images/challenges/lights_out/
     - assets/images/challenges/ocean_shooter/
     - assets/images/challenges/recycling/
     - assets/images/common/

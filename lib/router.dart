@@ -12,7 +12,7 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'flame_game/game_screen.dart';
+import 'flame_game/lights_out_challenge_screen.dart';
 import 'level_selection/levels.dart';
 import 'main_menu/main_menu_screen.dart';
 import 'style/page_transition.dart';
@@ -21,16 +21,16 @@ final router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => const MainMenuScreen(key: Key('main menu')),
-      routes: [
-        GoRoute(
-          path: 'play',
-          pageBuilder: (context, state) => buildPageTransition<void>(
-            key: const ValueKey('level'),
-            child: GameScreen(level: gameLevels[0]),
-          ),
-        ),
-      ],
+      builder: (context, state) => const MainMenuScreen(
+        key: Key('main menu'),
+      ),
+    ),
+    GoRoute(
+      path: LightsOutChallengeScreen.routePath,
+      pageBuilder: (context, state) => buildPageTransition<void>(
+        key: const ValueKey('lights-out-challenge'),
+        child: LightsOutChallengeScreen(level: gameLevels[0]),
+      ),
     ),
     GoRoute(
       path: SolarPanelChallengeScreen.routePath,
