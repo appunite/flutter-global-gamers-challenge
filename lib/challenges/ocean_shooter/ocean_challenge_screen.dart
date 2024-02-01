@@ -1,6 +1,7 @@
+import 'package:endless_runner/audio/audio_controller.dart';
 import 'package:endless_runner/challenges/ocean_shooter/components/enemy_creator.dart';
+import 'package:endless_runner/challenges/ocean_shooter/components/ocean_shooter_background.dart';
 import 'package:endless_runner/challenges/ocean_shooter/components/player_component.dart';
-import 'package:endless_runner/challenges/ocean_shooter/components/star_background_creator.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
@@ -8,15 +9,21 @@ import 'package:flame/game.dart';
 class OceanChallengeScreen extends FlameGame with PanDetector, HasCollisionDetection {
   static const String routePath = '/ocean-shooter-challenge';
 
+  OceanChallengeScreen({
+    required this.audioController,
+  });
+
   late final PlayerComponent player;
   late final TextComponent componentCounter;
   late final TextComponent scoreText;
+  late final AudioController audioController;
   late int _score = 0;
 
   @override
   Future<void> onLoad() async {
-    add(player = PlayerComponent());
     addAll([
+      OceanShooterBackground(),
+      player = PlayerComponent(audioController: audioController),
       FpsTextComponent(
         position: size - Vector2(0, 50),
         anchor: Anchor.bottomRight,
@@ -33,8 +40,7 @@ class OceanChallengeScreen extends FlameGame with PanDetector, HasCollisionDetec
       ),
     ]);
 
-    add(EnemyCreator());
-    add(StarBackGroundCreator());
+    add(EnemyCreator(audioController: audioController));
     player.beginFire();
   }
 

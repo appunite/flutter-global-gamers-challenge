@@ -34,6 +34,10 @@ List<String> soundTypeToFilename(SfxType type) {
       return const ['garbage.mp3'];
     case SfxType.wrongBin:
       return const ['wrong_bin.mp3'];
+    case SfxType.microplasticDestroyed:
+      return const ['microplasticDestroyed.mp3'];
+    case SfxType.shoot:
+      return const ['shoot.mp3'];
   }
 }
 
@@ -46,6 +50,8 @@ double soundTypeToVolume(SfxType type) {
     case SfxType.damage:
     case SfxType.hit:
     case SfxType.garbage:
+    case SfxType.shoot:
+    case SfxType.microplasticDestroyed:
     case SfxType.wrongBin:
       return 0.4;
     case SfxType.buttonTap:
@@ -62,4 +68,6 @@ enum SfxType {
   buttonTap,
   garbage,
   wrongBin,
+  microplasticDestroyed,
+  shoot,
 }

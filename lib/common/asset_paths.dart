@@ -5,6 +5,28 @@ class AssetPaths {
   static const String explosion = 'challenges/ocean_shooter/explosion.png';
   static const String player = 'challenges/ocean_shooter/player.png';
   static const String stars = 'challenges/ocean_shooter/stars.png';
+  static const String submarine = 'challenges/ocean_shooter/submarine.png';
+  static const String oceanShooterBackground = 'challenges/ocean_shooter/ocean_shooter_background.png';
+  static const String microplastic1 = 'challenges/ocean_shooter/microplastic_1.png';
+  static const String microplastic2 = 'challenges/ocean_shooter/microplastic_2.png';
+  static const String microplastic3 = 'challenges/ocean_shooter/microplastic_3.png';
+  static const String microplastic4 = 'challenges/ocean_shooter/microplastic_4.png';
+  static const String microplastic5 = 'challenges/ocean_shooter/microplastic_5.png';
+  static const String microplastic6 = 'challenges/ocean_shooter/microplastic_6.png';
+  static const String microplastic7 = 'challenges/ocean_shooter/microplastic_7.png';
+  static const String microplastic8 = 'challenges/ocean_shooter/microplastic_8.png';
+  static const String microplastic9 = 'challenges/ocean_shooter/microplastic_9.png';
+  static const String microplastic10 = 'challenges/ocean_shooter/microplastic_10.png';
+  static const String microplastic11 = 'challenges/ocean_shooter/microplastic_11.png';
+  static const String microplastic12 = 'challenges/ocean_shooter/microplastic_12.png';
+  static const String microplastic13 = 'challenges/ocean_shooter/microplastic_13.png';
+  static const String microplastic14 = 'challenges/ocean_shooter/microplastic_14.png';
+  static const String microplastic15 = 'challenges/ocean_shooter/microplastic_15.png';
+  static const String microplastic16 = 'challenges/ocean_shooter/microplastic_16.png';
+  static const String microplastic17 = 'challenges/ocean_shooter/microplastic_17.png';
+  static const String microplastic18 = 'challenges/ocean_shooter/microplastic_18.png';
+  static const String microplastic19 = 'challenges/ocean_shooter/microplastic_19.png';
+  static const String microplastic20 = 'challenges/ocean_shooter/microplastic_20.png';
 
   /// Recycling challenge items
   static const String apple = 'assets/images/challenges/recycling/apple.svg';

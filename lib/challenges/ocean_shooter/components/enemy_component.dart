@@ -1,8 +1,10 @@
 import 'dart:math';
 
+import 'package:endless_runner/audio/audio_controller.dart';
+import 'package:endless_runner/audio/sounds.dart';
 import 'package:endless_runner/challenges/ocean_shooter/components/explosion_component.dart';
+import 'package:endless_runner/challenges/ocean_shooter/components/microplastic_enum.dart';
 import 'package:endless_runner/challenges/ocean_shooter/ocean_challenge_screen.dart';
-import 'package:endless_runner/common/asset_paths.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
@@ -10,20 +12,30 @@ class EnemyComponent extends SpriteAnimationComponent with HasGameReference<Ocea
   static const speed = 150;
   static final Vector2 initialSize = Vector2.all(25);
 
-  EnemyComponent({required super.position}) : super(size: initialSize, anchor: Anchor.center);
+  EnemyComponent({
+    required this.audioController,
+    required super.position,
+  }) : super(
+          size: initialSize,
+          anchor: Anchor.center,
+        );
+
+  final AudioController audioController;
 
   @override
   Future<void> onLoad() async {
+    var randomMicroplastic = MicroplasticTypeEnum.random();
+
     animation = await game.loadSpriteAnimation(
-      AssetPaths.enemy,
+      randomMicroplastic.assetPath,
       SpriteAnimationData.sequenced(
-        stepTime: 0.2,
-        amount: 4,
-        textureSize: Vector2.all(16),
+        stepTime: 1,
+        amount: 1,
+        textureSize: Vector2.all(randomMicroplastic.size),
       ),
     );
     add(CircleHitbox(collisionType: CollisionType.passive));
-    angle = pi / 2;
+    angle = Random().nextDouble() * pi;
   }
 
   @override
@@ -40,5 +52,6 @@ class EnemyComponent extends SpriteAnimationComponent with HasGameReference<Ocea
 
     game.add(ExplosionComponent(position: position));
     game.increaseScore();
+    audioController.playSfx(SfxType.microplasticDestroyed);
   }
 }
