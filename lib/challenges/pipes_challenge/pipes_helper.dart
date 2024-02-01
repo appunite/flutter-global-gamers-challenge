@@ -4,7 +4,9 @@ class PipesHelper {
         ? index
         : index < 2 * itemsInRow
             ? index - itemsInRow
-            : index - 2 * itemsInRow;
+            : index < 3 * itemsInRow
+                ? index - 2 * itemsInRow
+                : index - 3 * itemsInRow;
   }
 
   static int getRowNumber(int index, int itemsInRow) {
@@ -12,6 +14,8 @@ class PipesHelper {
         ? 0
         : index < 2 * itemsInRow
             ? 1
-            : 2;
+            : index < 3 * itemsInRow
+                ? 2
+                : 3;
   }
 }

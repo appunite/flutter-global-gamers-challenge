@@ -10,57 +10,96 @@ class GarbageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
+      child: Stack(
+        fit: StackFit.expand,
+        alignment: Alignment.center,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              GarbageItemWidget(
-                garbageType: GarbageType.can,
-              ),
-              GarbageItemWidget(
-                garbageType: GarbageType.banana,
-              ),
-              GarbageItemWidget(
-                garbageType: GarbageType.plasticBottle,
-              ),
-            ],
+          Positioned(
+            top: 40,
+            child: GarbageItemWidget(
+              garbageType: GarbageType.canOrange,
+            ),
           ),
-          gap24,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GarbageItemWidget(
-                garbageType: GarbageType.diaper,
-              ),
-              GarbageItemWidget(
-                garbageType: GarbageType.documents,
-              ),
-              GarbageItemWidget(
-                garbageType: GarbageType.fishbones,
-              ),
-              GarbageItemWidget(
-                garbageType: GarbageType.lightbulb,
-              ),
-            ],
+          Positioned(
+            top: 50,
+            child: GarbageItemWidget(
+              garbageType: GarbageType.apple,
+            ),
           ),
-          gap24,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GarbageItemWidget(
-                garbageType: GarbageType.cardboard,
-              ),
-              GarbageItemWidget(
-                garbageType: GarbageType.apple,
-              ),
-              GarbageItemWidget(
-                garbageType: GarbageType.glassBottle,
-              ),
-            ],
+          Positioned(
+            top: 70,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GarbageItemWidget(
+                  garbageType: GarbageType.bag,
+                ),
+                GarbageItemWidget(
+                  garbageType: GarbageType.metalCan,
+                ),
+                GarbageItemWidget(
+                  garbageType: GarbageType.banana,
+                ),
+                GarbageItemWidget(
+                  garbageType: GarbageType.canPink,
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 90,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GarbageItemWidget(
+                  garbageType: GarbageType.glassBottle,
+                ),
+                GarbageItemWidget(
+                  garbageType: GarbageType.plasticBag,
+                ),
+                GarbageItemWidget(
+                  garbageType: GarbageType.can,
+                ),
+                GarbageItemWidget(
+                  garbageType: GarbageType.glass,
+                ),
+                GarbageItemWidget(
+                  garbageType: GarbageType.packaging,
+                ),
+                GarbageItemWidget(
+                  garbageType: GarbageType.waterBottle,
+                ),
+                GarbageItemWidget(
+                  garbageType: GarbageType.fishbones,
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 110,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GarbageItemWidget(
+                  garbageType: GarbageType.paper,
+                ),
+                GarbageItemWidget(
+                  garbageType: GarbageType.bread,
+                ),
+                GarbageItemWidget(
+                  garbageType: GarbageType.bigWater,
+                ),
+                GarbageItemWidget(
+                  garbageType: GarbageType.plasticBox,
+                ),
+                GarbageItemWidget(
+                  garbageType: GarbageType.glassJar,
+                ),
+                GarbageItemWidget(
+                  garbageType: GarbageType.watermelon,
+                ),
+              ],
+            ),
           ),
           gap24,
         ],

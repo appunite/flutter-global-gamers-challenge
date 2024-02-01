@@ -4,6 +4,7 @@ import 'package:endless_runner/common/ribbon_header.dart';
 import 'package:endless_runner/common/success_snack_bar.dart';
 import 'package:endless_runner/leaderboard/leaderboard_controller.dart';
 import 'package:endless_runner/leaderboard/widgets/leaderboard_list_tile.dart';
+import 'package:endless_runner/player_progress/entities/challenges_entity.dart';
 import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
 import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
 import 'package:endless_runner/style/gaps.dart';
@@ -103,7 +104,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                                           return LeaderboardListTile(
                                             index: index + 1,
                                             username: player.nick,
-                                            score: player.getAllChallengesScores(),
+                                            score: player.challengesScores.getAllChallengesScores(),
                                           );
                                         },
                                       ),
@@ -115,7 +116,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                               LeaderboardListTile(
                                 index: leaderboard.players.indexWhere((player) => player == leaderboard.player) + 1,
                                 username: leaderboard.player.nick,
-                                score: leaderboard.player.getAllChallengesScores(),
+                                score: leaderboard.player.challengesScores.getAllChallengesScores(),
                                 color: Palette.accentLight,
                               ),
                               gap32,

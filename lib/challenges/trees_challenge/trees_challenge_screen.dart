@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:endless_runner/challenges/challenge_controller.dart';
 import 'package:endless_runner/challenges/challenge_type_enum.dart';
+import 'package:endless_runner/challenges/common_widgets/challenge_app_bar.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_completed_screen.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_introduction_dialog.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_no_score_screen.dart';
@@ -11,11 +12,8 @@ import 'package:endless_runner/common/background_widget.dart';
 import 'package:endless_runner/common/dialog_helper.dart';
 import 'package:endless_runner/common/exit_challenge_dialog.dart';
 import 'package:endless_runner/common/icon_button.dart';
-import 'package:endless_runner/common/points_counter.dart';
-import 'package:endless_runner/common/timer_widget.dart';
 import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
 import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
-import 'package:endless_runner/style/gaps.dart';
 import 'package:endless_runner/style/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -139,32 +137,10 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
       child: CountDownWidget(
         child: Scaffold(
           extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            centerTitle: true,
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-            automaticallyImplyLeading: false,
-            title: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Spacer(),
-                gap40,
-                PointsCounter(pointsCount: challengeController.score),
-                gap16,
-                TimerWidget(
-                  timeInSeconds: _timeInSeconds,
-                  countDown: true,
-                ),
-                const Spacer(),
-                GameIconButton(
-                  iconName: AssetPaths.iconsInfo,
-                  width: 40,
-                  height: 40,
-                  padding: const EdgeInsets.all(8),
-                  onTap: () => _showIntroDialog(shouldSetCountDown: false),
-                )
-              ],
-            ),
+          appBar: ChallengeAppBar(
+            score: challengeController.score,
+            timeInSeconds: _timeInSeconds,
+            countDown: true,
           ),
           body: Stack(
             alignment: Alignment.topCenter,

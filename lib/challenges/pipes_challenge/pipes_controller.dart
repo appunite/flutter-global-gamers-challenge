@@ -1,23 +1,28 @@
+import 'package:endless_runner/challenges/pipes_challenge/pipe_type_enum.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class PipesController extends ChangeNotifier {
   static const double _pi = math.pi;
+  static const double _degree90 = _pi / 2;
+  static const double _degree270 = 3 / 2 * _pi;
 
   /// The list of all pipes rotation angles in the grid
   /// The values are multiples of 90 degrees (pi/2)
   List<List<double>> get pipesCurrentAngles => _currentAngles;
 
   final List<List<double>> _currentAngles = [
-    [0.0, 0.0, 0.0, 0.0, 0.0],
-    [0.0, 0.0, 0.0, 0.0, 0.0],
-    [0.0, 0.0, 0.0, 0.0, 0.0],
+    [_degree90, _pi, _degree270, _degree90, _degree90, _degree90, _degree90, _degree270],
+    [0.0, 0.0, _pi, _degree90, _degree270, 0.0, 0.0, 0.0],
+    [0.0, 0.0, 0.0, 0.0, 0.0, _degree270, _degree90, 0.0],
+    [0.0, _degree270, _degree90, _degree90, _pi, 0.0, 0.0, 0.0],
   ];
 
   final List<List<double>> _correctAngles = [
-    [_pi / 2, _pi / 2, _pi / 2, _pi / 2, _pi / 2],
-    [_pi / 2, _pi / 2, _pi / 2, _pi / 2, _pi / 2],
-    [_pi / 2, _pi / 2, _pi / 2, _pi / 2, _pi / 2],
+    [0.0, 0.0, _degree270, 0.0, 0.0, 0.0, 0.0, 0.0],
+    [0.0, _degree90, _pi, 0.0, 0.0, 0.0, 0.0, _degree90],
+    [0.0, _degree90, 0.0, 0.0, _degree90, _degree270, 0.0, _degree90],
+    [0.0, _pi, 0.0, 0.0, _degree90, 0.0, 0.0, 0.0],
   ];
 
   bool get challengeCompleted => _challengeCompleted;
@@ -27,8 +32,18 @@ class PipesController extends ChangeNotifier {
   void itemTurned({
     required int row,
     required int column,
+    required PipeType pipeType,
   }) {
-    _currentAngles[row][column] += _pi / 2;
+    switch (pipeType) {
+      case PipeType.straight when _currentAngles[row][column] == _degree90:
+        _currentAngles[row][column] = 0.0;
+      case PipeType.straight:
+      case PipeType.corner:
+        _currentAngles[row][column] += _degree90;
+      case PipeType.empty:
+        _currentAngles[row][column] = 0.0;
+    }
+
     if (_currentAngles[row][column] >= 2 * _pi) {
       _currentAngles[row][column] = 0.0;
     }

@@ -1,25 +1,37 @@
 class AssetPaths {
-  //TODO remove later
-  static const String pipe = 'assets/images/challenges/pipe.png';
-  static const String dumpsterRecycling = 'assets/images/challenges/dumpster_recycling.png';
-  static const String dumpster = 'assets/images/challenges/dumpster.png';
-  static const String appleCore = 'assets/images/challenges/apple.png';
-  static const String bananaPeel = 'assets/images/challenges/banana.png';
-  static const String diaper = 'assets/images/challenges/diaper.png';
-  static const String glassBottle = 'assets/images/challenges/glass_bottle.png';
-  static const String plasticBottle = 'assets/images/challenges/plastic_bottle.png';
-  static const String cardboard = 'assets/images/challenges/cardboard.png';
-  static const String can = 'assets/images/challenges/can.png';
-  static const String documents = 'assets/images/challenges/documents.png';
-  static const String lightbulb = 'assets/images/challenges/lightbulb.png';
-  static const String fishbones = 'assets/images/challenges/fishbones.png';
-
   /// Ocean shooter challenge
   static const String bullet = 'challenges/ocean_shooter/bullet.png';
   static const String enemy = 'challenges/ocean_shooter/enemy.png';
   static const String explosion = 'challenges/ocean_shooter/explosion.png';
   static const String player = 'challenges/ocean_shooter/player.png';
   static const String stars = 'challenges/ocean_shooter/stars.png';
+
+  /// Recycling challenge items
+  static const String apple = 'assets/images/challenges/recycling/apple.svg';
+  static const String bag = 'assets/images/challenges/recycling/bag.svg';
+  static const String bananaPeel = 'assets/images/challenges/recycling/banana_peel.svg';
+  static const String battery = 'assets/images/challenges/recycling/battery.svg';
+  static const String bigWater = 'assets/images/challenges/recycling/big_water.svg';
+  static const String binBlack = 'assets/images/challenges/recycling/bin_black.svg';
+  static const String binBlue = 'assets/images/challenges/recycling/bin_blue.svg';
+  static const String binGreen = 'assets/images/challenges/recycling/bin_green.svg';
+  static const String binYellow = 'assets/images/challenges/recycling/bin_yellow.svg';
+  static const String bread = 'assets/images/challenges/recycling/bread.svg';
+  static const String canOrange = 'assets/images/challenges/recycling/can_orange.svg';
+  static const String canPink = 'assets/images/challenges/recycling/can_pink.svg';
+  static const String canSmall = 'assets/images/challenges/recycling/can_small.svg';
+  static const String fishbones = 'assets/images/challenges/recycling/fishbones.svg';
+  static const String glassBottle = 'assets/images/challenges/recycling/glass_bottle.svg';
+  static const String glassJar = 'assets/images/challenges/recycling/glass_jar.svg';
+  static const String glass = 'assets/images/challenges/recycling/glass.svg';
+  static const String lightbulb = 'assets/images/challenges/recycling/lightbulb.svg';
+  static const String metalCan = 'assets/images/challenges/recycling/metal_can.svg';
+  static const String packaging = 'assets/images/challenges/recycling/packaging.svg';
+  static const String plasticBox = 'assets/images/challenges/recycling/plastic_box.svg';
+  static const String paper = 'assets/images/challenges/recycling/paper.svg';
+  static const String plasticBag = 'assets/images/challenges/recycling/plastic_bag.svg';
+  static const String waterBottle = 'assets/images/challenges/recycling/water_bottle.svg';
+  static const String watermelon = 'assets/images/challenges/recycling/watermelon.svg';
 
   // SVG
   static const String ribbonBlue = 'assets/images/common/ribbon_blue.svg';
@@ -38,10 +50,23 @@ class AssetPaths {
   static const String ecoClose = 'assets/images/common/eco_close.svg';
   static const String ecoConnection = 'assets/images/common/eco_connection.svg';
   static const String ecoSettings = 'assets/images/common/eco_settings.svg';
+  static const String infoPipes1 = 'assets/images/challenges/info_pipes_01.svg';
+  static const String infoPipes2 = 'assets/images/challenges/info_pipes_02.svg';
+  static const String pipeCorner = 'assets/images/challenges/pipe_corner.svg';
+  static const String pipeStraight = 'assets/images/challenges/pipe_straight.svg';
+  static const String pipeWheel = 'assets/images/challenges/pipe_wheel.svg';
+  static const String pipesBackground = 'assets/images/challenges/pipes_bg.svg';
   static const String tree = 'assets/images/challenges/icons_tree.svg';
   static const String treeBackground = 'assets/images/challenges/plant_forest_background.svg';
+  static const String infoTree1 = 'assets/images/challenges/info_forest_01.svg';
+  static const String infoTree2 = 'assets/images/challenges/info_forest_02.svg';
   static const String ecoLeaderboard = 'assets/images/common/eco_leaderboard.svg';
+  static const String infoRecycle1 = 'assets/images/challenges/info_recycle_01.svg';
+  static const String infoRecycle2 = 'assets/images/challenges/info_recycle_02.svg';
+  static const String recyclingBackground = 'assets/images/challenges/recycle_bg.svg';
 
   // Animations
   static const String ecoAnimation = 'assets/animations/eco.riv';
+  static const String itemSorted = 'assets/animations/item_sorted.json';
+  static const String wrongBin = 'assets/animations/wrong_bin.json';
 }
