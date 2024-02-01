@@ -23,6 +23,8 @@ enum ChallengeType {
     description: 'Proper recycling reduces waste. Let\'s sort recyclables correctly!',
     instruction1: 'Drag items to the right bins. Accurate sorting counts!',
     instruction2: 'Get 1 point for each item correctly sorted in 10 seconds.',
+    instructionAsset1: AssetPaths.infoRecycle1,
+    instructionAsset2: AssetPaths.infoRecycle2,
     completedText: 'Your recycling skills are key\n to reducing waste and conserving resources.',
     routePath: RecyclingChallengeScreen.routePath,
   ),
@@ -76,7 +78,7 @@ enum ChallengeType {
   final String description;
   final String instruction1;
   final String instruction2;
-  //TODO required
+  //TODO required later
   final String? instructionAsset1;
   final String? instructionAsset2;
   final String completedText;

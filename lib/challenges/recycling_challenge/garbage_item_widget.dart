@@ -1,6 +1,7 @@
 import 'package:endless_runner/challenges/recycling_challenge/garbage_controller.dart';
 import 'package:endless_runner/challenges/recycling_challenge/garbage_type_enum.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class GarbageItemWidget extends StatelessWidget {
@@ -48,11 +49,13 @@ class GarbageItemContent extends StatelessWidget {
       angle: garbageType.rotationAngle,
       child: Semantics(
         label: garbageType.semanticLabel,
-        child: Image.asset(
-          garbageType.assetPath,
+        child: SizedBox(
           height: garbageType.size,
           width: garbageType.size,
-          fit: BoxFit.contain,
+          child: SvgPicture.asset(
+            garbageType.assetPath,
+            fit: BoxFit.contain,
+          ),
         ),
       ),
     );

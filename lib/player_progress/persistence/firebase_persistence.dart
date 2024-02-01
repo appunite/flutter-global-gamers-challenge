@@ -108,7 +108,11 @@ class FirebasePersistence extends DatabasePersistence {
         return PlayerEntity.fromJson(doc.data() as Map<String, dynamic>);
       }).toList();
 
-      players.sort((a, b) => b.getAllChallengesScores().compareTo(a.getAllChallengesScores()));
+      players.sort(
+        (a, b) => b.challengesScores.getAllChallengesScores().compareTo(
+              a.challengesScores.getAllChallengesScores(),
+            ),
+      );
 
       return players;
     } catch (e, stack) {
