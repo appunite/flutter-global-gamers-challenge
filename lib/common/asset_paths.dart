@@ -1,10 +1,8 @@
 class AssetPaths {
   /// Ocean shooter challenge
   static const String bullet = 'challenges/ocean_shooter/bullet.png';
-  static const String enemy = 'challenges/ocean_shooter/enemy.png';
   static const String explosion = 'challenges/ocean_shooter/explosion.png';
-  static const String player = 'challenges/ocean_shooter/player.png';
-  static const String stars = 'challenges/ocean_shooter/stars.png';
+  static const String fireBoost = 'challenges/ocean_shooter/player.png';
   static const String submarine = 'challenges/ocean_shooter/submarine.png';
   static const String oceanShooterBackground = 'challenges/ocean_shooter/ocean_shooter_background.png';
   static const String microplastic1 = 'challenges/ocean_shooter/microplastic_1.png';

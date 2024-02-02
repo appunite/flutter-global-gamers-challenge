@@ -22,7 +22,7 @@ class FireBoostComponent extends SpriteAnimationComponent
   @override
   Future<void> onLoad() async {
     animation = await game.loadSpriteAnimation(
-      AssetPaths.player,
+      AssetPaths.fireBoost,
       SpriteAnimationData.sequenced(
         stepTime: 1,
         amount: 1,

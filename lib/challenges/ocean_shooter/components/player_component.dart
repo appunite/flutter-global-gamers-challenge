@@ -11,7 +11,7 @@ import 'package:flame/components.dart';
 class PlayerComponent extends SpriteAnimationComponent with HasGameRef, CollisionCallbacks {
   PlayerComponent({required this.audioController})
       : super(
-          size: Vector2(234 / 2, 142 / 2),
+          size: Vector2(117, 71),
           position: Vector2(100, 500),
           anchor: Anchor.center,
         );
