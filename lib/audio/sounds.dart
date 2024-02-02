@@ -20,8 +20,7 @@ List<String> soundTypeToFilename(SfxType type) {
       ];
     case SfxType.score:
       return const [
-        'score1.mp3',
-        'score2.mp3',
+        'lamp_point.mp3',
       ];
     case SfxType.buttonTap:
       return const [
@@ -40,7 +39,6 @@ List<String> soundTypeToFilename(SfxType type) {
 /// Allows control over loudness of different SFX types.
 double soundTypeToVolume(SfxType type) {
   switch (type) {
-    case SfxType.score:
     case SfxType.jump:
     case SfxType.doubleJump:
     case SfxType.damage:
@@ -48,6 +46,7 @@ double soundTypeToVolume(SfxType type) {
     case SfxType.garbage:
     case SfxType.wrongBin:
       return 0.4;
+    case SfxType.score:
     case SfxType.buttonTap:
       return 1.0;
   }

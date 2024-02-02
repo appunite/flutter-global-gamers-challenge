@@ -12,8 +12,7 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'flame_game/lights_out_challenge_screen.dart';
-import 'level_selection/levels.dart';
+import 'challenges/lights_out_challenge/lights_out_challenge_screen.dart';
 import 'main_menu/main_menu_screen.dart';
 import 'style/page_transition.dart';
 
@@ -29,7 +28,7 @@ final router = GoRouter(
       path: LightsOutChallengeScreen.routePath,
       pageBuilder: (context, state) => buildPageTransition<void>(
         key: const ValueKey('lights-out-challenge'),
-        child: LightsOutChallengeScreen(level: gameLevels[0]),
+        child: const LightsOutChallengeScreen(),
       ),
     ),
     GoRoute(

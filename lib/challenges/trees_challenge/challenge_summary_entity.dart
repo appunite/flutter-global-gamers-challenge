@@ -7,13 +7,13 @@ class ChallengeSummaryEntity {
     required this.challengeType,
     required this.score,
     required this.bestScore,
-    required this.time,
+    this.time,
     required this.displayBadge,
   });
 
   final ChallengeType challengeType;
   final int score;
   final int bestScore;
-  final int time;
+  final int? time;
   final bool displayBadge;
 }

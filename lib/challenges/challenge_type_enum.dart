@@ -4,6 +4,7 @@ import 'package:endless_runner/challenges/recycling_challenge/recycling_challeng
 import 'package:endless_runner/challenges/solar_panel_scratcher_challenge/solar_panel_scratcher_screen.dart';
 import 'package:endless_runner/challenges/trees_challenge/trees_challenge_screen.dart';
 import 'package:endless_runner/common/asset_paths.dart';
+import 'package:endless_runner/challenges/lights_out_challenge/lights_out_challenge_screen.dart';
 import 'package:endless_runner/player_progress/entities/challenges_entity.dart';
 
 enum ChallengeType {
@@ -60,7 +61,7 @@ enum ChallengeType {
     instruction1: 'Tap buildings to turn off lights and reduce energy waste.',
     instruction2: 'Turn off as many lights as you can in 10 seconds and earn points.',
     completedText: 'Your action in reducing light pollution\n helps save energy and protect nocturnal wildlife.',
-    routePath: 'TODO',
+    routePath: LightsOutChallengeScreen.routePath,
   );
 
   const ChallengeType({

@@ -1,12 +1,12 @@
+import 'package:endless_runner/challenges/challenge_controller.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flutter/material.dart';
 
-import '../../audio/sounds.dart';
+import '../../../audio/sounds.dart';
 import '../endless_runner.dart';
 import '../endless_world.dart';
-import '../effects/jump_effect.dart';
-import 'lamp_point.dart';
+import '../jump_effect.dart';
+import 'lamp.dart';
 
 /// The [LightsOutEco] is the component that the physical player of the game is
 /// controlling.
@@ -14,17 +14,19 @@ class LightsOutEco extends SpriteAnimationGroupComponent<PlayerState>
     with CollisionCallbacks, HasWorldReference<EndlessWorld>, HasGameReference<EndlessRunner> {
   LightsOutEco({
     required this.addScore,
+    required this.challengeController,
     super.position,
   }) : super(size: Vector2.all(150), anchor: Anchor.center, priority: 1);
 
-  final void Function({int amount}) addScore;
+  final void Function() addScore;
+  final ChallengeController challengeController;
 
   // The current velocity that the player has that comes from being affected by
   // the gravity. Defined in virtual pixels/s².
   double _gravityVelocity = 0;
 
   // The maximum length that the player can jump. Defined in virtual pixels.
-  final double _jumpLength = 400;
+  final double _jumpLength = 380;
 
   // Whether the player is currently in the air, this can be used to restrict
   // movement for example.
@@ -42,6 +44,16 @@ class LightsOutEco extends SpriteAnimationGroupComponent<PlayerState>
   Future<void> onLoad() async {
     // This defines the different animation states that the player can be in.
     animations = {
+      PlayerState.idle: await game.loadSpriteAnimation(
+        'dash/dash_running.png',
+        SpriteAnimationData.sequenced(
+          amount: 1,
+          textureSize: Vector2.all(16),
+          stepTime: 0.15,
+          amountPerRow: 1,
+          loop: false,
+        ),
+      ),
       PlayerState.running: await game.loadSpriteAnimation(
         'dash/dash_running.png',
         SpriteAnimationData.sequenced(
@@ -60,18 +72,26 @@ class LightsOutEco extends SpriteAnimationGroupComponent<PlayerState>
       ),
     };
     // The starting state will be that the player is running.
-    current = PlayerState.running;
+    current = PlayerState.idle;
     _lastPosition.setFrom(position);
 
     // When adding a CircleHitbox without any arguments it automatically
     // fills up the size of the component as much as it can without overflowing
     // it.
     add(CircleHitbox());
+
+    challengeController.addListener(() {
+      if (challengeController.startChallengeTimer) {
+        current = PlayerState.running;
+      }
+    });
   }
 
   @override
   void update(double dt) {
     super.update(dt);
+    game.world.timer?.update(dt);
+
     // When we are in the air the gravity should affect our position and pull
     // us closer to the ground.
     if (inAir) {
@@ -103,9 +123,11 @@ class LightsOutEco extends SpriteAnimationGroupComponent<PlayerState>
     super.onCollisionStart(intersectionPoints, other);
 
     if (other is Lamp) {
+      _gravityVelocity += 10;
+      position.y += _gravityVelocity;
+      current = PlayerState.falling;
       game.audioController.playSfx(SfxType.score);
-      //TODO change asset?
-      other.setColor(Colors.white);
+      other.lampTurnedOff();
       addScore();
     }
   }
@@ -128,6 +150,7 @@ class LightsOutEco extends SpriteAnimationGroupComponent<PlayerState>
 }
 
 enum PlayerState {
+  idle,
   running,
   jumping,
   falling,

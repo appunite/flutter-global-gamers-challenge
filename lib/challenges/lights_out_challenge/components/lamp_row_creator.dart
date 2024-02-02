@@ -1,18 +1,18 @@
 import 'dart:math';
 
-import 'package:endless_runner/flame_game/components/lamp_point.dart';
-import 'package:endless_runner/flame_game/endless_world.dart';
+import 'package:endless_runner/challenges/lights_out_challenge/components/lamp.dart';
+import 'package:endless_runner/challenges/lights_out_challenge/endless_world.dart';
 import 'package:flame/components.dart';
 
 class LampRowCreator extends TimerComponent with HasGameReference, HasWorldReference<EndlessWorld> {
-  final Random random = Random();
-
   LampRowCreator()
       : super(
           period: 1,
           repeat: true,
           removeOnFinish: true,
         );
+
+  final Random random = Random();
 
   @override
   void onTick() {

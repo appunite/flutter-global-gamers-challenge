@@ -32,7 +32,7 @@ class Lamp extends SpriteComponent with HasWorldReference<EndlessWorld> {
         super(
           size: Vector2(100, 400),
           anchor: Anchor.bottomLeft,
-          position: Vector2(xPosition, -50),
+          position: Vector2(xPosition, -30),
         );
 
   /// Generates a random obstacle of type [LampType].
@@ -58,7 +58,7 @@ class Lamp extends SpriteComponent with HasWorldReference<EndlessWorld> {
   @override
   Future<void> onLoad() async {
     sprite = await Sprite.load(
-      AssetPaths.lampLong,
+      AssetPaths.lamp,
       srcSize: _srcSize,
       srcPosition: _srcPosition,
     );
@@ -66,11 +66,23 @@ class Lamp extends SpriteComponent with HasWorldReference<EndlessWorld> {
     add(RectangleHitbox());
   }
 
+  Future<void> lampTurnedOff() async {
+    sprite = await Sprite.load(
+      AssetPaths.lampOff,
+      srcSize: _srcSize,
+      srcPosition: _srcPosition,
+    );
+  }
+
   @override
   void update(double dt) {
     // Moves the component to the left together with the speed that
     // is set for the world.
-    position.x -= world.speed * dt;
+    if (world.speed <= 300) {
+      position.x -= (world.speed * 2) * dt;
+    } else {
+      position.x -= (world.speed) * dt;
+    }
 
     // When the component is no longer visible on the screen anymore,
     // remove it.
