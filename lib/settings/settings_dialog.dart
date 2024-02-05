@@ -1,9 +1,13 @@
+import 'package:endless_runner/change_player_name/set_player_name_dialog.dart';
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/common/common_dialog.dart';
+import 'package:endless_runner/common/dialog_helper.dart';
 import 'package:endless_runner/common/ribbon_header.dart';
+import 'package:endless_runner/player_progress/player_progress_controller.dart';
 import 'package:endless_runner/settings/settings.dart';
 import 'package:endless_runner/style/const_values.dart';
 import 'package:endless_runner/style/gaps.dart';
+import 'package:endless_runner/style/main_button.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -33,6 +37,8 @@ class _SettingsDialogState extends State<SettingsDialog> {
         mainAxisSize: MainAxisSize.min,
         children: [
           gap24,
+          const _UserNameSettingsRow(),
+          gap12,
           ValueListenableBuilder<bool>(
             valueListenable: settings.musicOn,
             builder: (context, musicOn, child) => _SettingsTile(
@@ -132,6 +138,59 @@ class _SettingsTile extends StatelessWidget {
             inactiveTrackColor: Palette.neutralLightGray,
             inactiveThumbColor: Palette.neutralDarkGray,
             trackOutlineColor: const MaterialStatePropertyAll(Colors.transparent),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _UserNameSettingsRow extends StatelessWidget {
+  const _UserNameSettingsRow();
+
+  @override
+  Widget build(BuildContext context) {
+    final player = context.watch<PlayerProgressController>();
+
+    return Container(
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        borderRadius: borderRadius16,
+        color: Palette.secondaryLight,
+      ),
+      child: Row(
+        children: [
+          SvgPicture.asset(
+            AssetPaths.iconsProfile,
+            height: 24,
+            width: 24,
+          ),
+          gap8,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Username',
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Palette.neutralBlack),
+              ),
+              Text(
+                player.playerNick,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ],
+          ),
+          const Spacer(),
+          MainButton.secondary(
+            width: 80,
+            onPressed: (_) {
+              context.pop();
+              DialogHelper.show(
+                context,
+                const SetPlayerNameDialog(),
+              );
+            },
+            text: 'Edit',
           ),
         ],
       ),

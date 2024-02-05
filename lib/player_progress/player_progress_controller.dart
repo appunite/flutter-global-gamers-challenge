@@ -12,22 +12,25 @@ class PlayerProgressController extends ChangeNotifier {
     required DatabasePersistence databaseStorage,
   })  : _localStorage = localStorage,
         _databaseStorage = databaseStorage {
-    loadPlayerData();
+    _loadPlayerData();
   }
 
   final LocalPlayerPersistence _localStorage;
   final DatabasePersistence _databaseStorage;
 
   ChallengesEntity _challenges = ChallengesEntity.empty();
+
   ChallengesEntity get challenges => _challenges;
 
   String _playerNick = '';
+
   String get playerNick => _playerNick;
 
   bool _hasSeenOnboarding = true;
+
   bool get hasSeenOnboarding => _hasSeenOnboarding;
 
-  Future<void> loadPlayerData() async {
+  Future<void> _loadPlayerData() async {
     final String playerId = await _localStorage.getPlayerIdKey();
     final PlayerEntity playerEntity = await _databaseStorage.getPlayerEntity(playerId: playerId);
     final bool hasSeenOnboarding = await _localStorage.getHasSeenOnboarding();
@@ -48,6 +51,14 @@ class PlayerProgressController extends ChangeNotifier {
   Future<void> setHasSeenOnboarding() async {
     await _localStorage.setHasSeenOnboarding();
     _hasSeenOnboarding = true;
+    notifyListeners();
+  }
+
+  Future<void> updateUserName({required String username}) async {
+    final String playerId = await _localStorage.getPlayerIdKey();
+    await _databaseStorage.updateUsername(playerId: playerId, username: username);
+    _playerNick = username;
+
     notifyListeners();
   }
 }

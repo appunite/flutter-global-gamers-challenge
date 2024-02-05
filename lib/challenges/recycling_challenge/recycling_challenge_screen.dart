@@ -12,6 +12,8 @@ import 'package:endless_runner/challenges/recycling_challenge/garbage_widget.dar
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/common/background_widget.dart';
 import 'package:endless_runner/common/dialog_helper.dart';
+import 'package:endless_runner/common/exit_challenge_dialog.dart';
+import 'package:endless_runner/common/icon_button.dart';
 import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
 import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
 import 'package:endless_runner/style/gaps.dart';
@@ -135,6 +137,9 @@ class _RecyclingChallengeScreenBodyState extends State<_RecyclingChallengeScreen
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
+      onPopInvoked: (_) {
+        _showExitDialog();
+      },
       child: CountDownWidget(
         child: Scaffold(
           extendBodyBehindAppBar: true,
@@ -142,16 +147,16 @@ class _RecyclingChallengeScreenBodyState extends State<_RecyclingChallengeScreen
             timeInSeconds: _timeInSeconds,
             countDown: false,
           ),
-          body: const Stack(
+          body: Stack(
             fit: StackFit.expand,
             alignment: Alignment.center,
             children: [
-              BackgroundWidget(assetPath: AssetPaths.recyclingBackground),
-              Padding(
+              const BackgroundWidget(assetPath: AssetPaths.recyclingBackground),
+              const Padding(
                 padding: EdgeInsets.only(top: kToolbarHeight + 8),
                 child: GarbageWidget(),
               ),
-              Positioned(
+              const Positioned(
                 bottom: -30,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -175,6 +180,18 @@ class _RecyclingChallengeScreenBodyState extends State<_RecyclingChallengeScreen
                   ],
                 ),
               ),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 36,bottom: 24),
+                  child: GameIconButton(
+                    onTap: () => _showExitDialog(),
+                    iconName: AssetPaths.iconsMap,
+                    width: 56,
+                    height: 56,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -187,5 +204,12 @@ class _RecyclingChallengeScreenBodyState extends State<_RecyclingChallengeScreen
     _timer?.cancel();
     _challengeController.dispose();
     super.dispose();
+  }
+
+  void _showExitDialog() {
+    DialogHelper.show(
+      context,
+      const ExitChallengeDialog(),
+    );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:endless_runner/audio/audio_controller.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_completed_screen.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_no_score_screen.dart';
 import 'package:endless_runner/challenges/ocean_shooter/ocean_challenge_screen.dart';
@@ -11,6 +12,7 @@ import 'package:endless_runner/leaderboard/leaderboard_screen.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 import 'challenges/lights_out_challenge/lights_out_challenge_screen.dart';
 import 'main_menu/main_menu_screen.dart';
@@ -76,8 +78,9 @@ final router = GoRouter(
     ),
     GoRoute(
       path: LeaderboardScreen.routePath,
-      builder: (context, state) => const LeaderboardScreen(
-        key: Key('leaderboard'),
+      builder: (context, state) => LeaderboardScreen(
+        key: const Key('leaderboard'),
+        shouldDisplayChangedUsernameSnackBar: state.extra! as bool,
       ),
     ),
     GoRoute(
@@ -101,8 +104,14 @@ final router = GoRouter(
     GoRoute(
       path: OceanChallengeScreen.routePath,
       pageBuilder: (context, state) {
+        final audioController = context.read<AudioController>();
+
         return buildPageTransition<void>(
-          child: GameWidget(game: OceanChallengeScreen()),
+          child: GameWidget(
+            game: OceanChallengeScreen(
+              audioController: audioController,
+            ),
+          ),
         );
       },
     ),

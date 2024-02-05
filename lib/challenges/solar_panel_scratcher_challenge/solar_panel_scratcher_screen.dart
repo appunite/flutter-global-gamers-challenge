@@ -1,9 +1,14 @@
 import 'dart:async';
 
+import 'package:endless_runner/common/asset_paths.dart';
+import 'package:endless_runner/common/dialog_helper.dart';
+import 'package:endless_runner/common/exit_challenge_dialog.dart';
+import 'package:endless_runner/common/icon_button.dart';
+import 'package:endless_runner/common/points_counter.dart';
 import 'package:endless_runner/common/success_dialog.dart';
 import 'package:endless_runner/common/timer_widget.dart';
+import 'package:endless_runner/style/gaps.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:scratcher/scratcher.dart';
 
 class SolarPanelChallengeScreen extends StatefulWidget {
@@ -39,6 +44,9 @@ class _SolarPanelChallengeScreenState extends State<SolarPanelChallengeScreen> {
 
     return PopScope(
       canPop: false,
+      onPopInvoked: (_) {
+        _showExitDialog();
+      },
       child: Scaffold(
         body: Stack(
           children: [
@@ -68,27 +76,37 @@ class _SolarPanelChallengeScreenState extends State<SolarPanelChallengeScreen> {
               alignment: Alignment.topCenter,
               child: Padding(
                 padding: const EdgeInsets.only(top: 16),
-                child: Text(
-                  "${_scratchedValue.floor()}%",
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.white),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Spacer(),
+                    gap40,
+                    PointsCounter(pointsCount: _scratchedValue.floor()),
+                    gap16,
+                    TimerWidget(timeInSeconds: _timeInSeconds),
+                    const Spacer(),
+                    GameIconButton(
+                      iconName: AssetPaths.iconsInfo,
+                      width: 40,
+                      height: 40,
+                      padding: const EdgeInsets.all(8),
+                      onTap: () => _showIntroDialog(),
+                    ),
+                    gap16,
+                  ],
                 ),
               ),
             ),
             Align(
-              alignment: Alignment.topRight,
+              alignment: Alignment.bottomLeft,
               child: Padding(
-                padding: const EdgeInsets.only(
-                  top: 16,
-                  right: 36,
+                padding: const EdgeInsets.only(left: 36, bottom: 24),
+                child: GameIconButton(
+                  onTap: () => _showExitDialog(),
+                  iconName: AssetPaths.iconsMap,
+                  width: 56,
+                  height: 56,
                 ),
-                child: TimerWidget(timeInSeconds: _timeInSeconds),
-              ),
-            ),
-            Positioned(
-              left: 16,
-              top: 16,
-              child: BackButton(
-                onPressed: context.pop,
               ),
             ),
           ],
@@ -115,5 +133,16 @@ class _SolarPanelChallengeScreenState extends State<SolarPanelChallengeScreen> {
   void dispose() {
     _timer.cancel();
     super.dispose();
+  }
+
+  void _showExitDialog() {
+    DialogHelper.showWithWidgetBinding(
+      context,
+      const ExitChallengeDialog(),
+    );
+  }
+
+  void _showIntroDialog() {
+    print("TODO _showIntroDialog");
   }
 }

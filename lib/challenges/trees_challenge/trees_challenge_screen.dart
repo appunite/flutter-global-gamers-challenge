@@ -1,15 +1,17 @@
 import 'dart:async';
 
+import 'package:endless_runner/challenges/challenge_controller.dart';
 import 'package:endless_runner/challenges/challenge_type_enum.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_app_bar.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_completed_screen.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_introduction_dialog.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_no_score_screen.dart';
 import 'package:endless_runner/challenges/count_down_widget.dart';
-import 'package:endless_runner/challenges/challenge_controller.dart';
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/common/background_widget.dart';
 import 'package:endless_runner/common/dialog_helper.dart';
+import 'package:endless_runner/common/exit_challenge_dialog.dart';
+import 'package:endless_runner/common/icon_button.dart';
 import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
 import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
 import 'package:endless_runner/style/main_button.dart';
@@ -55,7 +57,7 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _showIntroDialog();
+      _showIntroDialog(shouldSetCountDown: true);
 
       _challengeController = context.read<ChallengeController>();
       _challengeController.addListener(_listener);
@@ -82,14 +84,14 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
     );
   }
 
-  void _showIntroDialog() {
+  void _showIntroDialog({required bool shouldSetCountDown}) {
     DialogHelper.show(
       context,
       ChallengeIntroductionDialog(
         challenge: ChallengeType.trees,
         onButtonPressed: () {
           context.pop();
-          context.read<ChallengeController>().setCountDown(visible: true);
+          if (shouldSetCountDown) context.read<ChallengeController>().setCountDown(visible: true);
         },
       ),
     );
@@ -129,6 +131,9 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
 
     return PopScope(
       canPop: false,
+      onPopInvoked: (_) {
+        _showExitDialog();
+      },
       child: CountDownWidget(
         child: Scaffold(
           extendBodyBehindAppBar: true,
@@ -156,6 +161,18 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
                   height: 24,
                 ),
               ),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 36, bottom: 24),
+                  child: GameIconButton(
+                    onTap: () => _showExitDialog(),
+                    iconName: AssetPaths.iconsMap,
+                    width: 56,
+                    height: 56,
+                  ),
+                ),
+              ),
             ],
           ),
           floatingActionButton: MainButton(
@@ -175,5 +192,12 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
     _scrollController.dispose();
     _challengeController.dispose();
     super.dispose();
+  }
+
+  void _showExitDialog() {
+    DialogHelper.showWithWidgetBinding(
+      context,
+      const ExitChallengeDialog(),
+    );
   }
 }
