@@ -76,13 +76,11 @@ class Lamp extends SpriteComponent with HasWorldReference<EndlessWorld> {
 
   @override
   void update(double dt) {
+    super.update(dt);
     // Moves the component to the left together with the speed that
     // is set for the world.
-    if (world.speed <= 300) {
-      position.x -= (world.speed * 2) * dt;
-    } else {
-      position.x -= (world.speed) * dt;
-    }
+
+    position.x -= world.speed * dt;
 
     // When the component is no longer visible on the screen anymore,
     // remove it.

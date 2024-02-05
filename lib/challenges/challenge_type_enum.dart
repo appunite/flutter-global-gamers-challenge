@@ -14,7 +14,7 @@ enum ChallengeType {
     instruction1: 'Connect pipes correctly to stop leaks.',
     instruction2: 'Score 1 point for each correct fix for 10 seconds.',
     instructionAsset1: AssetPaths.infoPipes1,
-    instructionAsset2: AssetPaths.infoPipes2,
+    instructionAsset2: AssetPaths.infoTimer,
     completedText:
         'By fixing leaky pipelines, you\'ve helped conserve water\nand protect aquatic ecosystems in Better World.',
     routePath: PipesChallengeScreen.routePath,
@@ -58,10 +58,13 @@ enum ChallengeType {
   city(
     title: 'Lights Out Challenge',
     description: 'Turning off lights saves power and protects wildlife.',
-    instruction1: 'Tap buildings to turn off lights and reduce energy waste.',
-    instruction2: 'Turn off as many lights as you can in 10 seconds and earn points.',
+    instruction1: 'Tap on the screen to jump and hit lamps to turn off lights and reduce energy waste.',
+    instruction2: 'Turn off as many lights as you can in 30 seconds and earn points.',
     completedText: 'Your action in reducing light pollution\n helps save energy and protect nocturnal wildlife.',
     routePath: LightsOutChallengeScreen.routePath,
+    //TODO
+    // instructionAsset1: AssetPaths.,
+    instructionAsset2: AssetPaths.infoTimer,
   );
 
   const ChallengeType({

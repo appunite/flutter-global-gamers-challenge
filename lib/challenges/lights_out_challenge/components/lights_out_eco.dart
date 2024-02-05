@@ -10,7 +10,7 @@ import 'lamp.dart';
 
 /// The [LightsOutEco] is the component that the physical player of the game is
 /// controlling.
-class LightsOutEco extends SpriteAnimationGroupComponent<PlayerState>
+class LightsOutEco extends SpriteAnimationGroupComponent<EcoLightsOutState>
     with CollisionCallbacks, HasWorldReference<EndlessWorld>, HasGameReference<EndlessRunner> {
   LightsOutEco({
     required this.addScore,
@@ -44,7 +44,7 @@ class LightsOutEco extends SpriteAnimationGroupComponent<PlayerState>
   Future<void> onLoad() async {
     // This defines the different animation states that the player can be in.
     animations = {
-      PlayerState.idle: await game.loadSpriteAnimation(
+      EcoLightsOutState.idle: await game.loadSpriteAnimation(
         'dash/dash_running.png',
         SpriteAnimationData.sequenced(
           amount: 1,
@@ -54,7 +54,7 @@ class LightsOutEco extends SpriteAnimationGroupComponent<PlayerState>
           loop: false,
         ),
       ),
-      PlayerState.running: await game.loadSpriteAnimation(
+      EcoLightsOutState.running: await game.loadSpriteAnimation(
         'dash/dash_running.png',
         SpriteAnimationData.sequenced(
           amount: 4,
@@ -62,17 +62,17 @@ class LightsOutEco extends SpriteAnimationGroupComponent<PlayerState>
           stepTime: 0.15,
         ),
       ),
-      PlayerState.jumping: SpriteAnimation.spriteList(
+      EcoLightsOutState.jumping: SpriteAnimation.spriteList(
         [await game.loadSprite('dash/dash_jumping.png')],
         stepTime: double.infinity,
       ),
-      PlayerState.falling: SpriteAnimation.spriteList(
+      EcoLightsOutState.falling: SpriteAnimation.spriteList(
         [await game.loadSprite('dash/dash_falling.png')],
         stepTime: double.infinity,
       ),
     };
     // The starting state will be that the player is running.
-    current = PlayerState.idle;
+    current = EcoLightsOutState.idle;
     _lastPosition.setFrom(position);
 
     // When adding a CircleHitbox without any arguments it automatically
@@ -82,7 +82,7 @@ class LightsOutEco extends SpriteAnimationGroupComponent<PlayerState>
 
     challengeController.addListener(() {
       if (challengeController.startChallengeTimer) {
-        current = PlayerState.running;
+        current = EcoLightsOutState.running;
       }
     });
   }
@@ -98,7 +98,7 @@ class LightsOutEco extends SpriteAnimationGroupComponent<PlayerState>
       _gravityVelocity += world.gravity * dt;
       position.y += _gravityVelocity;
       if (isFalling) {
-        current = PlayerState.falling;
+        current = EcoLightsOutState.falling;
       }
     }
 
@@ -109,7 +109,7 @@ class LightsOutEco extends SpriteAnimationGroupComponent<PlayerState>
     if (belowGround) {
       position.y = world.groundLevel - size.y / 2;
       _gravityVelocity = 0;
-      current = PlayerState.running;
+      current = EcoLightsOutState.running;
     }
 
     _lastPosition.setFrom(position);
@@ -123,17 +123,17 @@ class LightsOutEco extends SpriteAnimationGroupComponent<PlayerState>
     super.onCollisionStart(intersectionPoints, other);
 
     if (other is Lamp) {
+      addScore();
       _gravityVelocity += 10;
       position.y += _gravityVelocity;
-      current = PlayerState.falling;
+      current = EcoLightsOutState.falling;
       game.audioController.playSfx(SfxType.score);
       other.lampTurnedOff();
-      addScore();
     }
   }
 
   void jump() {
-    current = PlayerState.jumping;
+    current = EcoLightsOutState.jumping;
 
     late JumpEffect jumpEffect;
     if (inAir) {
@@ -149,7 +149,7 @@ class LightsOutEco extends SpriteAnimationGroupComponent<PlayerState>
   }
 }
 
-enum PlayerState {
+enum EcoLightsOutState {
   idle,
   running,
   jumping,

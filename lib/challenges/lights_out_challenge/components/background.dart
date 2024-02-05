@@ -13,8 +13,6 @@ class Background extends ParallaxComponent {
 
   final double speed;
   final ChallengeController challengeController;
-
-  final velocityMultiplierDelta = Vector2(2.0, 0.0);
   final layers = [
     ParallaxImageData(AssetPaths.lightsOutBackground),
   ];
@@ -39,10 +37,7 @@ class Background extends ParallaxComponent {
     parallax = await game.loadParallax(
       layers,
       baseVelocity: velocity,
-      velocityMultiplierDelta: velocityMultiplierDelta,
       filterQuality: FilterQuality.none,
     );
   }
-
-  Future<void> speedUp() => _setParallax(layers, Vector2(speed, 0));
 }

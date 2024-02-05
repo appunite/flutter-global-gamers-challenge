@@ -17,7 +17,7 @@ class EndlessWorld extends World with TapCallbacks, HasGameReference {
 
   /// The speed is used for determining how fast the background should pass by
   /// and how fast the enemies and obstacles should move.
-  late double speed = 300;
+  late double speed = 600;
   late final LightsOutEco player;
   Vector2 get size => (parent as FlameGame).size;
 
@@ -66,10 +66,6 @@ class EndlessWorld extends World with TapCallbacks, HasGameReference {
           game.pauseEngine();
           game.overlays.add(LightsOutChallengeScreen.winDialogKey);
         } else {
-          if (timeInSeconds < 25) {
-            print('set speed');
-            speed = 3000;
-          }
           timeInSeconds--;
           game.overlays.remove(LightsOutChallengeScreen.appBarKey);
           game.overlays.add(LightsOutChallengeScreen.appBarKey);
