@@ -57,14 +57,11 @@ class RibbonHeader extends StatelessWidget {
                   () => context
                     ..pop()
                     ..pop(),
-              child: const SizedBox(
-                height: 50,
-                width: 50,
+              child: SizedBox(
+                height: 45,
+                width: 45,
                 //TODO change to asset
-                child: Icon(
-                  Icons.close,
-                  color: Colors.white,
-                ),
+                child: SvgPicture.asset(AssetPaths.iconsCloseWhite),
               ),
             ),
           ),

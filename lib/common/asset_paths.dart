@@ -88,7 +88,10 @@ class AssetPaths {
   static const String ecoLeaderboard = 'assets/images/common/eco_leaderboard.svg';
   static const String infoRecycle1 = 'assets/images/challenges/info_recycle_01.svg';
   static const String infoRecycle2 = 'assets/images/challenges/info_recycle_02.svg';
+  static const String infoLightsOut1 = 'assets/images/challenges/info_lightsout_01.svg';
   static const String recyclingBackground = 'assets/images/challenges/recycle_bg.svg';
+  static const String iconsBack = 'assets/images/common/icons_back.svg';
+  static const String iconsCloseWhite = 'assets/images/common/icons_close_white.svg';
 
   // Animations
   static const String ecoAnimation = 'assets/animations/eco.riv';

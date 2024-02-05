@@ -9,15 +9,18 @@ class ChallengeAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.score,
     required this.timeInSeconds,
     required this.countDown,
+    this.actions,
   });
 
   final int? score;
   final int timeInSeconds;
   final bool countDown;
+  final List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      actions: actions,
       centerTitle: true,
       elevation: 0,
       backgroundColor: Colors.transparent,

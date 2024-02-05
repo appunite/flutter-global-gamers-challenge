@@ -55,15 +55,14 @@ enum ChallengeType {
     completedText: 'Your dedication to removing plastics\nkeeps our oceans clean and marine life safe.',
     routePath: OceanChallengeScreen.routePath,
   ),
-  city(
+  lightsOut(
     title: 'Lights Out Challenge',
     description: 'Turning off lights saves power and protects wildlife.',
     instruction1: 'Tap on the screen to jump and hit lamps to turn off lights and reduce energy waste.',
     instruction2: 'Turn off as many lights as you can in 30 seconds and earn points.',
     completedText: 'Your action in reducing light pollution\n helps save energy and protect nocturnal wildlife.',
     routePath: LightsOutChallengeScreen.routePath,
-    //TODO
-    // instructionAsset1: AssetPaths.,
+    instructionAsset1: AssetPaths.infoLightsOut1,
     instructionAsset2: AssetPaths.infoTimer,
   );
 
@@ -90,7 +89,7 @@ enum ChallengeType {
 
   int? getChallengeScore(ChallengesEntity challenges) {
     return switch (this) {
-      ChallengeType.city => challenges.city,
+      ChallengeType.lightsOut => challenges.city,
       ChallengeType.ocean => challenges.ocean,
       ChallengeType.pipelines => challenges.pipes,
       ChallengeType.recycling => challenges.recycling,

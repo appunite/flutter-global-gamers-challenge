@@ -124,7 +124,7 @@ class MainMenuScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           MainButton.secondary(
-            onPressed: (_) => DialogHelper.show(context, const SettingsDialog()),
+            onPressed: (_) => NavigationHelper.show(context, const SettingsDialog()),
             text: 'Settings',
           ),
           gap10,

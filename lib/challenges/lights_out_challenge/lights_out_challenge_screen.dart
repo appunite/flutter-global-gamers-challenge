@@ -1,14 +1,16 @@
 import 'package:endless_runner/challenges/challenge_controller.dart';
 import 'package:endless_runner/challenges/challenge_type_enum.dart';
-import 'package:endless_runner/challenges/common_widgets/challenge_completed_screen.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_introduction_dialog.dart';
 import 'package:endless_runner/challenges/lights_out_challenge/count_down_overlay.dart';
+import 'package:endless_runner/common/dialog_helper.dart';
+import 'package:endless_runner/common/exit_challenge_dialog.dart';
+import 'package:endless_runner/common/info_button.dart';
+import 'package:endless_runner/common/map_button.dart';
 import 'package:endless_runner/common/points_counter.dart';
 import 'package:endless_runner/common/timer_widget.dart';
 import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
 import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
 import 'package:endless_runner/style/gaps.dart';
-import 'package:endless_runner/style/main_button.dart';
 
 import '../../audio/audio_controller.dart';
 import 'endless_runner.dart';
@@ -23,7 +25,8 @@ class LightsOutChallengeScreen extends StatelessWidget {
   static const String routePath = '/lights-out-challenge';
 
   static const String winDialogKey = 'win_dialog';
-  static const String backButtonKey = 'back_buttton';
+  static const String infoButtonKey = 'info_button';
+  static const String mapButtonKey = 'back_buttton';
   static const String appBarKey = 'appBar';
   static const String introductionDialogKey = 'introductionDialog';
   static const String countDownKey = 'countDown';
@@ -71,7 +74,7 @@ class _LightsOutChallengeBodyScreenState extends State<LightsOutChallengeBodyScr
             return Center(
               child: ChallengeIntroductionDialog(
                 onCloseTap: () => context.go('/'),
-                challenge: ChallengeType.city,
+                challenge: ChallengeType.lightsOut,
                 onButtonPressed: () {
                   context.read<ChallengeController>().setCountDown(visible: true);
                   game.overlays.remove(LightsOutChallengeScreen.introductionDialogKey);
@@ -85,13 +88,12 @@ class _LightsOutChallengeBodyScreenState extends State<LightsOutChallengeBodyScr
               animationController: _animationController,
             );
           },
-          LightsOutChallengeScreen.backButtonKey: (context, game) {
+          LightsOutChallengeScreen.mapButtonKey: (context, game) {
             return Positioned(
-              top: 20,
-              right: 10,
-              child: MainButton(
-                onPressed: GoRouter.of(context).pop,
-                text: 'Cancel',
+              bottom: 32,
+              left: 24,
+              child: MapButton(
+                onTap: () => _showExitDialog(game),
               ),
             );
           },
@@ -113,13 +115,35 @@ class _LightsOutChallengeBodyScreenState extends State<LightsOutChallengeBodyScr
               ),
             );
           },
+          LightsOutChallengeScreen.infoButtonKey: (context, game) {
+            return Positioned(
+              top: 10,
+              right: 0,
+              child: SafeArea(
+                top: false,
+                bottom: false,
+                left: false,
+                child: InfoButton(onTap: () {
+                  game.pauseEngine();
+                  NavigationHelper.show(
+                    context,
+                    ChallengeIntroductionDialog(
+                      challenge: ChallengeType.lightsOut,
+                      onCloseTap: () => closeAndResume(context, game),
+                      onButtonPressed: () => closeAndResume(context, game),
+                    ),
+                  );
+                }),
+              ),
+            );
+          },
           LightsOutChallengeScreen.winDialogKey: (BuildContext context, EndlessRunner game) {
             final challengeController = context.read<ChallengeController>();
             challengeController.addListener(() {
               if (challengeController.challengeSummary != null) {
-                context.go(
-                  ChallengeCompletedScreen.routePath,
-                  extra: challengeController.challengeSummary!,
+                NavigationHelper.navigateToChallengeResultScreen(
+                  context,
+                  challengeController.challengeSummary!,
                 );
               }
             });
@@ -128,6 +152,21 @@ class _LightsOutChallengeBodyScreenState extends State<LightsOutChallengeBodyScr
           },
         },
       ),
+    );
+  }
+
+  void closeAndResume(BuildContext context, EndlessRunner game) {
+    context.pop();
+    game.resumeEngine();
+  }
+
+  void _showExitDialog(EndlessRunner game) {
+    game.pauseEngine();
+    NavigationHelper.show(
+      context,
+      ExitChallengeDialog(onContinue: () {
+        game.resumeEngine();
+      }),
     );
   }
 

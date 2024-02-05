@@ -50,7 +50,7 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
       final playerProgress = Provider.of<PlayerProgressController>(context, listen: false);
 
       if (playerProgress.challenges.getPlayedChallengesCount() == 0) {
-        DialogHelper.show(
+        NavigationHelper.show(
           context,
           const LeaderboardIntroductionDialog(),
         );

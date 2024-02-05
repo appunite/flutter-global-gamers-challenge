@@ -1,5 +1,6 @@
 import 'package:endless_runner/common/asset_paths.dart';
-import 'package:endless_runner/common/icon_button.dart';
+import 'package:endless_runner/common/info_button.dart';
+import 'package:endless_runner/common/map_button.dart';
 import 'package:endless_runner/common/ribbon_header.dart';
 import 'package:endless_runner/common/success_snack_bar.dart';
 import 'package:endless_runner/leaderboard/leaderboard_controller.dart';
@@ -11,7 +12,6 @@ import 'package:endless_runner/style/gaps.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class LeaderboardScreen extends StatefulWidget {
@@ -71,14 +71,13 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                     )
                   : Stack(
                       children: [
-                        const Positioned(
+                        Positioned(
                           top: 32,
                           right: 16,
-                          child: GameIconButton(
-                            iconName: AssetPaths.iconsInfo,
-                            width: 40,
-                            height: 40,
-                            padding: EdgeInsets.all(8),
+                          child: InfoButton(
+                            onTap: () {
+                              //TODO
+                            },
                           ),
                         ),
                         Padding(
@@ -123,16 +122,10 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                             ],
                           ),
                         ),
-                        Positioned(
+                        const Positioned(
                           bottom: 32,
                           left: 24,
-                          child: GameIconButton(
-                            //TODO(kostrzewsky): Move player to the map
-                            onTap: () => context.go('/'),
-                            iconName: AssetPaths.iconsMap,
-                            width: 56,
-                            height: 56,
-                          ),
+                          child: MapButton(),
                         ),
                       ],
                     ),

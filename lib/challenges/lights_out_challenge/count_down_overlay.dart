@@ -24,7 +24,7 @@ class _CountDownFlameOverlayState extends State<CountDownFlameOverlay> {
   void initState() {
     super.initState();
 
-    _scaleAnimation = Tween<double>(begin: 3, end: 0).animate(widget.animationController)
+    _scaleAnimation = Tween<double>(begin: 3, end: -1).animate(widget.animationController)
       ..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           widget.challengeController.setCountDown(visible: false);

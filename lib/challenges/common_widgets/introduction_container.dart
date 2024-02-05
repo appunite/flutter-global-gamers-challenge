@@ -19,19 +19,21 @@ class InstructionContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.zero,
       decoration: BoxDecoration(
         borderRadius: borderRadius12,
         color: color,
       ),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           if (assetPath != null)
             ClipRRect(
               borderRadius: borderRadius12,
               child: SvgPicture.asset(
                 assetPath!,
-                width: 65,
-                height: 70,
+                width: 75,
+                height: 88,
               ),
             ),
           Flexible(

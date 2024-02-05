@@ -185,7 +185,7 @@ class _UserNameSettingsRow extends StatelessWidget {
             width: 80,
             onPressed: (_) {
               context.pop();
-              DialogHelper.show(
+              NavigationHelper.show(
                 context,
                 const SetPlayerNameDialog(),
               );

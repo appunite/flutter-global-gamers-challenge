@@ -51,7 +51,7 @@ class LeaderboardIntroductionDialog extends StatelessWidget {
         text: 'Continue',
         width: 180,
       ),
-      themeColor: Palette.accentLight,
+      themeColor: Palette.accentDark,
       ribbon: RibbonHeader(
         ribbonImage: AssetPaths.ribbonYellow,
         text: 'Leaderboard',
@@ -63,7 +63,7 @@ class LeaderboardIntroductionDialog extends StatelessWidget {
   }
 
   void _showSetPlayerNameDialog(BuildContext context) {
-    DialogHelper.showWithWidgetBinding(
+    NavigationHelper.showWithWidgetBinding(
       context,
       const SetPlayerNameDialog(),
     );

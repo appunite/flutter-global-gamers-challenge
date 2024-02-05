@@ -50,6 +50,7 @@ class EndlessWorld extends World with TapCallbacks, HasGameReference {
 
         if (!game.world.contains(lampRowCreator)) {
           add(lampRowCreator);
+          _setButtons();
         }
 
         timer ??= _setTimer();
@@ -62,7 +63,7 @@ class EndlessWorld extends World with TapCallbacks, HasGameReference {
       1,
       onTick: () {
         if (timeInSeconds <= 0) {
-          challengeController.onChallengeFinished(challengeType: ChallengeType.city);
+          challengeController.onChallengeFinished(challengeType: ChallengeType.lightsOut);
           game.pauseEngine();
           game.overlays.add(LightsOutChallengeScreen.winDialogKey);
         } else {
@@ -77,8 +78,7 @@ class EndlessWorld extends World with TapCallbacks, HasGameReference {
 
   @override
   void onRemove() {
-    //TODO change to map icon
-    // game.overlays.remove(GameScreen.backButtonKey);
+    game.overlays.remove(LightsOutChallengeScreen.mapButtonKey);
     challengeController.dispose();
   }
 
@@ -89,5 +89,10 @@ class EndlessWorld extends World with TapCallbacks, HasGameReference {
   @override
   void onTapDown(TapDownEvent event) {
     player.jump();
+  }
+
+  void _setButtons() {
+    game.overlays.add(LightsOutChallengeScreen.mapButtonKey);
+    game.overlays.add(LightsOutChallengeScreen.infoButtonKey);
   }
 }
