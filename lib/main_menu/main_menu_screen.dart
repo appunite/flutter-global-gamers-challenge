@@ -181,6 +181,7 @@ class MainMenuScreen extends StatelessWidget {
           ),
         ),
         GestureDetector(
+          behavior: HitTestBehavior.translucent,
           onTap: () => playerProgressController.setHasSeenCongrats(),
           child: const SizedBox(
             height: double.infinity,

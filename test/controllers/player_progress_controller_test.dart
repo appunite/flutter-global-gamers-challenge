@@ -23,6 +23,7 @@ void main() {
       when(() => databaseStorage.getPlayerEntity(playerId: mockedPlayerId))
           .thenAnswer((_) async => mockedEmptyPlayerEntity);
       when(() => localStorage.getHasSeenOnboarding()).thenAnswer((_) async => false);
+      when(() => localStorage.getHasSeenGameCompletedCongrats()).thenAnswer((_) async => false);
 
       playerProgressController = PlayerProgressController(
         localStorage: localStorage,
@@ -34,13 +35,17 @@ void main() {
       expect(playerProgressController.challenges, ChallengesEntity.empty());
       expect(playerProgressController.playerNick, mockedEmptyPlayerEntity.nick);
       expect(playerProgressController.hasSeenOnboarding, false);
+      expect(playerProgressController.shouldShowAllChallengesCongrats, false);
     });
 
-    test('Initialization sets challenges and nick for active player', () async {
+    test(
+        'Initialization sets challenges and nick for active player and sets '
+        'shouldShowAllChallengesCongrats to true', () async {
       when(() => localStorage.getPlayerIdKey()).thenAnswer((_) async => mockedPlayerId);
       when(() => databaseStorage.getPlayerEntity(playerId: mockedPlayerId))
           .thenAnswer((_) async => mockedPlayerWithChallengesEntity);
       when(() => localStorage.getHasSeenOnboarding()).thenAnswer((_) async => true);
+      when(() => localStorage.getHasSeenGameCompletedCongrats()).thenAnswer((_) async => false);
 
       playerProgressController = PlayerProgressController(
         localStorage: localStorage,
@@ -52,6 +57,7 @@ void main() {
       expect(playerProgressController.challenges, mockedPlayerWithChallengesEntity.challengesScores);
       expect(playerProgressController.playerNick, mockedEmptyPlayerEntity.nick);
       expect(playerProgressController.hasSeenOnboarding, true);
+      expect(playerProgressController.shouldShowAllChallengesCongrats, true);
     });
 
     test('Reset invokes databaseStorage.reset and notifies listeners', () async {
@@ -60,6 +66,7 @@ void main() {
           .thenAnswer((_) async => mockedPlayerWithChallengesEntity);
       when(() => databaseStorage.reset(playerId: mockedPlayerId)).thenAnswer((_) async => Future.value());
       when(() => localStorage.getHasSeenOnboarding()).thenAnswer((_) async => true);
+      when(() => localStorage.getHasSeenGameCompletedCongrats()).thenAnswer((_) async => true);
 
       playerProgressController = PlayerProgressController(
         localStorage: localStorage,
@@ -73,6 +80,7 @@ void main() {
       expect(playerProgressController.challenges, ChallengesEntity.empty());
       expect(playerProgressController.playerNick, mockedPlayerWithChallengesEntity.nick);
       expect(playerProgressController.hasSeenOnboarding, true);
+      expect(playerProgressController.shouldShowAllChallengesCongrats, false);
 
       verify(() => databaseStorage.reset(playerId: mockedPlayerId));
     });
@@ -84,6 +92,7 @@ void main() {
       when(() => databaseStorage.reset(playerId: mockedPlayerId)).thenAnswer((_) async => Future.value());
       when(() => localStorage.getHasSeenOnboarding()).thenAnswer((_) async => false);
       when(() => localStorage.setHasSeenOnboarding()).thenAnswer((_) async => Future.value());
+      when(() => localStorage.getHasSeenGameCompletedCongrats()).thenAnswer((_) async => false);
 
       playerProgressController = PlayerProgressController(
         localStorage: localStorage,
