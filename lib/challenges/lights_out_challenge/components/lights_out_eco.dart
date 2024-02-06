@@ -1,4 +1,5 @@
 import 'package:endless_runner/challenges/challenge_controller.dart';
+import 'package:endless_runner/common/asset_paths.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
@@ -55,10 +56,10 @@ class LightsOutEco extends SpriteAnimationGroupComponent<EcoLightsOutState>
         ),
       ),
       EcoLightsOutState.running: await game.loadSpriteAnimation(
-        'dash/dash_running.png',
+        AssetPaths.ecoRunning,
         SpriteAnimationData.sequenced(
-          amount: 4,
-          textureSize: Vector2.all(16),
+          amount: 5,
+          textureSize: Vector2.all(430),
           stepTime: 0.15,
         ),
       ),

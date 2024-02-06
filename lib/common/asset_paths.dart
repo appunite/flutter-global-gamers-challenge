@@ -57,6 +57,8 @@ class AssetPaths {
   static const String lightsOutBackground = 'challenges/lights_out/lights_off_bg.png';
   static const String lamp = 'challenges/lights_out/lamp_long.png';
   static const String lampOff = 'challenges/lights_out/lamp_long_off.png';
+  static const String ecoRunning = 'challenges/lights_out/eco_running.png';
+  static const String ecoJumping = 'challenges/lights_out/eco_jumping.png';
 
   // SVG
   static const String ribbonBlue = 'assets/images/common/ribbon_blue.svg';

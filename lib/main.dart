@@ -25,19 +25,23 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  final firebasePersistence = FirebasePersistence(firestore: FirebaseFirestore.instance);
-  final localPlayerPersistence = LocalPlayerPersistence(sharedPrefs: SharedPreferences.getInstance());
+  final firebasePersistence = FirebasePersistence(
+    firestore: FirebaseFirestore.instance,
+  );
+  final localPlayerPersistence = LocalPlayerPersistence(
+    sharedPrefs: SharedPreferences.getInstance(),
+  );
 
   runApp(
-    MyGame(
+    BetterWorldGame(
       firebasePersistence: firebasePersistence,
       localPlayerPersistence: localPlayerPersistence,
     ),
   );
 }
 
-class MyGame extends StatelessWidget {
-  const MyGame({
+class BetterWorldGame extends StatelessWidget {
+  const BetterWorldGame({
     super.key,
     required this.firebasePersistence,
     required this.localPlayerPersistence,
@@ -60,17 +64,17 @@ class MyGame extends StatelessWidget {
               localStorage: localPlayerPersistence,
             ),
           ),
-          Provider(create: (context) => SettingsController()),
+          Provider(create: (_) => SettingsController()),
           // Set up audio.
           ProxyProvider2<SettingsController, AppLifecycleStateNotifier, AudioController>(
             // Ensures that music starts immediately.
             lazy: false,
-            create: (context) => AudioController(),
-            update: (context, settings, lifecycleNotifier, audio) {
+            create: (_) => AudioController(),
+            update: (_, settings, lifecycleNotifier, audio) {
               audio!.attachDependencies(lifecycleNotifier, settings);
               return audio;
             },
-            dispose: (context, audio) => audio.dispose(),
+            dispose: (_, audio) => audio.dispose(),
           ),
         ],
         child: Builder(
