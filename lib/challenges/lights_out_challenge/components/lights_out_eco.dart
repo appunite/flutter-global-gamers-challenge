@@ -17,7 +17,7 @@ class LightsOutEco extends SpriteAnimationGroupComponent<EcoLightsOutState>
     required this.addScore,
     required this.challengeController,
     super.position,
-  }) : super(size: Vector2.all(150), anchor: Anchor.center, priority: 1);
+  }) : super(size: Vector2.all(200), anchor: Anchor.center, priority: 1);
 
   final void Function() addScore;
   final ChallengeController challengeController;
@@ -43,32 +43,22 @@ class LightsOutEco extends SpriteAnimationGroupComponent<EcoLightsOutState>
 
   @override
   Future<void> onLoad() async {
-    // This defines the different animation states that the player can be in.
+    // This defines the different animation states that Eco can be in.
     animations = {
-      EcoLightsOutState.idle: await game.loadSpriteAnimation(
-        'dash/dash_running.png',
-        SpriteAnimationData.sequenced(
-          amount: 1,
-          textureSize: Vector2.all(16),
-          stepTime: 0.15,
-          amountPerRow: 1,
-          loop: false,
-        ),
-      ),
       EcoLightsOutState.running: await game.loadSpriteAnimation(
         AssetPaths.ecoRunning,
         SpriteAnimationData.sequenced(
           amount: 4,
-          textureSize: Vector2(399, 372),
+          textureSize: Vector2.all(1923),
           stepTime: 0.15,
         ),
       ),
       EcoLightsOutState.jumping: SpriteAnimation.spriteList(
-        [await game.loadSprite('dash/dash_jumping.png')],
+        [await game.loadSprite(AssetPaths.ecoJumping)],
         stepTime: double.infinity,
       ),
       EcoLightsOutState.falling: SpriteAnimation.spriteList(
-        [await game.loadSprite('dash/dash_falling.png')],
+        [await game.loadSprite(AssetPaths.ecoFalling)],
         stepTime: double.infinity,
       ),
     };
@@ -112,7 +102,6 @@ class LightsOutEco extends SpriteAnimationGroupComponent<EcoLightsOutState>
       _gravityVelocity = 0;
       current = EcoLightsOutState.running;
     }
-
     _lastPosition.setFrom(position);
   }
 

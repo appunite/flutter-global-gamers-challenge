@@ -13,8 +13,8 @@ import 'package:endless_runner/player_progress/persistence/database_persistence.
 import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
 import 'package:endless_runner/style/main_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 import 'package:pausable_timer/pausable_timer.dart';
 import 'package:provider/provider.dart';
 
@@ -171,11 +171,11 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
                   crossAxisCount: 12,
                 ),
                 itemCount: challengeController.score,
-                itemBuilder: (_, __) => SvgPicture.asset(
-                  AssetPaths.tree,
-                  fit: BoxFit.contain,
-                  width: 24,
-                  height: 24,
+                itemBuilder: (_, __) => Lottie.asset(
+                  AssetPaths.treeAnimation,
+                  fit: BoxFit.cover,
+                  width: 100,
+                  height: 100,
                 ),
               ),
               Align(
