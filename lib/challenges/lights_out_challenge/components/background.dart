@@ -5,8 +5,8 @@ import 'package:endless_runner/common/asset_paths.dart';
 import 'package:flame/components.dart';
 import 'package:flame/parallax.dart';
 
-class Background extends ParallaxComponent {
-  Background({
+class LightsOutChallenge extends ParallaxComponent {
+  LightsOutChallenge({
     required this.speed,
     required this.challengeController,
   });

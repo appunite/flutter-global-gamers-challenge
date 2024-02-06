@@ -58,8 +58,8 @@ class LightsOutEco extends SpriteAnimationGroupComponent<EcoLightsOutState>
       EcoLightsOutState.running: await game.loadSpriteAnimation(
         AssetPaths.ecoRunning,
         SpriteAnimationData.sequenced(
-          amount: 5,
-          textureSize: Vector2.all(430),
+          amount: 4,
+          textureSize: Vector2(399, 372),
           stepTime: 0.15,
         ),
       ),

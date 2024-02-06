@@ -24,7 +24,7 @@ class EndlessRunner extends FlameGame<EndlessWorld> with HasCollisionDetection {
 
   @override
   Future<void> onLoad() async {
-    camera.backdrop.add(Background(speed: world.speed, challengeController: challengeController));
+    camera.backdrop.add(LightsOutChallenge(speed: world.speed, challengeController: challengeController));
     overlays.add(LightsOutChallengeScreen.countDownKey);
     overlays.add(LightsOutChallengeScreen.introductionDialogKey);
   }
