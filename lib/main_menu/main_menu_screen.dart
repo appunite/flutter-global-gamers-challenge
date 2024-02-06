@@ -11,6 +11,7 @@ import 'package:endless_runner/common/google_wallet_demo.dart';
 import 'package:endless_runner/common/points_counter.dart';
 import 'package:endless_runner/challenges/lights_out_challenge/lights_out_challenge_screen.dart';
 import 'package:endless_runner/leaderboard/leaderboard_screen.dart';
+import 'package:endless_runner/main_menu/game_completed_congrats_widget.dart';
 import 'package:endless_runner/main_menu/tutorial/onboarding_flow.dart';
 import 'package:endless_runner/player_progress/entities/challenges_entity.dart';
 import 'package:endless_runner/player_progress/player_progress_controller.dart';
@@ -51,18 +52,20 @@ class MainMenuScreen extends StatelessWidget {
           ],
         ),
       ),
-      backgroundColor: Palette.secondaryLight,
+      backgroundColor: Palette.neutralDarkGray,
       body: playerProgressController.hasSeenOnboarding
-          ? _buildBody(audioController, context, settingsController)
+          ? playerProgressController.shouldShowAllChallengesCongrats
+              ? GameCompletedCongratsWidget(child: _buildBody(context, audioController, settingsController))
+              : _buildBody(context, audioController, settingsController)
           : OnboardingFlow(
-              child: _buildBody(audioController, context, settingsController),
+              child: _buildBody(context, audioController, settingsController),
             ),
     );
   }
 
   ResponsiveScreen _buildBody(
-    AudioController audioController,
     BuildContext context,
+    AudioController audioController,
     SettingsController settingsController,
   ) {
     return ResponsiveScreen(

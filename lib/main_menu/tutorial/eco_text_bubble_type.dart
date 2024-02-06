@@ -9,7 +9,9 @@ enum EcoTextBubbleType {
   challengeIntroduction(
       text:
           'Replay challenges anytime to beat your score and improve your environmental impact! Tap the pin to start!'),
-  allChallengesCompleted(text: 'TODO');
+  allChallengesCompleted(
+      text:
+          'I’m proud of you! You\'ve completed all the challenges in Better World and transformed it into a sustainable place. Keep playing to climb the leaderboard!');
 
   const EcoTextBubbleType({required this.text});
 

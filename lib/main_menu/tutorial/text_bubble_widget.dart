@@ -1,4 +1,4 @@
-import 'package:endless_runner/main_menu/tutorial/tutorial_step_enum.dart';
+import 'package:endless_runner/main_menu/tutorial/eco_text_bubble_type.dart';
 import 'package:endless_runner/style/const_values.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';

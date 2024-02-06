@@ -99,4 +99,5 @@ class AssetPaths {
   static const String ecoAnimation = 'assets/animations/eco.riv';
   static const String itemSorted = 'assets/animations/item_sorted.json';
   static const String wrongBin = 'assets/animations/wrong_bin.json';
+  static const String fireworks = 'assets/animations/fireworks.json';
 }

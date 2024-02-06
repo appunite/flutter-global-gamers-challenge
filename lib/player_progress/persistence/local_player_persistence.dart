@@ -8,6 +8,7 @@ class LocalPlayerPersistence {
 
   static const _playerIdKey = 'playerIdKey';
   static const _hasSeenOnboardingKey = 'hasSeenOnboardingKey';
+  static const _hasSeenGameCompletedCongratsKey = 'hasSeenGameCompletedCongratsKey';
 
   Future<String> getPlayerIdKey() async {
     final instance = await sharedPrefs;
@@ -29,5 +30,15 @@ class LocalPlayerPersistence {
   Future<void> setHasSeenOnboarding() async {
     final instance = await sharedPrefs;
     await instance.setBool(_hasSeenOnboardingKey, true);
+  }
+
+  Future<bool> getHasSeenGameCompletedCongrats() async {
+    final instance = await sharedPrefs;
+    return instance.getBool(_hasSeenGameCompletedCongratsKey) ?? false;
+  }
+
+  Future<void> setHasSeenGameCompletedCongrats() async {
+    final instance = await sharedPrefs;
+    await instance.setBool(_hasSeenGameCompletedCongratsKey, true);
   }
 }

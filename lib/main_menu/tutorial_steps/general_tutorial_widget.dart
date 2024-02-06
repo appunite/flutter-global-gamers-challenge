@@ -1,6 +1,6 @@
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/main_menu/tutorial/text_bubble_widget.dart';
-import 'package:endless_runner/main_menu/tutorial/tutorial_step_enum.dart';
+import 'package:endless_runner/main_menu/tutorial/eco_text_bubble_type.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:endless_runner/style/main_button.dart';
 import 'package:flutter/material.dart';
@@ -41,13 +41,14 @@ class GeneralTutorialWidget extends StatelessWidget {
             TextBubbleWidget(
               textBubbleType: ecoTextBubbleType,
             ),
-            gap24,
-            if (buttonVisible)
+            if (buttonVisible) ...[
+              gap24,
               MainButton(
                 text: 'Continue',
                 width: 220,
                 onPressed: (_) => onButtonPressed?.call(),
               ),
+            ],
           ],
         ),
       ],
