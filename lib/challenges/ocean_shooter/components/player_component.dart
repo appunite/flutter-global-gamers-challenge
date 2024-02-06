@@ -7,6 +7,7 @@ import 'package:endless_runner/challenges/ocean_shooter/components/fire_boost_co
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flutter/material.dart';
 
 class PlayerComponent extends SpriteAnimationComponent with HasGameRef, CollisionCallbacks {
   PlayerComponent({required this.audioController})
@@ -76,7 +77,7 @@ class PlayerComponent extends SpriteAnimationComponent with HasGameRef, Collisio
 
     if (other is EnemyComponent) {
       //TODO(Kostrzewsky): Hanel game over screen
-      print('GAME OVER');
+      debugPrint('GAME OVER');
     } else if (other is FireBoostComponent) {
       remove(bulletCreator);
       add(

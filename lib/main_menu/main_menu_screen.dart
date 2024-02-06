@@ -5,10 +5,11 @@ import 'package:endless_runner/challenges/pipes_challenge/pipes_challenge_screen
 import 'package:endless_runner/challenges/recycling_challenge/recycling_challenge_screen.dart';
 import 'package:endless_runner/challenges/solar_panel_scratcher_challenge/solar_panel_scratcher_screen.dart';
 import 'package:endless_runner/challenges/trees_challenge/trees_challenge_screen.dart';
-import 'package:endless_runner/common/dialog_helper.dart';
+import 'package:endless_runner/common/navigation_helper.dart';
 import 'package:endless_runner/common/game_progress_indicator.dart';
 import 'package:endless_runner/common/google_wallet_demo.dart';
 import 'package:endless_runner/common/points_counter.dart';
+import 'package:endless_runner/challenges/lights_out_challenge/lights_out_challenge_screen.dart';
 import 'package:endless_runner/leaderboard/leaderboard_screen.dart';
 import 'package:endless_runner/main_menu/tutorial/onboarding_flow.dart';
 import 'package:endless_runner/player_progress/entities/challenges_entity.dart';
@@ -72,9 +73,10 @@ class MainMenuScreen extends StatelessWidget {
             MainButton(
               onPressed: (_) {
                 audioController.playSfx(SfxType.buttonTap);
-                context.go('/play');
+                context.go(LightsOutChallengeScreen.routePath);
               },
               text: 'Play',
+              width: 300,
             ),
             gap10,
             MainButton(
@@ -86,7 +88,10 @@ class MainMenuScreen extends StatelessWidget {
             ),
             gap10,
             MainButton(
-              onPressed: (Offset? offset) => context.push(RecyclingChallengeScreen.routePath, extra: offset),
+              onPressed: (Offset? offset) => context.push(
+                RecyclingChallengeScreen.routePath,
+                extra: offset,
+              ),
               text: 'Recycling',
             ),
             gap10,
@@ -119,7 +124,7 @@ class MainMenuScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           MainButton.secondary(
-            onPressed: (_) => DialogHelper.show(context, const SettingsDialog()),
+            onPressed: (_) => NavigationHelper.show(context, const SettingsDialog()),
             text: 'Settings',
           ),
           gap10,

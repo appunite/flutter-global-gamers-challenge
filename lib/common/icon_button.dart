@@ -30,7 +30,7 @@ class GameIconButton extends StatelessWidget {
         width: width ?? 44,
         height: height ?? 44,
         decoration: BoxDecoration(
-          color: Palette.accentLight,
+          color: Palette.neutralWhite,
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(

@@ -48,7 +48,7 @@ class ChallengeController extends ChangeNotifier {
 
   Future<void> onChallengeFinished({
     required ChallengeType challengeType,
-    required int timeInSec,
+    int? timeInSec,
   }) async {
     final String playerId = await _localPlayerPersistence.getPlayerIdKey();
     final PlayerEntity playerEntity = await _databasePersistence.getPlayerEntity(playerId: playerId);

@@ -13,10 +13,12 @@ class ChallengeIntroductionDialog extends StatelessWidget {
     super.key,
     required this.challenge,
     required this.onButtonPressed,
+    this.onCloseTap,
   });
 
   final ChallengeType challenge;
   final VoidCallback onButtonPressed;
+  final VoidCallback? onCloseTap;
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +57,7 @@ class ChallengeIntroductionDialog extends StatelessWidget {
       ),
       themeColor: Palette.secondaryDark,
       ribbon: RibbonHeader(
+        onCloseTap: onCloseTap,
         withCloseIcon: true,
         text: challenge.title,
       ),
@@ -62,4 +65,3 @@ class ChallengeIntroductionDialog extends StatelessWidget {
     );
   }
 }
-

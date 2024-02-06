@@ -53,6 +53,13 @@ class AssetPaths {
   static const String waterBottle = 'assets/images/challenges/recycling/water_bottle.svg';
   static const String watermelon = 'assets/images/challenges/recycling/watermelon.svg';
 
+  /// Lights out challenge
+  static const String lightsOutBackground = 'challenges/lights_out/lights_off_bg.png';
+  static const String lamp = 'challenges/lights_out/lamp_long.png';
+  static const String lampOff = 'challenges/lights_out/lamp_long_off.png';
+  static const String ecoRunning = 'challenges/lights_out/eco_running.png';
+  static const String ecoJumping = 'challenges/lights_out/eco_jumping.png';
+
   // SVG
   static const String ribbonBlue = 'assets/images/common/ribbon_blue.svg';
   static const String ribbonYellow = 'assets/images/common/ribbon_yellow.svg';
@@ -71,7 +78,7 @@ class AssetPaths {
   static const String ecoConnection = 'assets/images/common/eco_connection.svg';
   static const String ecoSettings = 'assets/images/common/eco_settings.svg';
   static const String infoPipes1 = 'assets/images/challenges/info_pipes_01.svg';
-  static const String infoPipes2 = 'assets/images/challenges/info_pipes_02.svg';
+  static const String infoTimer = 'assets/images/challenges/info_pipes_02.svg';
   static const String pipeCorner = 'assets/images/challenges/pipe_corner.svg';
   static const String pipeStraight = 'assets/images/challenges/pipe_straight.svg';
   static const String pipeWheel = 'assets/images/challenges/pipe_wheel.svg';
@@ -83,7 +90,10 @@ class AssetPaths {
   static const String ecoLeaderboard = 'assets/images/common/eco_leaderboard.svg';
   static const String infoRecycle1 = 'assets/images/challenges/info_recycle_01.svg';
   static const String infoRecycle2 = 'assets/images/challenges/info_recycle_02.svg';
+  static const String infoLightsOut1 = 'assets/images/challenges/info_lightsout_01.svg';
   static const String recyclingBackground = 'assets/images/challenges/recycle_bg.svg';
+  static const String iconsBack = 'assets/images/common/icons_back.svg';
+  static const String iconsCloseWhite = 'assets/images/common/icons_close_white.svg';
 
   // Animations
   static const String ecoAnimation = 'assets/animations/eco.riv';

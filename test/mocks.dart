@@ -12,13 +12,13 @@ const mockedPlayerId = 's2f11Jk33242addfsdSDF';
 
 final mockedEmptyPlayerEntity = PlayerEntity.empty(
   nick: 'Flutter fan',
-  id: 'id',
+  id: mockedPlayerId,
 );
 
 final mockedPlayerEntity = PlayerEntity(
   challengesScores: ChallengesEntity.empty(),
   nick: 'Flutter fan',
-  id: 'id',
+  id: mockedPlayerId,
 );
 
 const mockedPlayerWithChallengesEntity = PlayerEntity(
@@ -31,5 +31,5 @@ const mockedPlayerWithChallengesEntity = PlayerEntity(
     trees: 14,
   ),
   nick: 'Flutter fan',
-  id: 'id',
+  id: mockedPlayerId,
 );

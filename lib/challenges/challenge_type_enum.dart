@@ -4,6 +4,7 @@ import 'package:endless_runner/challenges/recycling_challenge/recycling_challeng
 import 'package:endless_runner/challenges/solar_panel_scratcher_challenge/solar_panel_scratcher_screen.dart';
 import 'package:endless_runner/challenges/trees_challenge/trees_challenge_screen.dart';
 import 'package:endless_runner/common/asset_paths.dart';
+import 'package:endless_runner/challenges/lights_out_challenge/lights_out_challenge_screen.dart';
 import 'package:endless_runner/player_progress/entities/challenges_entity.dart';
 
 enum ChallengeType {
@@ -13,7 +14,7 @@ enum ChallengeType {
     instruction1: 'Connect pipes correctly to stop leaks.',
     instruction2: 'Score 1 point for each correct fix for 10 seconds.',
     instructionAsset1: AssetPaths.infoPipes1,
-    instructionAsset2: AssetPaths.infoPipes2,
+    instructionAsset2: AssetPaths.infoTimer,
     completedText:
         'By fixing leaky pipelines, you\'ve helped conserve water\nand protect aquatic ecosystems in Better World.',
     routePath: PipesChallengeScreen.routePath,
@@ -54,13 +55,15 @@ enum ChallengeType {
     completedText: 'Your dedication to removing plastics\nkeeps our oceans clean and marine life safe.',
     routePath: OceanChallengeScreen.routePath,
   ),
-  city(
+  lightsOut(
     title: 'Lights Out Challenge',
     description: 'Turning off lights saves power and protects wildlife.',
-    instruction1: 'Tap buildings to turn off lights and reduce energy waste.',
-    instruction2: 'Turn off as many lights as you can in 10 seconds and earn points.',
+    instruction1: 'Tap on the screen to jump and hit lamps to turn off lights and reduce energy waste.',
+    instruction2: 'Turn off as many lights as you can in 30 seconds and earn points.',
     completedText: 'Your action in reducing light pollution\n helps save energy and protect nocturnal wildlife.',
-    routePath: 'TODO',
+    routePath: LightsOutChallengeScreen.routePath,
+    instructionAsset1: AssetPaths.infoLightsOut1,
+    instructionAsset2: AssetPaths.infoTimer,
   );
 
   const ChallengeType({
@@ -86,7 +89,7 @@ enum ChallengeType {
 
   int? getChallengeScore(ChallengesEntity challenges) {
     return switch (this) {
-      ChallengeType.city => challenges.city,
+      ChallengeType.lightsOut => challenges.city,
       ChallengeType.ocean => challenges.ocean,
       ChallengeType.pipelines => challenges.pipes,
       ChallengeType.recycling => challenges.recycling,

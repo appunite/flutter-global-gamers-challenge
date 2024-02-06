@@ -10,7 +10,10 @@ import 'package:go_router/go_router.dart';
 class ExitChallengeDialog extends StatelessWidget {
   const ExitChallengeDialog({
     super.key,
+    this.onContinue,
   });
+
+  final VoidCallback? onContinue;
 
   @override
   Widget build(BuildContext context) {
@@ -31,17 +34,23 @@ class ExitChallengeDialog extends StatelessWidget {
           MainButton.secondary(
             width: 150,
             onPressed: (_) => context.go('/'), //TODO(Kostrzewsky): Move player to the map
-            text: 'Yes, Exit',
+            text: 'Exit',
           ),
           gap12,
           MainButton(
-            width: 170,
-            onPressed: (_) => context.pop(),
+            width: 220,
+            onPressed: (_) {
+              if (onContinue != null) {
+                onContinue!.call();
+              } else {
+                context.pop();
+              }
+            },
             text: 'Continue Game',
           ),
         ],
       ),
-      themeColor: Palette.error,
+      themeColor: Palette.secondaryDark,
       ribbon: const RibbonHeader(
         ribbonImage: AssetPaths.ribbonBlue,
         text: 'Exit Challenge',

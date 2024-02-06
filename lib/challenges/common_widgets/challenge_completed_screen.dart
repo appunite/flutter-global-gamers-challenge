@@ -2,7 +2,7 @@ import 'package:confetti/confetti.dart';
 import 'package:endless_runner/challenges/common_widgets/finished_challenge_buttons.dart';
 import 'package:endless_runner/challenges/common_widgets/score_container.dart';
 import 'package:endless_runner/challenges/trees_challenge/challenge_summary_entity.dart';
-import 'package:endless_runner/common/dialog_helper.dart';
+import 'package:endless_runner/common/navigation_helper.dart';
 import 'package:endless_runner/common/ribbon_header.dart';
 import 'package:endless_runner/leaderboard/introduction/leaderboard_introduction_dialog.dart';
 import 'package:endless_runner/player_progress/entities/challenges_entity.dart';
@@ -50,7 +50,7 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
       final playerProgress = Provider.of<PlayerProgressController>(context, listen: false);
 
       if (playerProgress.challenges.getPlayedChallengesCount() == 0) {
-        DialogHelper.show(
+        NavigationHelper.show(
           context,
           const LeaderboardIntroductionDialog(),
         );

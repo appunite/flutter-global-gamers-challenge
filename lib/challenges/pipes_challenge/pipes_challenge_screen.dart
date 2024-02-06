@@ -1,22 +1,21 @@
-import 'dart:async';
-
 import 'package:endless_runner/challenges/challenge_controller.dart';
 import 'package:endless_runner/challenges/challenge_type_enum.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_app_bar.dart';
-import 'package:endless_runner/challenges/common_widgets/challenge_completed_screen.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_introduction_dialog.dart';
-import 'package:endless_runner/challenges/count_down_widget.dart';
+import 'package:endless_runner/challenges/common_widgets/count_down_widget.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipes_controller.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipes_grid.dart';
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/common/background_widget.dart';
-import 'package:endless_runner/common/dialog_helper.dart';
+import 'package:endless_runner/common/navigation_helper.dart';
 import 'package:endless_runner/common/exit_challenge_dialog.dart';
-import 'package:endless_runner/common/icon_button.dart';
+import 'package:endless_runner/common/info_button.dart';
+import 'package:endless_runner/common/map_button.dart';
 import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
 import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pausable_timer/pausable_timer.dart';
 import 'package:provider/provider.dart';
 
 class PipesChallengeScreen extends StatelessWidget {
@@ -54,7 +53,7 @@ class _PipesChallengeBodyScreen extends StatefulWidget {
 
 class _PipesChallengeBodyScreenState extends State<_PipesChallengeBodyScreen> {
   late ChallengeController _challengeController;
-  Timer? _timer;
+  PausableTimer? _timer;
   int _timeInSeconds = 0;
   static const int _maxPoints = 60;
 
@@ -79,7 +78,7 @@ class _PipesChallengeBodyScreenState extends State<_PipesChallengeBodyScreen> {
   }
 
   void _showIntroDialog() {
-    DialogHelper.show(
+    NavigationHelper.show(
       context,
       ChallengeIntroductionDialog(
         challenge: ChallengeType.pipelines,
@@ -89,6 +88,23 @@ class _PipesChallengeBodyScreenState extends State<_PipesChallengeBodyScreen> {
         },
       ),
     );
+  }
+
+  void _showInfoDialog() {
+    _timer?.pause();
+    NavigationHelper.show(
+      context,
+      ChallengeIntroductionDialog(
+        challenge: ChallengeType.pipelines,
+        onCloseTap: () => _popAndResume(),
+        onButtonPressed: () => _popAndResume(),
+      ),
+    );
+  }
+
+  void _popAndResume() {
+    context.pop();
+    _timer?.start();
   }
 
   void _pipesListener(PipesController pipesController) {
@@ -119,21 +135,22 @@ class _PipesChallengeBodyScreenState extends State<_PipesChallengeBodyScreen> {
   }
 
   void _goToSummaryScreen(ChallengeController challengeController) {
-    context.go(
-      ChallengeCompletedScreen.routePath,
-      extra: challengeController.challengeSummary,
+    NavigationHelper.navigateToChallengeResultScreen(
+      context,
+      challengeController.challengeSummary!,
     );
   }
 
   void _startTimer() {
-    _timer ??= Timer.periodic(
+    _timer ??= PausableTimer.periodic(
       const Duration(seconds: 1),
-      (timer) {
+      () {
         setState(() {
           _timeInSeconds++;
         });
       },
     );
+    _timer!.start();
   }
 
   @override
@@ -144,6 +161,11 @@ class _PipesChallengeBodyScreenState extends State<_PipesChallengeBodyScreen> {
         child: Scaffold(
           extendBodyBehindAppBar: true,
           appBar: ChallengeAppBar(
+            actions: [
+              InfoButton(
+                onTap: () => _showInfoDialog(),
+              ),
+            ],
             timeInSeconds: _timeInSeconds,
             countDown: false,
           ),
@@ -160,11 +182,8 @@ class _PipesChallengeBodyScreenState extends State<_PipesChallengeBodyScreen> {
                 alignment: Alignment.bottomLeft,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 36, bottom: 24),
-                  child: GameIconButton(
-                    onTap: () => _showExitDialog(),
-                    iconName: AssetPaths.iconsMap,
-                    width: 56,
-                    height: 56,
+                  child: MapButton(
+                    onTap: _showExitDialog,
                   ),
                 ),
               ),
@@ -183,9 +202,13 @@ class _PipesChallengeBodyScreenState extends State<_PipesChallengeBodyScreen> {
   }
 
   void _showExitDialog() {
-    DialogHelper.showWithWidgetBinding(
+    _timer?.pause();
+    NavigationHelper.showWithWidgetBinding(
       context,
-      const ExitChallengeDialog(),
+      ExitChallengeDialog(onContinue: () {
+        context.pop();
+        _timer?.start();
+      }),
     );
   }
 }

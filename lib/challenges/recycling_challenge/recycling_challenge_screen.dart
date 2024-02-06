@@ -1,24 +1,23 @@
-import 'dart:async';
-
 import 'package:endless_runner/challenges/challenge_controller.dart';
 import 'package:endless_runner/challenges/challenge_type_enum.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_app_bar.dart';
-import 'package:endless_runner/challenges/common_widgets/challenge_completed_screen.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_introduction_dialog.dart';
-import 'package:endless_runner/challenges/count_down_widget.dart';
+import 'package:endless_runner/challenges/common_widgets/count_down_widget.dart';
 import 'package:endless_runner/challenges/recycling_challenge/bin_widget.dart';
 import 'package:endless_runner/challenges/recycling_challenge/garbage_controller.dart';
 import 'package:endless_runner/challenges/recycling_challenge/garbage_widget.dart';
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/common/background_widget.dart';
-import 'package:endless_runner/common/dialog_helper.dart';
+import 'package:endless_runner/common/navigation_helper.dart';
 import 'package:endless_runner/common/exit_challenge_dialog.dart';
-import 'package:endless_runner/common/icon_button.dart';
+import 'package:endless_runner/common/info_button.dart';
+import 'package:endless_runner/common/map_button.dart';
 import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
 import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pausable_timer/pausable_timer.dart';
 import 'package:provider/provider.dart';
 
 class RecyclingChallengeScreen extends StatelessWidget {
@@ -56,7 +55,7 @@ class _RecyclingChallengeScreenBody extends StatefulWidget {
 
 class _RecyclingChallengeScreenBodyState extends State<_RecyclingChallengeScreenBody> {
   late ChallengeController _challengeController;
-  Timer? _timer;
+  PausableTimer? _timer;
   int _timeInSeconds = 0;
   static const int _maxPoints = 100;
 
@@ -77,7 +76,7 @@ class _RecyclingChallengeScreenBodyState extends State<_RecyclingChallengeScreen
   }
 
   void _showIntroDialog() {
-    DialogHelper.show(
+    NavigationHelper.show(
       context,
       ChallengeIntroductionDialog(
         challenge: ChallengeType.recycling,
@@ -116,20 +115,21 @@ class _RecyclingChallengeScreenBodyState extends State<_RecyclingChallengeScreen
   }
 
   void _startTimer() {
-    _timer ??= Timer.periodic(
+    _timer ??= PausableTimer.periodic(
       const Duration(seconds: 1),
-      (timer) {
+      () {
         setState(() {
           _timeInSeconds++;
         });
       },
     );
+    _timer!.start();
   }
 
   void _goToSummaryScreen() {
-    context.go(
-      ChallengeCompletedScreen.routePath,
-      extra: _challengeController.challengeSummary,
+    NavigationHelper.navigateToChallengeResultScreen(
+      context,
+      _challengeController.challengeSummary!,
     );
   }
 
@@ -137,15 +137,16 @@ class _RecyclingChallengeScreenBodyState extends State<_RecyclingChallengeScreen
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvoked: (_) {
-        _showExitDialog();
-      },
+      onPopInvoked: (_) => _showExitDialog(),
       child: CountDownWidget(
         child: Scaffold(
           extendBodyBehindAppBar: true,
           appBar: ChallengeAppBar(
             timeInSeconds: _timeInSeconds,
             countDown: false,
+            actions: [
+              InfoButton(onTap: _showInfoDialog),
+            ],
           ),
           body: Stack(
             fit: StackFit.expand,
@@ -183,12 +184,9 @@ class _RecyclingChallengeScreenBodyState extends State<_RecyclingChallengeScreen
               Align(
                 alignment: Alignment.bottomLeft,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 36,bottom: 24),
-                  child: GameIconButton(
+                  padding: const EdgeInsets.only(left: 36, bottom: 24),
+                  child: MapButton(
                     onTap: () => _showExitDialog(),
-                    iconName: AssetPaths.iconsMap,
-                    width: 56,
-                    height: 56,
                   ),
                 ),
               ),
@@ -199,17 +197,38 @@ class _RecyclingChallengeScreenBodyState extends State<_RecyclingChallengeScreen
     );
   }
 
+  void _showExitDialog() {
+    _timer?.pause();
+    NavigationHelper.show(
+      context,
+      ExitChallengeDialog(onContinue: () {
+        context.pop();
+        _timer?.start();
+      }),
+    );
+  }
+
+  void _showInfoDialog() {
+    _timer?.pause();
+    NavigationHelper.show(
+      context,
+      ChallengeIntroductionDialog(
+        challenge: ChallengeType.recycling,
+        onCloseTap: () => _popAndResume(),
+        onButtonPressed: () => _popAndResume(),
+      ),
+    );
+  }
+
+  void _popAndResume() {
+    context.pop();
+    _timer?.start();
+  }
+
   @override
   void dispose() {
     _timer?.cancel();
     _challengeController.dispose();
     super.dispose();
-  }
-
-  void _showExitDialog() {
-    DialogHelper.show(
-      context,
-      const ExitChallengeDialog(),
-    );
   }
 }

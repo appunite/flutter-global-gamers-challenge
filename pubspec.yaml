@@ -34,6 +34,7 @@ dependencies:
   nes_ui: ^0.10.0
   overlay_tutorial: ^3.0.0
   package_info_plus: ^5.0.1
+  pausable_timer: ^3.1.0+3
   provider: ^6.0.5
   rive: ^0.12.4
   shared_preferences: ^2.2.2
@@ -59,12 +60,11 @@ flutter:
     - assets/animations/
     - assets/images/
     - assets/images/challenges/
+    - assets/images/challenges/lights_out/
     - assets/images/challenges/ocean_shooter/
     - assets/images/challenges/recycling/
     - assets/images/common/
     - assets/images/dash/
-    - assets/images/enemies/
-    - assets/images/scenery/
     - assets/music/
     - assets/sfx/
 

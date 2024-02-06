@@ -1,37 +1,33 @@
+import 'package:endless_runner/challenges/challenge_controller.dart';
+import 'package:endless_runner/common/asset_paths.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flutter/animation.dart';
 
-import '../../audio/sounds.dart';
+import '../../../audio/sounds.dart';
 import '../endless_runner.dart';
 import '../endless_world.dart';
-import '../effects/hurt_effect.dart';
-import '../effects/jump_effect.dart';
-import 'obstacle.dart';
-import 'point.dart';
+import '../jump_effect.dart';
+import 'lamp.dart';
 
-/// The [Player] is the component that the physical player of the game is
+/// The [LightsOutEco] is the component that the physical player of the game is
 /// controlling.
-class Player extends SpriteAnimationGroupComponent<PlayerState>
-    with
-        CollisionCallbacks,
-        HasWorldReference<EndlessWorld>,
-        HasGameReference<EndlessRunner> {
-  Player({
+class LightsOutEco extends SpriteAnimationGroupComponent<EcoLightsOutState>
+    with CollisionCallbacks, HasWorldReference<EndlessWorld>, HasGameReference<EndlessRunner> {
+  LightsOutEco({
     required this.addScore,
-    required this.resetScore,
+    required this.challengeController,
     super.position,
   }) : super(size: Vector2.all(150), anchor: Anchor.center, priority: 1);
 
-  final void Function({int amount}) addScore;
-  final VoidCallback resetScore;
+  final void Function() addScore;
+  final ChallengeController challengeController;
 
   // The current velocity that the player has that comes from being affected by
   // the gravity. Defined in virtual pixels/s².
   double _gravityVelocity = 0;
 
   // The maximum length that the player can jump. Defined in virtual pixels.
-  final double _jumpLength = 600;
+  final double _jumpLength = 380;
 
   // Whether the player is currently in the air, this can be used to restrict
   // movement for example.
@@ -49,43 +45,61 @@ class Player extends SpriteAnimationGroupComponent<PlayerState>
   Future<void> onLoad() async {
     // This defines the different animation states that the player can be in.
     animations = {
-      PlayerState.running: await game.loadSpriteAnimation(
+      EcoLightsOutState.idle: await game.loadSpriteAnimation(
         'dash/dash_running.png',
         SpriteAnimationData.sequenced(
-          amount: 4,
+          amount: 1,
           textureSize: Vector2.all(16),
+          stepTime: 0.15,
+          amountPerRow: 1,
+          loop: false,
+        ),
+      ),
+      EcoLightsOutState.running: await game.loadSpriteAnimation(
+        AssetPaths.ecoRunning,
+        SpriteAnimationData.sequenced(
+          amount: 4,
+          textureSize: Vector2(399, 372),
           stepTime: 0.15,
         ),
       ),
-      PlayerState.jumping: SpriteAnimation.spriteList(
+      EcoLightsOutState.jumping: SpriteAnimation.spriteList(
         [await game.loadSprite('dash/dash_jumping.png')],
         stepTime: double.infinity,
       ),
-      PlayerState.falling: SpriteAnimation.spriteList(
+      EcoLightsOutState.falling: SpriteAnimation.spriteList(
         [await game.loadSprite('dash/dash_falling.png')],
         stepTime: double.infinity,
       ),
     };
     // The starting state will be that the player is running.
-    current = PlayerState.running;
+    current = EcoLightsOutState.idle;
     _lastPosition.setFrom(position);
 
     // When adding a CircleHitbox without any arguments it automatically
     // fills up the size of the component as much as it can without overflowing
     // it.
     add(CircleHitbox());
+
+    challengeController.addListener(() {
+      if (challengeController.startChallengeTimer) {
+        current = EcoLightsOutState.running;
+      }
+    });
   }
 
   @override
   void update(double dt) {
     super.update(dt);
+    game.world.timer?.update(dt);
+
     // When we are in the air the gravity should affect our position and pull
     // us closer to the ground.
     if (inAir) {
       _gravityVelocity += world.gravity * dt;
       position.y += _gravityVelocity;
       if (isFalling) {
-        current = PlayerState.falling;
+        current = EcoLightsOutState.falling;
       }
     }
 
@@ -96,7 +110,7 @@ class Player extends SpriteAnimationGroupComponent<PlayerState>
     if (belowGround) {
       position.y = world.groundLevel - size.y / 2;
       _gravityVelocity = 0;
-      current = PlayerState.running;
+      current = EcoLightsOutState.running;
     }
 
     _lastPosition.setFrom(position);
@@ -108,37 +122,36 @@ class Player extends SpriteAnimationGroupComponent<PlayerState>
     PositionComponent other,
   ) {
     super.onCollisionStart(intersectionPoints, other);
-    // When the player collides with an obstacle it should lose all its points.
-    if (other is Obstacle) {
-      game.audioController.playSfx(SfxType.damage);
-      resetScore();
-      add(HurtEffect());
-    } else if (other is Point) {
-      // When the player collides with a point it should gain a point and remove
-      // the `Point` from the game.
-      game.audioController.playSfx(SfxType.score);
-      other.removeFromParent();
+
+    if (other is Lamp) {
       addScore();
+      _gravityVelocity += 10;
+      position.y += _gravityVelocity;
+      current = EcoLightsOutState.falling;
+      game.audioController.playSfx(SfxType.score);
+      other.lampTurnedOff();
     }
   }
 
-  /// [towards] should be a normalized vector that points in the direction that
-  /// the player should jump.
-  void jump(Vector2 towards) {
-    current = PlayerState.jumping;
-    // Since `towards` is normalized we need to scale (multiply) that vector by
-    // the length that we want the jump to have.
-    final jumpEffect = JumpEffect(towards..scaleTo(_jumpLength));
+  void jump() {
+    current = EcoLightsOutState.jumping;
 
-    // We only allow jumps when the player isn't already in the air.
+    late JumpEffect jumpEffect;
+    if (inAir) {
+      jumpEffect = JumpEffect(Vector2(0, -_jumpLength)..scaleTo(_jumpLength));
+    } else {
+      jumpEffect = JumpEffect(Vector2(0, -_jumpLength / 2 - 100));
+    }
+    add(jumpEffect);
+
     if (!inAir) {
       game.audioController.playSfx(SfxType.jump);
-      add(jumpEffect);
     }
   }
 }
 
-enum PlayerState {
+enum EcoLightsOutState {
+  idle,
   running,
   jumping,
   falling,

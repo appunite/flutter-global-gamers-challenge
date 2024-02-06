@@ -76,7 +76,7 @@ class _SetPlayerNameDialogState extends State<SetPlayerNameDialog> {
         text: 'Continue',
         width: 180,
       ),
-      themeColor: Palette.accentLight,
+      themeColor: Palette.accentDark,
       ribbon: RibbonHeader(
         ribbonImage: AssetPaths.ribbonYellow,
         text: 'Leaderboard',

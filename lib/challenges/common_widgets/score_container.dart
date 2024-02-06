@@ -10,30 +10,32 @@ class ScoreContainer extends StatelessWidget {
   const ScoreContainer({
     super.key,
     required this.score,
-    required this.timeInSeconds,
+    this.timeInSeconds,
     required this.bestScore,
   });
 
   final int score;
-  final int timeInSeconds;
+  final int? timeInSeconds;
   final int bestScore;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.center,
+      alignment: Alignment.bottomCenter,
       padding: const EdgeInsets.all(12),
       width: 320,
-      height: 155,
       decoration: BoxDecoration(
         color: Palette.neutralWhite.withOpacity(.3),
         borderRadius: borderRadius24,
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           _CurrentScoreRow(score: score),
-          gap12,
-          _TimeRow(timeInSeconds: timeInSeconds),
+          if (timeInSeconds != null) ...[
+            gap12,
+            _TimeRow(timeInSeconds: timeInSeconds!),
+          ],
           gap16,
           _BestScoreRow(bestScore: bestScore, context: context),
         ],

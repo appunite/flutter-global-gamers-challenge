@@ -27,31 +27,33 @@ class _ChallengeNoScoreScreenState extends State<ChallengeNoScoreScreen> {
     return Scaffold(
       backgroundColor: Palette.accentBackground,
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            gap24,
-            const RibbonHeader(
-              text: 'TIME\'S UP!',
-              width: 450,
-              ribbonImage: AssetPaths.ribbonRed,
+        child: Center(
+          child: Container(
+            constraints: const BoxConstraints(maxWidth: 600),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                gap24,
+                const RibbonHeader(
+                  text: 'TIME\'S UP!',
+                  width: 450,
+                  ribbonImage: AssetPaths.ribbonRed,
+                ),
+                Text(
+                  'Even small actions can have a big impact on the environment. Let\'s try again and make a difference!',
+                  style: Theme.of(context).textTheme.titleMedium,
+                  textAlign: TextAlign.center,
+                ),
+                gap16,
+                ScoreContainer(
+                  score: widget.challengeSummary.score,
+                  bestScore: widget.challengeSummary.bestScore,
+                  timeInSeconds: widget.challengeSummary.time,
+                ),
+                gap60,
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 100),
-              child: Text(
-                'Even small actions can have a big impact on the environment. Let\'s try again and make a difference!',
-                style: Theme.of(context).textTheme.titleMedium,
-                textAlign: TextAlign.center,
-              ),
-            ),
-            gap16,
-            ScoreContainer(
-              score: widget.challengeSummary.score,
-              bestScore: widget.challengeSummary.bestScore,
-              timeInSeconds: widget.challengeSummary.time,
-            ),
-            gap60,
-          ],
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

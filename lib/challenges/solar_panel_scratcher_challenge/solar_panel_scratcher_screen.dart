@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:endless_runner/common/asset_paths.dart';
-import 'package:endless_runner/common/dialog_helper.dart';
+import 'package:endless_runner/common/navigation_helper.dart';
 import 'package:endless_runner/common/exit_challenge_dialog.dart';
-import 'package:endless_runner/common/icon_button.dart';
+import 'package:endless_runner/common/info_button.dart';
+import 'package:endless_runner/common/map_button.dart';
 import 'package:endless_runner/common/points_counter.dart';
 import 'package:endless_runner/common/success_dialog.dart';
 import 'package:endless_runner/common/timer_widget.dart';
@@ -85,14 +85,12 @@ class _SolarPanelChallengeScreenState extends State<SolarPanelChallengeScreen> {
                     gap16,
                     TimerWidget(timeInSeconds: _timeInSeconds),
                     const Spacer(),
-                    GameIconButton(
-                      iconName: AssetPaths.iconsInfo,
-                      width: 40,
-                      height: 40,
-                      padding: const EdgeInsets.all(8),
-                      onTap: () => _showIntroDialog(),
+                    SafeArea(
+                      top: false,
+                      bottom: false,
+                      left: false,
+                      child: InfoButton(onTap: () => _showIntroDialog()),
                     ),
-                    gap16,
                   ],
                 ),
               ),
@@ -101,11 +99,8 @@ class _SolarPanelChallengeScreenState extends State<SolarPanelChallengeScreen> {
               alignment: Alignment.bottomLeft,
               child: Padding(
                 padding: const EdgeInsets.only(left: 36, bottom: 24),
-                child: GameIconButton(
+                child: MapButton(
                   onTap: () => _showExitDialog(),
-                  iconName: AssetPaths.iconsMap,
-                  width: 56,
-                  height: 56,
                 ),
               ),
             ),
@@ -136,13 +131,13 @@ class _SolarPanelChallengeScreenState extends State<SolarPanelChallengeScreen> {
   }
 
   void _showExitDialog() {
-    DialogHelper.showWithWidgetBinding(
+    NavigationHelper.showWithWidgetBinding(
       context,
       const ExitChallengeDialog(),
     );
   }
 
   void _showIntroDialog() {
-    print("TODO _showIntroDialog");
+    debugPrint("TODO _showIntroDialog");
   }
 }

@@ -55,7 +55,7 @@ class FirebasePersistence extends DatabasePersistence {
       final ChallengesEntity currentChallenges = playerEntity.challengesScores;
 
       final updatedChallenges = switch (challengeType) {
-        ChallengeType.city => currentChallenges.copyWith(city: points),
+        ChallengeType.lightsOut => currentChallenges.copyWith(city: points),
         ChallengeType.ocean => currentChallenges.copyWith(ocean: points),
         ChallengeType.pipelines => currentChallenges.copyWith(pipes: points),
         ChallengeType.recycling => currentChallenges.copyWith(recycling: points),
