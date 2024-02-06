@@ -17,6 +17,7 @@ class PlayerProgressController extends ChangeNotifier {
 
   final LocalPlayerPersistence _localStorage;
   final DatabasePersistence _databaseStorage;
+  static const _numberOfChallenges = 6;
 
   ChallengesEntity _challenges = ChallengesEntity.empty();
 
@@ -30,10 +31,22 @@ class PlayerProgressController extends ChangeNotifier {
 
   bool get hasSeenOnboarding => _hasSeenOnboarding;
 
+  bool _shouldShowGameCompletedCongrats = false;
+
+  bool get shouldShowAllChallengesCongrats => _shouldShowGameCompletedCongrats;
+
   Future<void> _loadPlayerData() async {
     final String playerId = await _localStorage.getPlayerIdKey();
     final PlayerEntity playerEntity = await _databaseStorage.getPlayerEntity(playerId: playerId);
     final bool hasSeenOnboarding = await _localStorage.getHasSeenOnboarding();
+
+    // check if user completed the game
+    if (playerEntity.challengesScores.getPlayedChallengesCount() >= _numberOfChallenges) {
+      final hasSeenCongrats = await _localStorage.getHasSeenGameCompletedCongrats();
+      if (!hasSeenCongrats) {
+        _shouldShowGameCompletedCongrats = true;
+      }
+    }
 
     _challenges = playerEntity.challengesScores;
     _playerNick = playerEntity.nick;
@@ -54,11 +67,16 @@ class PlayerProgressController extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> setHasSeenCongrats() async {
+    await _localStorage.setHasSeenGameCompletedCongrats();
+    _shouldShowGameCompletedCongrats = false;
+    notifyListeners();
+  }
+
   Future<void> updateUserName({required String username}) async {
     final String playerId = await _localStorage.getPlayerIdKey();
     await _databaseStorage.updateUsername(playerId: playerId, username: username);
     _playerNick = username;
-
     notifyListeners();
   }
 }

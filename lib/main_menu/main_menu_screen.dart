@@ -11,6 +11,8 @@ import 'package:endless_runner/common/google_wallet_demo.dart';
 import 'package:endless_runner/common/points_counter.dart';
 import 'package:endless_runner/leaderboard/leaderboard_screen.dart';
 import 'package:endless_runner/main_menu/tutorial/onboarding_flow.dart';
+import 'package:endless_runner/main_menu/tutorial/eco_text_bubble_type.dart';
+import 'package:endless_runner/main_menu/tutorial_steps/general_tutorial_widget.dart';
 import 'package:endless_runner/player_progress/entities/challenges_entity.dart';
 import 'package:endless_runner/player_progress/player_progress_controller.dart';
 import 'package:endless_runner/settings/settings_dialog.dart';
@@ -52,16 +54,18 @@ class MainMenuScreen extends StatelessWidget {
       ),
       backgroundColor: Palette.secondaryLight,
       body: playerProgressController.hasSeenOnboarding
-          ? _buildBody(audioController, context, settingsController)
+          ? playerProgressController.shouldShowAllChallengesCongrats
+              ? _bodyWithCongrats(context, audioController, settingsController, playerProgressController)
+              : _buildBody(context, audioController, settingsController)
           : OnboardingFlow(
-              child: _buildBody(audioController, context, settingsController),
+              child: _buildBody(context, audioController, settingsController),
             ),
     );
   }
 
   ResponsiveScreen _buildBody(
-    AudioController audioController,
     BuildContext context,
+    AudioController audioController,
     SettingsController settingsController,
   ) {
     return ResponsiveScreen(
@@ -142,6 +146,48 @@ class MainMenuScreen extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _bodyWithCongrats(
+    BuildContext context,
+    AudioController audioController,
+    SettingsController settingsController,
+    PlayerProgressController playerProgressController,
+  ) {
+    return Stack(
+      children: [
+        _buildBody(context, audioController, settingsController),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 30),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                const GeneralTutorialWidget(
+                  ecoTextBubbleType: EcoTextBubbleType.allChallengesCompleted,
+                  buttonVisible: false,
+                ),
+                Text(
+                  'Tap anywhere to continue'.toUpperCase(),
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: Palette.neutralWhite,
+                      ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        GestureDetector(
+          onTap: () => playerProgressController.setHasSeenCongrats(),
+          child: const SizedBox(
+            height: double.infinity,
+            width: double.infinity,
+          ),
+        )
+      ],
     );
   }
 }

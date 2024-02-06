@@ -1,4 +1,4 @@
-import 'package:endless_runner/main_menu/tutorial/tutorial_step_enum.dart';
+import 'package:endless_runner/main_menu/tutorial/eco_text_bubble_type.dart';
 import 'package:endless_runner/style/overlay_widget.dart';
 import 'package:endless_runner/main_menu/tutorial_steps/challenge_tutorial_widget.dart';
 import 'package:endless_runner/main_menu/tutorial_steps/general_tutorial_widget.dart';
