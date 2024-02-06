@@ -2,7 +2,7 @@ import 'package:endless_runner/challenges/challenge_controller.dart';
 import 'package:endless_runner/challenges/challenge_type_enum.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_app_bar.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_introduction_dialog.dart';
-import 'package:endless_runner/challenges/count_down_widget.dart';
+import 'package:endless_runner/challenges/common_widgets/count_down_widget.dart';
 import 'package:endless_runner/challenges/recycling_challenge/bin_widget.dart';
 import 'package:endless_runner/challenges/recycling_challenge/garbage_controller.dart';
 import 'package:endless_runner/challenges/recycling_challenge/garbage_widget.dart';
