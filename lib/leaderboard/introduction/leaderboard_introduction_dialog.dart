@@ -2,7 +2,7 @@ import 'package:endless_runner/challenges/common_widgets/introduction_container.
 import 'package:endless_runner/change_player_name/set_player_name_dialog.dart';
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/common/common_dialog.dart';
-import 'package:endless_runner/common/dialog_helper.dart';
+import 'package:endless_runner/common/navigation_helper.dart';
 import 'package:endless_runner/common/ribbon_header.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:endless_runner/style/main_button.dart';

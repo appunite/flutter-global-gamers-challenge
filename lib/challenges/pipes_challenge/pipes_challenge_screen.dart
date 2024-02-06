@@ -7,7 +7,7 @@ import 'package:endless_runner/challenges/pipes_challenge/pipes_controller.dart'
 import 'package:endless_runner/challenges/pipes_challenge/pipes_grid.dart';
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/common/background_widget.dart';
-import 'package:endless_runner/common/dialog_helper.dart';
+import 'package:endless_runner/common/navigation_helper.dart';
 import 'package:endless_runner/common/exit_challenge_dialog.dart';
 import 'package:endless_runner/common/info_button.dart';
 import 'package:endless_runner/common/map_button.dart';

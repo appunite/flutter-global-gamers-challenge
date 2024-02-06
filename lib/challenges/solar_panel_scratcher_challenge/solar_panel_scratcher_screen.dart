@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:endless_runner/common/dialog_helper.dart';
+import 'package:endless_runner/common/navigation_helper.dart';
 import 'package:endless_runner/common/exit_challenge_dialog.dart';
 import 'package:endless_runner/common/info_button.dart';
 import 'package:endless_runner/common/map_button.dart';
