@@ -54,7 +54,10 @@ class AudioController {
   /// Makes sure the audio controller is listening to changes
   /// of both the app lifecycle (e.g. suspended app) and to changes
   /// of settings (e.g. muted sound).
-  void attachDependencies(AppLifecycleStateNotifier lifecycleNotifier, SettingsController settingsController) {
+  void attachDependencies(
+    AppLifecycleStateNotifier lifecycleNotifier,
+    SettingsController settingsController,
+  ) {
     _attachLifecycleNotifier(lifecycleNotifier);
     _attachSettings(settingsController);
   }

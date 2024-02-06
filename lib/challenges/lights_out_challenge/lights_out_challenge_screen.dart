@@ -129,8 +129,8 @@ class _LightsOutChallengeBodyScreenState extends State<LightsOutChallengeBodyScr
                     context,
                     ChallengeIntroductionDialog(
                       challenge: ChallengeType.lightsOut,
-                      onCloseTap: () => closeAndResume(context, game),
-                      onButtonPressed: () => closeAndResume(context, game),
+                      onCloseTap: () => _closeAndResume(context, game),
+                      onButtonPressed: () => _closeAndResume(context, game),
                     ),
                   );
                 }),
@@ -155,7 +155,7 @@ class _LightsOutChallengeBodyScreenState extends State<LightsOutChallengeBodyScr
     );
   }
 
-  void closeAndResume(BuildContext context, EndlessRunner game) {
+  void _closeAndResume(BuildContext context, EndlessRunner game) {
     context.pop();
     game.resumeEngine();
   }

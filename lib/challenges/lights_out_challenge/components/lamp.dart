@@ -35,7 +35,6 @@ class Lamp extends SpriteComponent with HasWorldReference<EndlessWorld> {
           position: Vector2(xPosition, -30),
         );
 
-  /// Generates a random obstacle of type [LampType].
   factory Lamp.random({
     required double xPosition,
     Random? random,
