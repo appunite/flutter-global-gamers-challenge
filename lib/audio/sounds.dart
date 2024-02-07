@@ -2,11 +2,7 @@ List<String> soundTypeToFilename(SfxType type) {
   switch (type) {
     case SfxType.jump:
       return const [
-        'jump1.mp3',
-      ];
-    case SfxType.doubleJump:
-      return const [
-        'double_jump1.mp3',
+        'jump.mp3',
       ];
     case SfxType.hit:
       return const [
@@ -44,7 +40,6 @@ List<String> soundTypeToFilename(SfxType type) {
 double soundTypeToVolume(SfxType type) {
   switch (type) {
     case SfxType.jump:
-    case SfxType.doubleJump:
     case SfxType.damage:
     case SfxType.hit:
     case SfxType.garbage:
@@ -52,16 +47,17 @@ double soundTypeToVolume(SfxType type) {
     case SfxType.microplasticDestroyed:
     case SfxType.wrongBin:
       return 0.4;
-    case SfxType.score:
+
     case SfxType.buttonTap:
       return 1.0;
+    case SfxType.score:
+      return 2.0;
   }
 }
 
 enum SfxType {
   score,
   jump,
-  doubleJump,
   hit,
   damage,
   buttonTap,
