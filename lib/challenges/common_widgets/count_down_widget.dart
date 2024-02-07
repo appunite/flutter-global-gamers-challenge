@@ -1,3 +1,5 @@
+import 'package:endless_runner/audio/audio_controller.dart';
+import 'package:endless_runner/audio/sounds.dart';
 import 'package:endless_runner/challenges/challenge_controller.dart';
 import 'package:endless_runner/style/overlay_widget.dart';
 import 'package:endless_runner/style/palette.dart';
@@ -24,9 +26,10 @@ class _CountDownWidgetState extends State<CountDownWidget> with SingleTickerProv
   @override
   void initState() {
     super.initState();
+
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 4),
     );
 
     _challengeController = Provider.of<ChallengeController>(context, listen: false);
@@ -47,6 +50,7 @@ class _CountDownWidgetState extends State<CountDownWidget> with SingleTickerProv
   void _listener() {
     if (_challengeController.countDownVisible) {
       _animationController.forward();
+      context.read<AudioController>().playSfx(SfxType.countdown);
     }
   }
 

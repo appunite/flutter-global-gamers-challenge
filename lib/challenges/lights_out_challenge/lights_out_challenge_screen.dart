@@ -54,7 +54,7 @@ class _LightsOutChallengeBodyScreenState extends State<LightsOutChallengeBodyScr
     with SingleTickerProviderStateMixin {
   late final _animationController = AnimationController(
     vsync: this,
-    duration: const Duration(seconds: 3),
+    duration: const Duration(seconds: 4),
   );
 
   @override

@@ -1,6 +1,9 @@
+import 'package:endless_runner/audio/audio_controller.dart';
+import 'package:endless_runner/audio/sounds.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:endless_runner/style/pushable_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MainButton extends StatelessWidget {
   const MainButton({
@@ -41,7 +44,10 @@ class MainButton extends StatelessWidget {
       activeColor: activeColor,
       hslColor: HSLColor.fromColor(backgroundColor),
       height: 48,
-      onPressed: onPressed,
+      onPressed: (details) {
+        context.read<AudioController>().playSfx(SfxType.buttonTap);
+        onPressed.call(details);
+      },
       child: Text(
         text,
         textAlign: TextAlign.center,

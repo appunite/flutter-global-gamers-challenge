@@ -1,3 +1,5 @@
+import 'package:endless_runner/audio/audio_controller.dart';
+import 'package:endless_runner/audio/sounds.dart';
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/main_menu/tutorial/eco_text_bubble_type.dart';
 import 'package:endless_runner/main_menu/tutorial_steps/general_tutorial_widget.dart';
@@ -7,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
-class GameCompletedCongratsWidget extends StatelessWidget {
+class GameCompletedCongratsWidget extends StatefulWidget {
   const GameCompletedCongratsWidget({
     super.key,
     required this.child,
@@ -16,12 +18,23 @@ class GameCompletedCongratsWidget extends StatelessWidget {
   final Widget child;
 
   @override
+  State<GameCompletedCongratsWidget> createState() => _GameCompletedCongratsWidgetState();
+}
+
+class _GameCompletedCongratsWidgetState extends State<GameCompletedCongratsWidget> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<AudioController>().playSfx(SfxType.fireworks);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final playerProgressController = context.watch<PlayerProgressController>();
 
     return Stack(
       children: [
-        child,
+        widget.child,
         Align(
           alignment: Alignment.topCenter,
           child: Lottie.asset(AssetPaths.fireworks, repeat: true),
@@ -50,12 +63,15 @@ class GameCompletedCongratsWidget extends StatelessWidget {
         ),
         GestureDetector(
           behavior: HitTestBehavior.opaque,
-          onTap: () => playerProgressController.setHasSeenCongrats(),
+          onTap: () {
+            playerProgressController.setHasSeenCongrats();
+            context.read<AudioController>().stopSfx();
+          },
           child: const SizedBox(
             height: double.infinity,
             width: double.infinity,
           ),
-        )
+        ),
       ],
     );
   }

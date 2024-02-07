@@ -1,8 +1,11 @@
+import 'package:endless_runner/audio/audio_controller.dart';
+import 'package:endless_runner/audio/sounds.dart';
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class RibbonHeader extends StatelessWidget {
   const RibbonHeader({
@@ -53,10 +56,16 @@ class RibbonHeader extends StatelessWidget {
             top: 4,
             child: GestureDetector(
               behavior: HitTestBehavior.translucent,
-              onTap: onCloseTap ??
-                  () => context
+              onTap: () {
+                context.read<AudioController>().playSfx(SfxType.buttonTap);
+                if (onCloseTap != null) {
+                  onCloseTap!.call();
+                } else {
+                  context
                     ..pop()
-                    ..pop(),
+                    ..pop();
+                }
+              },
               child: SizedBox(
                 height: 45,
                 width: 45,

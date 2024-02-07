@@ -47,7 +47,7 @@ class PlayerProgressController extends ChangeNotifier {
         _shouldShowGameCompletedCongrats = true;
       }
     }
-
+    _shouldShowGameCompletedCongrats = true;
     _challenges = playerEntity.challengesScores;
     _playerNick = playerEntity.nick;
     _hasSeenOnboarding = hasSeenOnboarding;

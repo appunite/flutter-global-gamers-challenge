@@ -1,3 +1,5 @@
+import 'package:endless_runner/audio/audio_controller.dart';
+import 'package:endless_runner/audio/sounds.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipe_type_enum.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipes_controller.dart';
 import 'package:flutter/material.dart';
@@ -20,11 +22,14 @@ class PipeItem extends StatelessWidget {
     final pipesController = context.watch<PipesController>();
 
     return GestureDetector(
-      onTap: () => pipesController.itemTurned(
-        row: row,
-        column: column,
-        pipeType: pipeType,
-      ),
+      onTap: () {
+        context.read<AudioController>().playSfx(SfxType.pipe);
+        pipesController.itemTurned(
+          row: row,
+          column: column,
+          pipeType: pipeType,
+        );
+      },
       child: Transform.rotate(
         angle: pipesController.pipesCurrentAngles[row][column],
         child: pipeType.getWidget(pipesController.pipesCurrentAngles[row][column]),

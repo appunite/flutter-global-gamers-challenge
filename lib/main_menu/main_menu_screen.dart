@@ -22,7 +22,6 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../audio/audio_controller.dart';
-import '../audio/sounds.dart';
 import '../settings/settings.dart';
 import '../style/main_button.dart';
 import '../style/palette.dart';
@@ -75,8 +74,7 @@ class MainMenuScreen extends StatelessWidget {
           children: [
             MainButton(
               onPressed: (_) {
-                audioController.playSfx(SfxType.buttonTap);
-                context.go(LightsOutChallengeScreen.routePath);
+                context.push(LightsOutChallengeScreen.routePath);
               },
               text: 'Play',
               width: 300,
