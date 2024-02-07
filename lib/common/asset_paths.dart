@@ -59,6 +59,7 @@ class AssetPaths {
   static const String lampOff = 'challenges/lights_out/lamp_long_off.png';
   static const String ecoRunning = 'challenges/lights_out/eco_running.png';
   static const String ecoJumping = 'challenges/lights_out/eco_jumping.png';
+  static const String ecoFalling = 'challenges/lights_out/eco_falling.png';
 
   // SVG
   static const String ribbonBlue = 'assets/images/common/ribbon_blue.svg';
@@ -84,7 +85,7 @@ class AssetPaths {
   static const String pipeWheel = 'assets/images/challenges/pipe_wheel.svg';
   static const String pipesBackground = 'assets/images/challenges/pipes_bg.svg';
   static const String tree = 'assets/images/challenges/icons_tree.svg';
-  static const String treeBackground = 'assets/images/challenges/plant_forest_background.svg';
+  static const String treeBackground = 'assets/images/challenges/plant_forest_bg.svg';
   static const String infoTree1 = 'assets/images/challenges/info_forest_01.svg';
   static const String infoTree2 = 'assets/images/challenges/info_forest_02.svg';
   static const String ecoLeaderboard = 'assets/images/common/eco_leaderboard.svg';
@@ -100,4 +101,5 @@ class AssetPaths {
   static const String itemSorted = 'assets/animations/item_sorted.json';
   static const String wrongBin = 'assets/animations/wrong_bin.json';
   static const String fireworks = 'assets/animations/fireworks.json';
+  static const String treeAnimation = 'assets/animations/tree.json';
 }
