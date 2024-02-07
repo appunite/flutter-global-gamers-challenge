@@ -4,27 +4,13 @@ List<String> soundTypeToFilename(SfxType type) {
       return const [
         'jump.mp3',
       ];
-    case SfxType.hit:
-      return const [
-        'hit1.mp3',
-        'hit2.mp3',
-      ];
-    case SfxType.damage:
-      return const [
-        'damage1.mp3',
-        'damage2.mp3',
-      ];
+
     case SfxType.score:
       return const [
         'lamp_point.mp3',
       ];
     case SfxType.buttonTap:
-      return const [
-        'click1.mp3',
-        'click2.mp3',
-        'click3.mp3',
-        'click4.mp3',
-      ];
+      return const ['click.mp3'];
     case SfxType.garbage:
       return const ['garbage.mp3'];
     case SfxType.wrongBin:
@@ -33,6 +19,16 @@ List<String> soundTypeToFilename(SfxType type) {
       return const ['microplasticDestroyed.mp3'];
     case SfxType.shoot:
       return const ['shoot.mp3'];
+    case SfxType.pipe:
+      return const ['pipe.mp3'];
+    case SfxType.fireworks:
+      return const ['fireworks_short.mp3'];
+    case SfxType.challengeSuccessful:
+      return const ['challenge_successful.mp3'];
+    case SfxType.challengeUnsuccessful:
+      return const ['challenge_unsuccessful.mp3'];
+    case SfxType.countdown:
+      return const ['countdown.mp3'];
   }
 }
 
@@ -40,15 +36,18 @@ List<String> soundTypeToFilename(SfxType type) {
 double soundTypeToVolume(SfxType type) {
   switch (type) {
     case SfxType.jump:
-    case SfxType.damage:
-    case SfxType.hit:
     case SfxType.garbage:
     case SfxType.shoot:
     case SfxType.microplasticDestroyed:
     case SfxType.wrongBin:
+    case SfxType.countdown:
       return 0.4;
 
     case SfxType.buttonTap:
+    case SfxType.challengeSuccessful:
+    case SfxType.challengeUnsuccessful:
+    case SfxType.pipe:
+    case SfxType.fireworks:
       return 1.0;
     case SfxType.score:
       return 2.0;
@@ -58,11 +57,14 @@ double soundTypeToVolume(SfxType type) {
 enum SfxType {
   score,
   jump,
-  hit,
-  damage,
   buttonTap,
   garbage,
   wrongBin,
   microplasticDestroyed,
   shoot,
+  challengeSuccessful,
+  challengeUnsuccessful,
+  pipe,
+  fireworks,
+  countdown,
 }

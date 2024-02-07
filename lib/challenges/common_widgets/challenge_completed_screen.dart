@@ -1,4 +1,6 @@
 import 'package:confetti/confetti.dart';
+import 'package:endless_runner/audio/audio_controller.dart';
+import 'package:endless_runner/audio/sounds.dart';
 import 'package:endless_runner/challenges/common_widgets/finished_challenge_buttons.dart';
 import 'package:endless_runner/challenges/common_widgets/score_container.dart';
 import 'package:endless_runner/challenges/trees_challenge/challenge_summary_entity.dart';
@@ -37,6 +39,7 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
     super.initState();
     _confettiController.play();
     _showIntroDialog();
+    context.read<AudioController>().playSfx(SfxType.challengeSuccessful);
   }
 
   @override

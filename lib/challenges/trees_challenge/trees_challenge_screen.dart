@@ -55,7 +55,7 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _showIntroDialog(shouldSetCountDown: true);
+      _showIntroDialog();
 
       _challengeController = context.read<ChallengeController>();
       _challengeController.addListener(_listener);
@@ -80,14 +80,14 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
     );
   }
 
-  void _showIntroDialog({required bool shouldSetCountDown}) {
+  void _showIntroDialog() {
     NavigationHelper.show(
       context,
       ChallengeIntroductionDialog(
         challenge: ChallengeType.trees,
         onButtonPressed: () {
           context.pop();
-          if (shouldSetCountDown) context.read<ChallengeController>().setCountDown(visible: true);
+          context.read<ChallengeController>().setCountDown(visible: true);
         },
       ),
     );

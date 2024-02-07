@@ -1,6 +1,9 @@
+import 'package:endless_runner/audio/audio_controller.dart';
+import 'package:endless_runner/audio/sounds.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class GameIconButton extends StatelessWidget {
   const GameIconButton({
@@ -24,6 +27,7 @@ class GameIconButton extends StatelessWidget {
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       onTap: () {
+        context.read<AudioController>().playSfx(SfxType.buttonTap);
         onTap?.call();
       },
       child: Container(

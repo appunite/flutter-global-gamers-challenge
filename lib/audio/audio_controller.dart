@@ -98,6 +98,11 @@ class AudioController {
     _currentSfxPlayer = (_currentSfxPlayer + 1) % _sfxPlayers.length;
   }
 
+  void stopSfx() {
+    final currentPlayer = _sfxPlayers.first;
+    currentPlayer.stop();
+  }
+
   /// Enables the [AudioController] to listen to [AppLifecycleState] events,
   /// and therefore do things like stopping playback when the game
   /// goes into the background.

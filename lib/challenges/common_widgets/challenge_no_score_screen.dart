@@ -1,3 +1,5 @@
+import 'package:endless_runner/audio/audio_controller.dart';
+import 'package:endless_runner/audio/sounds.dart';
 import 'package:endless_runner/challenges/common_widgets/finished_challenge_buttons.dart';
 import 'package:endless_runner/challenges/common_widgets/score_container.dart';
 import 'package:endless_runner/challenges/trees_challenge/challenge_summary_entity.dart';
@@ -6,6 +8,7 @@ import 'package:endless_runner/common/ribbon_header.dart';
 import 'package:endless_runner/style/gaps.dart';
 import 'package:endless_runner/style/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ChallengeNoScoreScreen extends StatefulWidget {
   const ChallengeNoScoreScreen({
@@ -22,6 +25,12 @@ class ChallengeNoScoreScreen extends StatefulWidget {
 }
 
 class _ChallengeNoScoreScreenState extends State<ChallengeNoScoreScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<AudioController>().playSfx(SfxType.challengeUnsuccessful);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
