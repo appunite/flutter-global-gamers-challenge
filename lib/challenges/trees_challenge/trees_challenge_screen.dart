@@ -3,6 +3,7 @@ import 'package:endless_runner/challenges/challenge_type_enum.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_app_bar.dart';
 import 'package:endless_runner/challenges/common_widgets/challenge_introduction_dialog.dart';
 import 'package:endless_runner/challenges/common_widgets/count_down_widget.dart';
+import 'package:endless_runner/challenges/trees_challenge/tree_animation.dart';
 import 'package:endless_runner/common/asset_paths.dart';
 import 'package:endless_runner/common/background_widget.dart';
 import 'package:endless_runner/common/navigation_helper.dart';
@@ -14,7 +15,6 @@ import 'package:endless_runner/player_progress/persistence/local_player_persiste
 import 'package:endless_runner/style/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lottie/lottie.dart';
 import 'package:pausable_timer/pausable_timer.dart';
 import 'package:provider/provider.dart';
 
@@ -97,7 +97,7 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
     _challengeController.addPoints();
     _scrollController.animateTo(
       _scrollController.position.maxScrollExtent,
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 400),
       curve: Curves.easeInOut,
     );
   }
@@ -165,17 +165,16 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
               const BackgroundWidget(
                 assetPath: AssetPaths.treeBackground,
               ),
-              GridView.builder(
-                controller: _scrollController,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 12,
-                ),
-                itemCount: challengeController.score,
-                itemBuilder: (_, __) => Lottie.asset(
-                  AssetPaths.treeAnimation,
-                  fit: BoxFit.cover,
-                  width: 100,
-                  height: 100,
+              SafeArea(
+                bottom: false,
+                top: false,
+                child: GridView.builder(
+                  controller: _scrollController,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 12,
+                  ),
+                  itemCount: challengeController.score,
+                  itemBuilder: (_, __) => const TreeAnimation(),
                 ),
               ),
               Align(
