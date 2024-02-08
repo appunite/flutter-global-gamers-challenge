@@ -33,8 +33,10 @@ enum ChallengeType {
     title: 'Solar Panel Cleanup',
     description: 'Solar panels convert sunlight into electricity. When dirty, efficiency drops.',
     instruction1: 'Scratch the screen to clean and increase solar energy output.',
-    instruction2: 'Clean as many panels as you can in 3 seconds and earn points.',
+    instruction2: 'Clean as many panels as you can in 10 seconds and earn points.',
     completedText: 'You\'ve cleaned the solar panels,\nincreasing the city\'s energy efficiency!',
+    instructionAsset1: AssetPaths.infoSolarPanel1,
+    instructionAsset2: AssetPaths.infoSolarPanel2,
     routePath: SolarPanelChallengeScreen.routePath,
   ),
   trees(

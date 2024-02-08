@@ -99,8 +99,9 @@ class AudioController {
   }
 
   void stopSfx() {
-    final currentPlayer = _sfxPlayers.first;
-    currentPlayer.stop();
+    for (var element in _sfxPlayers) {
+      element.stop();
+    }
   }
 
   /// Enables the [AudioController] to listen to [AppLifecycleState] events,

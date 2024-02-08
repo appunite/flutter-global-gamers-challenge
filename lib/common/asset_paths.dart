@@ -26,6 +26,12 @@ class AssetPaths {
   static const String microplastic19 = 'challenges/ocean_shooter/microplastic_19.png';
   static const String microplastic20 = 'challenges/ocean_shooter/microplastic_20.png';
 
+  /// Solar panel scratcher challengs
+  static const String panelDirty = 'assets/images/challenges/panel_scratcher/panel_dirty.png';
+  static const String panelClean = 'assets/images/challenges/panel_scratcher/panel_clean.svg';
+  static const String infoSolarPanel1 = 'assets/images/challenges/panel_scratcher/info_solarpanel_01.svg';
+  static const String infoSolarPanel2 = 'assets/images/challenges/panel_scratcher/solarpanel_02.svg';
+
   /// Recycling challenge items
   static const String apple = 'assets/images/challenges/recycling/apple.svg';
   static const String bag = 'assets/images/challenges/recycling/bag.svg';
