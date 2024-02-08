@@ -11,7 +11,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class LeaderboardIntroductionDialog extends StatelessWidget {
-  const LeaderboardIntroductionDialog({super.key});
+  const LeaderboardIntroductionDialog({
+    super.key,
+    required this.shouldGoToLeaderBoardScreen,
+  });
+
+  final bool shouldGoToLeaderBoardScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +70,7 @@ class LeaderboardIntroductionDialog extends StatelessWidget {
   void _showSetPlayerNameDialog(BuildContext context) {
     NavigationHelper.showWithWidgetBinding(
       context,
-      const SetPlayerNameDialog(),
+      SetPlayerNameDialog(shouldGoToLeaderBoardScreen: shouldGoToLeaderBoardScreen),
     );
   }
 }
