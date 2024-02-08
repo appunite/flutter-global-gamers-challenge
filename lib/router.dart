@@ -8,6 +8,7 @@ import 'package:endless_runner/challenges/solar_panel_scratcher_challenge/solar_
 import 'package:endless_runner/challenges/trees_challenge/challenge_summary_entity.dart';
 import 'package:endless_runner/challenges/trees_challenge/trees_challenge_screen.dart';
 import 'package:endless_runner/common/google_wallet_demo.dart';
+import 'package:endless_runner/leaderboard/badges_screen.dart';
 import 'package:endless_runner/leaderboard/leaderboard_screen.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
@@ -81,6 +82,12 @@ final router = GoRouter(
       builder: (context, state) => LeaderboardScreen(
         key: const Key('leaderboard'),
         shouldDisplayChangedUsernameSnackBar: state.extra! as bool,
+      ),
+    ),
+    GoRoute(
+      path: BadgesScreen.routePath,
+      builder: (context, state) => const BadgesScreen(
+        key: Key('badges'),
       ),
     ),
     GoRoute(

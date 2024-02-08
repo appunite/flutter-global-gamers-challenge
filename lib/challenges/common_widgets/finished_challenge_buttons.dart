@@ -34,7 +34,7 @@ class FinishedChallengeButtons extends StatelessWidget {
           width: 160,
           text: 'Go to Map',
           onPressed: (_) {
-            final playerProgress = Provider.of<PlayerProgressController>(context, listen: false);
+            final playerProgress = context.read<PlayerProgressController>();
 
             if (playerProgress.challenges.getPlayedChallengesCount() == 0) {
               NavigationHelper.show(

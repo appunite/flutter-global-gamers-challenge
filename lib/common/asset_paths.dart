@@ -83,6 +83,7 @@ class AssetPaths {
   static const String iconSound = 'assets/images/common/icons_sound_on.svg';
   static const String iconsProfile = 'assets/images/common/icons_profile.svg';
   static const String iconsMap = 'assets/images/common/icons_map.svg';
+  static const String iconsBadges = 'assets/images/common/icons_badges.svg';
   static const String iconsInfo = 'assets/images/common/icons_info.svg';
   static const String iconsCheckmark = 'assets/images/common/icons_checkmark.svg';
   static const String ecoAvatar = 'assets/images/common/eco_avatar.svg';

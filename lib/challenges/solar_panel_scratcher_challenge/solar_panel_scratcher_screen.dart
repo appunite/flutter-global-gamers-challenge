@@ -6,11 +6,11 @@ import 'package:endless_runner/challenges/common_widgets/challenge_app_bar.dart'
 import 'package:endless_runner/challenges/common_widgets/challenge_introduction_dialog.dart';
 import 'package:endless_runner/challenges/common_widgets/count_down_widget.dart';
 import 'package:endless_runner/common/asset_paths.dart';
+import 'package:endless_runner/common/background_widget.dart';
 import 'package:endless_runner/common/exit_challenge_dialog.dart';
 import 'package:endless_runner/common/info_button.dart';
 import 'package:endless_runner/common/map_button.dart';
 import 'package:endless_runner/common/navigation_helper.dart';
-import 'package:endless_runner/common/success_dialog.dart';
 import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
 import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
 import 'package:flutter/material.dart';
@@ -27,15 +27,11 @@ class SolarPanelChallengeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (_) => ChallengeController(
-            databasePersistence: context.read<DatabasePersistence>(),
-            localPlayerPersistence: context.read<LocalPlayerPersistence>(),
-          ),
-        ),
-      ],
+    return ChangeNotifierProvider(
+      create: (_) => ChallengeController(
+        databasePersistence: context.read<DatabasePersistence>(),
+        localPlayerPersistence: context.read<LocalPlayerPersistence>(),
+      ),
       child: const _SolarPanelChallengeBodyScreen(),
     );
   }
@@ -159,6 +155,9 @@ class _SolarPanelChallengeBodyScreenState extends State<_SolarPanelChallengeBody
           ),
           body: Stack(
             children: [
+              const BackgroundWidget(
+                assetPath: AssetPaths.treeBackground,
+              ),
               SafeArea(
                 child: Scratcher(
                   rebuildOnResize: false,
@@ -172,7 +171,6 @@ class _SolarPanelChallengeBodyScreenState extends State<_SolarPanelChallengeBody
                       _scratchedValue = value;
                     });
                   },
-                  onThreshold: () => _showFinishDialog(),
                   child: SizedBox(
                     height: height,
                     width: width,
@@ -196,20 +194,6 @@ class _SolarPanelChallengeBodyScreenState extends State<_SolarPanelChallengeBody
           ),
         ),
       ),
-    );
-  }
-
-  void _showFinishDialog() {
-    _timer?.cancel();
-
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) {
-        return const SuccessDialog(
-          challengeName: 'solar panel scratcher',
-        );
-      },
     );
   }
 
