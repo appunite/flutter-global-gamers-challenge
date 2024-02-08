@@ -1,7 +1,7 @@
-import 'package:endless_runner/audio/audio_controller.dart';
-import 'package:endless_runner/audio/sounds.dart';
-import 'package:endless_runner/challenges/pipes_challenge/pipe_type_enum.dart';
-import 'package:endless_runner/challenges/pipes_challenge/pipes_controller.dart';
+import 'package:better_world/audio/audio_controller.dart';
+import 'package:better_world/audio/sounds.dart';
+import 'package:better_world/challenges/pipes_challenge/pipe_type_enum.dart';
+import 'package:better_world/challenges/pipes_challenge/pipes_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

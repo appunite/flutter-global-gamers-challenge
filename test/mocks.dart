@@ -1,7 +1,7 @@
-import 'package:endless_runner/player_progress/entities/challenges_entity.dart';
-import 'package:endless_runner/player_progress/entities/player_entity.dart';
-import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
-import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
+import 'package:better_world/player_progress/entities/challenges_entity.dart';
+import 'package:better_world/player_progress/entities/player_entity.dart';
+import 'package:better_world/player_progress/persistence/database_persistence.dart';
+import 'package:better_world/player_progress/persistence/local_player_persistence.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockLocalPlayerPersistence extends Mock implements LocalPlayerPersistence {}

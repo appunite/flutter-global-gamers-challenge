@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:endless_runner/challenges/challenge_type_enum.dart';
-import 'package:endless_runner/player_progress/entities/challenges_entity.dart';
-import 'package:endless_runner/player_progress/entities/player_entity.dart';
-import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
+import 'package:better_world/challenges/challenge_type_enum.dart';
+import 'package:better_world/player_progress/entities/challenges_entity.dart';
+import 'package:better_world/player_progress/entities/player_entity.dart';
+import 'package:better_world/player_progress/persistence/database_persistence.dart';
 import 'package:flutter/widgets.dart';
 
 class FirebasePersistence extends DatabasePersistence {

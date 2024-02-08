@@ -1,30 +1,37 @@
-import 'package:endless_runner/audio/audio_controller.dart';
-import 'package:endless_runner/challenges/common_widgets/challenge_completed_screen.dart';
-import 'package:endless_runner/challenges/common_widgets/challenge_no_score_screen.dart';
-import 'package:endless_runner/challenges/ocean_shooter/ocean_challenge_screen.dart';
-import 'package:endless_runner/challenges/pipes_challenge/pipes_challenge_screen.dart';
-import 'package:endless_runner/challenges/recycling_challenge/recycling_challenge_screen.dart';
-import 'package:endless_runner/challenges/solar_panel_scratcher_challenge/solar_panel_scratcher_screen.dart';
-import 'package:endless_runner/challenges/trees_challenge/challenge_summary_entity.dart';
-import 'package:endless_runner/challenges/trees_challenge/trees_challenge_screen.dart';
-import 'package:endless_runner/common/google_wallet_demo.dart';
-import 'package:endless_runner/leaderboard/leaderboard_screen.dart';
+import 'package:better_world/audio/audio_controller.dart';
+import 'package:better_world/challenges/common_widgets/challenge_completed_screen.dart';
+import 'package:better_world/challenges/common_widgets/challenge_no_score_screen.dart';
+import 'package:better_world/challenges/ocean_shooter/ocean_challenge_screen.dart';
+import 'package:better_world/challenges/pipes_challenge/pipes_challenge_screen.dart';
+import 'package:better_world/challenges/recycling_challenge/recycling_challenge_screen.dart';
+import 'package:better_world/challenges/solar_panel_scratcher_challenge/solar_panel_scratcher_screen.dart';
+import 'package:better_world/challenges/trees_challenge/challenge_summary_entity.dart';
+import 'package:better_world/challenges/trees_challenge/trees_challenge_screen.dart';
+import 'package:better_world/common/google_wallet_demo.dart';
+import 'package:better_world/leaderboard/leaderboard_screen.dart';
+import 'package:better_world/splash_screen/splash_screen.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import 'challenges/lights_out_challenge/lights_out_challenge_screen.dart';
-import 'main_menu/main_menu_screen.dart';
+import 'main_menu/main_map_screen.dart';
 import 'style/page_transition.dart';
 
 final router = GoRouter(
+  initialLocation: SplashScreen.routePath,
   routes: [
     GoRoute(
-      path: '/',
-      builder: (context, state) => const MainMenuScreen(
-        key: Key('main menu'),
+      path: MainMapScreen.routePath,
+      pageBuilder: (context, state) => buildPageTransition<void>(
+        key: const ValueKey('main-map'),
+        child: const MainMapScreen(),
       ),
+    ),
+    GoRoute(
+      path: SplashScreen.routePath,
+      builder: (context, state) => const SplashScreen(),
     ),
     GoRoute(
       path: LightsOutChallengeScreen.routePath,

@@ -1,7 +1,7 @@
-import 'package:endless_runner/challenges/challenge_controller.dart';
-import 'package:endless_runner/challenges/challenge_type_enum.dart';
-import 'package:endless_runner/challenges/lights_out_challenge/components/lamp_row_creator.dart';
-import 'package:endless_runner/challenges/lights_out_challenge/lights_out_challenge_screen.dart';
+import 'package:better_world/challenges/challenge_controller.dart';
+import 'package:better_world/challenges/challenge_type_enum.dart';
+import 'package:better_world/challenges/lights_out_challenge/components/lamp_row_creator.dart';
+import 'package:better_world/challenges/lights_out_challenge/lights_out_challenge_screen.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';

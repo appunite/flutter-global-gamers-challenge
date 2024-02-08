@@ -1,7 +1,7 @@
-import 'package:endless_runner/player_progress/entities/challenges_entity.dart';
-import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
-import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
-import 'package:endless_runner/player_progress/player_progress_controller.dart';
+import 'package:better_world/player_progress/entities/challenges_entity.dart';
+import 'package:better_world/player_progress/persistence/database_persistence.dart';
+import 'package:better_world/player_progress/persistence/local_player_persistence.dart';
+import 'package:better_world/player_progress/player_progress_controller.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

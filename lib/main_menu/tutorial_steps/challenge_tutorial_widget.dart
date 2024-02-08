@@ -1,7 +1,7 @@
-import 'package:endless_runner/main_menu/tutorial/eco_text_bubble_type.dart';
-import 'package:endless_runner/main_menu/tutorial_steps/general_tutorial_widget.dart';
-import 'package:endless_runner/player_progress/player_progress_controller.dart';
-import 'package:endless_runner/style/palette.dart';
+import 'package:better_world/main_menu/tutorial/eco_text_bubble_type.dart';
+import 'package:better_world/main_menu/tutorial_steps/general_tutorial_widget.dart';
+import 'package:better_world/player_progress/player_progress_controller.dart';
+import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_tutorial/overlay_tutorial.dart';
 import 'package:provider/provider.dart';

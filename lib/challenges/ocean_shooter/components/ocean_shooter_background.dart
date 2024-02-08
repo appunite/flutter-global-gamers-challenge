@@ -1,5 +1,5 @@
-import 'package:endless_runner/challenges/ocean_shooter/ocean_challenge_screen.dart';
-import 'package:endless_runner/common/asset_paths.dart';
+import 'package:better_world/challenges/ocean_shooter/ocean_challenge_screen.dart';
+import 'package:better_world/common/asset_paths.dart';
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 

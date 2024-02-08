@@ -1,8 +1,8 @@
-import 'package:endless_runner/common/asset_paths.dart';
-import 'package:endless_runner/main_menu/tutorial/text_bubble_widget.dart';
-import 'package:endless_runner/main_menu/tutorial/eco_text_bubble_type.dart';
-import 'package:endless_runner/style/gaps.dart';
-import 'package:endless_runner/style/main_button.dart';
+import 'package:better_world/common/asset_paths.dart';
+import 'package:better_world/main_menu/tutorial/text_bubble_widget.dart';
+import 'package:better_world/main_menu/tutorial/eco_text_bubble_type.dart';
+import 'package:better_world/style/gaps.dart';
+import 'package:better_world/style/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 

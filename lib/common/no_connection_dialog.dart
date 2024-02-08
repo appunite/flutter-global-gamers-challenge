@@ -1,9 +1,9 @@
-import 'package:endless_runner/common/asset_paths.dart';
-import 'package:endless_runner/common/common_dialog.dart';
-import 'package:endless_runner/common/ribbon_header.dart';
-import 'package:endless_runner/style/gaps.dart';
-import 'package:endless_runner/style/main_button.dart';
-import 'package:endless_runner/style/palette.dart';
+import 'package:better_world/common/asset_paths.dart';
+import 'package:better_world/common/common_dialog.dart';
+import 'package:better_world/common/ribbon_header.dart';
+import 'package:better_world/style/gaps.dart';
+import 'package:better_world/style/main_button.dart';
+import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';
 
 class NoConnectionDialog extends StatelessWidget {

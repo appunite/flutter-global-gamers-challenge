@@ -1,5 +1,5 @@
-import 'package:endless_runner/common/asset_paths.dart';
-import 'package:endless_runner/common/icon_button.dart';
+import 'package:better_world/common/asset_paths.dart';
+import 'package:better_world/common/icon_button.dart';
 import 'package:flutter/material.dart';
 
 class InfoButton extends StatelessWidget {

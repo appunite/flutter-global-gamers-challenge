@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:endless_runner/audio/audio_controller.dart';
-import 'package:endless_runner/challenges/ocean_shooter/components/enemy_component.dart';
+import 'package:better_world/audio/audio_controller.dart';
+import 'package:better_world/challenges/ocean_shooter/components/enemy_component.dart';
 import 'package:flame/components.dart';
 
 class EnemyCreator extends TimerComponent with HasGameRef {

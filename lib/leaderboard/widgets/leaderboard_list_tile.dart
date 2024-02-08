@@ -1,17 +1,12 @@
-import 'package:endless_runner/common/asset_paths.dart';
-import 'package:endless_runner/style/gaps.dart';
-import 'package:endless_runner/style/palette.dart';
+import 'package:better_world/common/asset_paths.dart';
+import 'package:better_world/style/gaps.dart';
+import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class LeaderboardListTile extends StatelessWidget {
-  const LeaderboardListTile({
-    super.key,
-    required this.username,
-    required this.index,
-    required this.score,
-    this.color = Palette.neutralBeige
-  });
+  const LeaderboardListTile(
+      {super.key, required this.username, required this.index, required this.score, this.color = Palette.neutralBeige});
 
   final String username;
   final int index;

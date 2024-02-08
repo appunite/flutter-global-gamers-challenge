@@ -1,8 +1,8 @@
-import 'package:endless_runner/challenges/challenge_type_enum.dart';
-import 'package:endless_runner/challenges/trees_challenge/challenge_summary_entity.dart';
-import 'package:endless_runner/player_progress/entities/player_entity.dart';
-import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
-import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
+import 'package:better_world/challenges/challenge_type_enum.dart';
+import 'package:better_world/challenges/trees_challenge/challenge_summary_entity.dart';
+import 'package:better_world/player_progress/entities/player_entity.dart';
+import 'package:better_world/player_progress/persistence/database_persistence.dart';
+import 'package:better_world/player_progress/persistence/local_player_persistence.dart';
 import 'package:flutter/material.dart';
 
 class ChallengeController extends ChangeNotifier {

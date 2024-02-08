@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:endless_runner/common/navigation_helper.dart';
-import 'package:endless_runner/common/exit_challenge_dialog.dart';
-import 'package:endless_runner/common/info_button.dart';
-import 'package:endless_runner/common/map_button.dart';
-import 'package:endless_runner/common/points_counter.dart';
-import 'package:endless_runner/common/success_dialog.dart';
-import 'package:endless_runner/common/timer_widget.dart';
-import 'package:endless_runner/style/gaps.dart';
+import 'package:better_world/common/navigation_helper.dart';
+import 'package:better_world/common/exit_challenge_dialog.dart';
+import 'package:better_world/common/info_button.dart';
+import 'package:better_world/common/map_button.dart';
+import 'package:better_world/common/points_counter.dart';
+import 'package:better_world/common/success_dialog.dart';
+import 'package:better_world/common/timer_widget.dart';
+import 'package:better_world/style/gaps.dart';
 import 'package:flutter/material.dart';
 import 'package:scratcher/scratcher.dart';
 

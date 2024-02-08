@@ -1,6 +1,6 @@
-import 'package:endless_runner/common/points_counter.dart';
-import 'package:endless_runner/common/timer_widget.dart';
-import 'package:endless_runner/style/gaps.dart';
+import 'package:better_world/common/points_counter.dart';
+import 'package:better_world/common/timer_widget.dart';
+import 'package:better_world/style/gaps.dart';
 import 'package:flutter/material.dart';
 
 class ChallengeAppBar extends StatelessWidget implements PreferredSizeWidget {

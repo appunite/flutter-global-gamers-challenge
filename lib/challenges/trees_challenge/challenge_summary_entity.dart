@@ -1,4 +1,4 @@
-import 'package:endless_runner/challenges/challenge_type_enum.dart';
+import 'package:better_world/challenges/challenge_type_enum.dart';
 import 'package:flutter/foundation.dart';
 
 @immutable

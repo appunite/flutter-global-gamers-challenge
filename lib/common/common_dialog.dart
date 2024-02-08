@@ -1,5 +1,5 @@
-import 'package:endless_runner/style/gaps.dart';
-import 'package:endless_runner/style/palette.dart';
+import 'package:better_world/style/gaps.dart';
+import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

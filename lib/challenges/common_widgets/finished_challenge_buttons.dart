@@ -1,6 +1,7 @@
-import 'package:endless_runner/challenges/challenge_type_enum.dart';
-import 'package:endless_runner/style/gaps.dart';
-import 'package:endless_runner/style/main_button.dart';
+import 'package:better_world/challenges/challenge_type_enum.dart';
+import 'package:better_world/main_menu/main_map_screen.dart';
+import 'package:better_world/style/gaps.dart';
+import 'package:better_world/style/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,7 +29,7 @@ class FinishedChallengeButtons extends StatelessWidget {
         MainButton(
           width: 160,
           text: 'Go to Map',
-          onPressed: (_) => context.go('/'),
+          onPressed: (_) => context.go(MainMapScreen.routePath),
         ),
       ],
     );

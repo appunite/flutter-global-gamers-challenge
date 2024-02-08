@@ -1,5 +1,5 @@
-import 'package:endless_runner/common/asset_paths.dart';
-import 'package:endless_runner/challenges/recycling_challenge/bin_widget.dart';
+import 'package:better_world/common/asset_paths.dart';
+import 'package:better_world/challenges/recycling_challenge/bin_widget.dart';
 import 'dart:math' as math;
 
 enum GarbageType {

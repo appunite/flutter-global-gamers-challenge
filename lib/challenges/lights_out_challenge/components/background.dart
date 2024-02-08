@@ -1,7 +1,7 @@
 import 'dart:ui';
 
-import 'package:endless_runner/challenges/challenge_controller.dart';
-import 'package:endless_runner/common/asset_paths.dart';
+import 'package:better_world/challenges/challenge_controller.dart';
+import 'package:better_world/common/asset_paths.dart';
 import 'package:flame/components.dart';
 import 'package:flame/parallax.dart';
 

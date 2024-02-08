@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:endless_runner/challenges/challenge_type_enum.dart';
-import 'package:endless_runner/player_progress/entities/challenges_entity.dart';
-import 'package:endless_runner/player_progress/entities/player_entity.dart';
-import 'package:endless_runner/player_progress/persistence/firebase_persistence.dart';
+import 'package:better_world/challenges/challenge_type_enum.dart';
+import 'package:better_world/player_progress/entities/challenges_entity.dart';
+import 'package:better_world/player_progress/entities/player_entity.dart';
+import 'package:better_world/player_progress/persistence/firebase_persistence.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
 
