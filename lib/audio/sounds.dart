@@ -29,6 +29,8 @@ List<String> soundTypeToFilename(SfxType type) {
       return const ['challenge_unsuccessful.mp3'];
     case SfxType.countdown:
       return const ['countdown.mp3'];
+    case SfxType.panelCleaning:
+      return const ['cleaning-window.mp3'];
   }
 }
 
@@ -40,6 +42,7 @@ double soundTypeToVolume(SfxType type) {
     case SfxType.shoot:
     case SfxType.microplasticDestroyed:
     case SfxType.wrongBin:
+    case SfxType.panelCleaning:
     case SfxType.countdown:
       return 0.4;
 
@@ -67,4 +70,5 @@ enum SfxType {
   pipe,
   fireworks,
   countdown,
+  panelCleaning,
 }

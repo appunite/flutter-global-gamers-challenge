@@ -1,6 +1,7 @@
-import 'package:endless_runner/common/asset_paths.dart';
-import 'package:endless_runner/challenges/recycling_challenge/bin_widget.dart';
 import 'dart:math' as math;
+
+import 'package:endless_runner/challenges/recycling_challenge/bin_widget.dart';
+import 'package:endless_runner/common/asset_paths.dart';
 
 enum GarbageType {
   banana(
@@ -15,14 +16,12 @@ enum GarbageType {
     rotationAngle: math.pi / 12,
     size: 45,
   ),
-
   bag(
     assetPath: AssetPaths.bag,
     semanticLabel: 'bag',
     dumpsterType: BinType.plasticMetal,
     size: 40,
   ),
-
   bigWater(
     assetPath: AssetPaths.bigWater,
     semanticLabel: 'big water bottle',
@@ -82,7 +81,6 @@ enum GarbageType {
     rotationAngle: -math.pi / 12,
     size: 45,
   ),
-
   metalCan(
     assetPath: AssetPaths.metalCan,
     semanticLabel: 'metal can',

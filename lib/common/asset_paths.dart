@@ -25,6 +25,16 @@ class AssetPaths {
   static const String microplastic18 = 'challenges/ocean_shooter/microplastic_18.png';
   static const String microplastic19 = 'challenges/ocean_shooter/microplastic_19.png';
   static const String microplastic20 = 'challenges/ocean_shooter/microplastic_20.png';
+  static const String oceanBadge = 'assets/images/challenges/ocean_shooter/ocean_badge.svg';
+  static const String infoPlastics1 = 'assets/images/challenges/info_plastics_01.svg';
+  static const String infoPlastics2 = 'assets/images/challenges/info_plastics_02.svg';
+
+  /// Solar panel scratcher challengs
+  static const String panelDirty = 'assets/images/challenges/panel_scratcher/panel_dirty.png';
+  static const String panelClean = 'assets/images/challenges/panel_scratcher/panel_clean.svg';
+  static const String infoSolarPanel1 = 'assets/images/challenges/panel_scratcher/info_solarpanel_01.svg';
+  static const String infoSolarPanel2 = 'assets/images/challenges/panel_scratcher/solarpanel_02.svg';
+  static const String panelBadge = 'assets/images/challenges/panel_scratcher/panel_badge.svg';
 
   /// Recycling challenge items
   static const String apple = 'assets/images/challenges/recycling/apple.svg';
@@ -52,6 +62,7 @@ class AssetPaths {
   static const String plasticBag = 'assets/images/challenges/recycling/plastic_bag.svg';
   static const String waterBottle = 'assets/images/challenges/recycling/water_bottle.svg';
   static const String watermelon = 'assets/images/challenges/recycling/watermelon.svg';
+  static const String recyclingBadge = 'assets/images/challenges/recycling/recycling_badge.svg';
 
   /// Lights out challenge
   static const String lightsOutBackground = 'challenges/lights_out/lights_off_bg.png';
@@ -60,6 +71,7 @@ class AssetPaths {
   static const String ecoRunning = 'challenges/lights_out/eco_running.png';
   static const String ecoJumping = 'challenges/lights_out/eco_jumping.png';
   static const String ecoFalling = 'challenges/lights_out/eco_falling.png';
+  static const String lightsOffBadge = 'assets/images/challenges/lights_out/lights_off_badge.svg';
 
   // SVG
   static const String ribbonBlue = 'assets/images/common/ribbon_blue.svg';
@@ -71,6 +83,7 @@ class AssetPaths {
   static const String iconSound = 'assets/images/common/icons_sound_on.svg';
   static const String iconsProfile = 'assets/images/common/icons_profile.svg';
   static const String iconsMap = 'assets/images/common/icons_map.svg';
+  static const String iconsBadges = 'assets/images/common/icons_badges.svg';
   static const String iconsInfo = 'assets/images/common/icons_info.svg';
   static const String iconsCheckmark = 'assets/images/common/icons_checkmark.svg';
   static const String ecoAvatar = 'assets/images/common/eco_avatar.svg';
@@ -84,10 +97,13 @@ class AssetPaths {
   static const String pipeStraight = 'assets/images/challenges/pipe_straight.svg';
   static const String pipeWheel = 'assets/images/challenges/pipe_wheel.svg';
   static const String pipesBackground = 'assets/images/challenges/pipes_bg.svg';
+  static const String pipesBadge = 'assets/images/challenges/pipes_badge.svg';
+
   static const String tree = 'assets/images/challenges/icons_tree.svg';
   static const String treeBackground = 'assets/images/challenges/plant_forest_bg.svg';
   static const String infoTree1 = 'assets/images/challenges/info_forest_01.svg';
   static const String infoTree2 = 'assets/images/challenges/info_forest_02.svg';
+  static const String treeBadge = 'assets/images/challenges/trees_badge.svg';
   static const String ecoLeaderboard = 'assets/images/common/eco_leaderboard.svg';
   static const String infoRecycle1 = 'assets/images/challenges/info_recycle_01.svg';
   static const String infoRecycle2 = 'assets/images/challenges/info_recycle_02.svg';

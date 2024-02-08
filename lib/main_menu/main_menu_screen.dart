@@ -1,15 +1,15 @@
 import 'dart:io';
 
+import 'package:endless_runner/challenges/lights_out_challenge/lights_out_challenge_screen.dart';
 import 'package:endless_runner/challenges/ocean_shooter/ocean_challenge_screen.dart';
 import 'package:endless_runner/challenges/pipes_challenge/pipes_challenge_screen.dart';
 import 'package:endless_runner/challenges/recycling_challenge/recycling_challenge_screen.dart';
 import 'package:endless_runner/challenges/solar_panel_scratcher_challenge/solar_panel_scratcher_screen.dart';
 import 'package:endless_runner/challenges/trees_challenge/trees_challenge_screen.dart';
-import 'package:endless_runner/common/navigation_helper.dart';
 import 'package:endless_runner/common/game_progress_indicator.dart';
 import 'package:endless_runner/common/google_wallet_demo.dart';
+import 'package:endless_runner/common/navigation_helper.dart';
 import 'package:endless_runner/common/points_counter.dart';
-import 'package:endless_runner/challenges/lights_out_challenge/lights_out_challenge_screen.dart';
 import 'package:endless_runner/leaderboard/leaderboard_screen.dart';
 import 'package:endless_runner/main_menu/game_completed_congrats_widget.dart';
 import 'package:endless_runner/main_menu/tutorial/onboarding_flow.dart';
@@ -143,7 +143,7 @@ class MainMenuScreen extends StatelessWidget {
           ),
           gap10,
           MainButton.secondary(
-            onPressed: (_) => context.push(LeaderboardScreen.routePath),
+            onPressed: (_) => context.push(LeaderboardScreen.routePath, extra: false),
             text: 'Leaderboard',
           ),
         ],

@@ -187,7 +187,7 @@ class _UserNameSettingsRow extends StatelessWidget {
               context.pop();
               NavigationHelper.show(
                 context,
-                const SetPlayerNameDialog(),
+                const SetPlayerNameDialog(shouldGoToLeaderBoardScreen: false),
               );
             },
             text: 'Edit',
