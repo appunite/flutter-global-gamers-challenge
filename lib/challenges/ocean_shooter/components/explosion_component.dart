@@ -1,13 +1,13 @@
-import 'package:endless_runner/common/asset_paths.dart';
+import 'package:better_world/common/asset_paths.dart';
 import 'package:flame/components.dart';
 
 class ExplosionComponent extends SpriteAnimationComponent with HasGameRef {
   ExplosionComponent({super.position})
       : super(
-    size: Vector2.all(50),
-    anchor: Anchor.center,
-    removeOnFinish: true,
-  );
+          size: Vector2.all(50),
+          anchor: Anchor.center,
+          removeOnFinish: true,
+        );
 
   @override
   Future<void> onLoad() async {

@@ -1,8 +1,8 @@
-import 'package:endless_runner/audio/audio_controller.dart';
-import 'package:endless_runner/audio/sounds.dart';
-import 'package:endless_runner/challenges/recycling_challenge/garbage_controller.dart';
-import 'package:endless_runner/challenges/recycling_challenge/garbage_type_enum.dart';
-import 'package:endless_runner/common/asset_paths.dart';
+import 'package:better_world/audio/audio_controller.dart';
+import 'package:better_world/audio/sounds.dart';
+import 'package:better_world/challenges/recycling_challenge/garbage_controller.dart';
+import 'package:better_world/challenges/recycling_challenge/garbage_type_enum.dart';
+import 'package:better_world/common/asset_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';

@@ -1,9 +1,10 @@
-import 'package:endless_runner/common/asset_paths.dart';
-import 'package:endless_runner/common/common_dialog.dart';
-import 'package:endless_runner/common/ribbon_header.dart';
-import 'package:endless_runner/style/gaps.dart';
-import 'package:endless_runner/style/main_button.dart';
-import 'package:endless_runner/style/palette.dart';
+import 'package:better_world/common/asset_paths.dart';
+import 'package:better_world/common/common_dialog.dart';
+import 'package:better_world/common/ribbon_header.dart';
+import 'package:better_world/main_menu/main_map_screen.dart';
+import 'package:better_world/style/gaps.dart';
+import 'package:better_world/style/main_button.dart';
+import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -33,7 +34,7 @@ class ExitChallengeDialog extends StatelessWidget {
         children: [
           MainButton.secondary(
             width: 150,
-            onPressed: (_) => context.go('/'), //TODO(Kostrzewsky): Move player to the map
+            onPressed: (_) => context.go(MainMapScreen.routePath), //TODO(Kostrzewsky): Move player to the map
             text: 'Exit',
           ),
           gap12,

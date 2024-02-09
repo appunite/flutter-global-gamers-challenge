@@ -1,5 +1,6 @@
-import 'package:endless_runner/style/main_button.dart';
-import 'package:endless_runner/style/palette.dart';
+import 'package:better_world/main_menu/main_map_screen.dart';
+import 'package:better_world/style/main_button.dart';
+import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -38,7 +39,7 @@ class SuccessDialog extends StatelessWidget {
             const SizedBox(height: 16),
             MainButton(
               onPressed: (_) {
-                context.go('/');
+                context.go(MainMapScreen.routePath);
               },
               text: 'Check your City!',
             ),

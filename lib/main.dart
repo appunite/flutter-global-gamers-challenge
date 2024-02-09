@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
-import 'package:endless_runner/player_progress/persistence/firebase_persistence.dart';
-import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
-import 'package:endless_runner/style/theme.dart';
+import 'package:better_world/player_progress/persistence/database_persistence.dart';
+import 'package:better_world/player_progress/persistence/firebase_persistence.dart';
+import 'package:better_world/player_progress/persistence/local_player_persistence.dart';
+import 'package:better_world/style/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
@@ -80,7 +80,7 @@ class BetterWorldGame extends StatelessWidget {
         child: Builder(
           builder: (context) {
             return MaterialApp.router(
-              title: 'Endless Runner',
+              title: 'Better World',
               theme: theme,
               routeInformationProvider: router.routeInformationProvider,
               routeInformationParser: router.routeInformationParser,

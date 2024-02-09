@@ -1,10 +1,10 @@
 import 'dart:math';
 
-import 'package:endless_runner/audio/audio_controller.dart';
-import 'package:endless_runner/audio/sounds.dart';
-import 'package:endless_runner/challenges/ocean_shooter/components/explosion_component.dart';
-import 'package:endless_runner/challenges/ocean_shooter/components/microplastic_enum.dart';
-import 'package:endless_runner/challenges/ocean_shooter/ocean_challenge_screen.dart';
+import 'package:better_world/audio/audio_controller.dart';
+import 'package:better_world/audio/sounds.dart';
+import 'package:better_world/challenges/ocean_shooter/components/explosion_component.dart';
+import 'package:better_world/challenges/ocean_shooter/components/microplastic_enum.dart';
+import 'package:better_world/challenges/ocean_shooter/ocean_challenge_screen.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 

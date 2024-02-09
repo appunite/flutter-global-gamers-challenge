@@ -1,8 +1,8 @@
-import 'package:endless_runner/audio/audio_controller.dart';
-import 'package:endless_runner/challenges/ocean_shooter/components/enemy_creator.dart';
-import 'package:endless_runner/challenges/ocean_shooter/components/fire_boost_creator.dart';
-import 'package:endless_runner/challenges/ocean_shooter/components/ocean_shooter_background.dart';
-import 'package:endless_runner/challenges/ocean_shooter/components/player_component.dart';
+import 'package:better_world/audio/audio_controller.dart';
+import 'package:better_world/challenges/ocean_shooter/components/enemy_creator.dart';
+import 'package:better_world/challenges/ocean_shooter/components/fire_boost_creator.dart';
+import 'package:better_world/challenges/ocean_shooter/components/ocean_shooter_background.dart';
+import 'package:better_world/challenges/ocean_shooter/components/player_component.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';

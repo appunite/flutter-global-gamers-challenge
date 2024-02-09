@@ -1,4 +1,4 @@
-import 'package:endless_runner/style/palette.dart';
+import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

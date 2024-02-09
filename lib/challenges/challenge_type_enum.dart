@@ -1,11 +1,11 @@
-import 'package:endless_runner/challenges/lights_out_challenge/lights_out_challenge_screen.dart';
-import 'package:endless_runner/challenges/ocean_shooter/ocean_challenge_screen.dart';
-import 'package:endless_runner/challenges/pipes_challenge/pipes_challenge_screen.dart';
-import 'package:endless_runner/challenges/recycling_challenge/recycling_challenge_screen.dart';
-import 'package:endless_runner/challenges/solar_panel_scratcher_challenge/solar_panel_scratcher_screen.dart';
-import 'package:endless_runner/challenges/trees_challenge/trees_challenge_screen.dart';
-import 'package:endless_runner/common/asset_paths.dart';
-import 'package:endless_runner/player_progress/entities/challenges_entity.dart';
+import 'package:better_world/challenges/ocean_shooter/ocean_challenge_screen.dart';
+import 'package:better_world/challenges/pipes_challenge/pipes_challenge_screen.dart';
+import 'package:better_world/challenges/recycling_challenge/recycling_challenge_screen.dart';
+import 'package:better_world/challenges/solar_panel_scratcher_challenge/solar_panel_scratcher_screen.dart';
+import 'package:better_world/challenges/trees_challenge/trees_challenge_screen.dart';
+import 'package:better_world/common/asset_paths.dart';
+import 'package:better_world/challenges/lights_out_challenge/lights_out_challenge_screen.dart';
+import 'package:better_world/player_progress/entities/challenges_entity.dart';
 
 enum ChallengeType {
   pipelines(

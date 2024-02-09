@@ -1,10 +1,10 @@
 import 'package:add_to_google_wallet/widgets/add_to_google_wallet_button.dart';
-import 'package:endless_runner/challenges/challenge_type_enum.dart';
-import 'package:endless_runner/common/asset_paths.dart';
-import 'package:endless_runner/common/common_dialog.dart';
-import 'package:endless_runner/common/ribbon_header.dart';
-import 'package:endless_runner/style/gaps.dart';
-import 'package:endless_runner/style/palette.dart';
+import 'package:better_world/challenges/challenge_type_enum.dart';
+import 'package:better_world/common/asset_paths.dart';
+import 'package:better_world/common/common_dialog.dart';
+import 'package:better_world/common/ribbon_header.dart';
+import 'package:better_world/style/gaps.dart';
+import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';

@@ -1,12 +1,12 @@
-import 'package:endless_runner/audio/audio_controller.dart';
-import 'package:endless_runner/audio/sounds.dart';
-import 'package:endless_runner/challenges/common_widgets/finished_challenge_buttons.dart';
-import 'package:endless_runner/challenges/common_widgets/score_container.dart';
-import 'package:endless_runner/challenges/trees_challenge/challenge_summary_entity.dart';
-import 'package:endless_runner/common/asset_paths.dart';
-import 'package:endless_runner/common/ribbon_header.dart';
-import 'package:endless_runner/style/gaps.dart';
-import 'package:endless_runner/style/palette.dart';
+import 'package:better_world/audio/audio_controller.dart';
+import 'package:better_world/audio/sounds.dart';
+import 'package:better_world/challenges/common_widgets/finished_challenge_buttons.dart';
+import 'package:better_world/challenges/common_widgets/score_container.dart';
+import 'package:better_world/challenges/trees_challenge/challenge_summary_entity.dart';
+import 'package:better_world/common/asset_paths.dart';
+import 'package:better_world/common/ribbon_header.dart';
+import 'package:better_world/style/gaps.dart';
+import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

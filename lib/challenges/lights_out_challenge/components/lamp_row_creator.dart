@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:endless_runner/challenges/lights_out_challenge/components/lamp.dart';
-import 'package:endless_runner/challenges/lights_out_challenge/endless_world.dart';
+import 'package:better_world/challenges/lights_out_challenge/components/lamp.dart';
+import 'package:better_world/challenges/lights_out_challenge/endless_world.dart';
 import 'package:flame/components.dart';
 
 class LampRowCreator extends TimerComponent with HasGameReference, HasWorldReference<EndlessWorld> {

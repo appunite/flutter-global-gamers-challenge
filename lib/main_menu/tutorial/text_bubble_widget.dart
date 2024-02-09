@@ -1,6 +1,6 @@
-import 'package:endless_runner/main_menu/tutorial/eco_text_bubble_type.dart';
-import 'package:endless_runner/style/const_values.dart';
-import 'package:endless_runner/style/palette.dart';
+import 'package:better_world/main_menu/tutorial/eco_text_bubble_type.dart';
+import 'package:better_world/style/const_values.dart';
+import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';
 
 class TextBubbleWidget extends StatelessWidget {

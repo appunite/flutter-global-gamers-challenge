@@ -1,23 +1,23 @@
-import 'package:endless_runner/challenges/challenge_controller.dart';
-import 'package:endless_runner/challenges/challenge_type_enum.dart';
-import 'package:endless_runner/challenges/common_widgets/challenge_introduction_dialog.dart';
-import 'package:endless_runner/challenges/lights_out_challenge/count_down_overlay.dart';
-import 'package:endless_runner/common/exit_challenge_dialog.dart';
-import 'package:endless_runner/common/info_button.dart';
-import 'package:endless_runner/common/map_button.dart';
-import 'package:endless_runner/common/navigation_helper.dart';
-import 'package:endless_runner/common/points_counter.dart';
-import 'package:endless_runner/common/timer_widget.dart';
-import 'package:endless_runner/player_progress/persistence/database_persistence.dart';
-import 'package:endless_runner/player_progress/persistence/local_player_persistence.dart';
-import 'package:endless_runner/style/gaps.dart';
+import 'package:better_world/challenges/challenge_controller.dart';
+import 'package:better_world/challenges/challenge_type_enum.dart';
+import 'package:better_world/challenges/common_widgets/challenge_introduction_dialog.dart';
+import 'package:better_world/challenges/lights_out_challenge/count_down_overlay.dart';
+import 'package:better_world/common/navigation_helper.dart';
+import 'package:better_world/common/exit_challenge_dialog.dart';
+import 'package:better_world/common/info_button.dart';
+import 'package:better_world/common/map_button.dart';
+import 'package:better_world/common/points_counter.dart';
+import 'package:better_world/common/timer_widget.dart';
+import 'package:better_world/player_progress/persistence/database_persistence.dart';
+import 'package:better_world/player_progress/persistence/local_player_persistence.dart';
+import 'package:better_world/style/gaps.dart';
+
+import '../../audio/audio_controller.dart';
+import 'endless_runner.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-
-import '../../audio/audio_controller.dart';
-import 'endless_runner.dart';
 
 class LightsOutChallengeScreen extends StatelessWidget {
   const LightsOutChallengeScreen({super.key});
@@ -147,7 +147,6 @@ class _LightsOutChallengeBodyScreenState extends State<LightsOutChallengeBodyScr
                 );
               }
             });
-            //TODO badge dialog?
             return const SizedBox.shrink();
           },
         },

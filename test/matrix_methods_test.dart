@@ -1,4 +1,4 @@
-import 'package:endless_runner/challenges/pipes_challenge/pipes_helper.dart';
+import 'package:better_world/challenges/pipes_challenge/pipes_helper.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

@@ -1,7 +1,7 @@
-import 'package:endless_runner/challenges/pipes_challenge/pipe_item.dart';
-import 'package:endless_runner/challenges/pipes_challenge/pipe_item_widgets.dart';
-import 'package:endless_runner/challenges/pipes_challenge/pipe_type_enum.dart';
-import 'package:endless_runner/challenges/pipes_challenge/pipes_helper.dart';
+import 'package:better_world/challenges/pipes_challenge/pipe_item.dart';
+import 'package:better_world/challenges/pipes_challenge/pipe_item_widgets.dart';
+import 'package:better_world/challenges/pipes_challenge/pipe_type_enum.dart';
+import 'package:better_world/challenges/pipes_challenge/pipes_helper.dart';
 import 'package:flutter/material.dart';
 
 class PipesGrid extends StatefulWidget {

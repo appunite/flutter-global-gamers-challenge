@@ -1,4 +1,4 @@
-import 'package:endless_runner/player_progress/entities/challenges_entity.dart';
+import 'package:better_world/player_progress/entities/challenges_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'player_entity.freezed.dart';

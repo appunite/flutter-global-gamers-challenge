@@ -1,5 +1,5 @@
-import 'package:endless_runner/challenges/challenge_type_enum.dart';
-import 'package:endless_runner/player_progress/entities/player_entity.dart';
+import 'package:better_world/challenges/challenge_type_enum.dart';
+import 'package:better_world/player_progress/entities/player_entity.dart';
 
 abstract class DatabasePersistence {
   Future<PlayerEntity> getPlayerEntity({required String playerId});
