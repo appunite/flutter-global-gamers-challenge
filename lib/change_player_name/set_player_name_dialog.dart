@@ -11,7 +11,12 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class SetPlayerNameDialog extends StatefulWidget {
-  const SetPlayerNameDialog({super.key});
+  const SetPlayerNameDialog({
+    super.key,
+    required this.shouldGoToLeaderBoardScreen,
+  });
+
+  final bool shouldGoToLeaderBoardScreen;
 
   @override
   State<SetPlayerNameDialog> createState() => _SetPlayerNameDialogState();

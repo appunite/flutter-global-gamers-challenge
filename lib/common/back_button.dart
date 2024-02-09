@@ -3,8 +3,8 @@ import 'package:better_world/common/icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class BackButton extends StatelessWidget {
-  const BackButton({
+class GameBackButton extends StatelessWidget {
+  const GameBackButton({
     super.key,
     this.onTap,
   });
@@ -16,8 +16,6 @@ class BackButton extends StatelessWidget {
     return GameIconButton(
       onTap: onTap ?? context.pop,
       iconName: AssetPaths.iconsBack,
-      width: 40,
-      height: 40,
     );
   }
 }

@@ -41,6 +41,7 @@ extension ChallengesEntityExtension on ChallengesEntity {
     if (trees != null) {
       count++;
     }
+
     return count;
   }
 

@@ -15,14 +15,12 @@ enum GarbageType {
     rotationAngle: math.pi / 12,
     size: 45,
   ),
-
   bag(
     assetPath: AssetPaths.bag,
     semanticLabel: 'bag',
     dumpsterType: BinType.plasticMetal,
     size: 40,
   ),
-
   bigWater(
     assetPath: AssetPaths.bigWater,
     semanticLabel: 'big water bottle',
@@ -82,7 +80,6 @@ enum GarbageType {
     rotationAngle: -math.pi / 12,
     size: 45,
   ),
-
   metalCan(
     assetPath: AssetPaths.metalCan,
     semanticLabel: 'metal can',

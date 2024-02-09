@@ -147,7 +147,6 @@ class _LightsOutChallengeBodyScreenState extends State<LightsOutChallengeBodyScr
                 );
               }
             });
-            //TODO badge dialog?
             return const SizedBox.shrink();
           },
         },

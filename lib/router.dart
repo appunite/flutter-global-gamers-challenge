@@ -8,6 +8,7 @@ import 'package:better_world/challenges/solar_panel_scratcher_challenge/solar_pa
 import 'package:better_world/challenges/trees_challenge/challenge_summary_entity.dart';
 import 'package:better_world/challenges/trees_challenge/trees_challenge_screen.dart';
 import 'package:better_world/common/google_wallet_demo.dart';
+import 'package:better_world/leaderboard/badges_screen.dart';
 import 'package:better_world/leaderboard/leaderboard_screen.dart';
 import 'package:better_world/splash_screen/splash_screen.dart';
 import 'package:flame/game.dart';
@@ -88,6 +89,12 @@ final router = GoRouter(
       builder: (context, state) => LeaderboardScreen(
         key: const Key('leaderboard'),
         shouldDisplayChangedUsernameSnackBar: state.extra! as bool,
+      ),
+    ),
+    GoRoute(
+      path: BadgesScreen.routePath,
+      builder: (context, state) => const BadgesScreen(
+        key: Key('badges'),
       ),
     ),
     GoRoute(

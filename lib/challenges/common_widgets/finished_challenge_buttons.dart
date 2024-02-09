@@ -1,9 +1,13 @@
 import 'package:better_world/challenges/challenge_type_enum.dart';
-import 'package:better_world/main_menu/main_map_screen.dart';
+import 'package:better_world/common/navigation_helper.dart';
+import 'package:better_world/leaderboard/introduction/leaderboard_introduction_dialog.dart';
+import 'package:better_world/player_progress/entities/challenges_entity.dart';
+import 'package:better_world/player_progress/player_progress_controller.dart';
 import 'package:better_world/style/gaps.dart';
 import 'package:better_world/style/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class FinishedChallengeButtons extends StatelessWidget {
   const FinishedChallengeButtons({
@@ -29,7 +33,18 @@ class FinishedChallengeButtons extends StatelessWidget {
         MainButton(
           width: 160,
           text: 'Go to Map',
-          onPressed: (_) => context.go(MainMapScreen.routePath),
+          onPressed: (_) {
+            final playerProgress = context.read<PlayerProgressController>();
+
+            if (playerProgress.challenges.getPlayedChallengesCount() == 0) {
+              NavigationHelper.show(
+                context,
+                const LeaderboardIntroductionDialog(shouldGoToLeaderBoardScreen: true),
+              );
+            } else {
+              context.go('/');
+            }
+          },
         ),
       ],
     );

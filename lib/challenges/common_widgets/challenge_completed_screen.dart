@@ -1,3 +1,4 @@
+import 'package:better_world/challenges/common_widgets/badge_dialog.dart';
 import 'package:confetti/confetti.dart';
 import 'package:better_world/audio/audio_controller.dart';
 import 'package:better_world/audio/sounds.dart';
@@ -6,8 +7,6 @@ import 'package:better_world/challenges/common_widgets/score_container.dart';
 import 'package:better_world/challenges/trees_challenge/challenge_summary_entity.dart';
 import 'package:better_world/common/navigation_helper.dart';
 import 'package:better_world/common/ribbon_header.dart';
-import 'package:better_world/leaderboard/introduction/leaderboard_introduction_dialog.dart';
-import 'package:better_world/player_progress/entities/challenges_entity.dart';
 import 'package:better_world/player_progress/player_progress_controller.dart';
 import 'package:better_world/style/confetti_animation.dart';
 import 'package:better_world/style/gaps.dart';
@@ -50,15 +49,20 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
 
   Future<void> _showIntroDialog() async {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final playerProgress = Provider.of<PlayerProgressController>(context, listen: false);
-
-      if (playerProgress.challenges.getPlayedChallengesCount() == 0) {
-        NavigationHelper.show(
-          context,
-          const LeaderboardIntroductionDialog(),
-        );
-      }
+      _showBadgeDialog();
     });
+  }
+
+  void _showBadgeDialog() {
+    final playerProgress = Provider.of<PlayerProgressController>(context, listen: false);
+    final scoreBeforeUpdate = widget.challengeSummary.challengeType.getChallengeScore(playerProgress.challenges);
+
+    if (scoreBeforeUpdate == null || scoreBeforeUpdate == 0) {
+      NavigationHelper.show(
+        context,
+        BadgeDialog(challengeType: widget.challengeSummary.challengeType),
+      );
+    }
   }
 
   @override

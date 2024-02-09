@@ -145,7 +145,7 @@ class MainMapScreen extends StatelessWidget {
           ),
           gap10,
           MainButton.secondary(
-            onPressed: (_) => context.push(LeaderboardScreen.routePath),
+            onPressed: (_) => context.push(LeaderboardScreen.routePath, extra: false),
             text: 'Leaderboard',
           ),
         ],
