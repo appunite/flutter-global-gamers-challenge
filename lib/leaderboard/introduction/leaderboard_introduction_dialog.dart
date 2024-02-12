@@ -39,11 +39,13 @@ class LeaderboardIntroductionDialog extends StatelessWidget {
           const InstructionContainer(
             text: 'Earn points by completing challenges faster.',
             color: Palette.accentLight,
+            assetPath: AssetPaths.infoLeaderboard1,
           ),
           gap12,
           const InstructionContainer(
             text: 'Replay challenges to beat your score and rank higher.',
             color: Palette.accentLight,
+            assetPath: AssetPaths.infoLeaderboard2,
           ),
           gap12,
         ],

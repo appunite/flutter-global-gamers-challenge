@@ -2,6 +2,7 @@ import 'package:better_world/challenges/pipes_challenge/pipe_item.dart';
 import 'package:better_world/challenges/pipes_challenge/pipe_item_widgets.dart';
 import 'package:better_world/challenges/pipes_challenge/pipe_type_enum.dart';
 import 'package:better_world/challenges/pipes_challenge/pipes_helper.dart';
+import 'package:better_world/challenges/pipes_challenge/water_drop_animation.dart';
 import 'package:flutter/material.dart';
 
 class PipesGrid extends StatefulWidget {
@@ -62,27 +63,33 @@ class _PipesGridState extends State<PipesGrid> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const PipeWheel(),
-        SizedBox(
-          width: 550,
-          height: 450,
-          child: GridView.builder(
-            padding: EdgeInsets.zero,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: _itemsInRow,
-              childAspectRatio: 1,
-              mainAxisSpacing: 0,
-              crossAxisSpacing: 0,
+        Stack(
+          clipBehavior: Clip.none,
+          children: [
+            const WaterDropAnimation(),
+            SizedBox(
+              width: 550,
+              height: 450,
+              child: GridView.builder(
+                padding: EdgeInsets.zero,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: _itemsInRow,
+                  childAspectRatio: 1,
+                  mainAxisSpacing: 0,
+                  crossAxisSpacing: 0,
+                ),
+                itemCount: _itemsList.length,
+                itemBuilder: (context, index) {
+                  return PipeItem(
+                    row: PipesHelper.getRowNumber(index, _itemsInRow),
+                    column: PipesHelper.getColumnNumber(index, _itemsInRow),
+                    pipeType: _itemsList[index],
+                  );
+                },
+              ),
             ),
-            itemCount: _itemsList.length,
-            itemBuilder: (context, index) {
-              return PipeItem(
-                row: PipesHelper.getRowNumber(index, _itemsInRow),
-                column: PipesHelper.getColumnNumber(index, _itemsInRow),
-                pipeType: _itemsList[index],
-              );
-            },
-          ),
+          ],
         ),
       ],
     );
