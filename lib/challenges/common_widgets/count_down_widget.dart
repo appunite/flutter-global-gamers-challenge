@@ -58,26 +58,26 @@ class _CountDownWidgetState extends State<CountDownWidget> with SingleTickerProv
   Widget build(BuildContext context) {
     final challengeController = context.watch<ChallengeController>();
 
-    return challengeController.countDownVisible
-        ? Stack(
-            alignment: Alignment.center,
-            children: [
-              widget.child,
-              const OverlayWidget(),
-              AnimatedBuilder(
-                animation: _animationController,
-                builder: (_, __) {
-                  return Text(
-                    _scaleAnimation.value.ceil() <= 0 ? 'START' : _scaleAnimation.value.ceil().toString(),
-                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                          color: Palette.neutralWhite,
-                        ),
-                  );
-                },
-              ),
-            ],
-          )
-        : widget.child;
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        widget.child,
+        if (challengeController.countDownVisible) ...[
+          const OverlayWidget(),
+          AnimatedBuilder(
+            animation: _animationController,
+            builder: (_, __) {
+              return Text(
+                _scaleAnimation.value.ceil() <= 0 ? 'START' : _scaleAnimation.value.ceil().toString(),
+                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                      color: Palette.neutralWhite,
+                    ),
+              );
+            },
+          ),
+        ],
+      ],
+    );
   }
 
   @override

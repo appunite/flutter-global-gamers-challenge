@@ -1,6 +1,7 @@
 import 'package:better_world/common/asset_paths.dart';
 import 'package:better_world/main_menu/main_map_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rive/rive.dart';
@@ -21,6 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 3), () {
       context.go(MainMapScreen.routePath);
     });
+    _preloadAnimations();
   }
 
   @override
@@ -45,5 +47,10 @@ class _SplashScreenState extends State<SplashScreen> {
         ],
       ),
     );
+  }
+
+  void _preloadAnimations() {
+    rootBundle.load(AssetPaths.pipesBackground);
+    //TODO add map animation here
   }
 }

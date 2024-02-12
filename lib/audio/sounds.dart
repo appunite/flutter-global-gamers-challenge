@@ -16,7 +16,7 @@ List<String> soundTypeToFilename(SfxType type) {
     case SfxType.wrongBin:
       return const ['wrong_bin.mp3'];
     case SfxType.microplasticDestroyed:
-      return const ['microplasticDestroyed.mp3'];
+      return const ['microplastic_destroyed.mp3'];
     case SfxType.shoot:
       return const ['shoot.mp3'];
     case SfxType.pipe:
@@ -30,7 +30,11 @@ List<String> soundTypeToFilename(SfxType type) {
     case SfxType.countdown:
       return const ['countdown.mp3'];
     case SfxType.panelCleaning:
-      return const ['cleaning-window.mp3'];
+      return const ['cleaning_window.mp3'];
+    case SfxType.waterInPipe:
+      return const ['water_pipe.mp3'];
+    case SfxType.pipeWheel:
+      return const ['pipe_wheel.mp3'];
   }
 }
 
@@ -44,6 +48,7 @@ double soundTypeToVolume(SfxType type) {
     case SfxType.wrongBin:
     case SfxType.panelCleaning:
     case SfxType.countdown:
+    case SfxType.pipeWheel:
       return 0.4;
 
     case SfxType.buttonTap:
@@ -52,6 +57,7 @@ double soundTypeToVolume(SfxType type) {
     case SfxType.pipe:
     case SfxType.fireworks:
       return 1.0;
+    case SfxType.waterInPipe:
     case SfxType.score:
       return 2.0;
   }
@@ -71,4 +77,6 @@ enum SfxType {
   fireworks,
   countdown,
   panelCleaning,
+  waterInPipe,
+  pipeWheel,
 }

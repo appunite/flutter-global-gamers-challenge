@@ -66,7 +66,7 @@ class BadgeDialog extends StatelessWidget {
         onSuccess: () => _onSuccess(context),
         onCanceled: () => _onCanceled(context),
       ),
-      themeColor: Palette.accentDark,
+      themeColor: Palette.secondaryDark,
       ribbon: RibbonHeader(
         ribbonImage: AssetPaths.ribbonBlue,
         text: 'Badge Unlocked',

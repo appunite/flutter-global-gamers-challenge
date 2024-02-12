@@ -1,3 +1,5 @@
+import 'package:better_world/audio/audio_controller.dart';
+import 'package:better_world/audio/sounds.dart';
 import 'package:better_world/challenges/challenge_controller.dart';
 import 'package:better_world/challenges/challenge_type_enum.dart';
 import 'package:better_world/challenges/common_widgets/challenge_app_bar.dart';
@@ -17,6 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pausable_timer/pausable_timer.dart';
 import 'package:provider/provider.dart';
+import 'package:rive/rive.dart';
 
 class PipesChallengeScreen extends StatelessWidget {
   const PipesChallengeScreen({super.key, this.onTapOffset});
@@ -90,6 +93,17 @@ class _PipesChallengeBodyScreenState extends State<_PipesChallengeBodyScreen> {
     );
   }
 
+  void _showExitDialog() {
+    _timer?.pause();
+    NavigationHelper.showWithWidgetBinding(
+      context,
+      ExitChallengeDialog(onContinue: () {
+        context.pop();
+        _timer?.start();
+      }),
+    );
+  }
+
   void _showInfoDialog() {
     _timer?.pause();
     NavigationHelper.show(
@@ -114,11 +128,13 @@ class _PipesChallengeBodyScreenState extends State<_PipesChallengeBodyScreen> {
         score = 1;
       }
       _challengeController.addPoints(points: score);
-      //TODO animation - delay
-      _challengeController.onChallengeFinished(
-        challengeType: ChallengeType.pipelines,
-        timeInSec: _timeInSeconds,
-      );
+      context.read<AudioController>().playSfx(SfxType.waterInPipe);
+      Future.delayed(const Duration(seconds: 5), () {
+        _challengeController.onChallengeFinished(
+          challengeType: ChallengeType.pipelines,
+          timeInSec: _timeInSeconds,
+        );
+      });
     }
   }
 
@@ -157,6 +173,7 @@ class _PipesChallengeBodyScreenState extends State<_PipesChallengeBodyScreen> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
+      onPopInvoked: (_) => _showExitDialog(),
       child: CountDownWidget(
         child: Scaffold(
           extendBodyBehindAppBar: true,
@@ -174,6 +191,7 @@ class _PipesChallengeBodyScreenState extends State<_PipesChallengeBodyScreen> {
             alignment: Alignment.topCenter,
             children: [
               const BackgroundWidget(assetPath: AssetPaths.pipesBackground),
+              const RiveAnimation.asset(AssetPaths.pipesBgAnimation),
               const Padding(
                 padding: EdgeInsets.only(top: kToolbarHeight + 8),
                 child: PipesGrid(),
@@ -199,16 +217,5 @@ class _PipesChallengeBodyScreenState extends State<_PipesChallengeBodyScreen> {
     _timer?.cancel();
     _challengeController.dispose();
     super.dispose();
-  }
-
-  void _showExitDialog() {
-    _timer?.pause();
-    NavigationHelper.showWithWidgetBinding(
-      context,
-      ExitChallengeDialog(onContinue: () {
-        context.pop();
-        _timer?.start();
-      }),
-    );
   }
 }

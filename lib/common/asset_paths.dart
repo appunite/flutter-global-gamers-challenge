@@ -112,6 +112,9 @@ class AssetPaths {
   static const String iconsBack = 'assets/images/common/icons_back.svg';
   static const String iconsCloseWhite = 'assets/images/common/icons_close_white.svg';
   static const String logo = 'assets/images/common/logo.svg';
+  static const String wheel = 'assets/images/challenges/wheel.svg';
+  static const String infoLeaderboard1 = 'assets/images/common/info_leaderboard_01.svg';
+  static const String infoLeaderboard2 = 'assets/images/common/info_leaderboard_02.svg';
 
   // Animations
   static const String ecoAnimation = 'assets/animations/eco.riv';
@@ -120,4 +123,6 @@ class AssetPaths {
   static const String fireworks = 'assets/animations/fireworks.json';
   static const String treeAnimation = 'assets/animations/tree.json';
   static const String splashAnimation = 'assets/animations/better_world_splash.riv';
+  static const String waterDrop = 'assets/animations/pipes_drop_long.riv';
+  static const String pipesBgAnimation = 'assets/animations/pipes_water_animation.riv';
 }
