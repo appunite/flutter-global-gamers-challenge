@@ -73,7 +73,7 @@ class _PipeWheelState extends State<PipeWheel> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _setController();
+    _setControllers();
 
     final pipesController = context.read<PipesController>();
     pipesController.addListener(() {
@@ -85,7 +85,7 @@ class _PipeWheelState extends State<PipeWheel> with TickerProviderStateMixin {
     });
   }
 
-  void _setController() {
+  void _setControllers() {
     _rotationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 3),
