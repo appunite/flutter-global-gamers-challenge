@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 4),
     );
     _progressAnimation = Tween(begin: 0.0, end: 1.0).animate(_controller);
 
@@ -71,9 +71,15 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                     borderRadius: 24,
                     borderColor: Palette.neutralWhite,
                     backgroundColor: Palette.neutralWhite,
-                    borderWidth: 6,
+                    borderWidth: 4,
                     valueColor: const AlwaysStoppedAnimation<Color>(Palette.secondary),
                     value: _progressAnimation.value,
+                    center: Text(
+                      'Loading...',
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            color: Palette.neutralWhite,
+                          ),
+                    ),
                   ),
                 ),
               ],
