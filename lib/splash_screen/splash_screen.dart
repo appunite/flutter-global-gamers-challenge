@@ -2,7 +2,6 @@ import 'package:better_world/common/asset_paths.dart';
 import 'package:better_world/main_menu/main_map_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rive/rive.dart';
 
@@ -19,18 +18,18 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
+    _preloadAnimations();
+    Future.delayed(const Duration(seconds: 4), () {
       context.go(MainMapScreen.routePath);
     });
-    _preloadAnimations();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Stack(
         children: [
-          const Positioned.fill(
+          Positioned.fill(
             child: RiveAnimation.asset(
               AssetPaths.splashAnimation,
               animations: ['Cleaned World'],
@@ -41,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
             child: SizedBox(
               height: 168,
               width: 375,
-              child: SvgPicture.asset(AssetPaths.logo),
+              child: RiveAnimation.asset(AssetPaths.logoAnimation),
             ),
           ),
         ],
