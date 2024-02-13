@@ -27,6 +27,10 @@ class PlayerProgressController extends ChangeNotifier {
 
   String get playerNick => _playerNick;
 
+  String _playerId = '';
+
+  String get playerId => _playerId;
+
   bool _hasSeenOnboarding = true;
 
   bool get hasSeenOnboarding => _hasSeenOnboarding;
@@ -36,8 +40,8 @@ class PlayerProgressController extends ChangeNotifier {
   bool get shouldShowAllChallengesCongrats => _shouldShowGameCompletedCongrats;
 
   Future<void> _loadPlayerData() async {
-    final String playerId = await _localStorage.getPlayerIdKey();
-    final PlayerEntity playerEntity = await _databaseStorage.getPlayerEntity(playerId: playerId);
+    _playerId = await _localStorage.getPlayerIdKey();
+    final PlayerEntity playerEntity = await _databaseStorage.getPlayerEntity(playerId: _playerId);
     final bool hasSeenOnboarding = await _localStorage.getHasSeenOnboarding();
 
     // check if user completed the game
