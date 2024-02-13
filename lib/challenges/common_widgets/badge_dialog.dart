@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:add_to_google_wallet/widgets/add_to_google_wallet_button.dart';
 import 'package:better_world/challenges/challenge_type_enum.dart';
 import 'package:better_world/common/asset_paths.dart';
@@ -60,12 +62,14 @@ class BadgeDialog extends StatelessWidget {
           ),
         ],
       ),
-      bottom: AddToGoogleWalletButton(
-        pass: _examplePass,
-        onError: (Object error) => _onError(context, error),
-        onSuccess: () => _onSuccess(context),
-        onCanceled: () => _onCanceled(context),
-      ),
+      bottom: Platform.isAndroid
+          ? AddToGoogleWalletButton(
+              pass: _examplePass,
+              onError: (Object error) => _onError(context, error),
+              onSuccess: () => _onSuccess(context),
+              onCanceled: () => _onCanceled(context),
+            )
+          : const SizedBox.shrink(),
       themeColor: Palette.secondaryDark,
       ribbon: RibbonHeader(
         ribbonImage: AssetPaths.ribbonBlue,
