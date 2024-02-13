@@ -1,9 +1,11 @@
 import 'package:better_world/common/asset_paths.dart';
 import 'package:better_world/main_menu/main_map_screen.dart';
+import 'package:better_world/style/gaps.dart';
+import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
 import 'package:rive/rive.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,14 +17,29 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _progressAnimation;
+
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
-      context.go(MainMapScreen.routePath);
-    });
     _preloadAnimations();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 4),
+    );
+    _progressAnimation = Tween(begin: 0.0, end: 1.0).animate(_controller);
+
+    _controller.addListener(() {
+      if (_controller.isCompleted) {
+        context.go(MainMapScreen.routePath);
+      }
+      setState(() {});
+    });
+
+    _controller.forward();
   }
 
   @override
@@ -38,10 +55,34 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ),
           Center(
-            child: SizedBox(
-              height: 168,
-              width: 375,
-              child: SvgPicture.asset(AssetPaths.logo),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const SizedBox(
+                  height: 168,
+                  width: 375,
+                  child: RiveAnimation.asset(AssetPaths.logoAnimation),
+                ),
+                gap8,
+                SizedBox(
+                  height: 36,
+                  width: 300,
+                  child: LiquidLinearProgressIndicator(
+                    borderRadius: 24,
+                    borderColor: Palette.neutralWhite,
+                    backgroundColor: Palette.neutralWhite,
+                    borderWidth: 4,
+                    valueColor: const AlwaysStoppedAnimation<Color>(Palette.secondary),
+                    value: _progressAnimation.value,
+                    center: Text(
+                      'Loading...',
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            color: Palette.neutralWhite,
+                          ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
@@ -52,5 +93,11 @@ class _SplashScreenState extends State<SplashScreen> {
   void _preloadAnimations() {
     rootBundle.load(AssetPaths.pipesBackground);
     //TODO add map animation here
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
