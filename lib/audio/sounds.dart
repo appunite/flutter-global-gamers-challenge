@@ -48,13 +48,12 @@ double soundTypeToVolume(SfxType type) {
     case SfxType.wrongBin:
     case SfxType.panelCleaning:
     case SfxType.countdown:
+    case SfxType.pipe:
     case SfxType.pipeWheel:
       return 0.4;
-
     case SfxType.buttonTap:
     case SfxType.challengeSuccessful:
     case SfxType.challengeUnsuccessful:
-    case SfxType.pipe:
     case SfxType.fireworks:
       return 1.0;
     case SfxType.waterInPipe:

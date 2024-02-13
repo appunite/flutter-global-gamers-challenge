@@ -1,7 +1,7 @@
 import 'package:better_world/main_menu/tutorial/eco_text_bubble_type.dart';
 import 'package:better_world/style/overlay_widget.dart';
-import 'package:better_world/main_menu/tutorial_steps/challenge_tutorial_widget.dart';
-import 'package:better_world/main_menu/tutorial_steps/general_tutorial_widget.dart';
+import 'package:better_world/main_menu/widgets/challenge_tutorial_widget.dart';
+import 'package:better_world/main_menu/widgets/general_tutorial_widget.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingFlow extends StatefulWidget {
