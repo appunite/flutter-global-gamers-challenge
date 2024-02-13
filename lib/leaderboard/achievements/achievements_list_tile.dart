@@ -1,4 +1,6 @@
 import 'package:better_world/challenges/challenge_type_enum.dart';
+import 'package:better_world/challenges/common_widgets/badge_dialog.dart';
+import 'package:better_world/common/navigation_helper.dart';
 import 'package:better_world/player_progress/player_progress_controller.dart';
 import 'package:better_world/style/gaps.dart';
 import 'package:better_world/style/palette.dart';
@@ -20,47 +22,55 @@ class AchievementListTile extends StatelessWidget {
     final shouldDisplayAchievement =
         _shouldDisplayAchievement(challengeType.getChallengeScore(playerProgress.challenges));
 
-    return Column(
-      children: [
-        Container(
-          height: 88,
-          width: 84,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(90)),
-            color: shouldDisplayAchievement ? null : Palette.neutralWhite.withOpacity(0.4),
-            boxShadow: shouldDisplayAchievement
-                ? [
-                    BoxShadow(
-                      offset: const Offset(0, 1),
-                      spreadRadius: 1,
-                      color: Palette.neutralBlack.withOpacity(0.2),
-                    ),
-                  ]
-                : null,
+    return InkWell(
+      onTap: () => shouldDisplayAchievement
+          ? NavigationHelper.show(
+              context,
+              BadgeDialog(challengeType: challengeType),
+            )
+          : null,
+      child: Column(
+        children: [
+          Container(
+            height: 88,
+            width: 84,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(90)),
+              color: shouldDisplayAchievement ? null : Palette.neutralWhite.withOpacity(0.4),
+              boxShadow: shouldDisplayAchievement
+                  ? [
+                      BoxShadow(
+                        offset: const Offset(0, 1),
+                        spreadRadius: 1,
+                        color: Palette.neutralBlack.withOpacity(0.2),
+                      ),
+                    ]
+                  : null,
+            ),
+            child: shouldDisplayAchievement
+                ? SvgPicture.asset(
+                    challengeType.badgeAsset,
+                  )
+                : const SizedBox.shrink(),
           ),
-          child: shouldDisplayAchievement
-              ? SvgPicture.asset(
-                  challengeType.badgeAsset,
-                )
-              : const SizedBox.shrink(),
-        ),
-        gap8,
-        Container(
-          width: shouldDisplayAchievement ? null : 100,
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(8)),
-            color: shouldDisplayAchievement ? Palette.neutralWhite : Palette.neutralWhite.withOpacity(0.4),
+          gap8,
+          Container(
+            width: shouldDisplayAchievement ? null : 100,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(8)),
+              color: shouldDisplayAchievement ? Palette.neutralWhite : Palette.neutralWhite.withOpacity(0.4),
+            ),
+            child: Text(
+              shouldDisplayAchievement ? challengeType.badgeTitle : '',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: Palette.neutralBlack,
+                  ),
+              textAlign: TextAlign.center,
+            ),
           ),
-          child: Text(
-            shouldDisplayAchievement ? challengeType.badgeTitle : '',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: Palette.neutralBlack,
-                ),
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
