@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:io';
 
 import 'package:better_world/challenges/ocean_shooter/ocean_challenge_screen.dart';
@@ -9,7 +8,6 @@ import 'package:better_world/challenges/trees_challenge/trees_challenge_screen.d
 import 'package:better_world/common/navigation_helper.dart';
 import 'package:better_world/common/game_progress_indicator.dart';
 import 'package:better_world/common/google_wallet_demo.dart';
-import 'package:better_world/common/no_connection_dialog.dart';
 import 'package:better_world/common/points_counter.dart';
 import 'package:better_world/challenges/lights_out_challenge/lights_out_challenge_screen.dart';
 import 'package:better_world/leaderboard/leaderboard_screen.dart';
@@ -19,7 +17,6 @@ import 'package:better_world/player_progress/entities/challenges_entity.dart';
 import 'package:better_world/player_progress/player_progress_controller.dart';
 import 'package:better_world/settings/settings_dialog.dart';
 import 'package:better_world/style/gaps.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -40,27 +37,6 @@ class MainMapScreen extends StatefulWidget {
 }
 
 class _MainMapScreenState extends State<MainMapScreen> {
-  late StreamSubscription _connectionSubscription;
-
-  @override
-  void initState() {
-    super.initState();
-    _connectionSubscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      if (result == ConnectivityResult.none) {
-        NavigationHelper.showWithWidgetBinding(
-          context,
-          NoConnectionDialog(
-            onTryAgain: () {
-              setState(() {});
-              context.pop();
-            },
-            onPlayOffline: () => context.pop(),
-          ),
-        );
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final settingsController = context.watch<SettingsController>();
@@ -180,11 +156,5 @@ class _MainMapScreenState extends State<MainMapScreen> {
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _connectionSubscription.cancel();
-    super.dispose();
   }
 }
