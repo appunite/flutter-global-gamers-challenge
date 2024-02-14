@@ -32,7 +32,7 @@ class NoConnectionScreen extends StatelessWidget {
               ),
               gap16,
               Text(
-                'Looks like you\'re offline! \nCheck your Internet connection and come back to Better World.',
+                'Looks like you\'re offline! \nCheck your Internet connection and come back to fix our World!',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: Palette.neutralBlack,
                     ),
