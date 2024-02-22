@@ -1,11 +1,11 @@
 import 'package:better_world/audio/audio_controller.dart';
-import 'package:better_world/challenges/ocean_shooter/ocean_challenge_screen.dart';
+import 'package:better_world/challenges/ocean_shooter/ocean_challenge_game.dart';
 import 'package:better_world/common/asset_paths.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
 class FireBoostComponent extends SpriteAnimationComponent
-    with HasGameReference<OceanChallengeScreen>, CollisionCallbacks {
+    with HasGameReference<OceanChallengeGame>, CollisionCallbacks {
   static const speed = 150;
   static final Vector2 initialSize = Vector2.all(80);
 
