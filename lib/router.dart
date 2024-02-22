@@ -1,4 +1,3 @@
-import 'package:better_world/audio/audio_controller.dart';
 import 'package:better_world/challenges/common_widgets/challenge_completed_screen.dart';
 import 'package:better_world/challenges/common_widgets/challenge_no_score_screen.dart';
 import 'package:better_world/challenges/ocean_shooter/ocean_challenge_screen.dart';
@@ -8,13 +7,11 @@ import 'package:better_world/challenges/solar_panel_scratcher_challenge/solar_pa
 import 'package:better_world/challenges/trees_challenge/challenge_summary_entity.dart';
 import 'package:better_world/challenges/trees_challenge/trees_challenge_screen.dart';
 import 'package:better_world/common/google_wallet_demo.dart';
-import 'package:better_world/leaderboard/badges_screen.dart';
+import 'package:better_world/leaderboard/achievements/achievements_screen.dart';
 import 'package:better_world/leaderboard/leaderboard_screen.dart';
 import 'package:better_world/splash_screen/splash_screen.dart';
-import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 
 import 'challenges/lights_out_challenge/lights_out_challenge_screen.dart';
 import 'main_menu/main_map_screen.dart';
@@ -92,9 +89,9 @@ final router = GoRouter(
       ),
     ),
     GoRoute(
-      path: BadgesScreen.routePath,
-      builder: (context, state) => const BadgesScreen(
-        key: Key('badges'),
+      path: AchievementsScreen.routePath,
+      builder: (context, state) => const AchievementsScreen(
+        key: Key('achievements'),
       ),
     ),
     GoRoute(
@@ -118,14 +115,8 @@ final router = GoRouter(
     GoRoute(
       path: OceanChallengeScreen.routePath,
       pageBuilder: (context, state) {
-        final audioController = context.read<AudioController>();
-
         return buildPageTransition<void>(
-          child: GameWidget(
-            game: OceanChallengeScreen(
-              audioController: audioController,
-            ),
-          ),
+          child: const OceanChallengeScreen(),
         );
       },
     ),

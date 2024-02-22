@@ -7,7 +7,6 @@ import 'package:better_world/challenges/ocean_shooter/components/fire_boost_comp
 import 'package:better_world/common/asset_paths.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flutter/material.dart';
 
 class PlayerComponent extends SpriteAnimationComponent with HasGameRef, CollisionCallbacks {
   PlayerComponent({required this.audioController})
@@ -24,14 +23,6 @@ class PlayerComponent extends SpriteAnimationComponent with HasGameRef, Collisio
   @override
   Future<void> onLoad() async {
     add(CircleHitbox());
-    add(
-      bulletCreator = TimerComponent(
-        period: 1,
-        repeat: true,
-        autoStart: true,
-        onTick: () => _createBullet(_initialBulletAngles),
-      ),
-    );
     animation = await game.loadSpriteAnimation(
       AssetPaths.submarine,
       SpriteAnimationData.sequenced(
@@ -57,6 +48,14 @@ class PlayerComponent extends SpriteAnimationComponent with HasGameRef, Collisio
   }
 
   void beginFire() {
+    add(
+      bulletCreator = TimerComponent(
+        period: 1,
+        repeat: true,
+        autoStart: true,
+        onTick: () => _createBullet(_initialBulletAngles),
+      ),
+    );
     bulletCreator.timer.start();
   }
 
@@ -76,8 +75,8 @@ class PlayerComponent extends SpriteAnimationComponent with HasGameRef, Collisio
     super.onCollisionStart(intersectionPoints, other);
 
     if (other is EnemyComponent) {
-      //TODO(Kostrzewsky): Hanel game over screen
-      debugPrint('GAME OVER');
+      game.add(ExplosionComponent(position: position));
+      other.removeFromParent();
     } else if (other is FireBoostComponent) {
       remove(bulletCreator);
       add(

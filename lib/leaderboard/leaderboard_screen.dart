@@ -3,7 +3,7 @@ import 'package:better_world/common/icon_button.dart';
 import 'package:better_world/common/map_button.dart';
 import 'package:better_world/common/ribbon_header.dart';
 import 'package:better_world/common/success_snack_bar.dart';
-import 'package:better_world/leaderboard/badges_screen.dart';
+import 'package:better_world/leaderboard/achievements/achievements_screen.dart';
 import 'package:better_world/leaderboard/leaderboard_controller.dart';
 import 'package:better_world/leaderboard/widgets/leaderboard_list_tile.dart';
 import 'package:better_world/player_progress/entities/challenges_entity.dart';
@@ -121,7 +121,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                           child: Column(
                             children: [
                               GameIconButton(
-                                onTap: () => context.push(BadgesScreen.routePath),
+                                onTap: () => context.push(AchievementsScreen.routePath),
                                 iconName: AssetPaths.iconsBadges,
                                 width: 56,
                                 height: 56,

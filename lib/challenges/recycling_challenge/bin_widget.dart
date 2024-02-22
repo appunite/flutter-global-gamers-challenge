@@ -40,9 +40,9 @@ class _BinWidgetState extends State<BinWidget> {
     final audioController = context.watch<AudioController>();
 
     return DragTarget<GarbageType>(
-      onWillAccept: (data) => data?.dumpsterType == widget.dumpsterType,
-      onAccept: (data) {
-        garbageController.itemSorted(data);
+      onWillAcceptWithDetails: (data) => data.data.dumpsterType == widget.dumpsterType,
+      onAcceptWithDetails: (data) {
+        garbageController.itemSorted(data.data);
         audioController.playSfx(SfxType.garbage);
 
         setState(() {
