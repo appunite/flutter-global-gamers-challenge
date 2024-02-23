@@ -8,10 +8,10 @@ import 'package:better_world/challenges/recycling_challenge/garbage_controller.d
 import 'package:better_world/challenges/recycling_challenge/garbage_widget.dart';
 import 'package:better_world/common/asset_paths.dart';
 import 'package:better_world/common/background_widget.dart';
-import 'package:better_world/common/navigation_helper.dart';
 import 'package:better_world/common/exit_challenge_dialog.dart';
 import 'package:better_world/common/info_button.dart';
 import 'package:better_world/common/map_button.dart';
+import 'package:better_world/common/navigation_helper.dart';
 import 'package:better_world/player_progress/persistence/database_persistence.dart';
 import 'package:better_world/player_progress/persistence/local_player_persistence.dart';
 import 'package:better_world/style/gaps.dart';
