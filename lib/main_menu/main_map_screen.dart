@@ -27,11 +27,16 @@ import '../style/main_button.dart';
 import '../style/palette.dart';
 import '../style/responsive_screen.dart';
 
-class MainMapScreen extends StatelessWidget {
+class MainMapScreen extends StatefulWidget {
   const MainMapScreen({super.key});
 
   static const String routePath = '/';
 
+  @override
+  State<MainMapScreen> createState() => _MainMapScreenState();
+}
+
+class _MainMapScreenState extends State<MainMapScreen> {
   @override
   Widget build(BuildContext context) {
     final settingsController = context.watch<SettingsController>();

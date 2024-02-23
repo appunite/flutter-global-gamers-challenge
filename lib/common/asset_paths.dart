@@ -98,6 +98,7 @@ class AssetPaths {
   static const String pipeWheel = 'assets/images/challenges/pipe_wheel.svg';
   static const String pipesBackground = 'assets/images/challenges/pipes_bg.svg';
   static const String pipesBadge = 'assets/images/challenges/pipes_badge.svg';
+  static const String badgeEmpty = 'assets/images/challenges/badge_empty.svg';
 
   static const String tree = 'assets/images/challenges/icons_tree.svg';
   static const String treeBackground = 'assets/images/challenges/plant_forest_bg.svg';
@@ -125,4 +126,5 @@ class AssetPaths {
   static const String splashAnimation = 'assets/animations/better_world_splash.riv';
   static const String waterDrop = 'assets/animations/pipes_drop_long.riv';
   static const String pipesBgAnimation = 'assets/animations/pipes_water_animation.riv';
+  static const String logoAnimation = 'assets/animations/splash_logo.riv';
 }
