@@ -96,6 +96,9 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
   }
 
   void _plantTree() {
+    if (_timer?.isCancelled ?? false) {
+      return;
+    }
     _challengeController.addPoints();
     _scrollController.animateTo(
       _scrollController.position.maxScrollExtent,

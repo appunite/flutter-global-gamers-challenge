@@ -103,6 +103,7 @@ class _SetPlayerNameDialogState extends State<SetPlayerNameDialog> {
     await context.read<PlayerProgressController>().updateUserName(username: username);
 
     if (!mounted) return;
+    context.pop();
     context.go(LeaderboardScreen.routePath, extra: true);
   }
 
