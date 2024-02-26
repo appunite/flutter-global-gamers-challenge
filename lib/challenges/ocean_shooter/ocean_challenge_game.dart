@@ -37,20 +37,17 @@ class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetecti
       if (challengeController.startChallengeTimer && !_gameAlreadyStarted) {
         overlays.remove(OceanChallengeScreen.countDownKey);
 
-        timer = Timer(
-          1,
-          onTick: () {
-            if (timeInSeconds <= 0) {
-              challengeController.onChallengeFinished(challengeType: ChallengeType.ocean);
-              pauseEngine();
-              overlays.add(OceanChallengeScreen.winDialogKey);
-            } else {
-              timeInSeconds--;
-              overlays.remove(OceanChallengeScreen.appBarKey);
-              overlays.add(OceanChallengeScreen.appBarKey);
-            }
-          },
-        );
+        timer ??= Timer(1, onTick: () {
+          if (timeInSeconds <= 0) {
+            challengeController.onChallengeFinished(challengeType: ChallengeType.ocean);
+            pauseEngine();
+            overlays.add(OceanChallengeScreen.winDialogKey);
+          } else {
+            timeInSeconds--;
+            overlays.remove(OceanChallengeScreen.appBarKey);
+            overlays.add(OceanChallengeScreen.appBarKey);
+          }
+        }, repeat: true);
 
         add(EnemyCreator(audioController: audioController));
         player.beginFire();

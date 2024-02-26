@@ -60,14 +60,13 @@ class _OceanChallengeScreenBodyState extends State<_OceanChallengeScreenBody> wi
   @override
   Widget build(BuildContext context) {
     final audioController = context.read<AudioController>();
-    final challengeController = context.read<ChallengeController>();
     final width = MediaQuery.sizeOf(context).width;
 
     return Scaffold(
       body: GameWidget<OceanChallengeGame>(
         game: OceanChallengeGame(
           audioController: audioController,
-          challengeController: challengeController,
+          challengeController: context.read<ChallengeController>(),
         ),
         overlayBuilderMap: {
           OceanChallengeScreen.introductionDialogKey: (context, OceanChallengeGame game) {
@@ -76,7 +75,7 @@ class _OceanChallengeScreenBodyState extends State<_OceanChallengeScreenBody> wi
                 onCloseTap: () => context.go(MainMapScreen.routePath),
                 challenge: ChallengeType.ocean,
                 onButtonPressed: () {
-                  challengeController.setCountDown(visible: true);
+                  context.read<ChallengeController>().setCountDown(visible: true);
                   game.overlays.remove(OceanChallengeScreen.introductionDialogKey);
                 },
               ),
@@ -84,7 +83,7 @@ class _OceanChallengeScreenBodyState extends State<_OceanChallengeScreenBody> wi
           },
           OceanChallengeScreen.countDownKey: (context, OceanChallengeGame game) {
             return CountDownFlameOverlay(
-              challengeController: challengeController,
+              challengeController: context.read<ChallengeController>(),
               animationController: _animationController,
             );
           },
@@ -105,7 +104,7 @@ class _OceanChallengeScreenBodyState extends State<_OceanChallengeScreenBody> wi
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  PointsCounter(pointsCount: challengeController.score),
+                  PointsCounter(pointsCount: context.read<ChallengeController>().score),
                   gap16,
                   TimerWidget(
                     timeInSeconds: game.timeInSeconds,
@@ -138,11 +137,11 @@ class _OceanChallengeScreenBodyState extends State<_OceanChallengeScreenBody> wi
             );
           },
           OceanChallengeScreen.winDialogKey: (BuildContext context, OceanChallengeGame game) {
-            challengeController.addListener(() {
-              if (challengeController.challengeSummary != null) {
+            context.read<ChallengeController>().addListener(() {
+              if (context.read<ChallengeController>().challengeSummary != null) {
                 NavigationHelper.navigateToChallengeResultScreen(
                   context,
-                  challengeController.challengeSummary!,
+                  context.read<ChallengeController>().challengeSummary!,
                 );
               }
             });
@@ -151,7 +150,7 @@ class _OceanChallengeScreenBodyState extends State<_OceanChallengeScreenBody> wi
           OceanChallengeScreen.loseDialogKey: (BuildContext context, OceanChallengeGame game) {
             NavigationHelper.navigateToChallengeResultScreen(
               context,
-              challengeController.challengeSummary!,
+              context.read<ChallengeController>().challengeSummary!,
             );
             return const SizedBox.shrink();
           },

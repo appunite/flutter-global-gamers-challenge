@@ -645,6 +645,12 @@ PODS:
   - connectivity_plus (0.0.1):
     - FlutterMacOS
     - ReachabilitySwift
+<<<<<<< HEAD
+=======
+  - connectivity_plus_macos (0.0.1):
+    - FlutterMacOS
+    - ReachabilitySwift
+>>>>>>> ef9b33514c5264032b4bec32b0c2d7d81df98db1
   - Firebase/CoreOnly (10.18.0):
     - FirebaseCore (= 10.18.0)
   - Firebase/Firestore (10.18.0):
@@ -772,6 +778,10 @@ DEPENDENCIES:
   - audioplayers_darwin (from `Flutter/ephemeral/.symlinks/plugins/audioplayers_darwin/macos`)
   - cloud_firestore (from `Flutter/ephemeral/.symlinks/plugins/cloud_firestore/macos`)
   - connectivity_plus (from `Flutter/ephemeral/.symlinks/plugins/connectivity_plus/macos`)
+<<<<<<< HEAD
+=======
+  - connectivity_plus_macos (from `Flutter/ephemeral/.symlinks/plugins/connectivity_plus_macos/macos`)
+>>>>>>> ef9b33514c5264032b4bec32b0c2d7d81df98db1
   - firebase_core (from `Flutter/ephemeral/.symlinks/plugins/firebase_core/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
   - package_info_plus (from `Flutter/ephemeral/.symlinks/plugins/package_info_plus/macos`)
@@ -806,6 +816,11 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/cloud_firestore/macos
   connectivity_plus:
     :path: Flutter/ephemeral/.symlinks/plugins/connectivity_plus/macos
+<<<<<<< HEAD
+=======
+  connectivity_plus_macos:
+    :path: Flutter/ephemeral/.symlinks/plugins/connectivity_plus_macos/macos
+>>>>>>> ef9b33514c5264032b4bec32b0c2d7d81df98db1
   firebase_core:
     :path: Flutter/ephemeral/.symlinks/plugins/firebase_core/macos
   FlutterMacOS:
@@ -825,6 +840,10 @@ SPEC CHECKSUMS:
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
   cloud_firestore: c24b3cd9294b9e8a94fe8d03b34c5b3339f40204
   connectivity_plus: 18d3c32514c886e046de60e9c13895109866c747
+<<<<<<< HEAD
+=======
+  connectivity_plus_macos: f6e86fd000e971d361e54b5afcadc8c8fa773308
+>>>>>>> ef9b33514c5264032b4bec32b0c2d7d81df98db1
   Firebase: 414ad272f8d02dfbf12662a9d43f4bba9bec2a06
   firebase_core: a74ee8b3ab5f91ae6b73f4913eaca996c24458b6
   FirebaseAppCheckInterop: e81bdb1cdb82f8e0cef353ba5018a8402682032c
@@ -849,4 +868,8 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 236401fc2c932af29a9fcf0e97baeeb2d750d367
 
+<<<<<<< HEAD
 COCOAPODS: 1.15.2
+=======
+COCOAPODS: 1.13.0
+>>>>>>> ef9b33514c5264032b4bec32b0c2d7d81df98db1
