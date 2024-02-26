@@ -1,5 +1,4 @@
 import 'package:better_world/audio/audio_controller.dart';
-import 'package:better_world/audio/sounds.dart';
 import 'package:better_world/challenges/ocean_shooter/components/bullet_component.dart';
 import 'package:better_world/challenges/ocean_shooter/components/enemy_component.dart';
 import 'package:better_world/challenges/ocean_shooter/components/explosion_component.dart';
@@ -44,7 +43,7 @@ class PlayerComponent extends SpriteAnimationComponent with HasGameRef, Collisio
         ),
       ),
     );
-    audioController.playSfx(SfxType.shoot);
+    // audioController.playSfx(SfxType.shoot);
   }
 
   void beginFire() {
