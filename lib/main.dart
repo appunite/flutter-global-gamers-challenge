@@ -1,14 +1,15 @@
 import 'package:better_world/common/no_connection_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:better_world/player_progress/persistence/database_persistence.dart';
 import 'package:better_world/player_progress/persistence/firebase_persistence.dart';
 import 'package:better_world/player_progress/persistence/local_player_persistence.dart';
 import 'package:better_world/style/theme.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cross_connectivity/cross_connectivity.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:scaled_app/scaled_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app_lifecycle/app_lifecycle.dart';
@@ -20,7 +21,14 @@ import 'settings/settings.dart';
 import 'style/palette.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  ScaledWidgetsFlutterBinding.ensureInitialized(
+    scaleFactor: (deviceSize) {
+      const double widthOfDesign = 800;
+
+      return deviceSize.width / widthOfDesign;
+    },
+  );
+
   await Flame.device.setLandscape();
   await Flame.device.fullScreen();
   await Firebase.initializeApp(
@@ -39,6 +47,13 @@ void main() async {
       firebasePersistence: firebasePersistence,
       localPlayerPersistence: localPlayerPersistence,
     ),
+/*    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => BetterWorldGame(
+        firebasePersistence: firebasePersistence,
+        localPlayerPersistence: localPlayerPersistence,
+      ),
+    ),*/
   );
 }
 

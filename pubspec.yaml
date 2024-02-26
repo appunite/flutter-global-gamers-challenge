@@ -43,6 +43,8 @@ dependencies:
   uuid: ^4.3.3
   add_to_google_wallet: ^0.0.3
   smart_snackbars: ^1.0.0
+  device_preview: ^1.1.0
+  scaled_app: ^2.2.0
 
 dev_dependencies:
   flame_test: ^1.14.0
