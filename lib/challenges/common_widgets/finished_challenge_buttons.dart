@@ -19,34 +19,37 @@ class FinishedChallengeButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        MainButton.secondary(
-          width: 170,
-          text: 'Play Again',
-          onPressed: (_) {
-            context.go(challengeType.routePath);
-          },
-        ),
-        gap12,
-        MainButton(
-          width: 160,
-          text: 'Go to Map',
-          onPressed: (_) {
-            final playerProgress = context.read<PlayerProgressController>();
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          MainButton.secondary(
+            width: 170,
+            text: 'Play Again',
+            onPressed: (_) {
+              context.go(challengeType.routePath);
+            },
+          ),
+          gap12,
+          MainButton(
+            width: 160,
+            text: 'Go to Map',
+            onPressed: (_) {
+              final playerProgress = context.read<PlayerProgressController>();
 
-            if (playerProgress.challenges.getPlayedChallengesCount() == 0) {
-              NavigationHelper.show(
-                context,
-                const LeaderboardIntroductionDialog(shouldGoToLeaderBoardScreen: true),
-              );
-            } else {
-              context.go('/');
-            }
-          },
-        ),
-      ],
+              if (playerProgress.challenges.getPlayedChallengesCount() == 0) {
+                NavigationHelper.show(
+                  context,
+                  const LeaderboardIntroductionDialog(shouldGoToLeaderBoardScreen: true),
+                );
+              } else {
+                context.go('/');
+              }
+            },
+          ),
+        ],
+      ),
     );
   }
 }

@@ -127,4 +127,5 @@ class AssetPaths {
   static const String waterDrop = 'assets/animations/pipes_drop_long.riv';
   static const String pipesBgAnimation = 'assets/animations/pipes_water_animation.riv';
   static const String logoAnimation = 'assets/animations/splash_logo.riv';
+  static const String pipesSewageMachine = 'assets/animations/pipes_sewage_machine.riv';
 }

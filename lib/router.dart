@@ -83,15 +83,28 @@ final router = GoRouter(
     ),
     GoRoute(
       path: LeaderboardScreen.routePath,
-      builder: (context, state) => LeaderboardScreen(
-        key: const Key('leaderboard'),
-        shouldDisplayChangedUsernameSnackBar: state.extra! as bool,
+      pageBuilder: (context, state) => buildPageTransition(
+        child: LeaderboardScreen(
+          key: const Key('leaderboard'),
+          shouldDisplayChangedUsernameSnackBar: state.extra! as bool,
+        ),
       ),
     ),
     GoRoute(
       path: AchievementsScreen.routePath,
-      builder: (context, state) => const AchievementsScreen(
-        key: Key('achievements'),
+      pageBuilder: (context, state) => CustomTransitionPage<void>(
+        key: state.pageKey,
+        transitionDuration: const Duration(milliseconds: 200),
+        child: const AchievementsScreen(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(-1.0, 0.0),
+              end: Offset.zero,
+            ).chain(CurveTween(curve: Curves.easeIn)).animate(animation),
+            child: child,
+          );
+        },
       ),
     ),
     GoRoute(

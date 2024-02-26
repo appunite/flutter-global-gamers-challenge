@@ -1,10 +1,10 @@
-import 'package:better_world/common/no_connection_screen.dart';
+import 'package:better_world/connectivity/connectivity_controller.dart';
+import 'package:better_world/connectivity/no_connection_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:better_world/player_progress/persistence/database_persistence.dart';
 import 'package:better_world/player_progress/persistence/firebase_persistence.dart';
 import 'package:better_world/player_progress/persistence/local_player_persistence.dart';
 import 'package:better_world/style/theme.dart';
-import 'package:cross_connectivity/cross_connectivity.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
@@ -66,6 +66,9 @@ class BetterWorldGame extends StatelessWidget {
               localStorage: localPlayerPersistence,
             ),
           ),
+          ChangeNotifierProvider(
+            create: (context) => ConnectivityController(),
+          ),
           Provider(create: (_) => SettingsController()),
           ProxyProvider2<SettingsController, AppLifecycleStateNotifier, AudioController>(
             // Ensures that music starts immediately.
@@ -80,21 +83,19 @@ class BetterWorldGame extends StatelessWidget {
         ],
         child: Builder(
           builder: (context) {
-            return ConnectivityBuilder(
-              builder: (context, isConnected, _) {
-                return MaterialApp.router(
-                  title: 'Better World',
-                  theme: theme,
-                  routeInformationProvider: router.routeInformationProvider,
-                  routeInformationParser: router.routeInformationParser,
-                  routerDelegate: router.routerDelegate,
-                  builder: (context, child) {
-                    if (isConnected != null && !isConnected) {
-                      return const NoConnectionScreen();
-                    }
-                    return child!;
-                  },
-                );
+            return MaterialApp.router(
+              title: 'Better World',
+              theme: theme,
+              routeInformationProvider: router.routeInformationProvider,
+              routeInformationParser: router.routeInformationParser,
+              routerDelegate: router.routerDelegate,
+              builder: (context, child) {
+                final connectivityController = context.watch<ConnectivityController>();
+                if (connectivityController.isConnected) {
+                  return child!;
+                } else {
+                  return const NoConnectionScreen();
+                }
               },
             );
           },

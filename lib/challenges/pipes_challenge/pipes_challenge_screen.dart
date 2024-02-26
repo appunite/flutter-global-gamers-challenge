@@ -191,7 +191,7 @@ class _PipesChallengeBodyScreenState extends State<_PipesChallengeBodyScreen> {
             alignment: Alignment.topCenter,
             children: [
               const BackgroundWidget(assetPath: AssetPaths.pipesBackground),
-              const RiveAnimation.asset(AssetPaths.pipesBgAnimation),
+              const RiveAnimation.asset(AssetPaths.pipesSewageMachine, animations: ['Water dripping']),
               const Padding(
                 padding: EdgeInsets.only(top: kToolbarHeight + 8),
                 child: PipesGrid(),

@@ -1,7 +1,9 @@
 import 'package:better_world/challenges/challenge_controller.dart';
 import 'package:better_world/challenges/lights_out_challenge/lights_out_challenge_screen.dart';
+import 'package:better_world/style/palette.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
+import 'package:flutter/material.dart';
 
 import '../../audio/audio_controller.dart';
 import 'components/background.dart';
@@ -28,4 +30,7 @@ class EndlessRunner extends FlameGame<EndlessWorld> with HasCollisionDetection {
     overlays.add(LightsOutChallengeScreen.countDownKey);
     overlays.add(LightsOutChallengeScreen.introductionDialogKey);
   }
+
+  @override
+  Color backgroundColor() => Palette.neutralLightGray;
 }
