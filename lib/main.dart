@@ -1,6 +1,5 @@
-import 'package:better_world/player_progress/persistence/database_persistence.dart';
 import 'package:better_world/common/no_connection_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:better_world/player_progress/persistence/database_persistence.dart';
 import 'package:better_world/player_progress/persistence/firebase_persistence.dart';
 import 'package:better_world/player_progress/persistence/local_player_persistence.dart';
 import 'package:better_world/style/theme.dart';
