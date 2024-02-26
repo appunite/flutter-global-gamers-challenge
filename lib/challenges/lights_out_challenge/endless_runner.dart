@@ -32,5 +32,5 @@ class EndlessRunner extends FlameGame<EndlessWorld> with HasCollisionDetection {
   }
 
   @override
-  Color backgroundColor() => Palette.neutralLightGray;
+  Color backgroundColor() => Palette.lightsOutBackground;
 }

@@ -36,7 +36,6 @@ class EndlessWorld extends World with TapCallbacks, HasGameReference {
 
   @override
   Future<void> onLoad() async {
-    //TODO change to Eco
     player = LightsOutEco(
       challengeController: challengeController,
       position: Vector2(-size.x / 3 + 120, groundLevel - 900),

@@ -1,4 +1,3 @@
-
 import 'package:better_world/audio/audio_controller.dart';
 import 'package:better_world/audio/sounds.dart';
 import 'package:better_world/challenges/challenge_controller.dart';
@@ -12,6 +11,7 @@ import 'package:better_world/common/navigation_helper.dart';
 import 'package:better_world/common/exit_challenge_dialog.dart';
 import 'package:better_world/common/info_button.dart';
 import 'package:better_world/common/map_button.dart';
+import 'package:better_world/main_menu/main_map_screen.dart';
 import 'package:better_world/player_progress/persistence/database_persistence.dart';
 import 'package:better_world/player_progress/persistence/local_player_persistence.dart';
 import 'package:flutter/material.dart';
@@ -112,6 +112,7 @@ class _SolarPanelChallengeBodyScreenState extends State<_SolarPanelChallengeBody
           context.pop();
           context.read<ChallengeController>().setCountDown(visible: true);
         },
+        onCloseTap: () => context.go(MainMapScreen.routePath),
       ),
     );
   }

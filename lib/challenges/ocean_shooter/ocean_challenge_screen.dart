@@ -10,6 +10,7 @@ import 'package:better_world/common/map_button.dart';
 import 'package:better_world/common/navigation_helper.dart';
 import 'package:better_world/common/points_counter.dart';
 import 'package:better_world/common/timer_widget.dart';
+import 'package:better_world/main_menu/main_map_screen.dart';
 import 'package:better_world/player_progress/persistence/database_persistence.dart';
 import 'package:better_world/player_progress/persistence/local_player_persistence.dart';
 import 'package:better_world/style/gaps.dart';
@@ -72,7 +73,7 @@ class _OceanChallengeScreenBodyState extends State<_OceanChallengeScreenBody> wi
           OceanChallengeScreen.introductionDialogKey: (context, OceanChallengeGame game) {
             return Center(
               child: ChallengeIntroductionDialog(
-                onCloseTap: () => context.go('/'),
+                onCloseTap: () => context.go(MainMapScreen.routePath),
                 challenge: ChallengeType.ocean,
                 onButtonPressed: () {
                   challengeController.setCountDown(visible: true);

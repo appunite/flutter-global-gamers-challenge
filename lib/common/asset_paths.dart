@@ -91,6 +91,8 @@ class AssetPaths {
   static const String ecoClose = 'assets/images/common/eco_close.svg';
   static const String ecoConnection = 'assets/images/common/eco_connection.svg';
   static const String ecoSettings = 'assets/images/common/eco_settings.svg';
+  static const String ecoSad = 'assets/images/common/eco_sad.svg';
+  static const String ecoCelebrate = 'assets/images/common/eco_celebrate.svg';
   static const String infoPipes1 = 'assets/images/challenges/info_pipes_01.svg';
   static const String infoTimer = 'assets/images/challenges/info_pipes_02.svg';
   static const String pipeCorner = 'assets/images/challenges/pipe_corner.svg';
