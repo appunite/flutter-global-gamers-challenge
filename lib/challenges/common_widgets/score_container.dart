@@ -20,26 +20,42 @@ class ScoreContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.bottomCenter,
-      padding: const EdgeInsets.all(12),
-      width: 320,
-      decoration: BoxDecoration(
-        color: Palette.neutralWhite.withOpacity(.3),
-        borderRadius: borderRadius24,
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _CurrentScoreRow(score: score),
-          if (timeInSeconds != null) ...[
-            gap12,
-            _TimeRow(timeInSeconds: timeInSeconds!),
-          ],
-          gap16,
-          _BestScoreRow(bestScore: bestScore, context: context),
-        ],
-      ),
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Container(
+          alignment: Alignment.bottomCenter,
+          padding: const EdgeInsets.all(12),
+          width: 320,
+          decoration: BoxDecoration(
+            color: Palette.neutralWhite.withOpacity(.3),
+            borderRadius: borderRadius24,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _CurrentScoreRow(score: score),
+              if (timeInSeconds != null) ...[
+                gap12,
+                _TimeRow(timeInSeconds: timeInSeconds!),
+              ],
+              gap16,
+              _BestScoreRow(bestScore: bestScore, context: context),
+            ],
+          ),
+        ),
+        score == 0
+            ? Positioned(
+                right: -124,
+                bottom: -2,
+                child: SvgPicture.asset(AssetPaths.ecoSad),
+              )
+            : Positioned(
+                left: -156,
+                bottom: -2,
+                child: SvgPicture.asset(AssetPaths.ecoCelebrate),
+              ),
+      ],
     );
   }
 }

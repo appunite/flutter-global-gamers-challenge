@@ -22,8 +22,7 @@ class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetecti
 
   bool _gameAlreadyStarted = false;
 
-  /// Countdown timer
-  Timer? timer;
+  Timer? oceanTimer;
   int timeInSeconds = 30;
 
   @override
@@ -33,34 +32,41 @@ class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetecti
       player = PlayerComponent(audioController: audioController),
     ]);
 
-    challengeController.addListener(() {
-      if (challengeController.startChallengeTimer && !_gameAlreadyStarted) {
-        overlays.remove(OceanChallengeScreen.countDownKey);
-
-        timer ??= Timer(1, onTick: () {
-          if (timeInSeconds <= 0) {
-            challengeController.onChallengeFinished(challengeType: ChallengeType.ocean);
-            pauseEngine();
-            overlays.add(OceanChallengeScreen.winDialogKey);
-          } else {
-            timeInSeconds--;
-            overlays.remove(OceanChallengeScreen.appBarKey);
-            overlays.add(OceanChallengeScreen.appBarKey);
-          }
-        }, repeat: true);
-
-        add(EnemyCreator(audioController: audioController));
-        player.beginFire();
-        overlays.add(OceanChallengeScreen.appBarKey);
-
-        _gameAlreadyStarted = true;
-      }
-    });
-
     overlays.add(OceanChallengeScreen.mapButtonKey);
     overlays.add(OceanChallengeScreen.infoButtonKey);
     overlays.add(OceanChallengeScreen.countDownKey);
     overlays.add(OceanChallengeScreen.introductionDialogKey);
+
+    challengeController.addListener(() {
+      if (challengeController.startChallengeTimer) {
+        oceanTimer ??= _setTimer();
+
+        if (!_gameAlreadyStarted) {
+          overlays.remove(OceanChallengeScreen.countDownKey);
+          add(EnemyCreator(audioController: audioController));
+          player.beginFire();
+          _gameAlreadyStarted = true;
+        }
+      }
+    });
+  }
+
+  Timer _setTimer() {
+    return Timer(
+      1,
+      onTick: () {
+        if (timeInSeconds <= 0) {
+          challengeController.onChallengeFinished(challengeType: ChallengeType.ocean);
+          pauseEngine();
+          overlays.add(OceanChallengeScreen.winDialogKey);
+        } else {
+          timeInSeconds--;
+          overlays.remove(OceanChallengeScreen.appBarKey);
+          overlays.add(OceanChallengeScreen.appBarKey);
+        }
+      },
+      repeat: true,
+    );
   }
 
   @override

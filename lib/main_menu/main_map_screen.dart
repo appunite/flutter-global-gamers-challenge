@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:better_world/challenges/ocean_shooter/ocean_challenge_screen.dart';
 import 'package:better_world/challenges/pipes_challenge/pipes_challenge_screen.dart';
 import 'package:better_world/challenges/recycling_challenge/recycling_challenge_screen.dart';
@@ -7,7 +5,6 @@ import 'package:better_world/challenges/solar_panel_scratcher_challenge/solar_pa
 import 'package:better_world/challenges/trees_challenge/trees_challenge_screen.dart';
 import 'package:better_world/common/navigation_helper.dart';
 import 'package:better_world/common/game_progress_indicator.dart';
-import 'package:better_world/common/google_wallet_demo.dart';
 import 'package:better_world/common/points_counter.dart';
 import 'package:better_world/challenges/lights_out_challenge/lights_out_challenge_screen.dart';
 import 'package:better_world/leaderboard/leaderboard_screen.dart';
@@ -107,12 +104,6 @@ class _MainMapScreenState extends State<MainMapScreen> {
               onPressed: (_) => context.push(OceanChallengeScreen.routePath),
               text: 'Ocean shooter',
             ),
-            gap10,
-            if (Platform.isAndroid)
-              MainButton(
-                onPressed: (_) => context.push(GoogleWalletDemoScreen.routePath),
-                text: 'Google wallet',
-              ),
             Padding(
               padding: const EdgeInsets.only(top: 8),
               child: ValueListenableBuilder<bool>(

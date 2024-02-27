@@ -12,7 +12,7 @@ class PlayerProgressController extends ChangeNotifier {
     required DatabasePersistence databaseStorage,
   })  : _localStorage = localStorage,
         _databaseStorage = databaseStorage {
-    _loadPlayerData();
+    loadPlayerData();
   }
 
   final LocalPlayerPersistence _localStorage;
@@ -39,7 +39,7 @@ class PlayerProgressController extends ChangeNotifier {
 
   bool get shouldShowAllChallengesCongrats => _shouldShowGameCompletedCongrats;
 
-  Future<void> _loadPlayerData() async {
+  Future<void> loadPlayerData() async {
     _playerId = await _localStorage.getPlayerIdKey();
     final PlayerEntity playerEntity = await _databaseStorage.getPlayerEntity(playerId: _playerId);
     final bool hasSeenOnboarding = await _localStorage.getHasSeenOnboarding();

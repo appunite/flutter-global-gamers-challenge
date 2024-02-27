@@ -1,6 +1,7 @@
 import 'package:better_world/challenges/common_widgets/challenge_completed_screen.dart';
 import 'package:better_world/challenges/common_widgets/challenge_no_score_screen.dart';
 import 'package:better_world/challenges/trees_challenge/challenge_summary_entity.dart';
+import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -9,6 +10,7 @@ class NavigationHelper {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       showDialog(
         barrierDismissible: false,
+        barrierColor: Palette.overlay,
         context: context,
         builder: (context) => widget,
       );
@@ -18,6 +20,7 @@ class NavigationHelper {
   static Future<void> show(BuildContext context, Widget widget) {
     return showDialog(
       barrierDismissible: false,
+      barrierColor: Palette.overlay,
       context: context,
       builder: (context) => widget,
     );

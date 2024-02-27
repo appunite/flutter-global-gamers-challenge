@@ -26,8 +26,8 @@ class AssetPaths {
   static const String microplastic19 = 'challenges/ocean_shooter/microplastic_19.png';
   static const String microplastic20 = 'challenges/ocean_shooter/microplastic_20.png';
   static const String oceanBadge = 'assets/images/challenges/ocean_shooter/ocean_badge.svg';
-  static const String infoPlastics1 = 'assets/images/challenges/info_plastics_01.svg';
-  static const String infoPlastics2 = 'assets/images/challenges/info_plastics_02.svg';
+  static const String infoPlastics1 = 'assets/images/challenges/info_plastics_02.svg';
+  static const String infoPlastics2 = 'assets/images/challenges/info_plastics_01.svg';
 
   /// Solar panel scratcher challengs
   static const String panelDirty = 'assets/images/challenges/panel_scratcher/panel_dirty.png';
@@ -91,6 +91,8 @@ class AssetPaths {
   static const String ecoClose = 'assets/images/common/eco_close.svg';
   static const String ecoConnection = 'assets/images/common/eco_connection.svg';
   static const String ecoSettings = 'assets/images/common/eco_settings.svg';
+  static const String ecoSad = 'assets/images/common/eco_sad.svg';
+  static const String ecoCelebrate = 'assets/images/common/eco_celebrate.svg';
   static const String infoPipes1 = 'assets/images/challenges/info_pipes_01.svg';
   static const String infoTimer = 'assets/images/challenges/info_pipes_02.svg';
   static const String pipeCorner = 'assets/images/challenges/pipe_corner.svg';
@@ -127,4 +129,5 @@ class AssetPaths {
   static const String waterDrop = 'assets/animations/pipes_drop_long.riv';
   static const String pipesBgAnimation = 'assets/animations/pipes_water_animation.riv';
   static const String logoAnimation = 'assets/animations/splash_logo.riv';
+  static const String pipesSewageMachine = 'assets/animations/pipes_sewage_machine.riv';
 }

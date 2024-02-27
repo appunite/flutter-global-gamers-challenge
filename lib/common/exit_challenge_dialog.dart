@@ -34,7 +34,7 @@ class ExitChallengeDialog extends StatelessWidget {
         children: [
           MainButton.secondary(
             width: 150,
-            onPressed: (_) => context.go(MainMapScreen.routePath), //TODO(Kostrzewsky): Move player to the map
+            onPressed: (_) => context.go(MainMapScreen.routePath),
             text: 'Exit',
           ),
           gap12,
