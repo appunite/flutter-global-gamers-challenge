@@ -39,18 +39,7 @@ class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetecti
 
     challengeController.addListener(() {
       if (challengeController.startChallengeTimer) {
-        print(oceanTimer?.isRunning());
-        try {
-          if (oceanTimer == null) {
-            oceanTimer = _setTimer();
-            oceanTimer!.start();
-            print('set');
-          } else {
-            print('NOT Null');
-          }
-        } catch (e) {
-          print('ERROR1: $e');
-        }
+        oceanTimer ??= _setTimer();
 
         if (!_gameAlreadyStarted) {
           overlays.remove(OceanChallengeScreen.countDownKey);
@@ -66,7 +55,6 @@ class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetecti
     return Timer(
       1,
       onTick: () {
-        print('TYKAM!');
         if (timeInSeconds <= 0) {
           challengeController.onChallengeFinished(challengeType: ChallengeType.ocean);
           pauseEngine();

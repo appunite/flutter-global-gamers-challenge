@@ -97,7 +97,6 @@ class _OceanChallengeScreenBodyState extends State<_OceanChallengeScreenBody> wi
             );
           },
           OceanChallengeScreen.appBarKey: (context, OceanChallengeGame game) {
-            print('APP BAR');
             return Positioned(
               top: 10,
               left: width / 2 - 150,
