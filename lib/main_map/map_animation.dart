@@ -133,7 +133,7 @@ class _MapAnimationState extends State<MapAnimation> {
   }
 
   void onRiveEvent(RiveEvent event) {
-    // Rive is sometimes triggering the events more than once, we don't know why
+    // Sometimes Rive is triggering the events more than once, we don't know why
     // so to not push many pages on the stack, we check the event time
     final currentTime = DateTime.now();
 

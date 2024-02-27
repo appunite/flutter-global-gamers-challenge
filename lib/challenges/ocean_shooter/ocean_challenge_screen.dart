@@ -3,13 +3,12 @@ import 'package:better_world/challenges/challenge_controller.dart';
 import 'package:better_world/challenges/challenge_type_enum.dart';
 import 'package:better_world/challenges/common_widgets/challenge_introduction_dialog.dart';
 import 'package:better_world/challenges/lights_out_challenge/count_down_overlay.dart';
+import 'package:better_world/challenges/ocean_shooter/components/app_bar.dart';
 import 'package:better_world/challenges/ocean_shooter/ocean_challenge_game.dart';
 import 'package:better_world/common/exit_challenge_dialog.dart';
 import 'package:better_world/common/info_button.dart';
 import 'package:better_world/common/map_button.dart';
 import 'package:better_world/common/navigation_helper.dart';
-import 'package:better_world/common/points_counter.dart';
-import 'package:better_world/common/timer_widget.dart';
 import 'package:better_world/main_map/main_map_screen.dart';
 import 'package:better_world/player_progress/persistence/database_persistence.dart';
 import 'package:better_world/player_progress/persistence/local_player_persistence.dart';
@@ -60,7 +59,6 @@ class _OceanChallengeScreenBodyState extends State<_OceanChallengeScreenBody> wi
   @override
   Widget build(BuildContext context) {
     final audioController = context.read<AudioController>();
-    final width = MediaQuery.sizeOf(context).width;
 
     return Scaffold(
       body: GameWidget<OceanChallengeGame>(
@@ -99,17 +97,14 @@ class _OceanChallengeScreenBodyState extends State<_OceanChallengeScreenBody> wi
           OceanChallengeScreen.appBarKey: (context, OceanChallengeGame game) {
             return Positioned(
               top: 10,
-              left: width / 2 - 150,
+              left: 250,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  PointsCounter(pointsCount: context.read<ChallengeController>().score),
+                  const OceanShooterPointsCounter(),
                   gap16,
-                  TimerWidget(
-                    timeInSeconds: game.timeInSeconds,
-                    countDown: true,
-                  ),
+                  OceanShooterTimerWidget(game: game),
                 ],
               ),
             );
