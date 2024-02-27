@@ -1,7 +1,7 @@
 import 'package:better_world/common/asset_paths.dart';
 import 'package:better_world/common/common_dialog.dart';
 import 'package:better_world/common/ribbon_header.dart';
-import 'package:better_world/main_menu/main_map_screen.dart';
+import 'package:better_world/main_map/main_map_screen.dart';
 import 'package:better_world/style/gaps.dart';
 import 'package:better_world/style/main_button.dart';
 import 'package:better_world/style/palette.dart';

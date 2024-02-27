@@ -1,7 +1,7 @@
 import 'package:better_world/challenges/challenge_type_enum.dart';
 import 'package:better_world/common/navigation_helper.dart';
 import 'package:better_world/leaderboard/introduction/leaderboard_introduction_dialog.dart';
-import 'package:better_world/main_menu/main_map_screen.dart';
+import 'package:better_world/main_map/main_map_screen.dart';
 import 'package:better_world/player_progress/entities/challenges_entity.dart';
 import 'package:better_world/player_progress/player_progress_controller.dart';
 import 'package:better_world/style/gaps.dart';

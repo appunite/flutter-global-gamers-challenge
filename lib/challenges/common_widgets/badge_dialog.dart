@@ -52,8 +52,15 @@ class BadgeDialog extends StatelessWidget {
           Container(
             height: 98,
             width: 98,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(90)),
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(90)),
+              boxShadow: [
+                BoxShadow(
+                  offset: const Offset(0, 1),
+                  spreadRadius: 1,
+                  color: Palette.neutralBlack.withOpacity(0.2),
+                ),
+              ],
             ),
             child: SvgPicture.asset(
               challengeType.badgeAsset,

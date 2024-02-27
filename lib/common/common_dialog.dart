@@ -30,12 +30,13 @@ class CommonDialog extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           Container(
+            alignment: Alignment.center,
             constraints: BoxConstraints(
               maxWidth: 460,
-              maxHeight: MediaQuery.sizeOf(context).height * 0.85,
+              maxHeight: MediaQuery.sizeOf(context).height * 0.8,
               minHeight: 200,
             ),
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.fromLTRB(24, 24, 24, 12),
             decoration: BoxDecoration(
               color: Palette.neutralWhite,
               borderRadius: BorderRadius.circular(16),
@@ -68,7 +69,7 @@ class CommonDialog extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: -30,
+            top: -20,
             child: Padding(
               padding: const EdgeInsets.only(top: 10),
               child: ribbon,
