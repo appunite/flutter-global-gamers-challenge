@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:better_world/audio/audio_controller.dart';
+import 'package:better_world/audio/sounds.dart';
 import 'package:better_world/challenges/ocean_shooter/components/explosion_component.dart';
 import 'package:better_world/challenges/ocean_shooter/components/microplastic_enum.dart';
 import 'package:better_world/challenges/ocean_shooter/ocean_challenge_game.dart';
@@ -51,6 +52,6 @@ class EnemyComponent extends SpriteAnimationComponent with HasGameReference<Ocea
 
     game.add(ExplosionComponent(position: position));
     game.increaseScore();
-    // audioController.playSfx(SfxType.microplasticDestroyed);
+    audioController.playSfx(SfxType.microplasticDestroyed);
   }
 }
