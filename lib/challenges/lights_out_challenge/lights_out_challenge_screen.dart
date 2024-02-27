@@ -61,7 +61,6 @@ class _LightsOutChallengeBodyScreenState extends State<LightsOutChallengeBodyScr
   @override
   Widget build(BuildContext context) {
     final audioController = context.read<AudioController>();
-    final width = MediaQuery.sizeOf(context).width;
 
     return Scaffold(
       body: GameWidget<EndlessRunner>(
@@ -101,7 +100,7 @@ class _LightsOutChallengeBodyScreenState extends State<LightsOutChallengeBodyScr
           LightsOutChallengeScreen.appBarKey: (context, game) {
             return Positioned(
               top: 10,
-              left: width / 2 - 150,
+              left: 250,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,

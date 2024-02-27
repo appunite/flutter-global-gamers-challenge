@@ -46,6 +46,11 @@ class ChallengeController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setPoints({required int points}) {
+    _score = points;
+    notifyListeners();
+  }
+
   Future<void> onChallengeFinished({
     required ChallengeType challengeType,
     int? timeInSec,

@@ -1,6 +1,5 @@
 import 'package:better_world/audio/audio_controller.dart';
 import 'package:better_world/challenges/challenge_controller.dart';
-import 'package:better_world/challenges/challenge_type_enum.dart';
 import 'package:better_world/challenges/ocean_shooter/components/enemy_creator.dart';
 import 'package:better_world/challenges/ocean_shooter/components/fire_boost_creator.dart';
 import 'package:better_world/challenges/ocean_shooter/components/ocean_shooter_background.dart';
@@ -19,10 +18,11 @@ class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetecti
   late final PlayerComponent player;
   late final AudioController audioController;
   final ChallengeController challengeController;
+  late int score = 0;
 
   bool _gameAlreadyStarted = false;
 
-  Timer? oceanTimer;
+  Timer? countdownTimer;
   int timeInSeconds = 30;
 
   @override
@@ -39,34 +39,15 @@ class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetecti
 
     challengeController.addListener(() {
       if (challengeController.startChallengeTimer) {
-        oceanTimer ??= _setTimer();
-
         if (!_gameAlreadyStarted) {
           overlays.remove(OceanChallengeScreen.countDownKey);
           add(EnemyCreator(audioController: audioController));
           player.beginFire();
           _gameAlreadyStarted = true;
+          overlays.add(OceanChallengeScreen.appBarKey);
         }
       }
     });
-  }
-
-  Timer _setTimer() {
-    return Timer(
-      1,
-      onTick: () {
-        if (timeInSeconds <= 0) {
-          challengeController.onChallengeFinished(challengeType: ChallengeType.ocean);
-          pauseEngine();
-          overlays.add(OceanChallengeScreen.winDialogKey);
-        } else {
-          timeInSeconds--;
-          overlays.remove(OceanChallengeScreen.appBarKey);
-          overlays.add(OceanChallengeScreen.appBarKey);
-        }
-      },
-      repeat: true,
-    );
   }
 
   @override
@@ -78,10 +59,16 @@ class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetecti
     overlays.add(OceanChallengeScreen.winDialogKey);
   }
 
-  void increaseScore() {
-    challengeController.addPoints(points: 1);
+  @override
+  void update(double dt) {
+    super.update(dt);
+    challengeController.setPoints(points: score);
+  }
 
-    if (challengeController.score == 30) {
+  void increaseScore() {
+    score++;
+
+    if (score == 15) {
       add(FireBoostCreator(audioController: audioController));
     }
   }
