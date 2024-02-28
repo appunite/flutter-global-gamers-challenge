@@ -13,8 +13,6 @@ class SplashScreen extends StatefulWidget {
     required this.progressAnimation,
   });
 
-  static const String routePath = '/splash-screen';
-
   final AnimationController controller;
   final Animation<double> progressAnimation;
 
