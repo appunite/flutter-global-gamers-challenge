@@ -160,7 +160,7 @@ class _MapAnimationState extends State<MapAnimation> {
       if (route != null) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           context.read<AudioController>().playSfx(SfxType.buttonTap);
-          context.go(route!);
+          context.push(route!);
         });
       }
 
