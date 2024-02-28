@@ -5,7 +5,6 @@ import 'package:better_world/challenges/ocean_shooter/components/fire_boost_crea
 import 'package:better_world/challenges/ocean_shooter/components/ocean_shooter_background.dart';
 import 'package:better_world/challenges/ocean_shooter/components/player_component.dart';
 import 'package:better_world/challenges/ocean_shooter/ocean_challenge_screen.dart';
-import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 
@@ -21,9 +20,6 @@ class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetecti
   late int score = 0;
 
   bool _gameAlreadyStarted = false;
-
-  Timer? countdownTimer;
-  int timeInSeconds = 30;
 
   @override
   Future<void> onLoad() async {

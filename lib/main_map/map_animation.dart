@@ -68,14 +68,9 @@ class _MapAnimationState extends State<MapAnimation> {
           plasticPinInput,
           forestIslandInput,
           forestPinInput,
+          worldState,
         );
       }
-
-      final playedChallenges = playerProgress.challenges.getPlayedChallengesCount();
-      setState(() {
-        //TODO: does not work
-        worldState.change(playedChallenges.toDouble());
-      });
 
       if (playerProgress.challenges.city != null) {
         cityIslandInput.change(true);
@@ -101,6 +96,13 @@ class _MapAnimationState extends State<MapAnimation> {
         forestIslandInput.change(true);
         forestPinInput.value = 2;
       }
+
+      final playedChallenges = playerProgress.challenges.getPlayedChallengesCount();
+      worldState.value = playedChallenges + 0.5;
+
+      if (mounted) {
+        setState(() {});
+      }
     });
   }
 
@@ -117,6 +119,7 @@ class _MapAnimationState extends State<MapAnimation> {
     SMINumber plasticPinInput,
     SMIBool forestIslandInput,
     SMINumber forestPinInput,
+    SMINumber worldState,
   ) {
     cityIslandInput.change(false);
     cityPinInput.value = 0;
@@ -130,6 +133,7 @@ class _MapAnimationState extends State<MapAnimation> {
     plasticPinInput.value = 0;
     forestIslandInput.change(false);
     forestPinInput.value = 0;
+    worldState.value = 0;
   }
 
   void onRiveEvent(RiveEvent event) {
@@ -156,7 +160,7 @@ class _MapAnimationState extends State<MapAnimation> {
       if (route != null) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           context.read<AudioController>().playSfx(SfxType.buttonTap);
-          context.push(route!);
+          context.go(route!);
         });
       }
 

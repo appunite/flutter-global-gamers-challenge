@@ -36,7 +36,7 @@ class _WaterDropAnimationState extends State<WaterDropAnimation> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 2,
+      bottom: -8,
       right: 156,
       child: Visibility(
         visible: _isAnimationVisible,
