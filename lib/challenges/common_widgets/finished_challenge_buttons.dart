@@ -61,11 +61,11 @@ class _FinishedChallengeButtonsState extends State<FinishedChallengeButtons> {
                   Future.delayed(const Duration(seconds: 1), () {
                     context.go(MainMapScreen.routePath);
                   });
+                  setState(() {
+                    _isPressed = true;
+                  });
                 }
               }
-              setState(() {
-                _isPressed = true;
-              });
             },
           ),
         ],

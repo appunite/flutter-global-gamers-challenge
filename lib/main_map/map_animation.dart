@@ -52,26 +52,6 @@ class _MapAnimationState extends State<MapAnimation> {
     final playerProgress = context.read<PlayerProgressController>();
 
     playerProgress.addListener(() {
-      if (playerProgress.challenges == ChallengesEntity.empty()) {
-        final worldState = _mapController.findInput<double>('pollution') as SMINumber;
-
-        _cleanMap(
-          cityIslandInput,
-          cityPinInput,
-          recycleIslandInput,
-          recyclePinInput,
-          pipesInput,
-          pipesPinInput,
-          solarIslandInput,
-          solarPinInput,
-          waterIslandInput,
-          plasticPinInput,
-          forestIslandInput,
-          forestPinInput,
-          worldState,
-        );
-      }
-
       if (playerProgress.challenges.city != null) {
         cityIslandInput.change(true);
         cityPinInput.value = 2;
@@ -124,36 +104,6 @@ class _MapAnimationState extends State<MapAnimation> {
         setState(() {});
       }
     });
-  }
-
-  void _cleanMap(
-    SMIBool cityIslandInput,
-    SMINumber cityPinInput,
-    SMIBool recycleIslandInput,
-    SMINumber recyclePinInput,
-    SMIBool pipesInput,
-    SMINumber pipesPinInput,
-    SMIBool solarIslandInput,
-    SMINumber solarPinInput,
-    SMIBool waterIslandInput,
-    SMINumber plasticPinInput,
-    SMIBool forestIslandInput,
-    SMINumber forestPinInput,
-    SMINumber worldState,
-  ) {
-    cityIslandInput.change(false);
-    cityPinInput.value = 0;
-    recycleIslandInput.change(false);
-    pipesPinInput.value = 0;
-    pipesInput.change(false);
-    recyclePinInput.value = 0;
-    solarIslandInput.change(false);
-    solarPinInput.value = 0;
-    waterIslandInput.change(false);
-    plasticPinInput.value = 0;
-    forestIslandInput.change(false);
-    forestPinInput.value = 0;
-    worldState.value = 0;
   }
 
   void onRiveEvent(RiveEvent event) {
