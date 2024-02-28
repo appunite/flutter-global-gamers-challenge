@@ -58,11 +58,11 @@ class _FinishedChallengeButtonsState extends State<FinishedChallengeButtons> {
                     const LeaderboardIntroductionDialog(shouldGoToLeaderBoardScreen: true),
                   );
                 } else {
-                  Future.delayed(const Duration(seconds: 1), () {
-                    context.go(MainMapScreen.routePath);
-                  });
                   setState(() {
                     _isPressed = true;
+                  });
+                  Future.delayed(const Duration(seconds: 1), () {
+                    context.go(MainMapScreen.routePath);
                   });
                 }
               }

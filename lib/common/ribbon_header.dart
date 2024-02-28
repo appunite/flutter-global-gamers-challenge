@@ -35,9 +35,11 @@ class RibbonHeader extends StatelessWidget {
         SvgPicture.asset(
           ribbonImage ?? AssetPaths.ribbonBlue,
           width: width ?? 490,
+          height: 60,
+          fit: BoxFit.contain,
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 14),
+          padding: const EdgeInsets.only(top: 12),
           child: customChild ??
               Text(
                 text!,

@@ -69,7 +69,7 @@ class CommonDialog extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: -20,
+            top: -30,
             child: Padding(
               padding: const EdgeInsets.only(top: 10),
               child: ribbon,

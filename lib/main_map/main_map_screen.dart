@@ -17,6 +17,7 @@ import 'package:better_world/style/gaps.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 import '../style/palette.dart';
 
@@ -51,6 +52,8 @@ class _MainMapScreenState extends State<MainMapScreen> with SingleTickerProvider
         _hasSeenOnboarding = playerProgressController.hasSeenOnboarding;
       });
     });
+
+    WakelockPlus.enable();
   }
 
   void _setAnimationController() {
@@ -87,7 +90,7 @@ class _MainMapScreenState extends State<MainMapScreen> with SingleTickerProvider
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const GameProgressIndicator(),
-                  gap40,
+                  gap30,
                   PointsCounter(pointsCount: playerProgressController.challenges.getAllChallengesScores()),
                 ],
               ),

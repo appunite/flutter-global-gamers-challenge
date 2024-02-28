@@ -45,6 +45,7 @@ dependencies:
   smart_snackbars: ^1.0.0
   device_preview: ^1.1.0
   scaled_app: ^2.2.0
+  wakelock_plus: ^1.1.4
 
 dev_dependencies:
   flame_test: ^1.14.0
