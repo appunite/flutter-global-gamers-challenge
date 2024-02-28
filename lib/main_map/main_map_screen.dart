@@ -34,6 +34,7 @@ class _MainMapScreenState extends State<MainMapScreen> {
     final playerProgressController = context.watch<PlayerProgressController>();
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         centerTitle: true,

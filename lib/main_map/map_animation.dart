@@ -172,7 +172,7 @@ class _MapAnimationState extends State<MapAnimation> {
   Widget build(BuildContext context) {
     return RiveAnimation.asset(
       AssetPaths.mapAnimation,
-      fit: BoxFit.contain,
+      fit: BoxFit.cover,
       artboard: 'map',
       onInit: _onInit,
     );

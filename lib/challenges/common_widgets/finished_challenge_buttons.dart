@@ -24,6 +24,7 @@ class FinishedChallengeButtons extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 8),
       child: Row(
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           MainButton.secondary(
             width: 170,
@@ -36,7 +37,7 @@ class FinishedChallengeButtons extends StatelessWidget {
           ),
           gap12,
           MainButton(
-            width: 160,
+            width: 170,
             text: 'Go to Map',
             onPressed: (_) {
               final playerProgress = context.read<PlayerProgressController>();
