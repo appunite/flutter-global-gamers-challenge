@@ -49,12 +49,12 @@ class _MapAnimationState extends State<MapAnimation> {
     final cityPinInput = _mapController.findInput<double>('cityPin') as SMINumber;
     final solarPinInput = _mapController.findInput<double>('solarPin') as SMINumber;
 
-    final SMINumber worldState = _mapController.findInput<double>('pollution') as SMINumber;
-
     final playerProgress = context.read<PlayerProgressController>();
 
     playerProgress.addListener(() {
       if (playerProgress.challenges == ChallengesEntity.empty()) {
+        final worldState = _mapController.findInput<double>('pollution') as SMINumber;
+
         _cleanMap(
           cityIslandInput,
           cityPinInput,
@@ -75,30 +75,50 @@ class _MapAnimationState extends State<MapAnimation> {
       if (playerProgress.challenges.city != null) {
         cityIslandInput.change(true);
         cityPinInput.value = 2;
+      } else {
+        cityIslandInput.change(false);
+        cityPinInput.value = 0;
       }
       if (playerProgress.challenges.pipes != null) {
         pipesInput.change(true);
         pipesPinInput.value = 2;
+      } else {
+        pipesInput.change(false);
+        pipesPinInput.value = 0;
       }
       if (playerProgress.challenges.recycling != null) {
         recycleIslandInput.change(true);
         recyclePinInput.value = 2;
+      } else {
+        recycleIslandInput.change(false);
+        recyclePinInput.value = 0;
       }
       if (playerProgress.challenges.solarPanel != null) {
         solarIslandInput.change(true);
         solarPinInput.value = 2;
+      } else {
+        solarIslandInput.change(false);
+        solarPinInput.value = 0;
       }
       if (playerProgress.challenges.ocean != null) {
         waterIslandInput.change(true);
         plasticPinInput.value = 2;
+      } else {
+        waterIslandInput.change(false);
+        plasticPinInput.value = 0;
       }
       if (playerProgress.challenges.trees != null) {
         forestIslandInput.change(true);
         forestPinInput.value = 2;
+      } else {
+        forestIslandInput.change(false);
+        forestPinInput.value = 0;
       }
 
       final playedChallenges = playerProgress.challenges.getPlayedChallengesCount();
-      worldState.value = playedChallenges + 0.5;
+
+      final SMINumber worldState = _mapController.findInput<double>('pollution') as SMINumber;
+      worldState.value = playedChallenges * 1.67;
 
       if (mounted) {
         setState(() {});

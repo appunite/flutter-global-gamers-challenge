@@ -9,6 +9,7 @@ class MainButton extends StatelessWidget {
   const MainButton({
     super.key,
     required this.text,
+    this.isLoading = false,
     this.width,
     required this.onPressed,
     this.backgroundColor = Palette.primary,
@@ -30,6 +31,7 @@ class MainButton extends StatelessWidget {
   }
 
   final String text;
+  final bool isLoading;
   final double? width;
   final Function(Offset? offset) onPressed;
   final Color backgroundColor;
@@ -48,11 +50,17 @@ class MainButton extends StatelessWidget {
         context.read<AudioController>().playSfx(SfxType.buttonTap);
         onPressed.call(details);
       },
-      child: Text(
-        text,
-        textAlign: TextAlign.center,
-        style: Theme.of(context).textTheme.titleLarge,
-      ),
+      child: isLoading
+          ? const SizedBox(
+              height: 24,
+              width: 24,
+              child: CircularProgressIndicator(color: Palette.primaryLight),
+            )
+          : Text(
+              text,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
     );
   }
 }

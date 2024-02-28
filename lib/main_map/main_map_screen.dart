@@ -12,6 +12,7 @@ import 'package:better_world/main_map/tutorial/onboarding_flow.dart';
 import 'package:better_world/player_progress/entities/challenges_entity.dart';
 import 'package:better_world/player_progress/player_progress_controller.dart';
 import 'package:better_world/settings/settings_dialog.dart';
+import 'package:better_world/splash_screen/splash_screen.dart';
 import 'package:better_world/style/gaps.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -20,43 +21,87 @@ import 'package:provider/provider.dart';
 import '../style/palette.dart';
 
 class MainMapScreen extends StatefulWidget {
-  const MainMapScreen({super.key});
+  const MainMapScreen({super.key, this.isAppLauch});
 
   static const String routePath = '/';
+
+  final bool? isAppLauch;
 
   @override
   State<MainMapScreen> createState() => _MainMapScreenState();
 }
 
-class _MainMapScreenState extends State<MainMapScreen> {
+class _MainMapScreenState extends State<MainMapScreen> with SingleTickerProviderStateMixin {
+  bool _shouldShowAllChallengesCongrats = false;
+  bool _hasSeenOnboarding = true;
+  bool _splashScreenVisibile = true;
+
+  late AnimationController _controller;
+  late Animation<double> _progressAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _setAnimationController();
+
+    final playerProgressController = context.read<PlayerProgressController>();
+    playerProgressController.addListener(() {
+      setState(() {
+        _shouldShowAllChallengesCongrats = playerProgressController.shouldShowAllChallengesCongrats;
+        _hasSeenOnboarding = playerProgressController.hasSeenOnboarding;
+      });
+    });
+  }
+
+  void _setAnimationController() {
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 4),
+    );
+    _progressAnimation = Tween(begin: 0.0, end: 1.0).animate(_controller);
+
+    _controller.addListener(() {
+      if (_controller.isCompleted) {
+        _splashScreenVisibile = false;
+      }
+      setState(() {});
+    });
+
+    _controller.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
     final playerProgressController = context.watch<PlayerProgressController>();
 
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const GameProgressIndicator(),
-            gap40,
-            PointsCounter(pointsCount: playerProgressController.challenges.getAllChallengesScores()),
-          ],
-        ),
-      ),
-      backgroundColor: Palette.neutralDarkGray,
-      body: playerProgressController.hasSeenOnboarding
-          ? playerProgressController.shouldShowAllChallengesCongrats
-              ? GameCompletedCongratsWidget(child: _buildBody())
-              : _buildBody()
-          : OnboardingFlow(
-              child: _buildBody(),
+    return Stack(
+      children: [
+        Scaffold(
+            resizeToAvoidBottomInset: false,
+            extendBodyBehindAppBar: true,
+            appBar: AppBar(
+              centerTitle: true,
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              title: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const GameProgressIndicator(),
+                  gap40,
+                  PointsCounter(pointsCount: playerProgressController.challenges.getAllChallengesScores()),
+                ],
+              ),
             ),
+            backgroundColor: Palette.neutralDarkGray,
+            body: _buildBody()),
+        Visibility(
+          visible: _shouldDisplaySplash(),
+          child: SplashScreen(
+            controller: _controller,
+            progressAnimation: _progressAnimation,
+          ),
+        ),
+      ],
     );
   }
 
@@ -64,6 +109,10 @@ class _MainMapScreenState extends State<MainMapScreen> {
     return Stack(
       children: [
         const MapAnimation(),
+        Visibility(
+          visible: _shouldShowAllChallengesCongrats,
+          child: const GameCompletedCongratsWidget(),
+        ),
         Align(
           alignment: Alignment.bottomLeft,
           child: SafeArea(
@@ -94,8 +143,20 @@ class _MainMapScreenState extends State<MainMapScreen> {
               ),
             ),
           ),
-        )
+        ),
+        Visibility(
+          visible: !_hasSeenOnboarding,
+          child: const OnboardingFlow(),
+        ),
       ],
     );
+  }
+
+  bool _shouldDisplaySplash() => (widget.isAppLauch ?? false) && _splashScreenVisibile;
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }

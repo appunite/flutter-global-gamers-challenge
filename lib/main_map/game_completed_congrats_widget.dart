@@ -12,10 +12,7 @@ import 'package:provider/provider.dart';
 class GameCompletedCongratsWidget extends StatefulWidget {
   const GameCompletedCongratsWidget({
     super.key,
-    required this.child,
   });
-
-  final Widget child;
 
   @override
   State<GameCompletedCongratsWidget> createState() => _GameCompletedCongratsWidgetState();
@@ -34,7 +31,6 @@ class _GameCompletedCongratsWidgetState extends State<GameCompletedCongratsWidge
 
     return Stack(
       children: [
-        widget.child,
         Align(
           alignment: Alignment.topCenter,
           child: Lottie.asset(AssetPaths.fireworks, repeat: true),

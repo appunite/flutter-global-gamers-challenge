@@ -55,7 +55,9 @@ class PlayerProgressController extends ChangeNotifier {
     _challenges = playerEntity.challengesScores;
     _playerNick = playerEntity.nick;
     _hasSeenOnboarding = hasSeenOnboarding;
-    notifyListeners();
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      notifyListeners();
+    });
   }
 
   Future<void> reset() async {
