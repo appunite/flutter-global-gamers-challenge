@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'challenges/lights_out_challenge/lights_out_challenge_screen.dart';
-import 'main_menu/main_map_screen.dart';
+import 'main_map/main_map_screen.dart';
 import 'style/page_transition.dart';
 
 final router = GoRouter(

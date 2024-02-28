@@ -5,8 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class LeaderboardListTile extends StatelessWidget {
-  const LeaderboardListTile(
-      {super.key, required this.username, required this.index, required this.score, this.color = Palette.neutralBeige});
+  const LeaderboardListTile({
+    super.key,
+    required this.username,
+    required this.index,
+    required this.score,
+    this.color = Palette.neutralBeige,
+  });
 
   final String username;
   final int index;

@@ -101,6 +101,8 @@ class AssetPaths {
   static const String pipesBackground = 'assets/images/challenges/pipes_bg.svg';
   static const String pipesBadge = 'assets/images/challenges/pipes_badge.svg';
   static const String badgeEmpty = 'assets/images/challenges/badge_empty.svg';
+  static const String leaderboard = 'assets/images/common/icons_leaderboard.svg';
+  static const String settings = 'assets/images/common/icons_settings.svg';
 
   static const String tree = 'assets/images/challenges/icons_tree.svg';
   static const String treeBackground = 'assets/images/challenges/plant_forest_bg.svg';
@@ -130,4 +132,5 @@ class AssetPaths {
   static const String pipesBgAnimation = 'assets/animations/pipes_water_animation.riv';
   static const String logoAnimation = 'assets/animations/splash_logo.riv';
   static const String pipesSewageMachine = 'assets/animations/pipes_sewage_machine.riv';
+  static const String mapAnimation = 'assets/animations/map.riv';
 }

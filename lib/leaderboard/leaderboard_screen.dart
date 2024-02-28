@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:better_world/common/asset_paths.dart';
 import 'package:better_world/common/icon_button.dart';
 import 'package:better_world/common/map_button.dart';
@@ -115,20 +117,25 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                             ],
                           ),
                         ),
-                        Positioned(
-                          bottom: 32,
-                          left: 24,
-                          child: Column(
-                            children: [
-                              GameIconButton(
-                                onTap: () => context.push(AchievementsScreen.routePath),
-                                iconName: AssetPaths.iconsBadges,
-                                width: 56,
-                                height: 56,
+                        Align(
+                          alignment: Alignment.bottomLeft,
+                          child: SafeArea(
+                            child: Padding(
+                              padding: Platform.isAndroid ? const EdgeInsets.all(8.0) : EdgeInsets.zero,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  GameIconButton(
+                                    onTap: () => context.push(AchievementsScreen.routePath),
+                                    iconName: AssetPaths.iconsBadges,
+                                    width: 56,
+                                    height: 56,
+                                  ),
+                                  gap16,
+                                  const MapButton(),
+                                ],
                               ),
-                              gap16,
-                              const MapButton(),
-                            ],
+                            ),
                           ),
                         ),
                       ],

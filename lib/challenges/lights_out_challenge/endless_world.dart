@@ -79,11 +79,14 @@ class EndlessWorld extends World with TapCallbacks, HasGameReference {
   void onRemove() {
     game.overlays.remove(LightsOutChallengeScreen.mapButtonKey);
     game.overlays.remove(LightsOutChallengeScreen.infoButtonKey);
+    timer?.stop();
     challengeController.dispose();
   }
 
   void addScore() {
-    challengeController.addPoints(points: 1);
+    if (timer?.isRunning() ?? false) {
+      challengeController.addPoints(points: 1);
+    }
   }
 
   @override

@@ -55,14 +55,15 @@ class ChallengeController extends ChangeNotifier {
     required ChallengeType challengeType,
     int? timeInSec,
   }) async {
+    final currentScore = _score;
     final String playerId = await _localPlayerPersistence.getPlayerIdKey();
     final PlayerEntity playerEntity = await _databasePersistence.getPlayerEntity(playerId: playerId);
     final int? recentChallengeScore = challengeType.getChallengeScore(playerEntity.challengesScores);
-    bool shouldDisplayBadge = recentChallengeScore == null && _score > 0;
+    bool shouldDisplayBadge = recentChallengeScore == null && currentScore > 0;
 
     late int bestScore;
-    if (score > (recentChallengeScore ?? 0)) {
-      bestScore = _score;
+    if (currentScore > (recentChallengeScore ?? 0)) {
+      bestScore = currentScore;
       await _updateDatabase(challengeType, playerId);
     } else {
       bestScore = recentChallengeScore ?? 0;
@@ -70,7 +71,7 @@ class ChallengeController extends ChangeNotifier {
 
     _challengeSummary = ChallengeSummaryEntity(
       challengeType: challengeType,
-      score: _score,
+      score: currentScore,
       bestScore: bestScore,
       time: timeInSec,
       displayBadge: shouldDisplayBadge,

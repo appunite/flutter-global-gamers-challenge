@@ -1,4 +1,4 @@
-import 'package:better_world/main_menu/tutorial/eco_text_bubble_type.dart';
+import 'package:better_world/main_map/tutorial/eco_text_bubble_type.dart';
 import 'package:better_world/style/const_values.dart';
 import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';

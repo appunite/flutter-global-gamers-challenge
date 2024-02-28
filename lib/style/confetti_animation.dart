@@ -13,8 +13,6 @@ class ConfettiAnimation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: sound
-
     return ConfettiWidget(
       numberOfParticles: 50,
       confettiController: confettiController,

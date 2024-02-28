@@ -1,5 +1,5 @@
 import 'package:better_world/common/asset_paths.dart';
-import 'package:better_world/main_menu/main_map_screen.dart';
+import 'package:better_world/main_map/main_map_screen.dart';
 import 'package:better_world/style/gaps.dart';
 import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';
