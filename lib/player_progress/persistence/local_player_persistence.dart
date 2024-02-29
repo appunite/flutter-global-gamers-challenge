@@ -37,8 +37,8 @@ class LocalPlayerPersistence {
     return instance.getBool(_hasSeenGameCompletedCongratsKey) ?? false;
   }
 
-  Future<void> setHasSeenGameCompletedCongrats() async {
+  Future<void> setHasSeenGameCompletedCongrats({bool hasSeen = true}) async {
     final instance = await sharedPrefs;
-    await instance.setBool(_hasSeenGameCompletedCongratsKey, true);
+    await instance.setBool(_hasSeenGameCompletedCongratsKey, hasSeen);
   }
 }

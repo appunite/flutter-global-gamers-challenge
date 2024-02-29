@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-class FinishedChallengeButtons extends StatelessWidget {
+class FinishedChallengeButtons extends StatefulWidget {
   const FinishedChallengeButtons({
     super.key,
     required this.challengeType,
@@ -19,11 +19,19 @@ class FinishedChallengeButtons extends StatelessWidget {
   final ChallengeType challengeType;
 
   @override
+  State<FinishedChallengeButtons> createState() => _FinishedChallengeButtonsState();
+}
+
+class _FinishedChallengeButtonsState extends State<FinishedChallengeButtons> {
+  bool _isPressed = false;
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: Row(
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           MainButton.secondary(
             width: 170,
@@ -31,24 +39,32 @@ class FinishedChallengeButtons extends StatelessWidget {
             onPressed: (_) {
               final playerProgress = context.read<PlayerProgressController>();
               playerProgress.loadPlayerData();
-              context.go(challengeType.routePath);
+              context.go(widget.challengeType.routePath);
             },
           ),
           gap12,
           MainButton(
-            width: 160,
+            width: 170,
             text: 'Go to Map',
+            isLoading: _isPressed,
             onPressed: (_) {
-              final playerProgress = context.read<PlayerProgressController>();
-              playerProgress.loadPlayerData();
+              if (!_isPressed) {
+                final playerProgress = context.read<PlayerProgressController>();
+                playerProgress.loadPlayerData();
 
-              if (playerProgress.challenges.getPlayedChallengesCount() == 0) {
-                NavigationHelper.show(
-                  context,
-                  const LeaderboardIntroductionDialog(shouldGoToLeaderBoardScreen: true),
-                );
-              } else {
-                context.go(MainMapScreen.routePath);
+                if (playerProgress.challenges.getPlayedChallengesCount() == 0) {
+                  NavigationHelper.show(
+                    context,
+                    const LeaderboardIntroductionDialog(shouldGoToLeaderBoardScreen: true),
+                  );
+                } else {
+                  setState(() {
+                    _isPressed = true;
+                  });
+                  Future.delayed(const Duration(seconds: 1), () {
+                    context.go(MainMapScreen.routePath);
+                  });
+                }
               }
             },
           ),

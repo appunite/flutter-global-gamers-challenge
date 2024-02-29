@@ -82,10 +82,10 @@ class _SolarPanelChallengeBodyScreenState extends State<_SolarPanelChallengeBody
       const Duration(seconds: 1),
       () {
         if (_timeInSeconds == 0) {
+          _challengeController.addPoints(points: _scratchedValue.toInt());
           _timer?.cancel();
-          _challengeController
-            ..addPoints(points: _scratchedValue.toInt())
-            ..onChallengeFinished(challengeType: ChallengeType.solarPanel);
+
+          _challengeController.onChallengeFinished(challengeType: ChallengeType.solarPanel);
         } else {
           setState(() {
             _timeInSeconds--;
@@ -166,7 +166,7 @@ class _SolarPanelChallengeBodyScreenState extends State<_SolarPanelChallengeBody
                     brushSize: 20,
                     color: Colors.transparent,
                     threshold: 100,
-                    image: Image.asset(
+                    enabled: _isScratchingEnabled(),image: Image.asset(
                       AssetPaths.panelDirty,
                       fit: BoxFit.fitHeight,
                     ),
@@ -199,6 +199,8 @@ class _SolarPanelChallengeBodyScreenState extends State<_SolarPanelChallengeBody
       ),
     );
   }
+
+  bool _isScratchingEnabled() => !(_timer?.isCancelled ?? false);
 
   @override
   void dispose() {

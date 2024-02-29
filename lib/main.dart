@@ -7,6 +7,7 @@ import 'package:better_world/style/theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flame/flame.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scaled_app/scaled_app.dart';
@@ -112,6 +113,14 @@ class BetterWorldGame extends StatelessWidget {
                   return const NoConnectionScreen();
                 }
               },
+              scrollBehavior: const MaterialScrollBehavior().copyWith(
+                dragDevices: {
+                  PointerDeviceKind.mouse,
+                  PointerDeviceKind.touch,
+                  PointerDeviceKind.stylus,
+                  PointerDeviceKind.unknown
+                },
+              ),
             );
           },
         ),

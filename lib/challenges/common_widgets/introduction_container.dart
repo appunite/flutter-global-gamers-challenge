@@ -7,8 +7,7 @@ class InstructionContainer extends StatelessWidget {
   const InstructionContainer({
     super.key,
     required this.text,
-    //TODO required later
-    this.assetPath,
+    required this.assetPath,
     this.color = Palette.secondaryLight,
   });
 

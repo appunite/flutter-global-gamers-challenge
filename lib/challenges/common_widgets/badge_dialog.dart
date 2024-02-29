@@ -7,6 +7,7 @@ import 'package:better_world/common/common_dialog.dart';
 import 'package:better_world/common/ribbon_header.dart';
 import 'package:better_world/style/gaps.dart';
 import 'package:better_world/style/palette.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -69,14 +70,14 @@ class BadgeDialog extends StatelessWidget {
           ),
         ],
       ),
-      bottom: Platform.isAndroid
-          ? AddToGoogleWalletButton(
+      bottom: kIsWeb || !Platform.isAndroid
+          ? const SizedBox.shrink()
+          : AddToGoogleWalletButton(
               pass: _examplePass,
               onError: (Object error) => _onError(context, error),
               onSuccess: () => _onSuccess(context),
               onCanceled: () => _onCanceled(context),
-            )
-          : const SizedBox.shrink(),
+            ),
       themeColor: Palette.secondaryDark,
       ribbon: RibbonHeader(
         ribbonImage: AssetPaths.ribbonBlue,
