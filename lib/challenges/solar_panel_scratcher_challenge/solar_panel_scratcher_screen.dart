@@ -165,7 +165,7 @@ class _SolarPanelChallengeBodyScreenState extends State<_SolarPanelChallengeBody
                   rebuildOnResize: false,
                   brushSize: 40,
                   threshold: 100,
-                  enabled: !(_timer?.isCancelled ?? false),
+                  enabled: _isScratchingEnabled(),
                   image: Image.asset(AssetPaths.panelDirty),
                   onScratchStart: () => context.read<AudioController>().playSfx(SfxType.panelCleaning),
                   onScratchEnd: () => context.read<AudioController>().stopSfx(),
@@ -199,6 +199,8 @@ class _SolarPanelChallengeBodyScreenState extends State<_SolarPanelChallengeBody
       ),
     );
   }
+
+  bool _isScratchingEnabled() => !(_timer?.isCancelled ?? false);
 
   @override
   void dispose() {
