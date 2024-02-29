@@ -71,7 +71,6 @@ class RibbonHeader extends StatelessWidget {
               child: SizedBox(
                 height: 45,
                 width: 45,
-                //TODO change to asset
                 child: SvgPicture.asset(AssetPaths.iconsCloseWhite),
               ),
             ),

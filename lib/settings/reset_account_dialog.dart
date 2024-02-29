@@ -32,7 +32,6 @@ class ResetAccountDialog extends StatelessWidget {
       bottom: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          //TODO check if it resets correctly the map
           MainButton.secondary(
             width: 150,
             onPressed: (_) {

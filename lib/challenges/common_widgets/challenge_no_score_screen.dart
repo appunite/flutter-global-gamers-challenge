@@ -48,6 +48,7 @@ class _ChallengeNoScoreScreenState extends State<ChallengeNoScoreScreen> {
                   width: 450,
                   ribbonImage: AssetPaths.ribbonRed,
                 ),
+                gap12,
                 Text(
                   'Even small actions can have a big impact on the environment. Let\'s try again and make a difference!',
                   style: Theme.of(context).textTheme.titleMedium,

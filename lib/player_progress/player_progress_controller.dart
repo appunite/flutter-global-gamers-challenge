@@ -63,6 +63,7 @@ class PlayerProgressController extends ChangeNotifier {
   Future<void> reset() async {
     final String playerId = await _localStorage.getPlayerIdKey();
     await _databaseStorage.reset(playerId: playerId);
+    await _localStorage.setHasSeenGameCompletedCongrats(hasSeen: false);
     _challenges = ChallengesEntity.empty();
     notifyListeners();
   }

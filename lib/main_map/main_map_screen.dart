@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:better_world/common/asset_paths.dart';
 import 'package:better_world/common/icon_button.dart';
 import 'package:better_world/common/navigation_helper.dart';
@@ -13,6 +11,7 @@ import 'package:better_world/player_progress/entities/challenges_entity.dart';
 import 'package:better_world/player_progress/player_progress_controller.dart';
 import 'package:better_world/settings/settings_dialog.dart';
 import 'package:better_world/splash_screen/splash_screen.dart';
+import 'package:better_world/style/const_values.dart';
 import 'package:better_world/style/gaps.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -95,7 +94,7 @@ class _MainMapScreenState extends State<MainMapScreen> with SingleTickerProvider
                 ],
               ),
             ),
-            backgroundColor: Palette.neutralDarkGray,
+            backgroundColor: Palette.secondaryLight,
             body: _buildBody()),
         Visibility(
           visible: _shouldDisplaySplash(),
@@ -120,7 +119,7 @@ class _MainMapScreenState extends State<MainMapScreen> with SingleTickerProvider
           alignment: Alignment.bottomLeft,
           child: SafeArea(
             child: Padding(
-              padding: Platform.isAndroid ? const EdgeInsets.all(8.0) : EdgeInsets.zero,
+              padding: displayAdditionalPadding ? const EdgeInsets.all(8.0) : EdgeInsets.zero,
               child: GameIconButton(
                 iconName: AssetPaths.leaderboard,
                 width: 56,
@@ -134,7 +133,7 @@ class _MainMapScreenState extends State<MainMapScreen> with SingleTickerProvider
           alignment: Alignment.bottomRight,
           child: SafeArea(
             child: Padding(
-              padding: Platform.isAndroid ? const EdgeInsets.all(8.0) : EdgeInsets.zero,
+              padding: displayAdditionalPadding ? const EdgeInsets.all(8.0) : EdgeInsets.zero,
               child: GameIconButton(
                 iconName: AssetPaths.settings,
                 width: 56,

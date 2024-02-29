@@ -77,6 +77,5 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _preloadAnimations() {
     rootBundle.load(AssetPaths.pipesBackground);
-    //TODO add map animation here
   }
 }
