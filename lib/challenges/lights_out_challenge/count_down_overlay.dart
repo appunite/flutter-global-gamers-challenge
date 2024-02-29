@@ -22,6 +22,7 @@ class CountDownFlameOverlay extends StatefulWidget {
 
 class _CountDownFlameOverlayState extends State<CountDownFlameOverlay> {
   late Animation<double> _scaleAnimation;
+  bool _shouldPlayCountdownSFX = true;
 
   @override
   void initState() {
@@ -38,7 +39,11 @@ class _CountDownFlameOverlayState extends State<CountDownFlameOverlay> {
     widget.challengeController.addListener(() {
       if (widget.challengeController.countDownVisible) {
         widget.animationController.forward();
-        context.read<AudioController>().playSfx(SfxType.countdown);
+        if (_shouldPlayCountdownSFX) {
+          print("TEST");
+          context.read<AudioController>().playSfx(SfxType.countdown);
+          _shouldPlayCountdownSFX = false;
+        }
       }
     });
   }

@@ -7,7 +7,7 @@ import 'package:flame/components.dart';
 class FireBoostComponent extends SpriteAnimationComponent
     with HasGameReference<OceanChallengeGame>, CollisionCallbacks {
   static const speed = 150;
-  static final Vector2 initialSize = Vector2.all(80);
+  static final Vector2 initialSize = Vector2.all(180);
 
   FireBoostComponent({
     required this.audioController,
@@ -26,7 +26,7 @@ class FireBoostComponent extends SpriteAnimationComponent
       SpriteAnimationData.sequenced(
         stepTime: 1,
         amount: 1,
-        textureSize: Vector2.all(80),
+        textureSize: Vector2.all(180),
       ),
     );
     add(CircleHitbox(collisionType: CollisionType.passive));

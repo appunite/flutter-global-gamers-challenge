@@ -7,10 +7,10 @@ import 'package:better_world/challenges/common_widgets/challenge_introduction_di
 import 'package:better_world/challenges/common_widgets/count_down_widget.dart';
 import 'package:better_world/common/asset_paths.dart';
 import 'package:better_world/common/background_widget.dart';
-import 'package:better_world/common/navigation_helper.dart';
 import 'package:better_world/common/exit_challenge_dialog.dart';
 import 'package:better_world/common/info_button.dart';
 import 'package:better_world/common/map_button.dart';
+import 'package:better_world/common/navigation_helper.dart';
 import 'package:better_world/main_map/main_map_screen.dart';
 import 'package:better_world/player_progress/persistence/database_persistence.dart';
 import 'package:better_world/player_progress/persistence/local_player_persistence.dart';
@@ -136,9 +136,6 @@ class _SolarPanelChallengeBodyScreenState extends State<_SolarPanelChallengeBody
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.sizeOf(context).width;
-    final double height = MediaQuery.sizeOf(context).height;
-
     return PopScope(
       canPop: false,
       onPopInvoked: (_) {
@@ -148,7 +145,7 @@ class _SolarPanelChallengeBodyScreenState extends State<_SolarPanelChallengeBody
         child: Scaffold(
           extendBodyBehindAppBar: true,
           appBar: ChallengeAppBar(
-            score: _scratchedValue.toInt(),
+            score: (_scratchedValue * 1.2).toInt(),
             timeInSeconds: _timeInSeconds,
             countDown: true,
             actions: [
@@ -160,25 +157,29 @@ class _SolarPanelChallengeBodyScreenState extends State<_SolarPanelChallengeBody
               const BackgroundWidget(
                 assetPath: AssetPaths.treeBackground,
               ),
-              SafeArea(
-                child: Scratcher(
-                  rebuildOnResize: false,
-                  brushSize: 40,
-                  threshold: 100,
-                  image: Image.asset(AssetPaths.panelDirty),
-                  onScratchStart: () => context.read<AudioController>().playSfx(SfxType.panelCleaning),
-                  onScratchEnd: () => context.read<AudioController>().stopSfx(),
-                  onChange: (double value) {
-                    setState(() {
-                      _scratchedValue = value;
-                    });
-                  },
-                  child: SizedBox(
-                    height: height,
-                    width: width,
+              Center(
+                child: SizedBox(
+                  height: 260,
+                  width: 560,
+                  child: Scratcher(
+                    rebuildOnResize: false,
+                    brushSize: 20,
+                    color: Colors.transparent,
+                    threshold: 100,
+                    image: Image.asset(
+                      AssetPaths.panelDirty,
+                      fit: BoxFit.fitHeight,
+                    ),
+                    onScratchStart: () => context.read<AudioController>().playSfx(SfxType.panelCleaning),
+                    onScratchEnd: () => context.read<AudioController>().stopSfx(),
+                    onChange: (double value) {
+                      setState(() {
+                        _scratchedValue = value;
+                      });
+                    },
                     child: SvgPicture.asset(
                       AssetPaths.panelClean,
-                      fit: BoxFit.fitWidth,
+                      fit: BoxFit.fitHeight,
                     ),
                   ),
                 ),
