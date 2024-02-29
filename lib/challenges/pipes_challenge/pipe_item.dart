@@ -53,7 +53,7 @@ class _PipeItemState extends State<PipeItem> with SingleTickerProviderStateMixin
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        if (!pipesController.challengeCompleted) {
+        if (!pipesController.challengeCompleted && !_isLastPipe) {
           context.read<AudioController>().playSfx(SfxType.pipe);
           pipesController.itemTurned(
             row: widget.row,
@@ -67,11 +67,16 @@ class _PipeItemState extends State<PipeItem> with SingleTickerProviderStateMixin
         scale: _animation.value,
         child: Transform.rotate(
           angle: pipesController.pipesCurrentAngles[widget.row][widget.column],
-          child: widget.pipeType.getWidget(pipesController.pipesCurrentAngles[widget.row][widget.column]),
+          child: widget.pipeType.getWidget(
+            pipesController.pipesCurrentAngles[widget.row][widget.column],
+            lastPipe: _isLastPipe,
+          ),
         ),
       ),
     );
   }
+
+  bool get _isLastPipe => widget.row == 2 && widget.column == 5;
 
   @override
   void dispose() {

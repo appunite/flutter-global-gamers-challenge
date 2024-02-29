@@ -63,6 +63,8 @@ class AssetPaths {
   static const String waterBottle = 'assets/images/challenges/recycling/water_bottle.svg';
   static const String watermelon = 'assets/images/challenges/recycling/watermelon.svg';
   static const String recyclingBadge = 'assets/images/challenges/recycling/recycling_badge.svg';
+  static const String pipeStart = 'assets/images/challenges/pipes_start.svg';
+  static const String pipeEnd = 'assets/images/challenges/pipes_end.svg';
 
   /// Lights out challenge
   static const String lightsOutBackground = 'challenges/lights_out/lights_off_bg.png';

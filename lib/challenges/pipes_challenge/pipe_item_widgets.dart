@@ -32,9 +32,11 @@ class PipeCorner extends StatelessWidget {
   const PipeCorner({
     super.key,
     required this.angle,
+    required this.lastPipe,
   });
 
   final double angle;
+  final bool lastPipe;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class PipeCorner extends StatelessWidget {
       width: 30,
       height: 30,
       child: SvgPicture.asset(
-        AssetPaths.pipeCorner,
+        lastPipe ? AssetPaths.pipeEnd : AssetPaths.pipeCorner,
       ),
     );
   }
@@ -125,7 +127,7 @@ class _PipeWheelState extends State<PipeWheel> with TickerProviderStateMixin {
         alignment: Alignment.center,
         children: [
           SvgPicture.asset(
-            AssetPaths.pipeStraight,
+            AssetPaths.pipeStart,
           ),
           Transform.scale(
             scale: _scaleAnimation.value,
