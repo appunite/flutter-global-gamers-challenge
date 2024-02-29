@@ -8,10 +8,7 @@ import 'package:provider/provider.dart';
 class OnboardingFlow extends StatefulWidget {
   const OnboardingFlow({
     super.key,
-    required this.child,
   });
-
-  final Widget child;
 
   @override
   State<OnboardingFlow> createState() => _OnboardingFlowState();
@@ -24,10 +21,7 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: Stack(
-        alignment: Alignment.center,
-        children: [widget.child, const OverlayWidget()],
-      ),
+      body: const OverlayWidget(),
       floatingActionButton: GeneralTutorialWidget(
         ecoTextBubbleType: EcoTextBubbleType.values[_currentStepIndex],
         buttonVisible: true,

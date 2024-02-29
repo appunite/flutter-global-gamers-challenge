@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:better_world/common/asset_paths.dart';
 import 'package:better_world/common/icon_button.dart';
 import 'package:better_world/common/map_button.dart';
@@ -11,6 +9,7 @@ import 'package:better_world/leaderboard/widgets/leaderboard_list_tile.dart';
 import 'package:better_world/player_progress/entities/challenges_entity.dart';
 import 'package:better_world/player_progress/persistence/database_persistence.dart';
 import 'package:better_world/player_progress/persistence/local_player_persistence.dart';
+import 'package:better_world/style/const_values.dart';
 import 'package:better_world/style/gaps.dart';
 import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';
@@ -121,7 +120,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                           alignment: Alignment.bottomLeft,
                           child: SafeArea(
                             child: Padding(
-                              padding: Platform.isAndroid ? const EdgeInsets.all(8.0) : EdgeInsets.zero,
+                              padding: displayAdditionalPadding ? const EdgeInsets.all(8.0) : EdgeInsets.zero,
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [

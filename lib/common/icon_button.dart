@@ -24,6 +24,7 @@ class GameIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      borderRadius: BorderRadius.circular(100),
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       onTap: () {

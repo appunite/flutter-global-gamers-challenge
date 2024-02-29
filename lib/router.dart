@@ -9,7 +9,6 @@ import 'package:better_world/challenges/trees_challenge/trees_challenge_screen.d
 import 'package:better_world/common/google_wallet_demo.dart';
 import 'package:better_world/leaderboard/achievements/achievements_screen.dart';
 import 'package:better_world/leaderboard/leaderboard_screen.dart';
-import 'package:better_world/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,18 +17,15 @@ import 'main_map/main_map_screen.dart';
 import 'style/page_transition.dart';
 
 final router = GoRouter(
-  initialLocation: SplashScreen.routePath,
+  initialLocation: MainMapScreen.routePath,
+  initialExtra: true,
   routes: [
     GoRoute(
       path: MainMapScreen.routePath,
       pageBuilder: (context, state) => buildPageTransition<void>(
         key: const ValueKey('main-map'),
-        child: const MainMapScreen(),
+        child: MainMapScreen(isAppLauch: state.extra as bool?),
       ),
-    ),
-    GoRoute(
-      path: SplashScreen.routePath,
-      builder: (context, state) => const SplashScreen(),
     ),
     GoRoute(
       path: LightsOutChallengeScreen.routePath,

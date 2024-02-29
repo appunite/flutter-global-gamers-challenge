@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:better_world/style/gaps.dart';
 import 'package:better_world/style/palette.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -33,7 +36,7 @@ class CommonDialog extends StatelessWidget {
             alignment: Alignment.center,
             constraints: BoxConstraints(
               maxWidth: 460,
-              maxHeight: MediaQuery.sizeOf(context).height * 0.8,
+              maxHeight: kIsWeb || Platform.isMacOS ? 380 : MediaQuery.sizeOf(context).height * 0.8,
               minHeight: 200,
             ),
             padding: const EdgeInsets.fromLTRB(24, 24, 24, 12),
@@ -69,7 +72,7 @@ class CommonDialog extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: -20,
+            top: -30,
             child: Padding(
               padding: const EdgeInsets.only(top: 10),
               child: ribbon,

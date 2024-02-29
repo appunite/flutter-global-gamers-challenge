@@ -9,6 +9,7 @@ class NavigationHelper {
   static void showWithWidgetBinding(BuildContext context, Widget widget) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       showDialog(
+        useRootNavigator: true,
         barrierDismissible: false,
         barrierColor: Palette.overlay,
         context: context,
@@ -19,6 +20,7 @@ class NavigationHelper {
 
   static Future<void> show(BuildContext context, Widget widget) {
     return showDialog(
+      useRootNavigator: true,
       barrierDismissible: false,
       barrierColor: Palette.overlay,
       context: context,

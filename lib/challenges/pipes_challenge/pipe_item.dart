@@ -53,13 +53,15 @@ class _PipeItemState extends State<PipeItem> with SingleTickerProviderStateMixin
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        context.read<AudioController>().playSfx(SfxType.pipe);
-        pipesController.itemTurned(
-          row: widget.row,
-          column: widget.column,
-          pipeType: widget.pipeType,
-        );
-        _controller.forward(from: 0);
+        if (!pipesController.challengeCompleted) {
+          context.read<AudioController>().playSfx(SfxType.pipe);
+          pipesController.itemTurned(
+            row: widget.row,
+            column: widget.column,
+            pipeType: widget.pipeType,
+          );
+          _controller.forward(from: 0);
+        }
       },
       child: Transform.scale(
         scale: _animation.value,

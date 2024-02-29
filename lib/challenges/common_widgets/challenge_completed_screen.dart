@@ -70,6 +70,7 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
     return Stack(
       children: [
         Scaffold(
+          resizeToAvoidBottomInset: false,
           backgroundColor: Palette.accentBackground,
           body: SafeArea(
             child: SingleChildScrollView(
@@ -82,6 +83,7 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
                     text: 'CONGRATULATIONS',
                     width: 450,
                   ),
+                  gap12,
                   Text(
                     widget.challengeSummary.challengeType.completedText,
                     style: Theme.of(context).textTheme.titleMedium,
@@ -93,7 +95,7 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
                     bestScore: widget.challengeSummary.bestScore,
                     timeInSeconds: widget.challengeSummary.time,
                   ),
-                  gap60,
+                  gap88,
                   gapWidthMax,
                 ],
               ),
