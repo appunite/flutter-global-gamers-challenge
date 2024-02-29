@@ -62,7 +62,7 @@ class AchievementListTile extends StatelessWidget {
               color: shouldDisplayAchievement ? Palette.neutralWhite : Palette.neutralWhite.withOpacity(0.4),
             ),
             child: Text(
-              shouldDisplayAchievement ? challengeType.badgeTitle : '',
+              shouldDisplayAchievement ? challengeType.badgeTitle.toUpperCase() : '',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: Palette.neutralBlack,
                   ),

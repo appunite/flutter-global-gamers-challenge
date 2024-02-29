@@ -6,10 +6,10 @@ enum PipeType {
   corner,
   empty;
 
-  Widget getWidget(double angle) {
+  Widget getWidget(double angle, {bool lastPipe = false}) {
     return switch (this) {
       PipeType.straight => PipeStraight(angle: angle),
-      PipeType.corner => PipeCorner(angle: angle),
+      PipeType.corner => PipeCorner(angle: angle, lastPipe: lastPipe),
       PipeType.empty => const PipeEmpty(),
     };
   }
