@@ -40,7 +40,6 @@ class _CountDownFlameOverlayState extends State<CountDownFlameOverlay> {
       if (widget.challengeController.countDownVisible) {
         widget.animationController.forward();
         if (_shouldPlayCountdownSFX) {
-          print("TEST");
           context.read<AudioController>().playSfx(SfxType.countdown);
           _shouldPlayCountdownSFX = false;
         }
