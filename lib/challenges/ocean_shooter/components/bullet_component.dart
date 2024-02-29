@@ -23,7 +23,8 @@ class BulletComponent extends SpriteAnimationComponent with HasGameRef, Collisio
       SpriteAnimationData.sequenced(
         stepTime: 0.2,
         amount: 4,
-        textureSize: Vector2(8, 16),
+        loop: true,
+        textureSize: Vector2(16, 16),
       ),
     );
     velocity = Vector2(1, 0)

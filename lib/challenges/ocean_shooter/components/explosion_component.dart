@@ -16,7 +16,7 @@ class ExplosionComponent extends SpriteAnimationComponent with HasGameRef {
       SpriteAnimationData.sequenced(
         stepTime: 0.1,
         amount: 6,
-        textureSize: Vector2.all(32),
+        textureSize: Vector2(124, 124),
         loop: false,
       ),
     );
