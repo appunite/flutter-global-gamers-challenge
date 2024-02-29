@@ -31,7 +31,7 @@ class AchievementsScreen extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
-                  childAspectRatio: 2,
+                  childAspectRatio: 1.7,
                   mainAxisSpacing: 12,
                   crossAxisSpacing: 0,
                 ),

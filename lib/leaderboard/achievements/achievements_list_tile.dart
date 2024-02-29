@@ -32,8 +32,8 @@ class AchievementListTile extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            height: 88,
-            width: 84,
+            height: 90,
+            width: 90,
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(90)),
               color: shouldDisplayAchievement ? null : Palette.neutralWhite.withOpacity(0.4),
