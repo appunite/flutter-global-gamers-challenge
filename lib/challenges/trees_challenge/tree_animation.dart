@@ -36,7 +36,7 @@ class _TreeAnimationState extends State<TreeAnimation> with SingleTickerProvider
 
   @override
   void dispose() {
-    super.dispose();
     _animationController.dispose();
+    super.dispose();
   }
 }

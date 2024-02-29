@@ -64,7 +64,7 @@ enum ChallengeType {
   trees(
     title: 'Plant a Forest',
     description: 'Trees combat climate change and increase biodiversity.',
-    instruction1: 'Tap the button as fast as possible to plant new trees.',
+    instruction1: 'Tap the screen as fast as possible to plant new trees.',
     instruction2: 'Get 1 point for each planted tree and combat deforestation. ',
     instructionAsset1: AssetPaths.infoTree1,
     instructionAsset2: AssetPaths.infoTree2,

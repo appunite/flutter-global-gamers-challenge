@@ -34,7 +34,9 @@ class _MapAnimationState extends State<MapAnimation> {
     _mapController = StateMachineController.fromArtboard(art, 'map') as StateMachineController;
     art.addController(_mapController);
     _mapController.addEventListener(onRiveEvent);
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
 
     /// Islands inputs
     final recycleIslandInput = _mapController.findInput<bool>('pipesIsland') as SMIBool;

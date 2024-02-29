@@ -1,3 +1,5 @@
+import 'package:better_world/audio/audio_controller.dart';
+import 'package:better_world/audio/sounds.dart';
 import 'package:better_world/challenges/challenge_controller.dart';
 import 'package:better_world/challenges/challenge_type_enum.dart';
 import 'package:better_world/challenges/common_widgets/challenge_app_bar.dart';
@@ -13,7 +15,8 @@ import 'package:better_world/common/map_button.dart';
 import 'package:better_world/main_map/main_map_screen.dart';
 import 'package:better_world/player_progress/persistence/database_persistence.dart';
 import 'package:better_world/player_progress/persistence/local_player_persistence.dart';
-import 'package:better_world/style/main_button.dart';
+import 'package:better_world/style/overlay_widget.dart';
+import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pausable_timer/pausable_timer.dart';
@@ -99,6 +102,7 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
     if (_timer?.isCancelled ?? false) {
       return;
     }
+    context.read<AudioController>().playSfx(SfxType.buttonTap);
     _challengeController.addPoints();
     _scrollController.animateTo(
       _scrollController.position.maxScrollExtent,
@@ -115,7 +119,6 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
           _timer?.cancel();
           _challengeController.onChallengeFinished(
             challengeType: ChallengeType.trees,
-            timeInSec: _timeInSeconds,
           );
         } else {
           setState(() {
@@ -164,41 +167,50 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
               ),
             ],
           ),
-          body: Stack(
-            alignment: Alignment.topCenter,
-            children: [
-              const BackgroundWidget(
-                assetPath: AssetPaths.treeBackground,
-              ),
-              SafeArea(
-                bottom: false,
-                top: false,
-                child: GridView.builder(
-                  controller: _scrollController,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 12,
-                  ),
-                  itemCount: challengeController.score,
-                  itemBuilder: (_, __) => const TreeAnimation(),
+          body: GestureDetector(
+            onTap: () => _plantTree(),
+            child: Stack(
+              alignment: Alignment.topCenter,
+              children: [
+                BackgroundWidget(
+                  assetPath:
+                      challengeController.score == 0 ? AssetPaths.treeTrunksBackground : AssetPaths.treeBackground,
                 ),
-              ),
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 36, bottom: 24),
-                  child: MapButton(
-                    onTap: () => _showExitDialog(),
+                SafeArea(
+                  bottom: false,
+                  top: false,
+                  child: GridView.builder(
+                    controller: _scrollController,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 12,
+                    ),
+                    itemCount: challengeController.score,
+                    itemBuilder: (_, __) => const TreeAnimation(),
                   ),
                 ),
-              ),
-            ],
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 36, bottom: 24),
+                    child: MapButton(
+                      onTap: () => _showExitDialog(),
+                    ),
+                  ),
+                ),
+                Visibility(
+                  visible: challengeController.score == 0 && !challengeController.countDownVisible,
+                  child: OverlayWidget(
+                    child: Text(
+                      'TAP THE SCREEN TO PLANT',
+                      style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                            color: Palette.neutralWhite,
+                          ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-          floatingActionButton: MainButton(
-            onPressed: (_) => _plantTree(),
-            text: 'Plant a Tree',
-            width: 220,
-          ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         ),
       ),
     );

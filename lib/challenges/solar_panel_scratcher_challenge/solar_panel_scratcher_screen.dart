@@ -81,7 +81,7 @@ class _SolarPanelChallengeBodyScreenState extends State<_SolarPanelChallengeBody
     _timer ??= PausableTimer.periodic(
       const Duration(seconds: 1),
       () {
-        if (_timeInSeconds == 0) {
+        if (_timeInSeconds <= 0) {
           _challengeController.addPoints(points: _scratchedValue.toInt());
           _timer?.cancel();
 
@@ -166,7 +166,8 @@ class _SolarPanelChallengeBodyScreenState extends State<_SolarPanelChallengeBody
                     brushSize: 20,
                     color: Colors.transparent,
                     threshold: 100,
-                    enabled: _isScratchingEnabled(),image: Image.asset(
+                    enabled: _isScratchingEnabled(),
+                    image: Image.asset(
                       AssetPaths.panelDirty,
                       fit: BoxFit.fitHeight,
                     ),

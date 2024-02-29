@@ -108,6 +108,7 @@ class AssetPaths {
 
   static const String tree = 'assets/images/challenges/icons_tree.svg';
   static const String treeBackground = 'assets/images/challenges/plant_forest_bg.svg';
+  static const String treeTrunksBackground = 'assets/images/challenges/plant_forest_start.svg';
   static const String infoTree1 = 'assets/images/challenges/info_forest_01.svg';
   static const String infoTree2 = 'assets/images/challenges/info_forest_02.svg';
   static const String treeBadge = 'assets/images/challenges/trees_badge.svg';
