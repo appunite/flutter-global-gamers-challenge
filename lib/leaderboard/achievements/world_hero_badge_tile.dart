@@ -1,35 +1,27 @@
-import 'package:better_world/challenges/challenge_type_enum.dart';
 import 'package:better_world/challenges/common_widgets/badge_dialog.dart';
 import 'package:better_world/common/navigation_helper.dart';
+import 'package:better_world/player_progress/entities/challenges_entity.dart';
 import 'package:better_world/player_progress/player_progress_controller.dart';
+import 'package:better_world/style/const_values.dart';
 import 'package:better_world/style/gaps.dart';
 import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
-class AchievementListTile extends StatelessWidget {
-  const AchievementListTile({
-    super.key,
-    required this.challengeType,
-    required this.playerProgress,
-  });
-
-  final ChallengeType challengeType;
-  final PlayerProgressController playerProgress;
+class WorldHeroBadgeTile extends StatelessWidget {
+  const WorldHeroBadgeTile({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final shouldDisplayAchievement =
-        _shouldDisplayAchievement(challengeType.getChallengeScore(playerProgress.challenges));
+    final playerProgress = context.watch<PlayerProgressController>();
+    final shouldDisplayAchievement = playerProgress.challenges.getPlayedChallengesCount() == 6;
 
     return InkWell(
       onTap: () => shouldDisplayAchievement
           ? NavigationHelper.show(
               context,
-              BadgeDialog.challengeCompleted(
-                challengeType: challengeType,
-                playerProgress: playerProgress,
-              ),
+              BadgeDialog.gameCompleted(),
             )
           : null,
       child: Column(
@@ -52,7 +44,7 @@ class AchievementListTile extends StatelessWidget {
             ),
             child: shouldDisplayAchievement
                 ? SvgPicture.asset(
-                    challengeType.badgeAsset,
+                    gameCompletedBadgeAsset,
                   )
                 : const SizedBox.shrink(),
           ),
@@ -65,7 +57,7 @@ class AchievementListTile extends StatelessWidget {
               color: shouldDisplayAchievement ? Palette.neutralWhite : Palette.neutralWhite.withOpacity(0.4),
             ),
             child: Text(
-              shouldDisplayAchievement ? challengeType.badgeTitle.toUpperCase() : '',
+              shouldDisplayAchievement ? gameCompletedBadgeTitle.toUpperCase() : '',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: Palette.neutralBlack,
                   ),
@@ -76,8 +68,4 @@ class AchievementListTile extends StatelessWidget {
       ),
     );
   }
-}
-
-bool _shouldDisplayAchievement(int? score) {
-  return score != null && score > 0;
 }

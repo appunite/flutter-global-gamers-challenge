@@ -101,6 +101,7 @@ class BetterWorldGame extends StatelessWidget {
           builder: (context) {
             return MaterialApp.router(
               title: 'Better World',
+              debugShowCheckedModeBanner: false,
               theme: theme,
               routeInformationProvider: router.routeInformationProvider,
               routeInformationParser: router.routeInformationParser,

@@ -35,7 +35,8 @@ class ResetAccountDialog extends StatelessWidget {
           MainButton.secondary(
             width: 150,
             onPressed: (_) {
-              playerProgressController.reset().then((value) {
+              playerProgressController.reset().then((_) {
+                context.pop();
                 ScaffoldMessenger.of(context).showSnackBar(
                   CustomSnackBarBuilder(
                     icon: SvgPicture.asset(
@@ -46,7 +47,6 @@ class ResetAccountDialog extends StatelessWidget {
                     title: 'Your progress has been reset!',
                   ),
                 );
-                context.pop();
               });
             },
             text: 'Reset',
