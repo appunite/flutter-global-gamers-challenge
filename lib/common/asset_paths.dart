@@ -123,6 +123,7 @@ class AssetPaths {
   static const String wheel = 'assets/images/challenges/wheel.svg';
   static const String infoLeaderboard1 = 'assets/images/common/info_leaderboard_01.svg';
   static const String infoLeaderboard2 = 'assets/images/common/info_leaderboard_02.svg';
+  static const String worldHeroBadge = 'assets/images/challenges/world_hero_badge.svg';
 
   // Animations
   static const String ecoAnimation = 'assets/animations/eco.riv';

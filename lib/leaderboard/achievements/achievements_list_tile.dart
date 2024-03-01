@@ -26,7 +26,7 @@ class AchievementListTile extends StatelessWidget {
       onTap: () => shouldDisplayAchievement
           ? NavigationHelper.show(
               context,
-              BadgeDialog(challengeType: challengeType),
+              BadgeDialog.challengeCompleted(challengeType: challengeType),
             )
           : null,
       child: Column(

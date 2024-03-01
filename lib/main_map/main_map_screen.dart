@@ -1,3 +1,4 @@
+import 'package:better_world/challenges/common_widgets/badge_dialog.dart';
 import 'package:better_world/common/asset_paths.dart';
 import 'package:better_world/common/icon_button.dart';
 import 'package:better_world/common/navigation_helper.dart';
@@ -35,6 +36,7 @@ class _MainMapScreenState extends State<MainMapScreen> with SingleTickerProvider
   bool _shouldShowAllChallengesCongrats = false;
   bool _hasSeenOnboarding = true;
   bool _splashScreenVisibile = true;
+  bool _hasSeenBadgeDialog = false;
 
   late AnimationController _controller;
   late Animation<double> _progressAnimation;
@@ -47,10 +49,19 @@ class _MainMapScreenState extends State<MainMapScreen> with SingleTickerProvider
     final playerProgressController = context.read<PlayerProgressController>();
     playerProgressController.loadPlayerData();
     playerProgressController.addListener(() {
-      setState(() {
-        _shouldShowAllChallengesCongrats = playerProgressController.shouldShowAllChallengesCongrats;
-        _hasSeenOnboarding = playerProgressController.hasSeenOnboarding;
-      });
+      _hasSeenOnboarding = playerProgressController.hasSeenOnboarding;
+      _shouldShowAllChallengesCongrats = playerProgressController.shouldShowAllChallengesCongrats;
+
+      if (_shouldShowAllChallengesCongrats && !_hasSeenBadgeDialog) {
+        NavigationHelper.showWithWidgetBinding(
+          context,
+          BadgeDialog.gameCompleted(),
+        );
+        _hasSeenBadgeDialog = true;
+      }
+      if (mounted) {
+        setState(() {});
+      }
     });
 
     WakelockPlus.enable();
