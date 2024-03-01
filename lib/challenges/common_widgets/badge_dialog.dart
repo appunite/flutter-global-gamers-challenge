@@ -5,6 +5,7 @@ import 'package:better_world/challenges/challenge_type_enum.dart';
 import 'package:better_world/common/asset_paths.dart';
 import 'package:better_world/common/common_dialog.dart';
 import 'package:better_world/common/ribbon_header.dart';
+import 'package:better_world/main_map/main_map_screen.dart';
 import 'package:better_world/player_progress/player_progress_controller.dart';
 import 'package:better_world/style/gaps.dart';
 import 'package:better_world/style/palette.dart';
@@ -26,22 +27,16 @@ class BadgeDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-/*    final String badgeJSON = _badgePass
-      ..replaceFirst('NICK_REPLACEMENT', playerProgress.playerNick)
-      ..replaceFirst('BADGE_IMAGE_REPLACEMENT', challengeType.badgeLogoUrl)
-      ..replaceFirst('BADGE_HERO_REPLACEMENT', challengeType.badgeUrl)
-      ..replaceFirst('POINTS_REPLACEMENT', '123');*/
-
     final String badgeJSON = replacePlaceholders(
       _badgePass,
-      '123',
+      challengeType.getChallengeScore(playerProgress.challenges).toString(),
       challengeType.badgeUrl,
       playerProgress.playerNick,
       challengeType.badgeLogoUrl,
       challengeType.badgeTitle,
     );
 
-    //debugPrint(badgeJSON);
+    debugPrint(badgeJSON);
 
     return CommonDialog(
       content: Column(
@@ -126,8 +121,6 @@ class BadgeDialog extends StatelessWidget {
   }
 
   void _onError(BuildContext context, Object error) {
-    debugPrint("ERROR: $error");
-
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Colors.red,
@@ -136,19 +129,9 @@ class BadgeDialog extends StatelessWidget {
     );
   }
 
-  void _onSuccess(BuildContext context) => ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: Colors.green,
-          content: Text('Pass has been successfully added to the Google Wallet.'),
-        ),
-      );
+  void _onSuccess(BuildContext context) => context.go(MainMapScreen.routePath);
 
-  void _onCanceled(BuildContext context) => ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: Colors.yellow,
-          content: Text('Adding a pass has been canceled.'),
-        ),
-      );
+  void _onCanceled(BuildContext context) => context.pop();
 }
 
 final String _passId = const Uuid().v4();
@@ -157,59 +140,55 @@ const String _issuerId = '3388000000022304025';
 const String _issuerEmail = 'jk.jakubkostrzewski@gmail.com';
 
 final String _badgePass = """
-    {
-      "iss": "$_issuerEmail",
-      "aud": "google",
-      "typ": "savetowallet",
-      "origins": [],
-      "payload": {
-        "genericObjects": [
+{
+  "iss": "$_issuerEmail",
+  "aud": "google",
+  "typ": "savetowallet",
+  "origins": [],
+  "payload": {
+    "genericObjects": [
+      {
+        "id": "$_issuerId.$_passId",
+        "classId": "$_issuerId.$_passClass",
+        "genericType": "GENERIC_TYPE_UNSPECIFIED",
+        "hexBackgroundColor": "#3caefb",
+        "logo": {
+          "sourceUri": {
+            "uri": "BADGE_IMAGE_REPLACEMENT"
+          }
+        },
+        "cardTitle": {
+          "defaultValue": {
+            "language": "en",
+            "value": "TITLE_REPLACEMENT"
+          }
+        },
+        "subheader": {
+          "defaultValue": {
+            "language": "en",
+            "value": "NICK_REPLACEMENT"
+          }
+        },
+        "header": {
+          "defaultValue": {
+            "language": "en",
+            "value": "POINTS_REPLACEMENT points"
+          }
+        },
+        "heroImage": {
+          "sourceUri": {
+            "uri": "BADGE_HERO_REPLACEMENT"
+          }
+        },
+        "textModulesData": [
           {
-            "id": "$_issuerId.$_passId",
-            "classId": "$_issuerId.$_passClass",
-            "genericType": "GENERIC_TYPE_UNSPECIFIED",
-            "hexBackgroundColor": "#4285f4",
-            "logo": {
-              "sourceUri": {
-                "uri": "https://storage.googleapis.com/wallet-lab-tools-codelab-artifacts-public/pass_google_logo.jpg"
-              }
-            },
-            "cardTitle": {
-              "defaultValue": {
-                "language": "en",
-                "value": "Google I/O '22 [DEMO ONLY]"
-              }
-            },
-            "subheader": {
-              "defaultValue": {
-                "language": "en",
-                "value": "Eco Hero"
-              }
-            },
-            "header": {
-              "defaultValue": {
-                "language": "en",
-                "value": "NICK_REPLACEMENT"
-              }
-            },
-            "barcode": {
-              "type": "QR_CODE",
-              "value": "$_passId"
-            },
-            "heroImage": {
-              "sourceUri": {
-                "uri": "https://storage.googleapis.com/wallet-lab-tools-codelab-artifacts-public/google-io-hero-demo-only.jpg"
-              }
-            },
-            "textModulesData": [
-              {
-                "header": "POINTS",
-                "body": "POINTS_REPLACEMENT",
-                "id": "points"
-              }
-            ]
+            "header": "POINTS",
+            "body": "POINTS_REPLACEMENT",
+            "id": "points"
           }
         ]
       }
-    }
+    ]
+  }
+}
 """;

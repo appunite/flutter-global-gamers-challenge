@@ -9,24 +9,23 @@ import 'package:better_world/player_progress/entities/challenges_entity.dart';
 
 enum ChallengeType {
   pipelines(
-    title: 'Pipeline Puzzle',
-    description: 'Clean water is vital. Fixing pipelines prevents pollution and saves water.',
-    instruction1: 'Connect pipes correctly to stop leaks and make the sewage machine work properly.',
-    instruction2: 'Finish as quickly as possible to collect the most points.',
-    instructionAsset1: AssetPaths.infoPipes1,
-    instructionAsset2: AssetPaths.infoTimer,
-    completedText:
-        'By fixing leaky pipelines, you\'ve helped conserve water\nand protect aquatic ecosystems in Better World.',
-    routePath: PipesChallengeScreen.routePath,
-    badgeDescription:
-        "By fixing leaky pipelines, you've helped conserve water and protect aquatic ecosystems in Better World.",
-    badgeTitle: 'Water Guardian',
-    badgeAsset: AssetPaths.pipesBadge,
-    badgeLogoUrl:
-        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fpipes_badge.svg?alt=media&token=3129490c-2ba9-4e5e-8c97-3f407bbde5c1',
-    badgeUrl:
-        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fpipes_badge_hero.svg?alt=media&token=ec085b24-8573-4363-aa3e-faef9bb6ea41',
-  ),
+      title: 'Pipeline Puzzle',
+      description: 'Clean water is vital. Fixing pipelines prevents pollution and saves water.',
+      instruction1: 'Connect pipes correctly to stop leaks and make the sewage machine work properly.',
+      instruction2: 'Finish as quickly as possible to collect the most points.',
+      instructionAsset1: AssetPaths.infoPipes1,
+      instructionAsset2: AssetPaths.infoTimer,
+      completedText:
+          'By fixing leaky pipelines, you\'ve helped conserve water\nand protect aquatic ecosystems in Better World.',
+      routePath: PipesChallengeScreen.routePath,
+      badgeDescription:
+          "By fixing leaky pipelines, you've helped conserve water and protect aquatic ecosystems in Better World.",
+      badgeTitle: 'Water Guardian',
+      badgeAsset: AssetPaths.pipesBadge,
+      badgeLogoUrl:
+          'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fpipes_badge.jpg?alt=media&token=8248ca9b-a51d-454f-9345-e5efee34faa1',
+      badgeUrl:
+          'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fnew_badges%2Fwallet_badge_06.png?alt=media&token=3f1facc8-65cd-4c92-b05d-c2610125841e'),
   recycling(
     title: 'Recycle Rush',
     description: 'Proper recycling reduces waste. Let\'s sort recyclables correctly!',
@@ -40,9 +39,9 @@ enum ChallengeType {
     badgeTitle: 'Recycling Master',
     badgeAsset: AssetPaths.recyclingBadge,
     badgeLogoUrl:
-        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Frecycling_badge.svg?alt=media&token=d3bd2cf9-3e33-4f13-84b9-2d8501caeb7d',
+        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2FBadges-5.jpg?alt=media&token=4737dea8-97b4-49e5-8f22-747554cb942b',
     badgeUrl:
-        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Frecycling_badge_hero.svg?alt=media&token=cde27413-c3b3-4968-91a9-4865bf0d7ce6',
+        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fnew_badges%2Fwallet_badge_05.png?alt=media&token=b780f8dc-2cdb-4771-adbb-f1668857532e',
   ),
   solarPanel(
     title: 'Solar Panel Cleanup',
@@ -57,9 +56,9 @@ enum ChallengeType {
     badgeTitle: 'Energy Champion',
     badgeAsset: AssetPaths.panelBadge,
     badgeLogoUrl:
-        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fpanel_badge.svg?alt=media&token=67d72897-2950-4ab8-8b16-465810fbefdf',
+        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2FBadges-7.jpg?alt=media&token=89479e31-b4bc-47c4-989d-6e17afc50cc8',
     badgeUrl:
-        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fpanel_badge_hero.svg?alt=media&token=8ac058c7-c9ac-4cf9-8cde-985b3a6f6362',
+        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fnew_badges%2Fwallet_badge_01.png?alt=media&token=cbfd6b8d-b062-4db5-accd-ee0a55b37eb7',
   ),
   trees(
     title: 'Plant a Forest',
@@ -74,9 +73,9 @@ enum ChallengeType {
     badgeTitle: 'Forest Friend',
     badgeAsset: AssetPaths.treeBadge,
     badgeLogoUrl:
-        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Ftrees_badge.svg?alt=media&token=ad132759-086a-4b92-9775-38df4c6cd058',
+        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2FBadge_forest.jpg?alt=media&token=45d0e303-715d-43ff-805d-b098d030a7d8',
     badgeUrl:
-        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Ftrees_badge_hero.svg?alt=media&token=a6d50847-0811-411a-a01e-cf6dad4f53fa',
+        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fnew_badges%2Fwallet_badge_03.png?alt=media&token=19d22b86-306d-402e-9ade-b496a5e39a10',
   ),
   ocean(
     title: 'Plastic Free',
@@ -91,9 +90,9 @@ enum ChallengeType {
     badgeTitle: 'Ocean Protector',
     badgeDescription: 'Your dedication to removing plastics keeps our oceans clean and marine life safe',
     badgeLogoUrl:
-        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Focean_badge.svg?alt=media&token=37884bd4-ba2d-4164-a8e0-f64a83cfbb5e',
+        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2FBadge-4.jpg?alt=media&token=649e0615-bfad-48aa-a09a-3766a95e710c',
     badgeUrl:
-        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Focean_badge_hero.svg?alt=media&token=3c32d76b-f6ee-4240-ba97-e3bb75bda74c',
+        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fnew_badges%2Fwallet_badge_04.png?alt=media&token=1272992a-d984-42c5-9fa3-4d4bdfef709a',
   ),
   lightsOut(
     title: 'Lights Out Challenge',
@@ -108,9 +107,9 @@ enum ChallengeType {
     badgeTitle: 'Carbon footprint',
     badgeDescription: 'Your action in reducing light pollution helps save energy and protect nocturnal wildlife.',
     badgeLogoUrl:
-        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Flights_off_badge.svg?alt=media&token=6b7347e2-277b-4690-8e52-01f82692f074',
+        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2FBadges-6.jpg?alt=media&token=1ed88812-983b-4b58-86ba-a09645a78a7e',
     badgeUrl:
-        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Flights_off_badge_hero.svg?alt=media&token=0d66abb8-7be2-411f-a64d-d5a436d3647e',
+        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fnew_badges%2Fwallet_badge_02.png?alt=media&token=c9e3fa1d-2b10-4761-992d-4df84e37edcc',
   );
 
   const ChallengeType({
