@@ -5,6 +5,7 @@ import 'package:better_world/challenges/challenge_type_enum.dart';
 import 'package:better_world/common/asset_paths.dart';
 import 'package:better_world/common/common_dialog.dart';
 import 'package:better_world/common/ribbon_header.dart';
+import 'package:better_world/player_progress/player_progress_controller.dart';
 import 'package:better_world/style/gaps.dart';
 import 'package:better_world/style/palette.dart';
 import 'package:flutter/foundation.dart';
@@ -17,12 +18,31 @@ class BadgeDialog extends StatelessWidget {
   const BadgeDialog({
     super.key,
     required this.challengeType,
+    required this.playerProgress,
   });
 
   final ChallengeType challengeType;
+  final PlayerProgressController playerProgress;
 
   @override
   Widget build(BuildContext context) {
+/*    final String badgeJSON = _badgePass
+      ..replaceFirst('NICK_REPLACEMENT', playerProgress.playerNick)
+      ..replaceFirst('BADGE_IMAGE_REPLACEMENT', challengeType.badgeLogoUrl)
+      ..replaceFirst('BADGE_HERO_REPLACEMENT', challengeType.badgeUrl)
+      ..replaceFirst('POINTS_REPLACEMENT', '123');*/
+
+    final String badgeJSON = replacePlaceholders(
+      _badgePass,
+      '123',
+      challengeType.badgeUrl,
+      playerProgress.playerNick,
+      challengeType.badgeLogoUrl,
+      challengeType.badgeTitle,
+    );
+
+    //debugPrint(badgeJSON);
+
     return CommonDialog(
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -73,7 +93,7 @@ class BadgeDialog extends StatelessWidget {
       bottom: kIsWeb || !Platform.isAndroid
           ? const SizedBox.shrink()
           : AddToGoogleWalletButton(
-              pass: _examplePass,
+              pass: badgeJSON,
               onError: (Object error) => _onError(context, error),
               onSuccess: () => _onSuccess(context),
               onCanceled: () => _onCanceled(context),
@@ -88,12 +108,33 @@ class BadgeDialog extends StatelessWidget {
     );
   }
 
-  void _onError(BuildContext context, Object error) => ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Colors.red,
-          content: Text(error.toString()),
-        ),
-      );
+  String replacePlaceholders(
+    String badgeJSON,
+    String points,
+    String badgeHero,
+    String nickReplacement,
+    String badgeImageReplacement,
+    String badgeTitle,
+  ) {
+    badgeJSON = badgeJSON.replaceAll("POINTS_REPLACEMENT", points);
+    badgeJSON = badgeJSON.replaceAll("BADGE_HERO_REPLACEMENT", badgeHero);
+    badgeJSON = badgeJSON.replaceAll("NICK_REPLACEMENT", nickReplacement);
+    badgeJSON = badgeJSON.replaceAll("BADGE_IMAGE_REPLACEMENT", badgeImageReplacement);
+    badgeJSON = badgeJSON.replaceAll("TITLE_REPLACEMENT", badgeTitle);
+
+    return badgeJSON;
+  }
+
+  void _onError(BuildContext context, Object error) {
+    debugPrint("ERROR: $error");
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.red,
+        content: Text(error.toString()),
+      ),
+    );
+  }
 
   void _onSuccess(BuildContext context) => ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -115,7 +156,7 @@ const String _passClass = 'test';
 const String _issuerId = '3388000000022304025';
 const String _issuerEmail = 'jk.jakubkostrzewski@gmail.com';
 
-final String _examplePass = """ 
+final String _badgePass = """
     {
       "iss": "$_issuerEmail",
       "aud": "google",
@@ -142,13 +183,13 @@ final String _examplePass = """
             "subheader": {
               "defaultValue": {
                 "language": "en",
-                "value": "Attendee"
+                "value": "Eco Hero"
               }
             },
             "header": {
               "defaultValue": {
                 "language": "en",
-                "value": "Alex McJacobs"
+                "value": "NICK_REPLACEMENT"
               }
             },
             "barcode": {
@@ -163,7 +204,7 @@ final String _examplePass = """
             "textModulesData": [
               {
                 "header": "POINTS",
-                "body": "1234",
+                "body": "POINTS_REPLACEMENT",
                 "id": "points"
               }
             ]

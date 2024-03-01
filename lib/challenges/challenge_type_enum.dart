@@ -74,9 +74,9 @@ enum ChallengeType {
     badgeTitle: 'Forest Friend',
     badgeAsset: AssetPaths.treeBadge,
     badgeLogoUrl:
-        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Ftrees_badge.svg?alt=media&token=d37f5658-7bff-4ac0-9c74-3118edfd9747',
+        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Ftrees_badge.svg?alt=media&token=ad132759-086a-4b92-9775-38df4c6cd058',
     badgeUrl:
-        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Ftrees_badge_hero.svg?alt=media&token=7338baa7-9813-489a-bf0d-7ba822b4fd67',
+        'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Ftrees_badge_hero.svg?alt=media&token=a6d50847-0811-411a-a01e-cf6dad4f53fa',
   ),
   ocean(
     title: 'Plastic Free',
