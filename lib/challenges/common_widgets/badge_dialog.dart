@@ -20,16 +20,18 @@ class BadgeDialog extends StatelessWidget {
     super.key,
     required this.challengeType,
     required this.playerProgress,
+    this.score,
   });
 
   final ChallengeType challengeType;
   final PlayerProgressController playerProgress;
+  final int? score;
 
   @override
   Widget build(BuildContext context) {
     final String badgeJSON = replacePlaceholders(
       _badgePass,
-      challengeType.getChallengeScore(playerProgress.challenges).toString(),
+      score ?? challengeType.getChallengeScore(playerProgress.challenges)!,
       challengeType.badgeUrl,
       playerProgress.playerNick,
       challengeType.badgeLogoUrl,
@@ -105,13 +107,13 @@ class BadgeDialog extends StatelessWidget {
 
   String replacePlaceholders(
     String badgeJSON,
-    String points,
+    int points,
     String badgeHero,
     String nickReplacement,
     String badgeImageReplacement,
     String badgeTitle,
   ) {
-    badgeJSON = badgeJSON.replaceAll("POINTS_REPLACEMENT", points);
+    badgeJSON = badgeJSON.replaceAll("POINTS_REPLACEMENT", points.toString());
     badgeJSON = badgeJSON.replaceAll("BADGE_HERO_REPLACEMENT", badgeHero);
     badgeJSON = badgeJSON.replaceAll("NICK_REPLACEMENT", nickReplacement);
     badgeJSON = badgeJSON.replaceAll("BADGE_IMAGE_REPLACEMENT", badgeImageReplacement);

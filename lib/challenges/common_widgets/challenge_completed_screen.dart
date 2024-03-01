@@ -63,6 +63,7 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
         BadgeDialog(
           challengeType: widget.challengeSummary.challengeType,
           playerProgress: playerProgress,
+          score: widget.challengeSummary.score,
         ),
       );
     }
