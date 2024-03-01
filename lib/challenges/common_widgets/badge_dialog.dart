@@ -5,6 +5,7 @@ import 'package:better_world/challenges/challenge_type_enum.dart';
 import 'package:better_world/common/asset_paths.dart';
 import 'package:better_world/common/common_dialog.dart';
 import 'package:better_world/common/ribbon_header.dart';
+import 'package:better_world/style/const_values.dart';
 import 'package:better_world/style/gaps.dart';
 import 'package:better_world/style/palette.dart';
 import 'package:flutter/foundation.dart';
@@ -16,10 +17,30 @@ import 'package:uuid/uuid.dart';
 class BadgeDialog extends StatelessWidget {
   const BadgeDialog({
     super.key,
-    required this.challengeType,
+    required this.badgeTitle,
+    required this.badgeDescription,
+    required this.badgeAsset,
   });
 
-  final ChallengeType challengeType;
+  factory BadgeDialog.challengeCompleted({required ChallengeType challengeType}) {
+    return BadgeDialog(
+      badgeTitle: challengeType.badgeTitle,
+      badgeDescription: challengeType.badgeDescription,
+      badgeAsset: challengeType.badgeAsset,
+    );
+  }
+
+  factory BadgeDialog.gameCompleted() {
+    return const BadgeDialog(
+      badgeTitle: gameCompletedBadgeTitle,
+      badgeDescription: gameCompletedBadgeDescription,
+      badgeAsset: gameCompletedBadgeAsset,
+    );
+  }
+
+  final String badgeTitle;
+  final String badgeDescription;
+  final String badgeAsset;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +52,7 @@ class BadgeDialog extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 2),
             child: Text(
-              challengeType.badgeTitle,
+              badgeTitle,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: Palette.secondaryDark,
                   ),
@@ -42,7 +63,7 @@ class BadgeDialog extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 2),
             child: Text(
-              challengeType.badgeDescription,
+              badgeDescription,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: Palette.neutralBlack,
                   ),
@@ -64,7 +85,7 @@ class BadgeDialog extends StatelessWidget {
               ],
             ),
             child: SvgPicture.asset(
-              challengeType.badgeAsset,
+              badgeAsset,
               fit: BoxFit.fill,
             ),
           ),

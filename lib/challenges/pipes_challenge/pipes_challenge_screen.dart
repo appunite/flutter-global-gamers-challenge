@@ -125,6 +125,7 @@ class _PipesChallengeBodyScreenState extends State<_PipesChallengeBodyScreen> {
 
   void _pipesListener(PipesController pipesController) {
     if (pipesController.challengeCompleted) {
+      _timer?.cancel();
       int score = _maxPoints - _timeInSeconds;
       if (score <= 0) {
         score = 1;

@@ -60,7 +60,7 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
     if (scoreBeforeUpdate == null || scoreBeforeUpdate == 0) {
       NavigationHelper.show(
         context,
-        BadgeDialog(challengeType: widget.challengeSummary.challengeType),
+        BadgeDialog.challengeCompleted(challengeType: widget.challengeSummary.challengeType),
       );
     }
   }
