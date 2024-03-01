@@ -45,6 +45,7 @@ class _MainMapScreenState extends State<MainMapScreen> with SingleTickerProvider
     _setAnimationController();
 
     final playerProgressController = context.read<PlayerProgressController>();
+    playerProgressController.loadPlayerData();
     playerProgressController.addListener(() {
       setState(() {
         _shouldShowAllChallengesCongrats = playerProgressController.shouldShowAllChallengesCongrats;

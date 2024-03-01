@@ -10,7 +10,7 @@ import 'package:flame/components.dart';
 
 class EnemyComponent extends SpriteAnimationComponent with HasGameReference<OceanChallengeGame>, CollisionCallbacks {
   static const speed = 150;
-  static final Vector2 initialSize = Vector2.all(25);
+  static final Vector2 initialSize = Vector2.all(15);
 
   EnemyComponent({
     required this.audioController,

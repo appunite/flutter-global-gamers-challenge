@@ -11,7 +11,7 @@ enum ChallengeType {
   pipelines(
     title: 'Pipeline Puzzle',
     description: 'Clean water is vital. Fixing pipelines prevents pollution and saves water.',
-    instruction1: 'Connect pipes correctly to stop leaks and make the sewage machine work properly.',
+    instruction1: 'Connect pipes correctly to stop leaks and make the sewage system work properly.',
     instruction2: 'Finish as quickly as possible to collect the most points.',
     instructionAsset1: AssetPaths.infoPipes1,
     instructionAsset2: AssetPaths.infoTimer,
@@ -98,7 +98,7 @@ enum ChallengeType {
   lightsOut(
     title: 'Lights Out Challenge',
     description: 'Turning off lights saves power and protects wildlife.',
-    instruction1: 'Tap to make Eco jump and switch off lights to reduce energy waste.',
+    instruction1: 'Tap or click on the screen to make Eco jump and switch off lights to reduce energy waste.',
     instruction2: 'Turn off as many lights as you can in 30 seconds and earn points.',
     completedText: 'Your action in reducing light pollution\n helps save energy and protect nocturnal wildlife.',
     routePath: LightsOutChallengeScreen.routePath,
