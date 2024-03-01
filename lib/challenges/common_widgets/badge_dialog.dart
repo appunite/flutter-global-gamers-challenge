@@ -6,6 +6,7 @@ import 'package:better_world/common/asset_paths.dart';
 import 'package:better_world/common/common_dialog.dart';
 import 'package:better_world/common/ribbon_header.dart';
 import 'package:better_world/main_map/main_map_screen.dart';
+import 'package:better_world/player_progress/entities/challenges_entity.dart';
 import 'package:better_world/player_progress/player_progress_controller.dart';
 import 'package:better_world/style/const_values.dart';
 import 'package:better_world/style/gaps.dart';
@@ -22,23 +23,37 @@ class BadgeDialog extends StatelessWidget {
     required this.badgeTitle,
     required this.badgeDescription,
     required this.badgeAsset,
+    required this.isGameFinished,
     required this.playerProgress,
     this.score,
+    this.challengeType,
   });
 
-  factory BadgeDialog.challengeCompleted({required ChallengeType challengeType}) {
+  factory BadgeDialog.challengeCompleted({
+    required ChallengeType challengeType,
+    required PlayerProgressController playerProgress,
+    int? score,
+  }) {
     return BadgeDialog(
       badgeTitle: challengeType.badgeTitle,
       badgeDescription: challengeType.badgeDescription,
       badgeAsset: challengeType.badgeAsset,
+      playerProgress: playerProgress,
+      score: score ?? challengeType.getChallengeScore(playerProgress.challenges),
+      challengeType: challengeType,
+      isGameFinished: false,
     );
   }
 
-  factory BadgeDialog.gameCompleted() {
-    return const BadgeDialog(
+  factory BadgeDialog.gameCompleted({
+    required PlayerProgressController playerProgress,
+  }) {
+    return BadgeDialog(
       badgeTitle: gameCompletedBadgeTitle,
       badgeDescription: gameCompletedBadgeDescription,
       badgeAsset: gameCompletedBadgeAsset,
+      isGameFinished: true,
+      playerProgress: playerProgress,
     );
   }
 
@@ -46,20 +61,17 @@ class BadgeDialog extends StatelessWidget {
   final String badgeDescription;
   final String badgeAsset;
   final PlayerProgressController playerProgress;
+  final ChallengeType? challengeType;
   final int? score;
+  final bool isGameFinished;
 
   @override
   Widget build(BuildContext context) {
-    final String badgeJSON = replacePlaceholders(
-      _badgePass,
-      score ?? challengeType.getChallengeScore(playerProgress.challenges)!,
-      challengeType.badgeUrl,
-      playerProgress.playerNick,
-      challengeType.badgeLogoUrl,
-      challengeType.badgeTitle,
-    );
-
-    debugPrint(badgeJSON);
+    final String badgeJSON = isGameFinished
+        ? replacePlaceholders(_badgePass, playerProgress.challenges.getAllChallengesScores(), gameCompletedBadgeUrl,
+            playerProgress.playerNick, gameCompletedLogoUrl, badgeTitle)
+        : replacePlaceholders(_badgePass, score!, challengeType!.badgeUrl, playerProgress.playerNick,
+            challengeType!.badgeLogoUrl, badgeTitle);
 
     return CommonDialog(
       content: Column(
