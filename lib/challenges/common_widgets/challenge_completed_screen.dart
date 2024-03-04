@@ -1,8 +1,5 @@
 import 'package:better_world/challenges/common_widgets/badge_dialog.dart';
-import 'package:better_world/common/map_button.dart';
-import 'package:better_world/leaderboard/introduction/leaderboard_introduction_dialog.dart';
-import 'package:better_world/main_map/main_map_screen.dart';
-import 'package:better_world/player_progress/entities/challenges_entity.dart';
+import 'package:better_world/challenges/common_widgets/challenge_finish_map_button.dart';
 import 'package:confetti/confetti.dart';
 import 'package:better_world/audio/audio_controller.dart';
 import 'package:better_world/audio/sounds.dart';
@@ -16,7 +13,6 @@ import 'package:better_world/style/confetti_animation.dart';
 import 'package:better_world/style/gaps.dart';
 import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class ChallengeCompletedScreen extends StatefulWidget {
@@ -44,12 +40,6 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
     _confettiController.play();
     _showIntroDialog();
     context.read<AudioController>().playSfx(SfxType.challengeSuccessful);
-  }
-
-  @override
-  void dispose() {
-    _confettiController.dispose();
-    super.dispose();
   }
 
   Future<void> _showIntroDialog() async {
@@ -111,25 +101,9 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
                 confettiController: _confettiController,
               ),
             ),
-            Align(
+            const Align(
               alignment: Alignment.bottomLeft,
-              child: MapButton(
-                onTap: () {
-                  final playerProgress = context.read<PlayerProgressController>();
-                  playerProgress.loadPlayerData();
-
-                  if (playerProgress.challenges.getPlayedChallengesCount() == 0) {
-                    NavigationHelper.show(
-                      context,
-                      const LeaderboardIntroductionDialog(shouldGoToLeaderBoardScreen: true),
-                    );
-                  } else {
-                    Future.delayed(const Duration(milliseconds: 900), () {
-                      context.go(MainMapScreen.routePath);
-                    });
-                  }
-                },
-              ),
+              child: ChallengeFinishMapButton(),
             ),
           ],
         ),
@@ -139,5 +113,11 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
         challengeType: widget.challengeSummary.challengeType,
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _confettiController.dispose();
+    super.dispose();
   }
 }
