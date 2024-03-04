@@ -39,4 +39,5 @@ Our next steps involve releasing the game on the Play Store and App Store to rea
 
 
 ## How to run the project
-To run the project you don't need any additional setup than cloning the repository. The game works on Android, iOS, macos and web.
+To run the project you don't need any additional setup than cloning the repository. The game works on Android, iOS, macos and web. 
+Flutter version: 3.16.7
