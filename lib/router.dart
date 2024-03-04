@@ -6,7 +6,6 @@ import 'package:better_world/challenges/recycling_challenge/recycling_challenge_
 import 'package:better_world/challenges/solar_panel_scratcher_challenge/solar_panel_scratcher_screen.dart';
 import 'package:better_world/challenges/trees_challenge/challenge_summary_entity.dart';
 import 'package:better_world/challenges/trees_challenge/trees_challenge_screen.dart';
-import 'package:better_world/common/google_wallet_demo.dart';
 import 'package:better_world/leaderboard/achievements/achievements_screen.dart';
 import 'package:better_world/leaderboard/leaderboard_screen.dart';
 import 'package:flutter/material.dart';
@@ -66,14 +65,6 @@ final router = GoRouter(
         offset: state.extra as Offset?,
         child: const PipesChallengeScreen(
           key: Key('pipes-challenge'),
-        ),
-      ),
-    ),
-    GoRoute(
-      path: GoogleWalletDemoScreen.routePath,
-      pageBuilder: (context, state) => buildPageTransition(
-        child: const GoogleWalletDemoScreen(
-          key: Key('google-wallet-demo'),
         ),
       ),
     ),

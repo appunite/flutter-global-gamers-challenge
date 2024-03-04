@@ -1,8 +1,8 @@
 import 'package:better_world/challenges/common_widgets/badge_dialog.dart';
 import 'package:better_world/common/asset_paths.dart';
+import 'package:better_world/common/game_progress_indicator.dart';
 import 'package:better_world/common/icon_button.dart';
 import 'package:better_world/common/navigation_helper.dart';
-import 'package:better_world/common/game_progress_indicator.dart';
 import 'package:better_world/common/points_counter.dart';
 import 'package:better_world/leaderboard/leaderboard_screen.dart';
 import 'package:better_world/main_map/game_completed_congrats_widget.dart';
@@ -55,7 +55,7 @@ class _MainMapScreenState extends State<MainMapScreen> with SingleTickerProvider
       if (_shouldShowAllChallengesCongrats && !_hasSeenBadgeDialog) {
         NavigationHelper.showWithWidgetBinding(
           context,
-          BadgeDialog.gameCompleted(),
+          BadgeDialog.gameCompleted(playerProgress: playerProgressController),
         );
         _hasSeenBadgeDialog = true;
       }

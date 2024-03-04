@@ -21,7 +21,7 @@ class WorldHeroBadgeTile extends StatelessWidget {
       onTap: () => shouldDisplayAchievement
           ? NavigationHelper.show(
               context,
-              BadgeDialog.gameCompleted(),
+              BadgeDialog.gameCompleted(playerProgress: playerProgress),
             )
           : null,
       child: Column(
