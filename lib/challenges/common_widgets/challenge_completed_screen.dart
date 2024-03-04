@@ -1,7 +1,6 @@
-import 'package:better_world/challenges/common_widgets/badge_dialog.dart';
-import 'package:confetti/confetti.dart';
 import 'package:better_world/audio/audio_controller.dart';
 import 'package:better_world/audio/sounds.dart';
+import 'package:better_world/challenges/common_widgets/badge_dialog.dart';
 import 'package:better_world/challenges/common_widgets/finished_challenge_buttons.dart';
 import 'package:better_world/challenges/common_widgets/score_container.dart';
 import 'package:better_world/challenges/trees_challenge/challenge_summary_entity.dart';
@@ -11,6 +10,7 @@ import 'package:better_world/player_progress/player_progress_controller.dart';
 import 'package:better_world/style/confetti_animation.dart';
 import 'package:better_world/style/gaps.dart';
 import 'package:better_world/style/palette.dart';
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -60,7 +60,11 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
     if (scoreBeforeUpdate == null || scoreBeforeUpdate == 0) {
       NavigationHelper.show(
         context,
-        BadgeDialog.challengeCompleted(challengeType: widget.challengeSummary.challengeType),
+        BadgeDialog.challengeCompleted(
+          challengeType: widget.challengeSummary.challengeType,
+          playerProgress: playerProgress,
+          score: widget.challengeSummary.score,
+        ),
       );
     }
   }
