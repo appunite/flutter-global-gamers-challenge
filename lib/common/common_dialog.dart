@@ -24,67 +24,70 @@ class CommonDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      backgroundColor: Colors.transparent,
-      insetPadding: const EdgeInsets.only(top: 20),
-      child: Stack(
-        alignment: Alignment.center,
-        fit: StackFit.loose,
-        clipBehavior: Clip.none,
-        children: [
-          Container(
-            alignment: Alignment.center,
-            constraints: BoxConstraints(
-              maxWidth: 460,
-              maxHeight: kIsWeb || Platform.isMacOS ? 380 : MediaQuery.sizeOf(context).height * 0.8,
-              minHeight: 200,
-            ),
-            padding: const EdgeInsets.fromLTRB(24, 24, 24, 12),
-            decoration: BoxDecoration(
-              color: Palette.neutralWhite,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.symmetric(
-                horizontal: BorderSide(
-                  color: themeColor,
-                  width: 5,
-                ),
-                vertical: BorderSide(
-                  color: themeColor,
-                  width: 3,
-                ),
+    return PopScope(
+      canPop: false,
+      child: Dialog(
+        backgroundColor: Colors.transparent,
+        insetPadding: const EdgeInsets.only(top: 20),
+        child: Stack(
+          alignment: Alignment.center,
+          fit: StackFit.loose,
+          clipBehavior: Clip.none,
+          children: [
+            Container(
+              alignment: Alignment.center,
+              constraints: BoxConstraints(
+                maxWidth: 460,
+                maxHeight: kIsWeb || Platform.isMacOS ? 380 : MediaQuery.sizeOf(context).height * 0.8,
+                minHeight: 200,
               ),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Flexible(
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 16),
-                      child: content,
-                    ),
+              padding: const EdgeInsets.fromLTRB(24, 24, 24, 12),
+              decoration: BoxDecoration(
+                color: Palette.neutralWhite,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.symmetric(
+                  horizontal: BorderSide(
+                    color: themeColor,
+                    width: 5,
+                  ),
+                  vertical: BorderSide(
+                    color: themeColor,
+                    width: 3,
                   ),
                 ),
-                gap8,
-                bottom,
-              ],
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Flexible(
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 16),
+                        child: content,
+                      ),
+                    ),
+                  ),
+                  gap8,
+                  bottom,
+                ],
+              ),
             ),
-          ),
-          Positioned(
-            top: -30,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: ribbon,
-            ),
-          ),
-          if (ecoImage != null)
             Positioned(
-              left: -105,
-              bottom: -4,
-              child: SvgPicture.asset(ecoImage!),
+              top: -30,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: ribbon,
+              ),
             ),
-        ],
+            if (ecoImage != null)
+              Positioned(
+                left: -105,
+                bottom: -4,
+                child: SvgPicture.asset(ecoImage!),
+              ),
+          ],
+        ),
       ),
     );
   }

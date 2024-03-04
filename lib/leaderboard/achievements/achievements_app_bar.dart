@@ -1,7 +1,7 @@
 import 'package:better_world/common/asset_paths.dart';
 import 'package:better_world/common/back_button.dart';
 import 'package:better_world/common/ribbon_header.dart';
-import 'package:better_world/style/gaps.dart';
+import 'package:better_world/style/const_values.dart';
 import 'package:flutter/material.dart';
 
 class AchievementsAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -9,16 +9,22 @@ class AchievementsAppBar extends StatelessWidget implements PreferredSizeWidget 
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Stack(
+      alignment: Alignment.center,
       children: [
-        gap16,
-        GameBackButton(),
-        Spacer(),
-        RibbonHeader(
+        const RibbonHeader(
           text: 'Achievements',
           ribbonImage: AssetPaths.ribbonYellow,
         ),
-        Spacer(),
+        Align(
+          alignment: Alignment.topLeft,
+          child: SafeArea(
+            child: Padding(
+              padding: displayAdditionalPadding ? const EdgeInsets.all(8.0) : EdgeInsets.zero,
+              child: const GameBackButton(),
+            ),
+          ),
+        )
       ],
     );
   }

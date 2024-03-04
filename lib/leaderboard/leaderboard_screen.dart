@@ -6,6 +6,7 @@ import 'package:better_world/common/success_snack_bar.dart';
 import 'package:better_world/leaderboard/achievements/achievements_screen.dart';
 import 'package:better_world/leaderboard/leaderboard_controller.dart';
 import 'package:better_world/leaderboard/widgets/leaderboard_list_tile.dart';
+import 'package:better_world/leaderboard/widgets/skeleton_loading.dart';
 import 'package:better_world/player_progress/entities/challenges_entity.dart';
 import 'package:better_world/player_progress/persistence/database_persistence.dart';
 import 'package:better_world/player_progress/persistence/local_player_persistence.dart';
@@ -67,28 +68,25 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
           builder: (context, leaderboard, child) {
             return Scaffold(
               backgroundColor: Palette.accent,
-              body: leaderboard == null
-                  //TODO(kostrzewski): Create fun animation widget
-                  ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : Stack(
+              body: Stack(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 124),
+                    child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 124),
+                        Expanded(
                           child: Column(
                             children: [
+                              gap16,
+                              const RibbonHeader(
+                                text: 'Leaderboard',
+                                ribbonImage: AssetPaths.ribbonYellow,
+                              ),
+                              gap18,
                               Expanded(
-                                child: Column(
-                                  children: [
-                                    gap24,
-                                    const RibbonHeader(
-                                      text: 'Leaderboard',
-                                      ribbonImage: AssetPaths.ribbonYellow,
-                                    ),
-                                    gap18,
-                                    Expanded(
-                                      child: ListView.separated(
+                                child: leaderboard == null
+                                    ? const SkeletonLoading()
+                                    : ListView.separated(
                                         itemCount: leaderboard.players.length,
                                         separatorBuilder: (_, __) => gap8,
                                         itemBuilder: (context, int index) {
@@ -101,44 +99,60 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                                           );
                                         },
                                       ),
-                                    ),
-                                  ],
-                                ),
                               ),
-                              gap8,
-                              LeaderboardListTile(
-                                index: leaderboard.players.indexWhere((player) => player == leaderboard.player) + 1,
-                                username: leaderboard.player.nick,
-                                score: leaderboard.player.challengesScores.getAllChallengesScores(),
-                                color: Palette.accentLight,
-                              ),
-                              gap32,
+                              gap4,
                             ],
                           ),
                         ),
-                        Align(
-                          alignment: Alignment.bottomLeft,
-                          child: SafeArea(
-                            child: Padding(
-                              padding: displayAdditionalPadding ? const EdgeInsets.all(8.0) : EdgeInsets.zero,
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  GameIconButton(
-                                    onTap: () => context.push(AchievementsScreen.routePath),
-                                    iconName: AssetPaths.iconsBadges,
-                                    width: 56,
-                                    height: 56,
-                                  ),
-                                  gap16,
-                                  const MapButton(),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+                        leaderboard != null
+                            ? Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 5,
+                                      offset: const Offset(2, 8),
+                                      color: Palette.accentDark.withOpacity(0.3),
+                                      spreadRadius: 0.5,
+                                    ),
+                                  ],
+                                ),
+                                padding: const EdgeInsets.only(top: 8),
+                                child: LeaderboardListTile(
+                                  index: leaderboard.players.indexWhere((player) => player == leaderboard.player) + 1,
+                                  username: leaderboard.player.nick,
+                                  score: leaderboard.player.challengesScores.getAllChallengesScores(),
+                                  color: Palette.accentLight,
+                                ),
+                              )
+                            : const SizedBox.shrink(),
+                        gap32,
                       ],
                     ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomLeft,
+                    child: SafeArea(
+                      child: Padding(
+                        padding: displayAdditionalPadding ? const EdgeInsets.all(8.0) : EdgeInsets.zero,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            GameIconButton(
+                              onTap: () => context.push(AchievementsScreen.routePath),
+                              iconName: AssetPaths.iconsBadges,
+                              width: 56,
+                              height: 56,
+                            ),
+                            gap16,
+                            const MapButton(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             );
           },
         ),

@@ -13,6 +13,7 @@ class Palette {
   static const accent = Color(0xFFFDDF76);
   static const accentDark = Color(0xFFD7A72D);
   static const accentLight = Color(0xFFFEF2C7);
+  static const accentSkeleton = Color.fromARGB(255, 248, 232, 176);
   static const accentBackground = Color(0xFFF19D3A);
 
   static const neutralWhite = Color(0xFFFFFCFE);
