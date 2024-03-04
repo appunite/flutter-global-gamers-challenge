@@ -2,10 +2,11 @@ import 'dart:io';
 
 import 'package:add_to_google_wallet/widgets/add_to_google_wallet_button.dart';
 import 'package:better_world/challenges/challenge_type_enum.dart';
+import 'package:better_world/challenges/common_widgets/google_wallet_badge_json.dart';
 import 'package:better_world/common/asset_paths.dart';
 import 'package:better_world/common/common_dialog.dart';
 import 'package:better_world/common/ribbon_header.dart';
-import 'package:better_world/main_map/main_map_screen.dart';
+import 'package:better_world/common/success_snack_bar.dart';
 import 'package:better_world/player_progress/entities/challenges_entity.dart';
 import 'package:better_world/player_progress/player_progress_controller.dart';
 import 'package:better_world/style/const_values.dart';
@@ -15,7 +16,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:uuid/uuid.dart';
+import 'package:provider/provider.dart';
 
 class BadgeDialog extends StatelessWidget {
   const BadgeDialog({
@@ -24,7 +25,6 @@ class BadgeDialog extends StatelessWidget {
     required this.badgeDescription,
     required this.badgeAsset,
     required this.isGameFinished,
-    required this.playerProgress,
     this.score,
     this.challengeType,
   });
@@ -38,7 +38,6 @@ class BadgeDialog extends StatelessWidget {
       badgeTitle: challengeType.badgeTitle,
       badgeDescription: challengeType.badgeDescription,
       badgeAsset: challengeType.badgeAsset,
-      playerProgress: playerProgress,
       score: score ?? challengeType.getChallengeScore(playerProgress.challenges),
       challengeType: challengeType,
       isGameFinished: false,
@@ -48,30 +47,42 @@ class BadgeDialog extends StatelessWidget {
   factory BadgeDialog.gameCompleted({
     required PlayerProgressController playerProgress,
   }) {
-    return BadgeDialog(
+    return const BadgeDialog(
       badgeTitle: gameCompletedBadgeTitle,
       badgeDescription: gameCompletedBadgeDescription,
       badgeAsset: gameCompletedBadgeAsset,
       isGameFinished: true,
-      playerProgress: playerProgress,
     );
   }
 
   final String badgeTitle;
   final String badgeDescription;
   final String badgeAsset;
-  final PlayerProgressController playerProgress;
   final ChallengeType? challengeType;
   final int? score;
   final bool isGameFinished;
 
   @override
   Widget build(BuildContext context) {
+    final playerProgress = context.watch<PlayerProgressController>();
+
     final String badgeJSON = isGameFinished
-        ? replacePlaceholders(_badgePass, playerProgress.challenges.getAllChallengesScores(), gameCompletedBadgeUrl,
-            playerProgress.playerNick, gameCompletedLogoUrl, badgeTitle)
-        : replacePlaceholders(_badgePass, score!, challengeType!.badgeUrl, playerProgress.playerNick,
-            challengeType!.badgeLogoUrl, badgeTitle);
+        ? replacePlaceholders(
+            googleWalletBadgePass,
+            playerProgress.challenges.getAllChallengesScores(),
+            gameCompletedBadgeUrl,
+            playerProgress.playerNick,
+            gameCompletedLogoUrl,
+            badgeTitle,
+          )
+        : replacePlaceholders(
+            googleWalletBadgePass,
+            score!,
+            challengeType!.badgeUrl,
+            playerProgress.playerNick,
+            challengeType!.badgeLogoUrl,
+            badgeTitle,
+          );
 
     return CommonDialog(
       content: Column(
@@ -158,72 +169,25 @@ class BadgeDialog extends StatelessWidget {
   void _onError(BuildContext context, Object error) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: Colors.red,
+        backgroundColor: Palette.error,
         content: Text(error.toString()),
       ),
     );
   }
 
-  void _onSuccess(BuildContext context) => context.go(MainMapScreen.routePath);
+  void _onSuccess(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      CustomSnackBarBuilder(
+        icon: SvgPicture.asset(
+          AssetPaths.iconsCheckmark,
+          height: 32,
+          width: 32,
+        ),
+        title: 'Your badge is saved!',
+      ),
+    );
+    context.pop();
+  }
 
   void _onCanceled(BuildContext context) => context.pop();
 }
-
-final String _passId = const Uuid().v4();
-const String _passClass = 'test';
-const String _issuerId = '3388000000022304025';
-const String _issuerEmail = 'jk.jakubkostrzewski@gmail.com';
-
-final String _badgePass = """
-{
-  "iss": "$_issuerEmail",
-  "aud": "google",
-  "typ": "savetowallet",
-  "origins": [],
-  "payload": {
-    "genericObjects": [
-      {
-        "id": "$_issuerId.$_passId",
-        "classId": "$_issuerId.$_passClass",
-        "genericType": "GENERIC_TYPE_UNSPECIFIED",
-        "hexBackgroundColor": "#3caefb",
-        "logo": {
-          "sourceUri": {
-            "uri": "BADGE_IMAGE_REPLACEMENT"
-          }
-        },
-        "cardTitle": {
-          "defaultValue": {
-            "language": "en",
-            "value": "TITLE_REPLACEMENT"
-          }
-        },
-        "subheader": {
-          "defaultValue": {
-            "language": "en",
-            "value": "NICK_REPLACEMENT"
-          }
-        },
-        "header": {
-          "defaultValue": {
-            "language": "en",
-            "value": "POINTS_REPLACEMENT points"
-          }
-        },
-        "heroImage": {
-          "sourceUri": {
-            "uri": "BADGE_HERO_REPLACEMENT"
-          }
-        },
-        "textModulesData": [
-          {
-            "header": "POINTS",
-            "body": "POINTS_REPLACEMENT",
-            "id": "points"
-          }
-        ]
-      }
-    ]
-  }
-}
-""";
