@@ -50,6 +50,7 @@ class _SolarPanelChallengeBodyScreenState extends State<_SolarPanelChallengeBody
   late double _scratchedValue = 0;
   late int _timeInSeconds = 10;
   PausableTimer? _timer;
+  static const _scoreMultiplier = 1.2;
 
   @override
   void initState() {
@@ -82,7 +83,7 @@ class _SolarPanelChallengeBodyScreenState extends State<_SolarPanelChallengeBody
       const Duration(seconds: 1),
       () {
         if (_timeInSeconds <= 0) {
-          _challengeController.addPoints(points: _scratchedValue.toInt());
+          _challengeController.addPoints(points: (_scratchedValue * _scoreMultiplier).toInt());
           _timer?.cancel();
 
           _challengeController.onChallengeFinished(challengeType: ChallengeType.solarPanel);
@@ -145,7 +146,7 @@ class _SolarPanelChallengeBodyScreenState extends State<_SolarPanelChallengeBody
         child: Scaffold(
           extendBodyBehindAppBar: true,
           appBar: ChallengeAppBar(
-            score: (_scratchedValue * 1.2).toInt(),
+            score: (_scratchedValue * _scoreMultiplier).toInt(),
             timeInSeconds: _timeInSeconds,
             countDown: true,
             actions: [
@@ -162,7 +163,7 @@ class _SolarPanelChallengeBodyScreenState extends State<_SolarPanelChallengeBody
                   height: 260,
                   width: 560,
                   child: Scratcher(
-                    rebuildOnResize: false,
+                    rebuildOnResize: true,
                     brushSize: 20,
                     color: Colors.transparent,
                     threshold: 100,
@@ -203,17 +204,17 @@ class _SolarPanelChallengeBodyScreenState extends State<_SolarPanelChallengeBody
 
   bool _isScratchingEnabled() => !(_timer?.isCancelled ?? false);
 
-  @override
-  void dispose() {
-    _timer?.cancel();
-    _challengeController.dispose();
-    super.dispose();
-  }
-
   void _showExitDialog() {
     NavigationHelper.showWithWidgetBinding(
       context,
       const ExitChallengeDialog(),
     );
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    _challengeController.dispose();
+    super.dispose();
   }
 }

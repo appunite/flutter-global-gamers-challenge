@@ -1,29 +1,19 @@
 import 'package:better_world/challenges/challenge_type_enum.dart';
-import 'package:better_world/common/navigation_helper.dart';
-import 'package:better_world/leaderboard/introduction/leaderboard_introduction_dialog.dart';
-import 'package:better_world/main_map/main_map_screen.dart';
-import 'package:better_world/player_progress/entities/challenges_entity.dart';
 import 'package:better_world/player_progress/player_progress_controller.dart';
 import 'package:better_world/style/gaps.dart';
 import 'package:better_world/style/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class FinishedChallengeButtons extends StatefulWidget {
+class FinishedChallengeButtons extends StatelessWidget {
   const FinishedChallengeButtons({
     super.key,
     required this.challengeType,
   });
 
   final ChallengeType challengeType;
-
-  @override
-  State<FinishedChallengeButtons> createState() => _FinishedChallengeButtonsState();
-}
-
-class _FinishedChallengeButtonsState extends State<FinishedChallengeButtons> {
-  bool _isPressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,33 +29,15 @@ class _FinishedChallengeButtonsState extends State<FinishedChallengeButtons> {
             onPressed: (_) {
               final playerProgress = context.read<PlayerProgressController>();
               playerProgress.loadPlayerData();
-              context.go(widget.challengeType.routePath);
+              context.go(challengeType.routePath);
             },
           ),
           gap12,
           MainButton(
-            width: 170,
-            text: 'Go to Map',
-            isLoading: _isPressed,
+            width: 230,
+            text: 'Learn & Donate',
             onPressed: (_) {
-              if (!_isPressed) {
-                final playerProgress = context.read<PlayerProgressController>();
-                playerProgress.loadPlayerData();
-
-                if (playerProgress.challenges.getPlayedChallengesCount() == 0) {
-                  NavigationHelper.show(
-                    context,
-                    const LeaderboardIntroductionDialog(shouldGoToLeaderBoardScreen: true),
-                  );
-                } else {
-                  setState(() {
-                    _isPressed = true;
-                  });
-                  Future.delayed(const Duration(seconds: 1), () {
-                    context.go(MainMapScreen.routePath);
-                  });
-                }
-              }
+              launchUrl(Uri.parse(challengeType.organizationUrl));
             },
           ),
         ],

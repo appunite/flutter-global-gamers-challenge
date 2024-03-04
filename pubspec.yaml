@@ -44,6 +44,7 @@ dependencies:
   shared_preferences: ^2.2.2
   skeletons: ^0.0.3
   smart_snackbars: ^1.0.0
+  url_launcher: ^6.2.5
   uuid: ^4.3.3
   wakelock_plus: ^1.1.4
 

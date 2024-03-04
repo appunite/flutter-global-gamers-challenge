@@ -20,7 +20,7 @@ class AchievementsAppBar extends StatelessWidget implements PreferredSizeWidget 
           alignment: Alignment.topLeft,
           child: SafeArea(
             child: Padding(
-              padding: displayAdditionalPadding ? const EdgeInsets.all(8.0) : EdgeInsets.zero,
+              padding: displayAdditionalPadding ? const EdgeInsets.all(8) : EdgeInsets.zero,
               child: const GameBackButton(),
             ),
           ),

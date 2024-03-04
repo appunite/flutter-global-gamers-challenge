@@ -1,6 +1,8 @@
+import 'package:better_world/challenges/common_widgets/badge_dialog.dart';
+import 'package:better_world/challenges/common_widgets/challenge_finish_map_button.dart';
+import 'package:confetti/confetti.dart';
 import 'package:better_world/audio/audio_controller.dart';
 import 'package:better_world/audio/sounds.dart';
-import 'package:better_world/challenges/common_widgets/badge_dialog.dart';
 import 'package:better_world/challenges/common_widgets/finished_challenge_buttons.dart';
 import 'package:better_world/challenges/common_widgets/score_container.dart';
 import 'package:better_world/challenges/trees_challenge/challenge_summary_entity.dart';
@@ -10,7 +12,6 @@ import 'package:better_world/player_progress/player_progress_controller.dart';
 import 'package:better_world/style/confetti_animation.dart';
 import 'package:better_world/style/gaps.dart';
 import 'package:better_world/style/palette.dart';
-import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -41,12 +42,6 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
     context.read<AudioController>().playSfx(SfxType.challengeSuccessful);
   }
 
-  @override
-  void dispose() {
-    _confettiController.dispose();
-    super.dispose();
-  }
-
   Future<void> _showIntroDialog() async {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _showBadgeDialog();
@@ -71,13 +66,13 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Scaffold(
-          resizeToAvoidBottomInset: false,
-          backgroundColor: Palette.accentBackground,
-          body: SafeArea(
-            child: SingleChildScrollView(
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Palette.accentBackground,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
@@ -104,19 +99,29 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
                 ],
               ),
             ),
-          ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: FinishedChallengeButtons(
-            challengeType: widget.challengeSummary.challengeType,
-          ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: ConfettiAnimation(
+                confettiController: _confettiController,
+              ),
+            ),
+            const Align(
+              alignment: Alignment.bottomLeft,
+              child: ChallengeFinishMapButton(),
+            ),
+          ],
         ),
-        Align(
-          alignment: Alignment.topCenter,
-          child: ConfettiAnimation(
-            confettiController: _confettiController,
-          ),
-        ),
-      ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FinishedChallengeButtons(
+        challengeType: widget.challengeSummary.challengeType,
+      ),
     );
+  }
+
+  @override
+  void dispose() {
+    _confettiController.dispose();
+    super.dispose();
   }
 }
