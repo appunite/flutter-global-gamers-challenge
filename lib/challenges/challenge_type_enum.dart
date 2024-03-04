@@ -26,6 +26,7 @@ enum ChallengeType {
         'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fpipes_badge.svg?alt=media&token=3129490c-2ba9-4e5e-8c97-3f407bbde5c1',
     badgeUrl:
         'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fpipes_badge_hero.svg?alt=media&token=ec085b24-8573-4363-aa3e-faef9bb6ea41',
+    organizationUrl: 'https://www.unep.org/explore-topics/water/what-we-do/global-wastewater-initiative-gwwi',
   ),
   recycling(
     title: 'Recycle Rush',
@@ -43,6 +44,7 @@ enum ChallengeType {
         'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Frecycling_badge.svg?alt=media&token=d3bd2cf9-3e33-4f13-84b9-2d8501caeb7d',
     badgeUrl:
         'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Frecycling_badge_hero.svg?alt=media&token=cde27413-c3b3-4968-91a9-4865bf0d7ce6',
+    organizationUrl: 'https://www.bir.org',
   ),
   solarPanel(
     title: 'Solar Panel Cleanup',
@@ -60,6 +62,7 @@ enum ChallengeType {
         'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fpanel_badge.svg?alt=media&token=67d72897-2950-4ab8-8b16-465810fbefdf',
     badgeUrl:
         'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fpanel_badge_hero.svg?alt=media&token=8ac058c7-c9ac-4cf9-8cde-985b3a6f6362',
+    organizationUrl: 'https://www.eurosolar.org/donate/',
   ),
   trees(
     title: 'Plant a Forest',
@@ -77,6 +80,7 @@ enum ChallengeType {
         'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Ftrees_badge.svg?alt=media&token=d37f5658-7bff-4ac0-9c74-3118edfd9747',
     badgeUrl:
         'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Ftrees_badge_hero.svg?alt=media&token=7338baa7-9813-489a-bf0d-7ba822b4fd67',
+    organizationUrl: 'https://onetreeplanted.org/products/plant-trees',
   ),
   ocean(
     title: 'Plastic Free',
@@ -94,6 +98,7 @@ enum ChallengeType {
         'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Focean_badge.svg?alt=media&token=37884bd4-ba2d-4164-a8e0-f64a83cfbb5e',
     badgeUrl:
         'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Focean_badge_hero.svg?alt=media&token=3c32d76b-f6ee-4240-ba97-e3bb75bda74c',
+    organizationUrl: 'https://theoceancleanup.com/help-clean/',
   ),
   lightsOut(
     title: 'Lights Out Challenge',
@@ -111,6 +116,7 @@ enum ChallengeType {
         'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Flights_off_badge.svg?alt=media&token=6b7347e2-277b-4690-8e52-01f82692f074',
     badgeUrl:
         'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Flights_off_badge_hero.svg?alt=media&token=0d66abb8-7be2-411f-a64d-d5a436d3647e',
+    organizationUrl: 'https://www.savingourstars.org/howtohelp',
   );
 
   const ChallengeType({
@@ -127,6 +133,7 @@ enum ChallengeType {
     required this.badgeTitle,
     required this.badgeUrl,
     required this.badgeLogoUrl,
+    required this.organizationUrl,
   });
 
   final String title;
@@ -142,6 +149,7 @@ enum ChallengeType {
   final String badgeTitle;
   final String badgeUrl;
   final String badgeLogoUrl;
+  final String organizationUrl;
 
   int? getChallengeScore(ChallengesEntity challenges) {
     return switch (this) {

@@ -1,4 +1,8 @@
 import 'package:better_world/challenges/common_widgets/badge_dialog.dart';
+import 'package:better_world/common/map_button.dart';
+import 'package:better_world/leaderboard/introduction/leaderboard_introduction_dialog.dart';
+import 'package:better_world/main_map/main_map_screen.dart';
+import 'package:better_world/player_progress/entities/challenges_entity.dart';
 import 'package:confetti/confetti.dart';
 import 'package:better_world/audio/audio_controller.dart';
 import 'package:better_world/audio/sounds.dart';
@@ -12,6 +16,7 @@ import 'package:better_world/style/confetti_animation.dart';
 import 'package:better_world/style/gaps.dart';
 import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class ChallengeCompletedScreen extends StatefulWidget {
@@ -67,13 +72,13 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Scaffold(
-          resizeToAvoidBottomInset: false,
-          backgroundColor: Palette.accentBackground,
-          body: SafeArea(
-            child: SingleChildScrollView(
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Palette.accentBackground,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
@@ -100,19 +105,39 @@ class _ChallengeCompletedScreenState extends State<ChallengeCompletedScreen> {
                 ],
               ),
             ),
-          ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: FinishedChallengeButtons(
-            challengeType: widget.challengeSummary.challengeType,
-          ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: ConfettiAnimation(
+                confettiController: _confettiController,
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: MapButton(
+                onTap: () {
+                  final playerProgress = context.read<PlayerProgressController>();
+                  playerProgress.loadPlayerData();
+
+                  if (playerProgress.challenges.getPlayedChallengesCount() == 0) {
+                    NavigationHelper.show(
+                      context,
+                      const LeaderboardIntroductionDialog(shouldGoToLeaderBoardScreen: true),
+                    );
+                  } else {
+                    Future.delayed(const Duration(milliseconds: 900), () {
+                      context.go(MainMapScreen.routePath);
+                    });
+                  }
+                },
+              ),
+            ),
+          ],
         ),
-        Align(
-          alignment: Alignment.topCenter,
-          child: ConfettiAnimation(
-            confettiController: _confettiController,
-          ),
-        ),
-      ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FinishedChallengeButtons(
+        challengeType: widget.challengeSummary.challengeType,
+      ),
     );
   }
 }

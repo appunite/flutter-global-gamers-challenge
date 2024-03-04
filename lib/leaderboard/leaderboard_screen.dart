@@ -134,7 +134,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                     alignment: Alignment.bottomLeft,
                     child: SafeArea(
                       child: Padding(
-                        padding: displayAdditionalPadding ? const EdgeInsets.all(8.0) : EdgeInsets.zero,
+                        padding: displayAdditionalPadding ? const EdgeInsets.all(8) : EdgeInsets.zero,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [

@@ -131,7 +131,7 @@ class _MainMapScreenState extends State<MainMapScreen> with SingleTickerProvider
           alignment: Alignment.bottomLeft,
           child: SafeArea(
             child: Padding(
-              padding: displayAdditionalPadding ? const EdgeInsets.all(8.0) : EdgeInsets.zero,
+              padding: displayAdditionalPadding ? const EdgeInsets.all(8) : EdgeInsets.zero,
               child: GameIconButton(
                 iconName: AssetPaths.leaderboard,
                 width: 56,
@@ -145,7 +145,7 @@ class _MainMapScreenState extends State<MainMapScreen> with SingleTickerProvider
           alignment: Alignment.bottomRight,
           child: SafeArea(
             child: Padding(
-              padding: displayAdditionalPadding ? const EdgeInsets.all(8.0) : EdgeInsets.zero,
+              padding: displayAdditionalPadding ? const EdgeInsets.all(8) : EdgeInsets.zero,
               child: GameIconButton(
                 iconName: AssetPaths.settings,
                 width: 56,
