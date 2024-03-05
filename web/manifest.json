@@ -1,11 +1,11 @@
 {
-    "name": "endless_runner",
-    "short_name": "endless_runner",
+    "name": "better_world",
+    "short_name": "better_world",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "A Better World game built with Flutter and Flame",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
