@@ -27,6 +27,4 @@ class PlayerEntity with _$PlayerEntity {
       );
 
   factory PlayerEntity.fromJson(Map<String, dynamic> json) => _$PlayerEntityFromJson(json);
-
-  getAllChallengesScores() {}
 }
