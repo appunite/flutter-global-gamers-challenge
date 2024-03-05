@@ -28,7 +28,7 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
         ecoTextBubbleType: EcoTextBubbleType.values[_currentStepIndex],
         buttonVisible: true,
         onButtonPressed: () {
-          if (_currentStepIndex == 0 && kIsWeb) {
+          if (kIsWeb && _currentStepIndex == 0) {
             context.read<AudioController>().playCurrentSongInPlaylist();
           }
           if (_currentStepIndex >= EcoTextBubbleType.values.length) {
