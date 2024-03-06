@@ -39,7 +39,11 @@ class ChallengeIntroductionDialog extends StatelessWidget {
           ),
           gap12,
           InstructionContainer(
-            text: challenge.instruction1,
+            text: challenge == ChallengeType.ocean
+                ? challenge.instruction1.oceanPlatformWording()
+                : challenge == ChallengeType.lightsOut
+                    ? challenge.instruction1.lightsOutPlatformWording()
+                    : challenge.instruction1,
             assetPath: challenge.instructionAsset1,
           ),
           gap12,

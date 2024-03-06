@@ -5,9 +5,9 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 
-import '../endless_world.dart';
+import '../lights_out_world.dart';
 
-class Lamp extends SpriteComponent with HasWorldReference<EndlessWorld> {
+class Lamp extends SpriteComponent with HasWorldReference<LightsOutWorld> {
   Lamp.small({required double xPosition})
       : _srcSize = Vector2(64, 262),
         _srcPosition = Vector2.zero(),

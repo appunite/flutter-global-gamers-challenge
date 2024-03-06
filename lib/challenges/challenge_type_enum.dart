@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:better_world/challenges/ocean_shooter/ocean_challenge_screen.dart';
 import 'package:better_world/challenges/pipes_challenge/pipes_challenge_screen.dart';
 import 'package:better_world/challenges/recycling_challenge/recycling_challenge_screen.dart';
@@ -6,6 +8,7 @@ import 'package:better_world/challenges/trees_challenge/trees_challenge_screen.d
 import 'package:better_world/common/asset_paths.dart';
 import 'package:better_world/challenges/lights_out_challenge/lights_out_challenge_screen.dart';
 import 'package:better_world/player_progress/entities/challenges_entity.dart';
+import 'package:flutter/foundation.dart';
 
 enum ChallengeType {
   pipelines(
@@ -85,7 +88,7 @@ enum ChallengeType {
   ocean(
     title: 'Plastic Free',
     description: 'Oceans are polluted with plastics. Cleaning them helps marine life thrive.',
-    instruction1: 'Use your finger or mouse to move the ship and aim to shoot micro-plastics.',
+    instruction1: 'Use platformKey to move the ship and aim to shoot micro-plastics.',
     instruction2: 'Earn 1 point for each plastic shot in 30 seconds.',
     instructionAsset1: AssetPaths.infoPlastics1,
     instructionAsset2: AssetPaths.infoPlastics2,
@@ -103,7 +106,7 @@ enum ChallengeType {
   lightsOut(
     title: 'Lights Out Challenge',
     description: 'Turning off lights saves power and protects wildlife.',
-    instruction1: 'Tap or click on the screen to make Eco jump and switch off lights to reduce energy waste.',
+    instruction1: 'platformKey to make Eco jump and switch off lights to reduce energy waste.',
     instruction2: 'Turn off as many lights as you can in 30 seconds and earn points.',
     completedText: 'Your action in reducing light pollution\n helps save energy and protect nocturnal wildlife.',
     routePath: LightsOutChallengeScreen.routePath,
@@ -160,5 +163,29 @@ enum ChallengeType {
       ChallengeType.solarPanel => challenges.solarPanel,
       ChallengeType.trees => challenges.trees,
     };
+  }
+}
+
+extension StringExtension on String {
+  String oceanPlatformWording() {
+    String? str;
+    if (kIsWeb || Platform.isMacOS) {
+      str = 'your mouse or keyboard arrows';
+    } else {
+      str = 'your finger';
+    }
+
+    return replaceFirst('platformKey', str);
+  }
+
+  String lightsOutPlatformWording() {
+    String? str;
+    if (kIsWeb || Platform.isMacOS) {
+      str = 'Click on the screen or use spacebar';
+    } else {
+      str = 'Tap on the screen';
+    }
+
+    return replaceFirst('platformKey', str);
   }
 }
