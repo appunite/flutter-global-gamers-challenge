@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'dart:math';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:logging/logging.dart';
 
@@ -138,8 +139,8 @@ class AudioController {
     settingsController.musicOn.addListener(_musicOnHandler);
     settingsController.soundsOn.addListener(_soundsOnHandler);
 
-    if (settingsController.audioOn.value && settingsController.musicOn.value) {
-      _playCurrentSongInPlaylist();
+    if (settingsController.audioOn.value && settingsController.musicOn.value && !kIsWeb) {
+      playCurrentSongInPlaylist();
     }
   }
 
@@ -177,7 +178,7 @@ class AudioController {
     // Move the song that just finished playing to the end of the playlist.
     _playlist.addLast(_playlist.removeFirst());
     // Play the song at the beginning of the playlist.
-    _playCurrentSongInPlaylist();
+    playCurrentSongInPlaylist();
   }
 
   void _musicOnHandler() {
@@ -192,8 +193,8 @@ class AudioController {
     }
   }
 
-  Future<void> _playCurrentSongInPlaylist() async {
-    _log.info(() => 'Playing ${_playlist.first} now.');
+  Future<void> playCurrentSongInPlaylist() async {
+    _log.info('Playing ${_playlist.first} now.');
     try {
       await _musicPlayer.play(AssetSource('music/${_playlist.first.filename}'));
     } catch (e) {
@@ -238,7 +239,7 @@ class AudioController {
     if (_musicPlayer.source == null) {
       _log.info('No music source set. '
           'Start playing the current song in playlist.');
-      await _playCurrentSongInPlaylist();
+      await playCurrentSongInPlaylist();
       return;
     }
 
@@ -249,7 +250,7 @@ class AudioController {
       // Sometimes, resuming fails with an "Unexpected" error.
       _log.severe("Error resuming music", e);
       // Try starting the song from scratch.
-      _playCurrentSongInPlaylist();
+      playCurrentSongInPlaylist();
     }
   }
 
