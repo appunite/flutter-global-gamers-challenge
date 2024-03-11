@@ -16,6 +16,6 @@ const gameCompletedBadgeDescription =
     'You\'ve generated clean energy, conserved water, reduced light pollution, grown green spaces, and boosted recycling!';
 const gameCompletedBadgeAsset = AssetPaths.worldHeroBadge;
 const gameCompletedLogoUrl =
-    "https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2FBadges-5.jpg?alt=media&token=4737dea8-97b4-49e5-8f22-747554cb942b";
+    "https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2FBadges-2.jpg?alt=media&token=3c50c13c-9b4c-4016-8581-2457a3e49bbb";
 const gameCompletedBadgeUrl =
-    "https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fnew_badges%2Fwallet_badge_05.png?alt=media&token=b780f8dc-2cdb-4771-adbb-f1668857532e";
+    "https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fnew_badges%2Fwallet_badge_07.png?alt=media&token=4e47f77a-b24f-413f-8c04-8106e59de3a9";
