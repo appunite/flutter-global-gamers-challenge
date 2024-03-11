@@ -8,8 +8,8 @@ import 'package:flame/game.dart';
 
 import 'components/lights_out_eco.dart';
 
-class EndlessWorld extends World with TapCallbacks, HasGameReference {
-  EndlessWorld({
+class LightsOutWorld extends World with TapCallbacks, HasGameReference {
+  LightsOutWorld({
     required this.challengeController,
   });
 

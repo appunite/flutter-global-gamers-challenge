@@ -1,18 +1,18 @@
+import 'package:better_world/audio/sounds.dart';
 import 'package:better_world/challenges/challenge_controller.dart';
 import 'package:better_world/common/asset_paths.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
-import '../../../audio/sounds.dart';
-import '../endless_runner.dart';
-import '../endless_world.dart';
+import '../lights_out_runner.dart';
+import '../lights_out_world.dart';
 import '../jump_effect.dart';
 import 'lamp.dart';
 
 /// The [LightsOutEco] is the component that the physical player of the game is
 /// controlling.
 class LightsOutEco extends SpriteAnimationGroupComponent<EcoLightsOutState>
-    with CollisionCallbacks, HasWorldReference<EndlessWorld>, HasGameReference<EndlessRunner> {
+    with CollisionCallbacks, HasWorldReference<LightsOutWorld>, HasGameReference<LightsOutRunner> {
   LightsOutEco({
     required this.addScore,
     required this.challengeController,

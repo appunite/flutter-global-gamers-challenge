@@ -18,7 +18,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../audio/audio_controller.dart';
-import 'endless_runner.dart';
+import 'lights_out_runner.dart';
 
 class LightsOutChallengeScreen extends StatelessWidget {
   const LightsOutChallengeScreen({super.key});
@@ -63,9 +63,9 @@ class _LightsOutChallengeBodyScreenState extends State<LightsOutChallengeBodyScr
     final audioController = context.read<AudioController>();
 
     return Scaffold(
-      body: GameWidget<EndlessRunner>(
+      body: GameWidget<LightsOutRunner>(
         key: const Key('play session'),
-        game: EndlessRunner(
+        game: LightsOutRunner(
           audioController: audioController,
           challengeController: context.read<ChallengeController>(),
         ),
@@ -137,7 +137,7 @@ class _LightsOutChallengeBodyScreenState extends State<LightsOutChallengeBodyScr
               ),
             );
           },
-          LightsOutChallengeScreen.winDialogKey: (BuildContext context, EndlessRunner game) {
+          LightsOutChallengeScreen.winDialogKey: (BuildContext context, LightsOutRunner game) {
             final challengeController = context.read<ChallengeController>();
             challengeController.addListener(() {
               if (challengeController.challengeSummary != null) {
@@ -154,12 +154,12 @@ class _LightsOutChallengeBodyScreenState extends State<LightsOutChallengeBodyScr
     );
   }
 
-  void _closeAndResume(BuildContext context, EndlessRunner game) {
+  void _closeAndResume(BuildContext context, LightsOutRunner game) {
     context.pop();
     game.resumeEngine();
   }
 
-  void _showExitDialog(EndlessRunner game) {
+  void _showExitDialog(LightsOutRunner game) {
     game.pauseEngine();
     NavigationHelper.show(
       context,
