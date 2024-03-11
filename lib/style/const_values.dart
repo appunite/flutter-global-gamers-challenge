@@ -19,3 +19,4 @@ const gameCompletedLogoUrl =
     "https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2FBadges-2.jpg?alt=media&token=3c50c13c-9b4c-4016-8581-2457a3e49bbb";
 const gameCompletedBadgeUrl =
     "https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fnew_badges%2Fwallet_badge_07.png?alt=media&token=4e47f77a-b24f-413f-8c04-8106e59de3a9";
+const gameCompleteUUID = 'a3e6d9a0-1720-437d-b2a8-57d26b6de6f9';

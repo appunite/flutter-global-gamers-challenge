@@ -30,6 +30,7 @@ enum ChallengeType {
     badgeUrl:
         'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fnew_badges%2Fwallet_badge_06.png?alt=media&token=3f1facc8-65cd-4c92-b05d-c2610125841e',
     organizationUrl: 'https://www.unep.org/explore-topics/water/what-we-do/global-wastewater-initiative-gwwi',
+    uuid: '19e199a2-0582-4c24-bfd4-0e2eb764f8c0',
   ),
   recycling(
     title: 'Recycle Rush',
@@ -48,6 +49,7 @@ enum ChallengeType {
     badgeUrl:
         'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fnew_badges%2Fwallet_badge_05.png?alt=media&token=b780f8dc-2cdb-4771-adbb-f1668857532e',
     organizationUrl: 'https://www.bir.org',
+    uuid: '4d9ee8c5-f9b7-4378-8d7d-1ab63a2ac03d',
   ),
   solarPanel(
     title: 'Solar Panel Cleanup',
@@ -66,6 +68,7 @@ enum ChallengeType {
     badgeUrl:
         'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fnew_badges%2Fwallet_badge_01.png?alt=media&token=cbfd6b8d-b062-4db5-accd-ee0a55b37eb7',
     organizationUrl: 'https://www.eurosolar.org/donate/',
+    uuid: '3b2f82cf-6c54-4e68-a80e-999d6d226fe7',
   ),
   trees(
     title: 'Plant a Forest',
@@ -84,6 +87,7 @@ enum ChallengeType {
     badgeUrl:
         'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fnew_badges%2Fwallet_badge_03.png?alt=media&token=19d22b86-306d-402e-9ade-b496a5e39a10',
     organizationUrl: 'https://onetreeplanted.org/products/plant-trees',
+    uuid: 'ac3e10a6-7355-4dd1-927d-912998f27e7d',
   ),
   ocean(
     title: 'Plastic Free',
@@ -102,6 +106,7 @@ enum ChallengeType {
     badgeUrl:
         'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fnew_badges%2Fwallet_badge_04.png?alt=media&token=1272992a-d984-42c5-9fa3-4d4bdfef709a',
     organizationUrl: 'https://theoceancleanup.com/help-clean/',
+    uuid: 'd57a4ff4-2a51-4ae8-a93e-83c9fcdfe3e1',
   ),
   lightsOut(
     title: 'Lights Out Challenge',
@@ -120,6 +125,7 @@ enum ChallengeType {
     badgeUrl:
         'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2Fnew_badges%2Fwallet_badge_02.png?alt=media&token=c9e3fa1d-2b10-4761-992d-4df84e37edcc',
     organizationUrl: 'https://www.savingourstars.org/howtohelp',
+    uuid: 'f64c3820-4e6b-40f8-a0e3-93d5a7612f9d',
   );
 
   const ChallengeType({
@@ -137,6 +143,7 @@ enum ChallengeType {
     required this.badgeUrl,
     required this.badgeLogoUrl,
     required this.organizationUrl,
+    required this.uuid,
   });
 
   final String title;
@@ -153,6 +160,7 @@ enum ChallengeType {
   final String badgeUrl;
   final String badgeLogoUrl;
   final String organizationUrl;
+  final String uuid;
 
   int? getChallengeScore(ChallengesEntity challenges) {
     return switch (this) {
