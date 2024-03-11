@@ -17,7 +17,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:uuid/uuid.dart';
 
 class BadgeDialog extends StatelessWidget {
   const BadgeDialog({
@@ -75,6 +74,7 @@ class BadgeDialog extends StatelessWidget {
             playerProgress.playerNick,
             gameCompletedLogoUrl,
             badgeTitle,
+            gameCompleteUUID,
           )
         : replacePlaceholders(
             googleWalletBadgePass,
@@ -83,6 +83,7 @@ class BadgeDialog extends StatelessWidget {
             playerProgress.playerNick,
             challengeType!.badgeLogoUrl,
             badgeTitle,
+            challengeType!.uuid,
           );
 
     debugPrint(badgeJSON);
@@ -159,13 +160,14 @@ class BadgeDialog extends StatelessWidget {
     String nickReplacement,
     String badgeImageReplacement,
     String badgeTitle,
+    String uuid,
   ) {
     badgeJSON = badgeJSON.replaceAll("POINTS_REPLACEMENT", points.toString());
     badgeJSON = badgeJSON.replaceAll("BADGE_HERO_REPLACEMENT", badgeHero);
     badgeJSON = badgeJSON.replaceAll("NICK_REPLACEMENT", nickReplacement);
     badgeJSON = badgeJSON.replaceAll("BADGE_IMAGE_REPLACEMENT", badgeImageReplacement);
     badgeJSON = badgeJSON.replaceAll("TITLE_REPLACEMENT", badgeTitle);
-    badgeJSON = badgeJSON.replaceAll("UUID_REPLACEMENT", const Uuid().v4().toString());
+    badgeJSON = badgeJSON.replaceAll("UUID_REPLACEMENT", uuid);
 
     return badgeJSON;
   }
