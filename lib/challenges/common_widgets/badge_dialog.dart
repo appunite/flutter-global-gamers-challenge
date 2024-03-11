@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 
 class BadgeDialog extends StatelessWidget {
   const BadgeDialog({
@@ -83,6 +84,8 @@ class BadgeDialog extends StatelessWidget {
             challengeType!.badgeLogoUrl,
             badgeTitle,
           );
+
+    debugPrint(badgeJSON);
 
     return CommonDialog(
       content: Column(
@@ -162,6 +165,7 @@ class BadgeDialog extends StatelessWidget {
     badgeJSON = badgeJSON.replaceAll("NICK_REPLACEMENT", nickReplacement);
     badgeJSON = badgeJSON.replaceAll("BADGE_IMAGE_REPLACEMENT", badgeImageReplacement);
     badgeJSON = badgeJSON.replaceAll("TITLE_REPLACEMENT", badgeTitle);
+    badgeJSON = badgeJSON.replaceAll("UUID_REPLACEMENT", const Uuid().v4().toString());
 
     return badgeJSON;
   }

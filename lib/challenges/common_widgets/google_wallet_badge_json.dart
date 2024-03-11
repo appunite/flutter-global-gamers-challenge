@@ -1,11 +1,7 @@
-import 'package:uuid/uuid.dart';
-
-final String _passId = const Uuid().v4();
 const String _passClass = 'test';
 const String _issuerId = '3388000000022304025';
 const String _issuerEmail = 'jk.jakubkostrzewski@gmail.com';
-
-final String googleWalletBadgePass = """
+const String googleWalletBadgePass = """
 {
   "iss": "$_issuerEmail",
   "aud": "google",
@@ -14,7 +10,7 @@ final String googleWalletBadgePass = """
   "payload": {
     "genericObjects": [
       {
-        "id": "$_issuerId.$_passId",
+        "id": "$_issuerId.UUID_REPLACEMENT",
         "classId": "$_issuerId.$_passClass",
         "genericType": "GENERIC_TYPE_UNSPECIFIED",
         "hexBackgroundColor": "#3caefb",
