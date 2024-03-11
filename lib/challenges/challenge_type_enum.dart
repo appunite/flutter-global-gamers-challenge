@@ -113,7 +113,7 @@ enum ChallengeType {
     instructionAsset1: AssetPaths.infoLightsOut1,
     instructionAsset2: AssetPaths.infoTimer,
     badgeAsset: AssetPaths.lightsOffBadge,
-    badgeTitle: 'Carbon footprint',
+    badgeTitle: 'Carbon Footprint',
     badgeDescription: 'Your action in reducing light pollution helps save energy and protect nocturnal wildlife.',
     badgeLogoUrl:
         'https://firebasestorage.googleapis.com/v0/b/flutter-game-challenge.appspot.com/o/badges%2FBadges-6.jpg?alt=media&token=1ed88812-983b-4b58-86ba-a09645a78a7e',
