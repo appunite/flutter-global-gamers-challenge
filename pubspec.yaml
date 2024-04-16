@@ -47,11 +47,11 @@ dependencies:
   url_launcher: ^6.2.5
   uuid: ^4.3.3
   wakelock_plus: ^1.1.4
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   build_runner: ^2.4.8
   flame_test: ^1.14.0
-  flutter_launcher_icons: ^0.13.1
   flutter_lints: ^3.0.1
   flutter_native_splash: ^2.3.10
   flutter_test:

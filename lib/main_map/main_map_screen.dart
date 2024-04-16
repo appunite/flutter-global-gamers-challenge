@@ -91,23 +91,24 @@ class _MainMapScreenState extends State<MainMapScreen> with SingleTickerProvider
     return Stack(
       children: [
         Scaffold(
-            resizeToAvoidBottomInset: false,
-            extendBodyBehindAppBar: true,
-            appBar: AppBar(
-              centerTitle: true,
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-              title: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const GameProgressIndicator(),
-                  gap30,
-                  PointsCounter(pointsCount: playerProgressController.challenges.getAllChallengesScores()),
-                ],
-              ),
+          resizeToAvoidBottomInset: false,
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            centerTitle: true,
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            title: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const GameProgressIndicator(),
+                gap30,
+                PointsCounter(pointsCount: playerProgressController.challenges.getAllChallengesScores()),
+              ],
             ),
-            backgroundColor: Palette.secondaryLight,
-            body: _buildBody()),
+          ),
+          backgroundColor: getBackgroundColor(playerProgressController.challenges.getPlayedChallengesCount()),
+          body: _buildBody(),
+        ),
         Visibility(
           visible: _shouldDisplaySplash(),
           child: SplashScreen(
@@ -167,6 +168,31 @@ class _MainMapScreenState extends State<MainMapScreen> with SingleTickerProvider
   }
 
   bool _shouldDisplaySplash() => (widget.isAppLauch ?? false) && _splashScreenVisibile;
+
+  Color getBackgroundColor(int playedChallengesCount) {
+    if (playedChallengesCount == 0) {
+      return Palette.waterLevel0;
+    }
+    if (playedChallengesCount == 1) {
+      return Palette.waterLevel1;
+    }
+    if (playedChallengesCount == 2) {
+      return Palette.waterLevel2;
+    }
+    if (playedChallengesCount == 3) {
+      return Palette.waterLevel3;
+    }
+    if (playedChallengesCount == 4) {
+      return Palette.waterLevel4;
+    }
+    if (playedChallengesCount == 5) {
+      return Palette.waterLevel5;
+    }
+    if (playedChallengesCount == 6) {
+      return Palette.waterLevel6;
+    }
+    return Palette.waterLevel0;
+  }
 
   @override
   void dispose() {

@@ -103,6 +103,8 @@ class _MapAnimationState extends State<MapAnimation> {
       final playedChallenges = playerProgress.challenges.getPlayedChallengesCount();
 
       final SMINumber worldState = _mapController.findInput<double>('pollution') as SMINumber;
+      // maximal pollution trigger value is higher than 6 (the number of challenges)
+      // so we multiple it to achieve proper color
       worldState.value = playedChallenges * 1.67;
 
       if (mounted) {

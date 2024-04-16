@@ -27,4 +27,13 @@ class Palette {
   static Color overlay = const Color(0xFF14315C).withOpacity(.6);
 
   static const buttonTextColor = neutralWhite;
+
+  // water colors
+  static const waterLevel0 = Color(0xFFa8dce5);
+  static const waterLevel1 = Color(0xFF95d5e6);
+  static const waterLevel2 = Color(0xFF81cee7);
+  static const waterLevel3 = Color(0xFF6cc7e9);
+  static const waterLevel4 = Color(0xFF50bfec);
+  static const waterLevel5 = Color(0xFF52bfeb);
+  static const waterLevel6 = Color(0xFF50bfec);
 }
