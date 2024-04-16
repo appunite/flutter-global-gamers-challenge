@@ -5,6 +5,8 @@ import 'package:better_world/challenges/ocean_shooter/components/fire_boost_crea
 import 'package:better_world/challenges/ocean_shooter/components/ocean_shooter_background.dart';
 import 'package:better_world/challenges/ocean_shooter/components/player_component.dart';
 import 'package:better_world/challenges/ocean_shooter/ocean_challenge_screen.dart';
+import 'package:better_world/style/palette.dart';
+import 'package:flame/camera.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,9 @@ class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetecti
   OceanChallengeGame({
     required this.audioController,
     required this.challengeController,
-  });
+  }) : super(
+          camera: CameraComponent.withFixedResolution(width: 1600, height: 720),
+        );
 
   late final PlayerComponent player;
   late final AudioController audioController;
@@ -90,4 +94,7 @@ class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetecti
       add(FireBoostCreator(audioController: audioController));
     }
   }
+
+  @override
+  Color backgroundColor() => Palette.oceanShooterBackgroud;
 }

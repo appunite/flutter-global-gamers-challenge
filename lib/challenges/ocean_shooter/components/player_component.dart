@@ -32,7 +32,7 @@ class PlayerComponent extends SpriteAnimationComponent with HasGameRef, Collisio
       ),
     );
 
-    position = Vector2(64, game.size.y / 2);
+    position = Vector2(64, game.size.y / 4);
   }
 
   void _createBullet(List<double> bulletAngles) {

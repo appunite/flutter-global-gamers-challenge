@@ -9,7 +9,7 @@ class OceanShooterBackground extends SpriteComponent with HasGameRef<OceanChalle
   @override
   Future<void> onLoad() async {
     final background = await Flame.images.load(AssetPaths.oceanShooterBackground);
-    size = gameRef.size;
+    size = gameRef.camera.viewport.size;
     sprite = Sprite(background);
   }
 }
