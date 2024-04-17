@@ -6,13 +6,13 @@ import 'package:better_world/challenges/ocean_shooter/components/ocean_shooter_b
 import 'package:better_world/challenges/ocean_shooter/components/player_component.dart';
 import 'package:better_world/challenges/ocean_shooter/ocean_challenge_screen.dart';
 import 'package:better_world/style/palette.dart';
-import 'package:flame/camera.dart';
+import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetection, KeyboardEvents {
+class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetection, KeyboardEvents, HasGameRef {
   OceanChallengeGame({
     required this.audioController,
     required this.challengeController,
@@ -24,7 +24,7 @@ class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetecti
   late final AudioController audioController;
   final ChallengeController challengeController;
   late int score = 0;
-  static const double _playerSpeed = 50;
+  static const double _playerSpeed = 5;
 
   bool _gameAlreadyStarted = false;
 
@@ -56,20 +56,22 @@ class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetecti
   @override
   void onPanUpdate(DragUpdateInfo info) {
     player.position += info.delta.global;
+    player.position.x = player.position.x.clamp(0, game.camera.viewport.size.x + player.size.x * 0.5);
+    player.position.y = player.position.y.clamp(0, game.camera.viewport.size.y + player.size.y * 0.5);
   }
 
   @override
   KeyEventResult onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
-    if (keysPressed.contains(LogicalKeyboardKey.arrowLeft)) {
+    if (keysPressed.contains(LogicalKeyboardKey.arrowLeft) || keysPressed.contains(LogicalKeyboardKey.keyA)) {
       player.position.x -= _playerSpeed;
       player.position.x = player.position.x.clamp(0, size.x - player.size.x);
-    } else if (keysPressed.contains(LogicalKeyboardKey.arrowRight)) {
+    } else if (keysPressed.contains(LogicalKeyboardKey.arrowRight) || keysPressed.contains(LogicalKeyboardKey.keyD)) {
       player.position.x += _playerSpeed;
       player.position.x = player.position.x.clamp(0, size.x - player.size.x);
-    } else if (keysPressed.contains(LogicalKeyboardKey.arrowUp)) {
+    } else if (keysPressed.contains(LogicalKeyboardKey.arrowUp) || keysPressed.contains(LogicalKeyboardKey.keyW)) {
       player.position.y -= _playerSpeed;
       player.position.y = player.position.y.clamp(0, size.y - player.size.y);
-    } else if (keysPressed.contains(LogicalKeyboardKey.arrowDown)) {
+    } else if (keysPressed.contains(LogicalKeyboardKey.arrowDown) || keysPressed.contains(LogicalKeyboardKey.keyS)) {
       player.position.y += _playerSpeed;
       player.position.y = player.position.y.clamp(0, size.y - player.size.y);
     }
