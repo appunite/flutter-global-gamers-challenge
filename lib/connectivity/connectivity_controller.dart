@@ -11,7 +11,7 @@ class ConnectivityController extends ChangeNotifier {
   bool get isConnected => _isConnected;
   bool _isConnected = true;
 
-  final ConnectionChecker _connectionChecker = ConnectionChecker(hostReachabilityTimeout: const Duration(seconds: 5));
+  final ConnectionChecker _connectionChecker = ConnectionChecker();
   late StreamSubscription _streamSubscription;
 
   void _startSubscription() {
