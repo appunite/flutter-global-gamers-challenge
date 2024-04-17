@@ -1,5 +1,8 @@
 Welcome to Better World! A Flutter game created using Flame engine. Experience real-world challenges: clean energy, waste sorting, deforestation, and more. Watch the world change with your actions. Join us for a Better World!
 
+[DevPost Portfolio](https://globalgamers.devpost.com/submissions/466414-better-world)
+[Demo (Youtube)](https://youtu.be/alQBAHjyctM?si=TrreKLuBQmatyZ8z)
+
 ## Inspiration
 Seeing organizations like Global Citizen leveraging technologies like Flutter to change the world and make a difference has motivated us profoundly. We aspire to join this initiative and raise awareness about the environmental challenges our world currently faces. In Appunite, we found interest in Flutter from the beta phase and seeing such actions, we decided to join! That's why we created Better World.
 
@@ -40,4 +43,4 @@ Our next steps involve releasing the game on the Play Store and App Store to rea
 
 ## How to run the project
 To run the project you don't need any additional setup than cloning the repository. The game works on Android, iOS, macos and web. 
-Flutter version: 3.16
+Flutter version: 3.19
