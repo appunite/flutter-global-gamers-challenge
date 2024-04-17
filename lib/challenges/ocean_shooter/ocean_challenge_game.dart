@@ -23,8 +23,8 @@ class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetecti
   late final PlayerComponent player;
   late final AudioController audioController;
   final ChallengeController challengeController;
+  Vector2 orientationVector = Vector2.zero();
   late int score = 0;
-  static const double _playerSpeed = 5;
 
   bool _gameAlreadyStarted = false;
 
@@ -56,24 +56,49 @@ class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetecti
   @override
   void onPanUpdate(DragUpdateInfo info) {
     player.position += info.delta.global;
+    _clampToWindowSize();
+  }
+
+  void _clampToWindowSize() {
     player.position.x = player.position.x.clamp(0, game.camera.viewport.size.x + player.size.x * 0.5);
     player.position.y = player.position.y.clamp(0, game.camera.viewport.size.y + player.size.y * 0.5);
   }
 
   @override
   KeyEventResult onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
-    if (keysPressed.contains(LogicalKeyboardKey.arrowLeft) || keysPressed.contains(LogicalKeyboardKey.keyA)) {
-      player.position.x -= _playerSpeed;
-      player.position.x = player.position.x.clamp(0, size.x - player.size.x);
+    orientationVector = Vector2.zero();
+    final bool moveDiagonallyTopLeft =
+        (keysPressed.contains(LogicalKeyboardKey.arrowLeft) && keysPressed.contains(LogicalKeyboardKey.arrowUp)) ||
+            (keysPressed.contains(LogicalKeyboardKey.keyA) && keysPressed.contains(LogicalKeyboardKey.keyW));
+
+    final bool moveDiagonallyTopRight =
+        (keysPressed.contains(LogicalKeyboardKey.arrowRight) && keysPressed.contains(LogicalKeyboardKey.arrowUp)) ||
+            (keysPressed.contains(LogicalKeyboardKey.keyD) && keysPressed.contains(LogicalKeyboardKey.keyW));
+
+    final bool moveDiagonallyBottomLeft =
+        (keysPressed.contains(LogicalKeyboardKey.arrowLeft) && keysPressed.contains(LogicalKeyboardKey.arrowDown)) ||
+            (keysPressed.contains(LogicalKeyboardKey.keyA) && keysPressed.contains(LogicalKeyboardKey.keyS));
+
+    final bool moveDiagonallyBottomRight =
+        (keysPressed.contains(LogicalKeyboardKey.arrowRight) && keysPressed.contains(LogicalKeyboardKey.arrowDown)) ||
+            (keysPressed.contains(LogicalKeyboardKey.keyD) && keysPressed.contains(LogicalKeyboardKey.keyS));
+
+    if (moveDiagonallyTopLeft) {
+      orientationVector.add(Vector2(-0.66, -0.66));
+    } else if (moveDiagonallyTopRight) {
+      orientationVector.add(Vector2(0.66, -0.66));
+    } else if (moveDiagonallyBottomLeft) {
+      orientationVector.add(Vector2(-0.66, 0.66));
+    } else if (moveDiagonallyBottomRight) {
+      orientationVector.add(Vector2(0.66, 0.66));
+    } else if (keysPressed.contains(LogicalKeyboardKey.arrowLeft) || keysPressed.contains(LogicalKeyboardKey.keyA)) {
+      orientationVector.add(Vector2(-1, 0));
     } else if (keysPressed.contains(LogicalKeyboardKey.arrowRight) || keysPressed.contains(LogicalKeyboardKey.keyD)) {
-      player.position.x += _playerSpeed;
-      player.position.x = player.position.x.clamp(0, size.x - player.size.x);
+      orientationVector.add(Vector2(1, 0));
     } else if (keysPressed.contains(LogicalKeyboardKey.arrowUp) || keysPressed.contains(LogicalKeyboardKey.keyW)) {
-      player.position.y -= _playerSpeed;
-      player.position.y = player.position.y.clamp(0, size.y - player.size.y);
+      orientationVector.add(Vector2(0, -1));
     } else if (keysPressed.contains(LogicalKeyboardKey.arrowDown) || keysPressed.contains(LogicalKeyboardKey.keyS)) {
-      player.position.y += _playerSpeed;
-      player.position.y = player.position.y.clamp(0, size.y - player.size.y);
+      orientationVector.add(Vector2(0, 1));
     }
 
     return KeyEventResult.handled;
@@ -85,8 +110,13 @@ class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetecti
 
   @override
   void update(double dt) {
-    super.update(dt);
     challengeController.setPoints(points: score);
+
+    player.velocity = orientationVector * player.moveSpeed;
+    player.position += player.velocity * dt;
+    _clampToWindowSize();
+
+    super.update(dt);
   }
 
   void increaseScore() {

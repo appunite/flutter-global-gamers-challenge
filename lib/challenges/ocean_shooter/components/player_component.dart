@@ -19,6 +19,8 @@ class PlayerComponent extends SpriteAnimationComponent with HasGameRef, Collisio
   late TimerComponent bulletCreator;
   late final AudioController audioController;
   late final List<double> _initialBulletAngles = [0];
+  Vector2 velocity = Vector2.zero();
+  final double moveSpeed = 300;
 
   @override
   Future<void> onLoad() async {
