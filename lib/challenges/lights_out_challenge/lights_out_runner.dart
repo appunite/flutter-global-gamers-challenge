@@ -39,7 +39,7 @@ class LightsOutRunner extends FlameGame<LightsOutWorld> with HasCollisionDetecti
 
   @override
   KeyEventResult onKeyEvent(
-    RawKeyEvent event,
+    KeyEvent event,
     Set<LogicalKeyboardKey> keysPressed,
   ) {
     final isSpace = keysPressed.contains(LogicalKeyboardKey.space);

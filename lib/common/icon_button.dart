@@ -23,34 +23,33 @@ class GameIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return Material(
       borderRadius: BorderRadius.circular(100),
-      splashColor: Colors.transparent,
-      highlightColor: Colors.transparent,
-      onTap: () {
-        context.read<AudioController>().playSfx(SfxType.buttonTap);
-        onTap?.call();
-      },
-      child: Container(
-        width: width ?? 44,
-        height: height ?? 44,
-        decoration: BoxDecoration(
-          color: Palette.neutralWhite,
-          shape: BoxShape.circle,
-          boxShadow: [
-            BoxShadow(
-              offset: const Offset(0, 2),
-              spreadRadius: 1,
-              color: Palette.neutralBlack.withOpacity(0.2),
+      color: Palette.neutralWhite,
+      elevation: 5,
+      shadowColor: Palette.neutralBlack.withOpacity(0.5),
+      child: InkWell(
+        hoverColor: Palette.neutralLightGray,
+        borderRadius: BorderRadius.circular(100),
+        splashColor: Colors.transparent,
+        onTap: () {
+          context.read<AudioController>().playSfx(SfxType.buttonTap);
+          onTap?.call();
+        },
+        child: Container(
+          width: width ?? 44,
+          height: height ?? 44,
+          decoration: const BoxDecoration(
+            color: Colors.transparent,
+            shape: BoxShape.circle,
+          ),
+          padding: padding ?? const EdgeInsets.all(12),
+          child: Center(
+            child: SvgPicture.asset(
+              iconName,
+              height: 32,
+              width: 32,
             ),
-          ],
-        ),
-        padding: padding ?? const EdgeInsets.all(12),
-        child: Center(
-          child: SvgPicture.asset(
-            iconName,
-            height: 32,
-            width: 32,
           ),
         ),
       ),
