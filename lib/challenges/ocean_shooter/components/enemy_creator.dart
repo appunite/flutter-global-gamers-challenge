@@ -22,8 +22,8 @@ class EnemyCreator extends TimerComponent with HasGameRef {
         (index) => EnemyComponent(
           audioController: audioController,
           position: Vector2(
-            game.size.x,
-            _halfHeight + (game.size.y - _halfHeight) * random.nextDouble(),
+            game.camera.viewport.size.x,
+            _halfHeight + (game.camera.viewport.size.y - _halfHeight) * random.nextDouble(),
           ),
         ),
       ),

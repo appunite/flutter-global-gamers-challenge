@@ -48,13 +48,6 @@ void main() async {
       firebasePersistence: firebasePersistence,
       localPlayerPersistence: localPlayerPersistence,
     ),
-/*    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (context) => BetterWorldGame(
-        firebasePersistence: firebasePersistence,
-        localPlayerPersistence: localPlayerPersistence,
-      ),
-    ),*/
   );
 }
 

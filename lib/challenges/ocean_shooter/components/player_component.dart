@@ -20,6 +20,8 @@ class PlayerComponent extends SpriteAnimationComponent with HasGameRef<OceanChal
   late TimerComponent bulletCreator;
   late final AudioController audioController;
   late final List<double> _initialBulletAngles = [0];
+  Vector2 velocity = Vector2.zero();
+  final double moveSpeed = 300;
 
   @override
   Future<void> onLoad() async {
@@ -33,7 +35,7 @@ class PlayerComponent extends SpriteAnimationComponent with HasGameRef<OceanChal
       ),
     );
 
-    position = Vector2(64, game.size.y / 2);
+    position = Vector2(64, game.size.y / 4);
   }
 
   void _createBullet(List<double> bulletAngles) {
