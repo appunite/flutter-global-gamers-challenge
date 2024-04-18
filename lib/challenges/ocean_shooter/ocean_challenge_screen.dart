@@ -30,6 +30,7 @@ class OceanChallengeScreen extends StatelessWidget {
   static const String appBarKey = 'appBar';
   static const String introductionDialogKey = 'introductionDialog';
   static const String countDownKey = 'countDown';
+  static const String decreaseScoreKey = 'decreaseScore';
 
   @override
   Widget build(BuildContext context) {

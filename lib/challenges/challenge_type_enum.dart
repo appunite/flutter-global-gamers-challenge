@@ -93,7 +93,7 @@ enum ChallengeType {
     title: 'Plastic Free',
     description: 'Oceans are polluted with plastics. Cleaning them helps marine life thrive.',
     instruction1: 'Use platformKey to move the ship and aim to shoot micro-plastics.',
-    instruction2: 'Earn 1 point for each plastic shot in 30 seconds.',
+    instruction2: 'Earn 1 point for each plastic shot in 30 seconds. Avoid hits - each one will cost you 1 point!',
     instructionAsset1: AssetPaths.infoPlastics1,
     instructionAsset2: AssetPaths.infoPlastics2,
     completedText: 'Your dedication to removing plastics\nkeeps our oceans clean and marine life safe.',

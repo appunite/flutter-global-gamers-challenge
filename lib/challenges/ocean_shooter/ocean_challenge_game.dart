@@ -90,4 +90,12 @@ class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetecti
       add(FireBoostCreator(audioController: audioController));
     }
   }
+
+  void decreaseScore() {
+    if (score <= 1) {
+      score = 0;
+    } else {
+      score--;
+    }
+  }
 }

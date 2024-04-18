@@ -4,11 +4,12 @@ import 'package:better_world/challenges/ocean_shooter/components/bullet_componen
 import 'package:better_world/challenges/ocean_shooter/components/enemy_component.dart';
 import 'package:better_world/challenges/ocean_shooter/components/explosion_component.dart';
 import 'package:better_world/challenges/ocean_shooter/components/fire_boost_component.dart';
+import 'package:better_world/challenges/ocean_shooter/ocean_challenge_game.dart';
 import 'package:better_world/common/asset_paths.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
-class PlayerComponent extends SpriteAnimationComponent with HasGameRef, CollisionCallbacks {
+class PlayerComponent extends SpriteAnimationComponent with HasGameRef<OceanChallengeGame>, CollisionCallbacks {
   PlayerComponent({required this.audioController})
       : super(
           size: Vector2(117, 71),
@@ -50,7 +51,7 @@ class PlayerComponent extends SpriteAnimationComponent with HasGameRef, Collisio
   void beginFire() {
     add(
       bulletCreator = TimerComponent(
-        period: 1,
+        period: 0.5,
         repeat: true,
         autoStart: true,
         onTick: () => _createBullet(_initialBulletAngles),
@@ -65,6 +66,7 @@ class PlayerComponent extends SpriteAnimationComponent with HasGameRef, Collisio
 
   void takeHit() {
     game.add(ExplosionComponent(position: position));
+    game.decreaseScore();
   }
 
   @override
@@ -75,7 +77,7 @@ class PlayerComponent extends SpriteAnimationComponent with HasGameRef, Collisio
     super.onCollisionStart(intersectionPoints, other);
 
     if (other is EnemyComponent) {
-      game.add(ExplosionComponent(position: position));
+      takeHit();
       other.removeFromParent();
     } else if (other is FireBoostComponent) {
       remove(bulletCreator);
