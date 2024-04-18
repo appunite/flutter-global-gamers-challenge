@@ -55,7 +55,7 @@ class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetecti
   }
 
   @override
-  KeyEventResult onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
+  KeyEventResult onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     if (keysPressed.contains(LogicalKeyboardKey.arrowLeft)) {
       player.position.x -= _playerSpeed;
       player.position.x = player.position.x.clamp(0, size.x - player.size.x);
@@ -88,6 +88,14 @@ class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetecti
 
     if (score == 15) {
       add(FireBoostCreator(audioController: audioController));
+    }
+  }
+
+  void decreaseScore() {
+    if (score <= 1) {
+      score = 0;
+    } else {
+      score--;
     }
   }
 }
