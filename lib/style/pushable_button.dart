@@ -30,10 +30,12 @@ class _PushableButtonState extends State<PushableButton> with SingleTickerProvid
   late AnimationController _animationController;
   late Color _topLayerColor = widget.hslColor.toColor();
   static const double _borderRadius = 16;
+  late HSLColor bottomHslColor;
 
   @override
   void initState() {
     super.initState();
+    bottomHslColor = widget.hslColor.withLightness(widget.hslColor.lightness - 0.08);
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 100),
@@ -83,38 +85,52 @@ class _PushableButtonState extends State<PushableButton> with SingleTickerProvid
               builder: (context, child) {
                 final top = _animationController.value * widget.elevation;
                 final hslColor = widget.hslColor;
-                final bottomHslColor = hslColor.withLightness(hslColor.lightness - 0.08);
-                return Stack(
-                  children: [
-                    // Draw bottom layer first
-                    Positioned(
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      child: Container(
-                        height: totalHeight - top,
-                        decoration: BoxDecoration(
-                          color: bottomHslColor.toColor(),
-                          boxShadow: widget.shadow != null ? [widget.shadow!] : [],
-                          borderRadius: BorderRadius.circular(_borderRadius),
+
+                return MouseRegion(
+                  onHover: (event) {
+                    setState(() {
+                      _topLayerColor = widget.activeColor;
+                      bottomHslColor = widget.hslColor.withLightness(hslColor.lightness - 0.1);
+                    });
+                  },
+                  onExit: (event) {
+                    setState(() {
+                      _topLayerColor = widget.hslColor.toColor();
+                      bottomHslColor = hslColor.withLightness(hslColor.lightness - 0.08);
+                    });
+                  },
+                  child: Stack(
+                    children: [
+                      // Draw bottom layer first
+                      Positioned(
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        child: Container(
+                          height: totalHeight - top,
+                          decoration: BoxDecoration(
+                            color: bottomHslColor.toColor(),
+                            boxShadow: widget.shadow != null ? [widget.shadow!] : [],
+                            borderRadius: BorderRadius.circular(_borderRadius),
+                          ),
                         ),
                       ),
-                    ),
-                    // Then top (pushable) layer
-                    Positioned(
-                      left: 0,
-                      right: 0,
-                      top: top,
-                      child: Container(
-                        height: widget.height,
-                        decoration: ShapeDecoration(
-                          color: _topLayerColor,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(_borderRadius)),
+                      // Then top (pushable) layer
+                      Positioned(
+                        left: 0,
+                        right: 0,
+                        top: top,
+                        child: Container(
+                          height: widget.height,
+                          decoration: ShapeDecoration(
+                            color: _topLayerColor,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(_borderRadius)),
+                          ),
+                          child: Center(child: widget.child),
                         ),
-                        child: Center(child: widget.child),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 );
               },
             ),

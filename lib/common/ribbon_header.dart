@@ -52,30 +52,65 @@ class RibbonHeader extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
         ),
-        if (withCloseIcon)
-          Positioned(
-            right: 50,
-            top: 4,
-            child: GestureDetector(
-              behavior: HitTestBehavior.translucent,
-              onTap: () {
-                context.read<AudioController>().playSfx(SfxType.buttonTap);
-                if (onCloseTap != null) {
-                  onCloseTap!.call();
-                } else {
-                  context
-                    ..pop()
-                    ..pop();
-                }
-              },
-              child: SizedBox(
-                height: 45,
-                width: 45,
-                child: SvgPicture.asset(AssetPaths.iconsCloseWhite),
-              ),
+        if (withCloseIcon) RibbonCloseButton(onCloseTap: onCloseTap),
+      ],
+    );
+  }
+}
+
+class RibbonCloseButton extends StatefulWidget {
+  const RibbonCloseButton({
+    super.key,
+    required this.onCloseTap,
+  });
+
+  final VoidCallback? onCloseTap;
+
+  @override
+  State<RibbonCloseButton> createState() => _RibbonCloseButtonState();
+}
+
+class _RibbonCloseButtonState extends State<RibbonCloseButton> {
+  late Color _iconColor = Colors.transparent;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      right: 50,
+      top: 4,
+      child: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: () {
+          context.read<AudioController>().playSfx(SfxType.buttonTap);
+          if (widget.onCloseTap != null) {
+            widget.onCloseTap!.call();
+          } else {
+            context
+              ..pop()
+              ..pop();
+          }
+        },
+        child: MouseRegion(
+          onHover: (_) {
+            setState(() {
+              _iconColor = Palette.neutralLightGray;
+            });
+          },
+          onExit: (_) {
+            setState(() {
+              _iconColor = Palette.neutralWhite;
+            });
+          },
+          child: SizedBox(
+            height: 45,
+            width: 45,
+            child: SvgPicture.asset(
+              AssetPaths.iconsCloseWhite,
+              color: _iconColor,
             ),
           ),
-      ],
+        ),
+      ),
     );
   }
 }

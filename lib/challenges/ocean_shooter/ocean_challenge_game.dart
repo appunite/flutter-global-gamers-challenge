@@ -127,6 +127,14 @@ class OceanChallengeGame extends FlameGame with PanDetector, HasCollisionDetecti
     }
   }
 
+  void decreaseScore() {
+    if (score <= 1) {
+      score = 0;
+    } else {
+      score--;
+    }
+  }
+
   @override
   Color backgroundColor() => Palette.oceanShooterBackgroud;
 }
