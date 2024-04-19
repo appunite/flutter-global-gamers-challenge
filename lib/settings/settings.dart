@@ -3,6 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:flutter/foundation.dart';
+
 import 'persistence/local_storage_settings_persistence.dart';
 import 'persistence/settings_persistence.dart';
 
@@ -36,13 +37,7 @@ class SettingsController {
 
   Future<void> _loadSettings() async {
     await Future.wait([
-      _store.getAudioOn(defaultValue: true).then((value) {
-        if (kIsWeb) {
-          return audioOn.value = false;
-        }
-
-        return audioOn.value = value;
-      }),
+      _store.getAudioOn(defaultValue: true).then((value) => audioOn.value = value),
       _store.getSoundsOn(defaultValue: true).then((value) => soundsOn.value = value),
       _store.getMusicOn(defaultValue: true).then((value) => musicOn.value = value),
     ]);

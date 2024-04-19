@@ -4,9 +4,9 @@ import 'package:better_world/common/asset_paths.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
+import '../jump_effect.dart';
 import '../lights_out_runner.dart';
 import '../lights_out_world.dart';
-import '../jump_effect.dart';
 import 'lamp.dart';
 
 /// The [LightsOutEco] is the component that the physical player of the game is
@@ -28,6 +28,7 @@ class LightsOutEco extends SpriteAnimationGroupComponent<EcoLightsOutState>
 
   // The maximum length that the player can jump. Defined in virtual pixels.
   final double _jumpLength = 380;
+  bool _canDoubleJump = true;
 
   // Whether the player is currently in the air, this can be used to restrict
   // movement for example.
@@ -114,7 +115,6 @@ class LightsOutEco extends SpriteAnimationGroupComponent<EcoLightsOutState>
 
     if (other is Lamp) {
       addScore();
-      _gravityVelocity += 10;
       position.y += _gravityVelocity;
       current = EcoLightsOutState.falling;
       game.audioController.playSfx(SfxType.score);
@@ -127,8 +127,12 @@ class LightsOutEco extends SpriteAnimationGroupComponent<EcoLightsOutState>
 
     late JumpEffect jumpEffect;
     if (inAir) {
-      jumpEffect = JumpEffect(Vector2(0, -_jumpLength)..scaleTo(_jumpLength));
+      if (_canDoubleJump) {
+        jumpEffect = JumpEffect(Vector2(0, -_jumpLength)..scaleTo(_jumpLength));
+        _canDoubleJump = false;
+      }
     } else {
+      _canDoubleJump = true;
       jumpEffect = JumpEffect(Vector2(0, -_jumpLength / 2 - 100));
     }
     add(jumpEffect);

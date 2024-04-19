@@ -49,6 +49,7 @@ class LightsOutRunner extends FlameGame<LightsOutWorld> with HasCollisionDetecti
       world.children.whereType<LightsOutEco>().first.jump();
       return KeyEventResult.handled;
     }
+
     return KeyEventResult.ignored;
   }
 }

@@ -71,7 +71,7 @@ class RibbonCloseButton extends StatefulWidget {
 }
 
 class _RibbonCloseButtonState extends State<RibbonCloseButton> {
-  late Color _iconColor = Colors.transparent;
+  late Color _iconColor = Palette.neutralWhite;
 
   @override
   Widget build(BuildContext context) {
