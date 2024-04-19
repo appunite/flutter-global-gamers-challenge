@@ -22,6 +22,7 @@ class OceanShooterPointsCounter extends StatefulWidget {
 class _StateOceanShooterPointsCounter extends State<OceanShooterPointsCounter> {
   late ChallengeController _challengeController;
   int _score = 0;
+  bool _isBlinking = false;
 
   @override
   void initState() {
@@ -30,7 +31,10 @@ class _StateOceanShooterPointsCounter extends State<OceanShooterPointsCounter> {
     _challengeController.addListener(() {
       final challengeScore = _challengeController.score;
       if (challengeScore < _score) {
-        print('Listener challengeScore < _score');
+        _isBlinking = true;
+        Future.delayed(const Duration(milliseconds: 250), () {
+          _isBlinking = false;
+        });
       }
       setState(() {
         _score = _challengeController.score;
@@ -46,10 +50,11 @@ class _StateOceanShooterPointsCounter extends State<OceanShooterPointsCounter> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 150),
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
       decoration: BoxDecoration(
-        color: Palette.neutralWhite,
+        color: _isBlinking ? const Color(0xFFFF0000) : Palette.neutralWhite,
         borderRadius: borderRadius32,
       ),
       child: Row(
