@@ -53,7 +53,7 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
   final ScrollController _scrollController = ScrollController();
   late ChallengeController _challengeController;
   PausableTimer? _timer;
-  int _timeInSeconds = 10;
+  int _timeInSeconds = 30;
 
   @override
   void initState() {
@@ -107,7 +107,7 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
     _challengeController.addPoints();
     _scrollController.animateTo(
       _scrollController.position.maxScrollExtent,
-      duration: const Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
   }
@@ -180,18 +180,22 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
                 SafeArea(
                   bottom: false,
                   top: false,
-                  child: GridView.builder(
-                    controller: _scrollController,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 12,
-                    ),
-                    itemCount: challengeController.score,
-                    itemBuilder: (_, index) => TreeAnimation(
-                      index: index,
-                      score: challengeController.score,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 50),
+                    child: GridView.builder(
+                      controller: _scrollController,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 12,
+                      ),
+                      itemCount: challengeController.score,
+                      itemBuilder: (_, index) => TreeAnimation(
+                        index: index,
+                        score: challengeController.score,
+                      ),
                     ),
                   ),
                 ),
+                const SizedBox(height: 50),
                 if (challengeController.score > 25)
                   Align(
                     alignment: Alignment.center,
