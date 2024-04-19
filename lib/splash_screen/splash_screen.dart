@@ -1,19 +1,16 @@
 import 'package:better_world/common/asset_paths.dart';
+import 'package:better_world/common/progress_bar_animation.dart';
 import 'package:better_world/style/gaps.dart';
-import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
 import 'package:rive/rive.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({
     super.key,
-    required this.controller,
     required this.progressAnimation,
   });
 
-  final AnimationController controller;
   final Animation<double> progressAnimation;
 
   @override
@@ -49,24 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   child: RiveAnimation.asset(AssetPaths.logoAnimation),
                 ),
                 gap8,
-                SizedBox(
-                  height: 36,
-                  width: 300,
-                  child: LiquidLinearProgressIndicator(
-                    borderRadius: 24,
-                    borderColor: Palette.neutralWhite,
-                    backgroundColor: Palette.neutralWhite,
-                    borderWidth: 4,
-                    valueColor: const AlwaysStoppedAnimation<Color>(Palette.secondary),
-                    value: widget.progressAnimation.value,
-                    center: Text(
-                      'Loading...',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: Palette.neutralWhite,
-                          ),
-                    ),
-                  ),
-                ),
+                ProgressBarAnimation(progressAnimation: widget.progressAnimation),
               ],
             ),
           ),

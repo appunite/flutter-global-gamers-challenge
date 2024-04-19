@@ -8,6 +8,7 @@ import 'package:better_world/leaderboard/leaderboard_screen.dart';
 import 'package:better_world/main_map/game_completed_congrats_widget.dart';
 import 'package:better_world/main_map/map_animation.dart';
 import 'package:better_world/main_map/tutorial/onboarding_flow.dart';
+import 'package:better_world/main_map/widgets/map_loading_widget.dart';
 import 'package:better_world/player_progress/entities/challenges_entity.dart';
 import 'package:better_world/player_progress/player_progress_controller.dart';
 import 'package:better_world/settings/settings_dialog.dart';
@@ -37,6 +38,7 @@ class _MainMapScreenState extends State<MainMapScreen> with SingleTickerProvider
   bool _hasSeenOnboarding = true;
   bool _splashScreenVisibile = true;
   bool _hasSeenBadgeDialog = false;
+  bool _displayLoading = false;
 
   late AnimationController _controller;
   late Animation<double> _progressAnimation;
@@ -64,7 +66,25 @@ class _MainMapScreenState extends State<MainMapScreen> with SingleTickerProvider
       }
     });
 
+    _handleLoading();
+
     WakelockPlus.enable();
+  }
+
+  void _handleLoading() {
+    if (!(widget.isAppLauch ?? false)) {
+      setState(() {
+        _displayLoading = true;
+      });
+      Future.delayed(
+        const Duration(seconds: 2),
+        () {
+          setState(() {
+            _displayLoading = false;
+          });
+        },
+      );
+    }
   }
 
   void _setAnimationController() {
@@ -112,7 +132,6 @@ class _MainMapScreenState extends State<MainMapScreen> with SingleTickerProvider
         Visibility(
           visible: _shouldDisplaySplash(),
           child: SplashScreen(
-            controller: _controller,
             progressAnimation: _progressAnimation,
           ),
         ),
@@ -158,6 +177,10 @@ class _MainMapScreenState extends State<MainMapScreen> with SingleTickerProvider
               ),
             ),
           ),
+        ),
+        Visibility(
+          visible: _displayLoading,
+          child: const MapLoadingWidget(),
         ),
         Visibility(
           visible: !_hasSeenOnboarding,

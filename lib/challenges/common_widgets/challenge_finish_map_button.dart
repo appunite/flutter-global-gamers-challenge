@@ -29,9 +29,7 @@ class ChallengeFinishMapButton extends StatelessWidget {
               const LeaderboardIntroductionDialog(shouldGoToLeaderBoardScreen: true),
             );
           } else {
-            Future.delayed(const Duration(milliseconds: 900), () {
-              context.go(MainMapScreen.routePath);
-            });
+            context.go(MainMapScreen.routePath);
           }
         },
       ),
