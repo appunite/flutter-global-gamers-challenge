@@ -107,7 +107,7 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
     _challengeController.addPoints();
     _scrollController.animateTo(
       _scrollController.position.maxScrollExtent,
-      duration: const Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 200),
       curve: Curves.easeInOut,
     );
   }
@@ -178,7 +178,7 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
                       challengeController.score == 0 ? AssetPaths.treeTrunksBackground : AssetPaths.treeBackground,
                 ),
                 SafeArea(
-                  bottom: false,
+                  bottom: true,
                   top: false,
                   child: GridView.builder(
                     controller: _scrollController,
