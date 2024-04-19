@@ -19,6 +19,7 @@ import 'package:better_world/style/overlay_widget.dart';
 import 'package:better_world/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 import 'package:pausable_timer/pausable_timer.dart';
 import 'package:provider/provider.dart';
 
@@ -185,9 +186,17 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
                       crossAxisCount: 12,
                     ),
                     itemCount: challengeController.score,
-                    itemBuilder: (_, __) => const TreeAnimation(),
+                    itemBuilder: (_, index) => TreeAnimation(
+                      index: index,
+                      score: challengeController.score,
+                    ),
                   ),
                 ),
+                if (challengeController.score > 25)
+                  Align(
+                    alignment: Alignment.center,
+                    child: LottieBuilder.asset(AssetPaths.birdsAnimation),
+                  ),
                 Align(
                   alignment: Alignment.bottomLeft,
                   child: Padding(
