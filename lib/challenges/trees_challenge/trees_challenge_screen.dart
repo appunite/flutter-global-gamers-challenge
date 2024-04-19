@@ -178,7 +178,7 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
                       challengeController.score == 0 ? AssetPaths.treeTrunksBackground : AssetPaths.treeBackground,
                 ),
                 SafeArea(
-                  bottom: false,
+                  bottom: true,
                   top: false,
                   child: GridView.builder(
                     controller: _scrollController,
