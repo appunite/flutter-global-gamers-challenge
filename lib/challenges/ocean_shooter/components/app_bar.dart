@@ -12,8 +12,37 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pausable_timer/pausable_timer.dart';
 import 'package:provider/provider.dart';
 
-class OceanShooterPointsCounter extends StatelessWidget {
+class OceanShooterPointsCounter extends StatefulWidget {
   const OceanShooterPointsCounter({super.key});
+
+  @override
+  State<OceanShooterPointsCounter> createState() => _StateOceanShooterPointsCounter();
+}
+
+class _StateOceanShooterPointsCounter extends State<OceanShooterPointsCounter> {
+  late ChallengeController _challengeController;
+  int _score = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _challengeController = context.read<ChallengeController>();
+    _challengeController.addListener(() {
+      final challengeScore = _challengeController.score;
+      if (challengeScore < _score) {
+        print('Listener challengeScore < _score');
+      }
+      setState(() {
+        _score = _challengeController.score;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _challengeController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +65,12 @@ class OceanShooterPointsCounter extends StatelessWidget {
           Container(
             constraints: const BoxConstraints(minWidth: 35),
             child: Text(
-              context.watch<ChallengeController>().score.toString(),
+              _score.toString(),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: Palette.neutralBlack,
                   ),
             ),
-          )
+          ),
         ],
       ),
     );
