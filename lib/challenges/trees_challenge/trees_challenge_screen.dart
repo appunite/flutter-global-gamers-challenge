@@ -192,7 +192,6 @@ class _TreesChallengeBodyScreenState extends State<_TreesChallengeBodyScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 50),
                 if (challengeController.score > 25)
                   Align(
                     alignment: Alignment.center,
