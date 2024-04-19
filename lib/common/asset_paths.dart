@@ -137,4 +137,8 @@ class AssetPaths {
   static const String logoAnimation = 'assets/animations/splash_logo.riv';
   static const String pipesSewageMachine = 'assets/animations/pipes_sewage_machine.riv';
   static const String mapAnimation = 'assets/animations/map.riv';
+  static const String birdsAnimation = 'assets/animations/birds.json';
+  static const String rabbitAnimation = 'assets/animations/rabbit.json';
+  static const String deerAnimation = 'assets/animations/deer.json';
+  static const String squirrelAnimation = 'assets/animations/squirrel.json';
 }
