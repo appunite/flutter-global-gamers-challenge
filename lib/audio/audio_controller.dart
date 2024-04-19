@@ -3,9 +3,9 @@ import 'dart:collection';
 import 'dart:math';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import 'package:logging/logging.dart';
 
 import '../app_lifecycle/app_lifecycle.dart';
 import '../settings/settings.dart';
@@ -14,8 +14,6 @@ import 'sounds.dart';
 
 /// Allows playing music and sound. A facade to `package:audioplayers`.
 class AudioController {
-  static final _log = Logger('AudioController');
-
   final AudioPlayer _musicPlayer;
 
   /// This is a list of [AudioPlayer] instances which are rotated to play
@@ -79,19 +77,19 @@ class AudioController {
   void playSfx(SfxType type) {
     final audioOn = _settings?.audioOn.value ?? false;
     if (!audioOn) {
-      _log.fine(() => 'Ignoring playing sound ($type) because audio is muted.');
+      debugPrint('Ignoring playing sound ($type) because audio is muted.');
       return;
     }
     final soundsOn = _settings?.soundsOn.value ?? false;
     if (!soundsOn) {
-      _log.fine(() => 'Ignoring playing sound ($type) because sounds are turned off.');
+      debugPrint('Ignoring playing sound ($type) because sounds are turned off.');
       return;
     }
 
-    _log.fine(() => 'Playing sound: $type');
+    debugPrint('Playing sound: $type');
     final options = soundTypeToFilename(type);
     final filename = options[_random.nextInt(options.length)];
-    _log.fine(() => '- Chosen filename: $filename');
+    debugPrint('- Chosen filename: $filename');
 
     final currentPlayer = _sfxPlayers[_currentSfxPlayer];
     currentPlayer.play(AssetSource('sfx/$filename'), volume: soundTypeToVolume(type));
@@ -145,7 +143,7 @@ class AudioController {
   }
 
   void _audioOnHandler() {
-    _log.fine('audioOn changed to ${_settings!.audioOn.value}');
+    debugPrint('audioOn changed to ${_settings!.audioOn.value}');
     if (_settings!.audioOn.value) {
       // All sound just got un-muted. Audio is on.
       if (_settings!.musicOn.value) {
@@ -174,7 +172,7 @@ class AudioController {
   }
 
   void _handleSongFinished(void _) {
-    _log.info('Last song finished playing.');
+    debugPrint('Last song finished playing.');
     // Move the song that just finished playing to the end of the playlist.
     _playlist.addLast(_playlist.removeFirst());
     // Play the song at the beginning of the playlist.
@@ -194,11 +192,13 @@ class AudioController {
   }
 
   Future<void> playCurrentSongInPlaylist() async {
-    _log.info('Playing ${_playlist.first} now.');
     try {
       await _musicPlayer.play(AssetSource('music/${_playlist.first.filename}'));
-    } catch (e) {
-      _log.severe('Could not play song ${_playlist.first}', e);
+    } catch (e, stack) {
+      debugPrintStack(
+        stackTrace: stack,
+        label: 'Could not play song ${_playlist.first}\n${e.toString()}',
+      );
     }
 
     // Settings can change while the music player is preparing
@@ -209,18 +209,20 @@ class AudioController {
     // See issue: https://github.com/bluefireteam/audioplayers/issues/1687
     if (!_settings!.audioOn.value || !_settings!.musicOn.value) {
       try {
-        _log.fine('Settings changed while preparing to play song. '
-            'Pausing music.');
+        debugPrint('Settings changed while preparing to play song. Pausing music.');
         await _musicPlayer.pause();
-      } catch (e) {
-        _log.severe('Could not pause music player', e);
+      } catch (e, stack) {
+        debugPrintStack(
+          label: 'Could not pause music player\n${e.toString()}',
+          stackTrace: stack,
+        );
       }
     }
   }
 
   /// Preloads all sound effects.
   Future<void> _preloadSfx() async {
-    _log.info('Preloading sound effects');
+    debugPrint('Preloading sound effects');
     // This assumes there is only a limited number of sound effects in the game.
     // If there are hundreds of long sound effect files, it's better
     // to be more selective when preloading.
@@ -237,25 +239,28 @@ class AudioController {
 
   void _startOrResumeMusic() async {
     if (_musicPlayer.source == null) {
-      _log.info('No music source set. '
+      debugPrint('No music source set. '
           'Start playing the current song in playlist.');
       await playCurrentSongInPlaylist();
       return;
     }
 
-    _log.info('Resuming paused music.');
+    debugPrint('Resuming paused music.');
     try {
       _musicPlayer.resume();
-    } catch (e) {
+    } catch (e, stack) {
       // Sometimes, resuming fails with an "Unexpected" error.
-      _log.severe("Error resuming music", e);
+      debugPrintStack(
+        label: "Error resuming music\n${e.toString()}",
+        stackTrace: stack,
+      );
       // Try starting the song from scratch.
       playCurrentSongInPlaylist();
     }
   }
 
   void _stopAllSound() {
-    _log.info('Stopping all sound');
+    debugPrint('Stopping all sound');
     _musicPlayer.pause();
     for (final player in _sfxPlayers) {
       player.stop();
