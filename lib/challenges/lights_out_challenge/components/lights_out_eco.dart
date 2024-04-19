@@ -115,7 +115,6 @@ class LightsOutEco extends SpriteAnimationGroupComponent<EcoLightsOutState>
 
     if (other is Lamp) {
       addScore();
-      //_gravityVelocity += 10;
       position.y += _gravityVelocity;
       current = EcoLightsOutState.falling;
       game.audioController.playSfx(SfxType.score);
