@@ -1,8 +1,8 @@
 import 'package:better_world/audio/audio_controller.dart';
 import 'package:better_world/main_map/tutorial/eco_text_bubble_type.dart';
+import 'package:better_world/main_map/widgets/general_tutorial_widget.dart';
 import 'package:better_world/player_progress/player_progress_controller.dart';
 import 'package:better_world/style/overlay_widget.dart';
-import 'package:better_world/main_map/widgets/general_tutorial_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
