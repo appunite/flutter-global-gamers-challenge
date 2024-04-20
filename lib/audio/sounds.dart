@@ -28,7 +28,7 @@ List<String> soundTypeToFilename(SfxType type) {
     case SfxType.challengeUnsuccessful:
       return const ['challenge_unsuccessful.mp3'];
     case SfxType.countdown:
-      return const ['countdown.mp3'];
+      return const ['countdown.wav'];
     case SfxType.panelCleaning:
       return const ['cleaning_window.mp3'];
     case SfxType.waterInPipe:
