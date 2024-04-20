@@ -73,6 +73,11 @@ class _SolarPanelChallengeBodyScreenState extends State<_SolarPanelChallengeBody
         _startTimer();
       }
       if (_challengeController.challengeSummary != null) {
+        /// I couldn't reproduce this bug
+        /// "Solar Panel Cleanup: If the player is still wiping
+        /// at the moment when the game ends, the wiping sound doesn't stop."
+        /// But the line below should turn off all sounds before going to the summary screen.
+        context.read<AudioController>().stopSfx();
         _goToSummaryScreen();
       }
     }

@@ -50,6 +50,74 @@ We understood the basics of the Flame engine, diving into the game development a
 Our next steps involve releasing the game on the Play Store and App Store to reach a wider audience. We aim to continue spreading awareness about the environmental issues highlighted in the game and inspire more individuals to take action. 
 
 
-## How to run the project
-To run the project you don't need any additional setup than cloning the repository. The game works on Android, iOS, MacOS and Web (desktop). 
-Flutter version: 3.19
+# Running the Flutter Project
+
+This guide outlines the steps for running this Flutter project on various platforms (iOS, Android, macOS, and Web).
+
+## Prerequisites
+
+- **Git:** Ensure Git is installed on your macOS system. Verify this by opening a terminal and running `git --version`. If not installed, download it from [https://git-scm.com/downloads](https://git-scm.com/downloads).
+- **Flutter:** Make sure you have Flutter installed. Check the version by running `flutter --version` in the terminal. If not installed, follow the official guide: [https://docs.flutter.dev/get-started/install](https://docs.flutter.dev/get-started/install).
+
+## 1. Clone the Repository (if not already done)
+
+If you haven't already cloned the repository, use the following command to clone it from the provided HTTPS location:
+
+```sh
+git clone https://github.com/appunite/flutter-global-gamers-challenge.git
+```
+
+## 2. Switching Flutter Version
+
+To switch to a specific Flutter version, follow these steps:
+
+1. Navigate to the folder where Flutter is installed.
+2. Use the following command:
+
+```sh
+git checkout 3.19.6
+```
+
+## Running on Different Platforms
+
+### iOS
+
+**Prerequisites:**
+
+- Xcode installed and configured with the iOS development environment.
+- Connected iOS device to your Mac computer.
+
+**Run the App:**
+
+- Open a terminal window.
+- Navigate to the project's root directory.
+- Run: `flutter run -d ios`
+
+### Android
+
+**Prerequisites:**
+
+- Android Studio installed with the Android development environment set up.
+- Connected Android device to your computer.
+
+**Run the App:**
+
+- Open a terminal window.
+- Navigate to the project's root directory.
+- Run: `flutter run -d android`
+
+### macOS
+
+**Run the App:**
+
+- Open a terminal window.
+- Navigate to the project's root directory.
+- Run: `flutter run -d macos`
+
+### Web
+
+**Run the App:**
+
+- Open a terminal window.
+- Navigate to the project's root directory.
+- Run: `flutter run -d web`

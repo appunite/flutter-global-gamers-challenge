@@ -111,7 +111,7 @@ enum ChallengeType {
   lightsOut(
     title: 'Lights Out Challenge',
     description: 'Turning off lights saves power and protects wildlife.',
-    instruction1: 'platformKey to make Eco jump and switch off lights to reduce energy waste.',
+    instruction1: 'platformKey to make an Eco jump and turn off the lights, saving energy! You can use double jump!',
     instruction2: 'Turn off as many lights as you can in 30 seconds and earn points.',
     completedText: 'Your action in reducing light pollution\n helps save energy and protect nocturnal wildlife.',
     routePath: LightsOutChallengeScreen.routePath,
