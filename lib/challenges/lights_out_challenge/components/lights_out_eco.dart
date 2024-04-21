@@ -130,12 +130,13 @@ class LightsOutEco extends SpriteAnimationGroupComponent<EcoLightsOutState>
       if (_canDoubleJump) {
         jumpEffect = JumpEffect(Vector2(0, -_jumpLength)..scaleTo(_jumpLength));
         _canDoubleJump = false;
+        add(jumpEffect);
       }
     } else {
       _canDoubleJump = true;
       jumpEffect = JumpEffect(Vector2(0, -_jumpLength / 2 - 100));
+      add(jumpEffect);
     }
-    add(jumpEffect);
 
     if (!inAir) {
       game.audioController.playSfx(SfxType.jump);
