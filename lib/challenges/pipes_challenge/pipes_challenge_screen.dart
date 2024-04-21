@@ -106,16 +106,18 @@ class _PipesChallengeBodyScreenState extends State<_PipesChallengeBodyScreen> {
     );
   }
 
-  void _showInfoDialog() {
-    _timer?.pause();
-    NavigationHelper.show(
-      context,
-      ChallengeIntroductionDialog(
-        challenge: ChallengeType.pipelines,
-        onCloseTap: () => _popAndResume(),
-        onButtonPressed: () => _popAndResume(),
-      ),
-    );
+  void _showInfoDialog(PipesController pipesController) {
+    if (!pipesController.challengeCompleted) {
+      _timer?.pause();
+      NavigationHelper.show(
+        context,
+        ChallengeIntroductionDialog(
+          challenge: ChallengeType.pipelines,
+          onCloseTap: () => _popAndResume(),
+          onButtonPressed: () => _popAndResume(),
+        ),
+      );
+    }
   }
 
   void _popAndResume() {
@@ -183,7 +185,7 @@ class _PipesChallengeBodyScreenState extends State<_PipesChallengeBodyScreen> {
           appBar: ChallengeAppBar(
             actions: [
               InfoButton(
-                onTap: () => _showInfoDialog(),
+                onTap: () => _showInfoDialog(context.read<PipesController>()),
               ),
             ],
             timeInSeconds: _timeInSeconds,
