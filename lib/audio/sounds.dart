@@ -47,7 +47,6 @@ double soundTypeToVolume(SfxType type) {
     case SfxType.microplasticDestroyed:
     case SfxType.wrongBin:
     case SfxType.panelCleaning:
-    case SfxType.countdown:
     case SfxType.pipe:
     case SfxType.pipeWheel:
       return 0.4;
@@ -55,6 +54,7 @@ double soundTypeToVolume(SfxType type) {
     case SfxType.challengeSuccessful:
     case SfxType.challengeUnsuccessful:
     case SfxType.fireworks:
+    case SfxType.countdown:
       return 1.0;
     case SfxType.waterInPipe:
     case SfxType.score:

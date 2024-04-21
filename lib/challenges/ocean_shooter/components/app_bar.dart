@@ -112,6 +112,7 @@ class _OceanShooterTimerWidgetState extends State<OceanShooterTimerWidget> {
           _timeInSeconds--;
 
           if (_timeInSeconds <= 0) {
+            widget.game.player.stopFire();
             _goToSummaryScreen();
           }
         });

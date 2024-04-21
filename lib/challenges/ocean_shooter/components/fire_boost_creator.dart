@@ -22,7 +22,7 @@ class FireBoostCreator extends TimerComponent with HasGameRef {
         audioController: audioController,
         position: Vector2(
           game.size.x,
-          _halfHeight + (game.size.y - _halfHeight) * random.nextDouble(),
+          _halfHeight + (game.camera.viewport.size.y - _halfHeight) * random.nextDouble(),
         ),
       ),
     );
