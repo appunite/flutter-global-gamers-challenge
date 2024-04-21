@@ -8,7 +8,7 @@ enum EcoTextBubbleType {
           'Each pin on the map hides a challenge to clean that area! Each successful game earns you points and improves our World environment!'),
   challengeIntroduction(
       text:
-          'Replay challenges anytime to beat your score and improve your environmental impact! Tap the pin to start!'),
+          'Replay challenges anytime to beat your score and improve your environmental impact! Tap on any green pin to start!'),
   allChallengesCompleted(
       text:
           'I’m proud of you! You\'ve completed all the challenges in Better World and transformed it into a sustainable place. Keep playing to climb the leaderboard!');

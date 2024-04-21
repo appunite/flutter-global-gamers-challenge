@@ -39,7 +39,7 @@ class AudioController {
   ///
   /// Background music does not count into the [polyphony] limit. Music will
   /// never be overridden by sound effects because that would be silly.
-  AudioController({int polyphony = 10})
+  AudioController({int polyphony = 30})
       : assert(polyphony >= 1),
         _musicPlayer = AudioPlayer(playerId: 'musicPlayer'),
         _sfxPlayers =

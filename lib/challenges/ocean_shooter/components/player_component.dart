@@ -85,7 +85,7 @@ class PlayerComponent extends SpriteAnimationComponent with HasGameRef<OceanChal
       remove(bulletCreator);
       add(
         bulletCreator = TimerComponent(
-          period: 1,
+          period: 0.5,
           repeat: true,
           autoStart: true,
           onTick: () => _createBullet([-0.5, -0.3, 0, 0.3, 0.5]),
