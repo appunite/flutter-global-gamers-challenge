@@ -2,7 +2,7 @@ Welcome to Better World! A Flutter game created using Flame engine. Experience r
 
 - [DevPost Portfolio](https://globalgamers.devpost.com/submissions/466414-better-world)
 - [Demo (Youtube)](https://youtu.be/alQBAHjyctM?si=TrreKLuBQmatyZ8z)
-- [Better World APK](https://drive.google.com/file/d/1_jpMn5p51qB5kh3FhY3FWi3etCA4YBQz/view?usp=drive_link)
+- [Better World APK](https://drive.google.com/drive/folders/1oeQPrMXUh0dLaGAV7nmNd86aoOWnA1NU)
 
 ## Inspiration
 Seeing organizations like Global Citizen leveraging technologies like Flutter to change the world and make a difference has motivated us profoundly. We aspire to join this initiative and raise awareness about the environmental challenges our world currently faces. At Appunite, we found interest in Flutter from the beta phase and seeing such actions, we decided to join! That's why we created Better World.
@@ -52,7 +52,7 @@ Our next steps involve releasing the game on the Play Store and App Store to rea
 
 ## Google Wallet integration
 
-1. Download the APK file from the following link: [Better World APK](https://drive.google.com/file/d/1_jpMn5p51qB5kh3FhY3FWi3etCA4YBQz/view?usp=drive_link)
+1. Download the APK file from the following link: [Better World APK](https://drive.google.com/drive/folders/1oeQPrMXUh0dLaGAV7nmNd86aoOWnA1NU)
 2. Ensure that your device allows installations from unknown sources. You can do this by navigating to `Settings > Security` and enabling the `Unknown Sources` option.
 3. Install the Google Wallet app on your device.
 4. Play any challenge. When you get an achievement, you have the option to add a badge to Google Wallet.
