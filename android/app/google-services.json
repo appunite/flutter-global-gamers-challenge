@@ -7,6 +7,25 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:350421946478:android:d814ee9e9a2a0ed2d4567f",
+        "android_client_info": {
+          "package_name": "com.appunite.better_world"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZKp07yUqxFJZMEAZI2OYfd0GzG6tgvb8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:350421946478:android:3c70c9645bf8d8d9d4567f",
         "android_client_info": {
           "package_name": "com.example.endless_runner"

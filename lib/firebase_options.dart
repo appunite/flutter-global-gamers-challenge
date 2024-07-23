@@ -53,7 +53,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAZKp07yUqxFJZMEAZI2OYfd0GzG6tgvb8',
-    appId: '1:350421946478:android:3c70c9645bf8d8d9d4567f',
+    appId: '1:350421946478:android:d814ee9e9a2a0ed2d4567f',
     messagingSenderId: '350421946478',
     projectId: 'flutter-game-challenge',
     storageBucket: 'flutter-game-challenge.appspot.com',
