@@ -1,4 +1,4 @@
-package com.example.endless_runner
+package com.appunite.better_world
 
 import io.flutter.embedding.android.FlutterActivity
 
