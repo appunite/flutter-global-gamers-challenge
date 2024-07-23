@@ -46,7 +46,7 @@ class SettingsTile extends StatelessWidget {
             activeTrackColor: Palette.secondary,
             inactiveTrackColor: Palette.neutralLightGray,
             inactiveThumbColor: Palette.neutralDarkGray,
-            trackOutlineColor: const MaterialStatePropertyAll(Colors.transparent),
+            trackOutlineColor: const WidgetStatePropertyAll(Colors.transparent),
           ),
         ],
       ),

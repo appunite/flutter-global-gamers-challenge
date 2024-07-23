@@ -39,10 +39,10 @@ dependencies:
   pausable_timer: ^3.1.0+3
   provider: ^6.0.5
   rive: ^0.12.4
-  scaled_app: ^2.2.0
+  scaled_app: ^2.3.0
   scratcher: ^2.5.0
   shared_preferences: ^2.2.2
-  skeletons: ^0.0.3
+  skeleton_loader: ^2.0.0+4
   smart_snackbars: ^1.0.0
   url_launcher: ^6.2.5
   uuid: ^4.3.3
