@@ -1,5 +1,3 @@
-import 'package:better_world/connectivity/connectivity_controller.dart';
-import 'package:better_world/connectivity/no_connection_screen.dart';
 import 'package:better_world/player_progress/persistence/database_persistence.dart';
 import 'package:better_world/player_progress/persistence/firebase_persistence.dart';
 import 'package:better_world/player_progress/persistence/local_player_persistence.dart';
@@ -75,9 +73,6 @@ class BetterWorldGame extends StatelessWidget {
               localStorage: localPlayerPersistence,
             ),
           ),
-          ChangeNotifierProvider(
-            create: (context) => ConnectivityController(),
-          ),
           Provider(create: (_) => SettingsController()),
           ProxyProvider2<SettingsController, AppLifecycleStateNotifier, AudioController>(
             // Ensures that music starts immediately.
@@ -99,14 +94,6 @@ class BetterWorldGame extends StatelessWidget {
               routeInformationProvider: router.routeInformationProvider,
               routeInformationParser: router.routeInformationParser,
               routerDelegate: router.routerDelegate,
-              builder: (context, child) {
-                final connectivityController = context.watch<ConnectivityController>();
-                if (connectivityController.isConnected) {
-                  return child!;
-                } else {
-                  return const NoConnectionScreen();
-                }
-              },
               scrollBehavior: const MaterialScrollBehavior().copyWith(
                 dragDevices: {
                   PointerDeviceKind.mouse,

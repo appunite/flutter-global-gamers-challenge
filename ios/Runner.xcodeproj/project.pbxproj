@@ -475,6 +475,8 @@
 				DEVELOPMENT_TEAM = WWNLSUFXTJ;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Better World - Save the Planet";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.educational-games";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -655,6 +657,8 @@
 				DEVELOPMENT_TEAM = WWNLSUFXTJ;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Better World - Save the Planet";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.educational-games";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -679,6 +683,8 @@
 				DEVELOPMENT_TEAM = WWNLSUFXTJ;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Better World - Save the Planet";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.educational-games";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

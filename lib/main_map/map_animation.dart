@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:better_world/audio/audio_controller.dart';
 import 'package:better_world/audio/sounds.dart';
 import 'package:better_world/challenges/lights_out_challenge/lights_out_challenge_screen.dart';
@@ -11,7 +9,6 @@ import 'package:better_world/challenges/trees_challenge/trees_challenge_screen.d
 import 'package:better_world/common/asset_paths.dart';
 import 'package:better_world/player_progress/entities/challenges_entity.dart';
 import 'package:better_world/player_progress/player_progress_controller.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -149,7 +146,7 @@ class _MapAnimationState extends State<MapAnimation> {
   Widget build(BuildContext context) {
     return RiveAnimation.asset(
       AssetPaths.mapAnimation,
-      fit: kIsWeb || Platform.isMacOS ? BoxFit.contain : BoxFit.cover,
+      fit: BoxFit.contain,
       artboard: 'map',
       onInit: _onInit,
     );
