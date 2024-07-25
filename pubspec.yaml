@@ -14,7 +14,6 @@ dependencies:
   audioplayers: ^5.2.1
   cloud_firestore: ^4.17.0
   confetti: ^0.7.0
-  connecteo: 2.2.1
   cupertino_icons: ^1.0.6
   device_preview: ^1.1.0
   fake_cloud_firestore: ^2.4.9
@@ -35,7 +34,7 @@ dependencies:
   mocktail: ^1.0.3
   nes_ui: ^0.10.0
   overlay_tutorial: ^3.0.0
-  package_info_plus: ^7.0.0
+  package_info_plus: any
   pausable_timer: ^3.1.0+3
   provider: ^6.0.5
   rive: ^0.12.4
